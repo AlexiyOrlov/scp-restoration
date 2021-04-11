@@ -1,0 +1,3 @@
+This crystal spreads around by replacing other blocks except granite, every 1-3
+minutes, into a random direction. Living creatures will be damaged on contact
+and will be replaced by more crystals on death.
