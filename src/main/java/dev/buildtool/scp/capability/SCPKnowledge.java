@@ -57,8 +57,6 @@ public class SCPKnowledge {
             compoundNBT.putString("Number",number);
             compoundNBT.putString("Class",classification.name());
             compoundNBT.putString("Official name",officialName);
-//            String compressed= String.join("\n", information);
-//            compoundNBT.putString("Information",compressed);
             return compoundNBT;
         }
 
@@ -67,8 +65,6 @@ public class SCPKnowledge {
             number=compoundNBT.getString("Number");
             classification= SCPObject.Classification.valueOf(compoundNBT.getString("Class"));
             officialName=compoundNBT.getString("Official name");
-//            String info= compoundNBT.getString("Information");
-//            information= new ArrayList<>(Arrays.asList(info.split("\n")));
             return this;
         }
     }

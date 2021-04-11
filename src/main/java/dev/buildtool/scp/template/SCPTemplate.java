@@ -1,0 +1,69 @@
+package dev.buildtool.scp.template;
+
+import dev.buildtool.scp.SCPObject;
+import dev.buildtool.scp.Utils;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
+public class SCPTemplate extends Item {
+    protected static final String SCP = "SCP";
+
+    public SCPTemplate(Properties p_i48487_1_) {
+        super(p_i48487_1_);
+    }
+
+    @Override
+    public ActionResultType useOn(ItemUseContext p_195939_1_) {
+        BlockPos blockPos = p_195939_1_.getClickedPos();
+        Direction face = p_195939_1_.getClickedFace();
+        ItemStack itemStack = p_195939_1_.getItemInHand();
+        CompoundNBT compoundNBT = itemStack.getTag();
+        String scp = compoundNBT.getString(SCP);
+        return super.useOn(p_195939_1_);
+    }
+
+    @Override
+    public void fillItemCategory(ItemGroup p_150895_1_, NonNullList<ItemStack> p_150895_2_) {
+        if (allowdedIn(p_150895_1_)) {
+            Utils.getAllSCPs().forEach(stringObjectMap -> {
+                String number = (String) stringObjectMap.get("number");
+                String name = (String) stringObjectMap.get("name");
+                ModAnnotation.EnumHolder classification = (ModAnnotation.EnumHolder) stringObjectMap.get("classification");
+                CompoundNBT compoundNBT = new CompoundNBT();
+                compoundNBT.putString("Number", number);
+                compoundNBT.putString("Name", name);
+                compoundNBT.putString("Class", classification.getValue());
+                ItemStack itemStack = new ItemStack(this);
+                itemStack.setTag(compoundNBT);
+                p_150895_2_.add(itemStack);
+            });
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_) {
+        super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+        if (p_77624_1_.hasTag()) {
+            CompoundNBT compoundNBT = p_77624_1_.getTag();
+            p_77624_3_.add(new StringTextComponent("SCP-" + compoundNBT.getString("Number")));
+            p_77624_3_.add(new TranslationTextComponent("scp.name").append(": " + compoundNBT.getString("Name")));
+            p_77624_3_.add(new StringTextComponent(SCPObject.Classification.valueOf(compoundNBT.getString("Class")).toString()));
+        }
+    }
+}

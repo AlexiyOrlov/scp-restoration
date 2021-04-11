@@ -7,6 +7,7 @@ import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.items.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
+import dev.buildtool.scp.template.SCPTemplate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -44,6 +45,15 @@ public class SCPItems {
     static public PoliceBaton policeBaton;
     static public KeyCard keyCard;
     static public Item banana, rubberDuck, gadget;
+
+    public static SCPTemplate scpTemplate;
+
+    static ItemGroup templates = new ItemGroup("scp.templates") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(scpTemplate);
+        }
+    };
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -101,6 +111,7 @@ public class SCPItems {
         }, "killer", forgeRegistry);
         gadget = register(new Item(properties()), "gadget", forgeRegistry);
         register(new AutoRifle(properties().defaultDurability(1000), 0), "rifle", forgeRegistry);
+        scpTemplate = register(new SCPTemplate(single().tab(templates)), "scp_template", forgeRegistry);
     }
 
     private static Item.Properties scp(){

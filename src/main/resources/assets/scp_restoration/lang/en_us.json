@@ -2,6 +2,7 @@
   "itemGroup.scp.blocks": "SCP Restoration: blocks",
   "itemGroup.scp.items": "SCP Restoration: items",
   "itemGroup.scps": "SCP Restoration: objects",
+  "itemGroup.scp.templates": "SCP Restoration templates",
 
   "death.attack.radiation": "Died from radiation",
   "death.attack.scp.lost.organ": "You lost a vital organ",
@@ -55,6 +56,8 @@
   "item.scp_restoration.gadget": "SCP Gadget",
   "item.scp_restoration.ikea_monster_egg": "SCP-3008-2",
   "item.scp_restoration.young_girl_egg": "Young Girl (SCP-053)",
+  "item.scp_restoration.scp_template": "Template",
+
   "block.scp_restoration.pizza_box": "The Never-Ending Pizza Box (SCP-458)",
   "block.scp_restoration.red_ice": "Red Ice (SCP-009)",
   "block.scp_restoration.cactus_mine": "Landmine Cacti (SCP-822)",
@@ -250,5 +253,6 @@
   "scp.full.inventory": "Your inventory is full",
   "scp.active": "Old AI is active",
   "scp.inactive": "Old AI is inactive",
+  "scp.name": "Name",
   "scp.found.nothing": "You found nothing inside"
 }

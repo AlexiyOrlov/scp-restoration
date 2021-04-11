@@ -29,7 +29,7 @@ public class InfoScreen  extends Screen2 {
     public InfoScreen(ClientPlayerEntity player, ITextComponent title) {
         super(title);
 
-        Optional<ModFileScanData> optional = ModList.get().getAllScanData().stream().filter(modFileScanData -> modFileScanData.getIModInfoData().get(0).getMods().get(0).getModId().equals(SCP.ID)).findFirst();// forEach(modFileScanData -> {
+        Optional<ModFileScanData> optional = ModList.get().getAllScanData().stream().filter(modFileScanData -> modFileScanData.getIModInfoData().get(0).getMods().get(0).getModId().equals(SCP.ID)).findFirst();
         optional.ifPresent(modFileScanData -> {
             List<ModFileScanData.AnnotationData> optionalAnnotationData = modFileScanData.getAnnotations().stream().filter(annotationData -> annotationData.getAnnotationType().getClassName().equals(SCPObject.class.getName())).collect(Collectors.toList());
             optionalAnnotationData.forEach(annotationData -> {

@@ -11,11 +11,12 @@ import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.forgespi.language.ModFileScanData;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Queued for {@link dev.buildtool.satako.Functions}
@@ -106,5 +107,20 @@ public class Utils {
         }
 
         return entity == null ? null : new EntityRayTraceResult(entity, vector3d);
+    }
+
+    /**
+     * @return list of scp annotations
+     */
+    public static List<Map<String, Object>> getAllSCPs() {
+        Optional<ModFileScanData> optional = ModList.get().getAllScanData().stream().filter(modFileScanData -> modFileScanData.getIModInfoData().get(0).getMods().get(0).getModId().equals(dev.buildtool.scp.SCP.ID)).findFirst();
+        if (optional.isPresent()) {
+            ModFileScanData modFileScanData = optional.get();
+            List<ModFileScanData.AnnotationData> annotationData = modFileScanData.getAnnotations().stream().filter(data -> data.getAnnotationType().getClassName().equals(SCPObject.class.getName())).collect(Collectors.toList());
+            List<Map<String, Object>> list = new ArrayList<>(annotationData.size());
+            annotationData.forEach(annotationData1 -> list.add(annotationData1.getAnnotationData()));
+            return list;
+        }
+        throw new IllegalStateException("No SCP annotations found");
     }
 }
