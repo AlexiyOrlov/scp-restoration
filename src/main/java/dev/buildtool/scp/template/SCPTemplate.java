@@ -1,5 +1,6 @@
 package dev.buildtool.scp.template;
 
+import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.Utils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -44,7 +45,7 @@ public class SCPTemplate extends Item {
             TemplateManager templateManager = world.getServer().getStructureManager();
             Template template = templateManager.get(new ResourceLocation(dev.buildtool.scp.SCP.ID, "containers/" + scp));
             if (template != null) {
-                template.placeInWorld((IServerWorld) world, blockPos.relative(face), new PlacementSettings().setIgnoreEntities(false).setFinalizeEntities(true).setRotation(Utils.directionToRotation(p_195939_1_.getHorizontalDirection())), random);
+                template.placeInWorld((IServerWorld) world, blockPos.relative(face), new PlacementSettings().setIgnoreEntities(false).setFinalizeEntities(true).setRotation(Functions.directionToRotation(p_195939_1_.getHorizontalDirection())), random);
                 return ActionResultType.SUCCESS;
             }
         }
