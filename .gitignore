@@ -1,0 +1,5 @@
+force-copy.sh
+src/generated
+run
+server
+build

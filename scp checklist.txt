@@ -1,0 +1,11 @@
+For all:
+1. add annotation;
+2. build a room and add it to structures;
+3. add the structure identifier to SiteFeature.
+4. add an information entry.
+
+For entities:
+1. create model and texture;
+2. register renderer;
+3. register attributes;
+4. add spawn egg;

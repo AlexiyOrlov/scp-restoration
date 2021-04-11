@@ -1,0 +1,39 @@
+
+
+0.4.0:
+fixed SCP-053 crashing the server;
+added an option to make SCP-063 break unbreakable blocks;
+added SCP-1811;
+added colored pipes;
+
+0.3.2:
+fixed incompatibility with other dimension mods;
+fixed sliding door deleting blocks with the top half;
+
+0.3.1:
+fix: forgot to add 053's room to generation;
+
+0.3.0:
+added SCP-053;
+changed Shyguy's model;
+
+0.2.2:
+fixed Auto-rifle crashing the server;
+
+0.2.1:
+the player must sneak to activate SCP-3008 entrance-teleporter;
+
+0.2.0:
+implemented SCP-3008;
+tagged armor, swords, and shelves;
+implemented human interaction GUI;
+implemented bow and crossbow attack for humans;
+implemented 'follow', 'assist', 'guard position', and 'protect' human tasks;
+scp-049 will attack humans, too;
+police baton is not a sword subitem anymore;
+banana overdose will not affect players in creative mode;
+added an option to dump all scp-914 recipes to a file;
+added automatic rifle;
+humans can block with shield;
+added Person Hire Station;
+made Tothbrush faster.
