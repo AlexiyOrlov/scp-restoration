@@ -78,7 +78,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
 
             RegistryKey<World> dimensionTypeRegistryKey = serverWorld.dimension();
 
-            if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD && dimensionTypeRegistryKey.getRegistryName().toString().equals("minecraft:overworld")) {
+            if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
                 SCPWorldData = serverWorld.getDataStorage().get(SCPWorldData::new, SCP.ID);
                 generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
                 listInitialized = true;
