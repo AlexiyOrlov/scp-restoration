@@ -1,6 +1,7 @@
 package dev.buildtool.scp.blocks;
 
 import dev.buildtool.satako.Functions;
+import dev.buildtool.scp.SCPObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,6 +20,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+@SCPObject(name = "Contagious Crystal", number = "409", classification = SCPObject.Classification.KETER)
 public class ContagiousCrystal extends Block {
     public ContagiousCrystal(Properties properties) {
         super(properties);
