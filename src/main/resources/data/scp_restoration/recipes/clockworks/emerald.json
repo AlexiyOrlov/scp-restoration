@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:emerald_ore",
+  "mode": "coarse",
+  "seconds": 3,
+  "result": {
+    "item": "minecraft:emerald",
+    "count": 2
+  }
+}

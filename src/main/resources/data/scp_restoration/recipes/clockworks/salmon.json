@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:salmon",
+  "mode": "fine",
+  "seconds": 10,
+  "result": {
+    "item": "minecraft:cooked_salmon",
+    "count": 1
+  }
+}

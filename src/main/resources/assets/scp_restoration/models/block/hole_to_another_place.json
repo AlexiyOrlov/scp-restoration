@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "scp_restoration:block/htap",
+    "east": "scp_restoration:block/htap",
+    "west": "scp_restoration:block/htap",
+    "north": "scp_restoration:block/htap",
+    "south": "scp_restoration:block/htap",
+    "up": "scp_restoration:block/black",
+    "down": "scp_restoration:block/htap"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=north,lit=true": {
+      "model": "scp_restoration:block/small_lamp"
+    },
+    "facing=north,lit=false": {
+      "model": "scp_restoration:block/small_lamp"
+    },
+    "facing=east,lit=true": {
+      "model": "scp_restoration:block/small_lamp",
+      "y": 90
+    },
+    "facing=east,lit=false": {
+      "model": "scp_restoration:block/small_lamp",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "scp_restoration:block/small_lamp",
+      "y": 180
+    },
+    "facing=south,lit=false": {
+      "model": "scp_restoration:block/small_lamp",
+      "y": 180
+    },
+    "facing=up,lit=true": {
+      "model": "scp_restoration:block/small_lamp",
+      "x": 270
+    },
+    "facing=up,lit=false": {
+      "model": "scp_restoration:block/small_lamp",
+      "x": 270
+    },
+    "facing=down,lit=true": {
+      "model": "scp_restoration:block/small_lamp",
+      "x": 90
+    },
+    "facing=down,lit=false": {
+      "model": "scp_restoration:block/small_lamp",
+      "x": 90
+    },
+    "facing=west,lit=true": {
+      "model": "scp_restoration:block/small_lamp",
+      "y": 270
+    },
+    "facing=west,lit=false": {
+      "model": "scp_restoration:block/small_lamp",
+      "y": 270
+    }
+  }
+}

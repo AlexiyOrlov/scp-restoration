@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "facing=north,half=bottom": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=north,half=top": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=east,half=bottom": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=east,half=top": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=south,half=bottom": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=south,half=top": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=west,half=bottom": {
+            "model": "scp_restoration:block/sliding_door"
+        },
+        "facing=west,half=top": {
+            "model": "scp_restoration:block/sliding_door"
+        }
+    }
+}

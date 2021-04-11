@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "scp_restoration:block/hole_in_the_wall",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "scp_restoration:block/hole_in_the_wall",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "scp_restoration:block/hole_in_the_wall"
+    },
+    "facing=down": {
+      "model": "scp_restoration:block/hole_in_the_wall",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "scp_restoration:block/hole_in_the_wall",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west": {
+      "model": "scp_restoration:block/hole_in_the_wall",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#scp_restoration:shelves",
+    "scp_restoration:crate",
+    "scp_restoration:one_item_table",
+    "scp_restoration:four_item_table",
+    "minecraft:barrel"
+  ]
+}

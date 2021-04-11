@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "scp_restoration:block/pink_bricks_slab_top"
+    },
+    "type=bottom": {
+      "model": "scp_restoration:block/pink_bricks_slab"
+    },
+    "type=double": {
+      "model": "scp_restoration:block/pink_bricks"
+    }
+  }
+}

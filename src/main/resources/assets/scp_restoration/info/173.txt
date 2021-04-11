@@ -1,0 +1,3 @@
+Sculpture is an invulnerable mob.
+It hunts for humans, and attacks by strangulation or neck snapping.
+It can't move if it is in sight of a human. Can open doors. Can't swim.

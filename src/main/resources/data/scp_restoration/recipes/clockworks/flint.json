@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:gravel",
+  "mode": "fine",
+  "seconds": 5,
+  "result": {
+    "item": "minecraft:flint",
+    "count": 1
+  }
+}

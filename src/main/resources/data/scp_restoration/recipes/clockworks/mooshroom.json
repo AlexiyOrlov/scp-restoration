@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:cow_spawn_egg",
+  "mode": "fine",
+  "seconds": 30,
+  "result": {
+    "item": "minecraft:mooshroom_spawn_egg",
+    "count": 1
+  }
+}

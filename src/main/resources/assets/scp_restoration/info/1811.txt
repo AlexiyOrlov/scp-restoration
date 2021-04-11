@@ -1,0 +1,2 @@
+SCP-1811 is a shelf which affects enchanted books inside it. If there are at least 2 books present,
+SCP-1811 will change books' enchantments randomly every 3 minutes.

@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:apple",
+  "mode": "fine",
+  "seconds": 10,
+  "result": {
+    "item": "minecraft:golden_apple",
+    "count": 1
+  }
+}

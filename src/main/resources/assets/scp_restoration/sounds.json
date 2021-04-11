@@ -1,0 +1,54 @@
+{
+  "shot": {
+    "sounds": [
+      "scp_restoration:gunshot"
+    ]
+  },
+  "rubber_ducky": {
+    "category": "player",
+    "sounds": [
+      "scp_restoration:toy_squeeze"
+    ]
+  },
+  "sobbing_man": {
+    "sounds": [
+      "scp_restoration:crying_man"
+    ]
+  },
+  "angry_screams": {
+    "sounds": [
+      "scp_restoration:screams-of-frustration"
+    ]
+  },
+  "scp3199": {
+    "category": "hostile",
+    "sounds": [
+      "scp_restoration:scp3199"
+    ]
+  },
+  "flesh_punch": {
+    "sounds": [
+      "scp_restoration:pound-on-flesh"
+    ]
+  },
+  "growl": {
+    "sounds": [
+      "scp_restoration:growl"
+    ]
+  },
+  "scp1437": {
+    "sounds": [
+      "scp_restoration:bzzt"
+    ]
+  },
+  "unlock": {
+    "sounds": [
+      "scp_restoration:unlock"
+    ]
+  },
+  "door_closed": {
+    "sounds": [
+      "scp_restoration:metal-door-closed"
+    ]
+  }
+}

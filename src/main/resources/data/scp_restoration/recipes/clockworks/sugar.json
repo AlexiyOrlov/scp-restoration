@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:sugar_cane",
+  "mode": "rough",
+  "seconds": 4,
+  "result": {
+    "item": "minecraft:sugar",
+    "count": 2
+  }
+}

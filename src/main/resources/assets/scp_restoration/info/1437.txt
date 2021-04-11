@@ -1,0 +1,1 @@
+This hole spawns random common items. It can take up to 25 minutes between spawns.

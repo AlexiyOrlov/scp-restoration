@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:beef",
+  "mode": "fine",
+  "seconds": 11,
+  "result": {
+    "item": "minecraft:cooked_beef",
+    "count": 1
+  }
+}

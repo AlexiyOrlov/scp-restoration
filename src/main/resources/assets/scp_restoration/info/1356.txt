@@ -1,0 +1,2 @@
+Rubber Ducky displaces water around the player if he's holding it in a hand.
+Its effective range is 2 blocks.

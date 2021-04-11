@@ -1,0 +1,3 @@
+SCP-606 is a non-corporeal entity appearing as a mass of light.
+All players near it will slowly gain experience while suffering damage from
+information overload. All enchantable items will become randomly enchanted.

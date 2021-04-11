@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:saddle",
+  "mode": "coarse",
+  "seconds": 20,
+  "result": {
+    "item": "minecraft:leather",
+    "count": 8
+  }
+}

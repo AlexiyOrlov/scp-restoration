@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:acacia_wood",
+  "mode": "one_one",
+  "seconds": 8,
+  "result": {
+    "item": "minecraft:birch_wood",
+    "count": 1
+  }
+}

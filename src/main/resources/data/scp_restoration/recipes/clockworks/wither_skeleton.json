@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:skeleton_spawn_egg",
+  "mode": "fine",
+  "seconds": 10,
+  "result": {
+    "item": "minecraft:wither_skeleton_spawn_egg",
+    "count": 1
+  }
+}

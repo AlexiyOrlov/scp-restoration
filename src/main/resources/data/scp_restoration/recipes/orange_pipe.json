@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "scp_restoration:orange_bricks"
+    },
+    "D": {
+      "tag": "forge:dyes/orange"
+    }
+  },
+  "result": {
+    "item": "scp_restoration:orange_pipe",
+    "count": 4
+  }
+}

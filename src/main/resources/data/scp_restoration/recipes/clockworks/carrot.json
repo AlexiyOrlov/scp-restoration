@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:potato",
+  "mode": "one_one",
+  "seconds": 14,
+  "result": {
+    "item": "minecraft:carrot",
+    "count": 1
+  }
+}

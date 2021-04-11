@@ -1,0 +1,78 @@
+package dev.buildtool.scp.events;
+
+import com.google.common.collect.Sets;
+import dev.buildtool.scp.SCP;
+import dev.buildtool.scp.clockworks.ClockworksEntity;
+import dev.buildtool.scp.crate.CrateEntity;
+import dev.buildtool.scp.infiniteikea.TeleportBlockEntity;
+import dev.buildtool.scp.lock.LockEntity;
+import dev.buildtool.scp.monsterpot.MonsterPotEntity;
+import dev.buildtool.scp.oldai.OldAIEntity;
+import dev.buildtool.scp.shelf.ShelfEntity;
+import dev.buildtool.scp.slidingdoor.SlidingDoorEntity;
+import dev.buildtool.scp.table.TableEntity;
+import dev.buildtool.scp.table.TableEntity4;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.Collections;
+import java.util.function.Supplier;
+
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+public class SCPTiles {
+    public static TileEntityType<SlidingDoorEntity> slidingDoorEntity;
+    public static TileEntityType<ClockworksEntity> clockworksEntity;
+    public static TileEntityType<CrateEntity> crateEntity;
+    public static TileEntityType<ShelfEntity> shelfEntity;
+    public static TileEntityType<TableEntity> tableEntity;
+    public static TileEntityType<MonsterPotEntity> monsterPotEntity;
+    public static TileEntityType<TableEntity4> tableEntity4;
+    public static TileEntityType<LockEntity> lockEntity;
+    public static TileEntityType<TeleportBlockEntity> ikeaTeleporter;
+    public static TileEntityType<OldAIEntity> oldAIEntity;
+    public static TileEntityType<dev.buildtool.scp.shelflife.ShelfEntity> shelfLifeEntity;
+
+    @SuppressWarnings("unused")
+    @SubscribeEvent
+    public static void registerBlockEntities(RegistryEvent.Register<TileEntityType<?>> registryEvent) {
+        IForgeRegistry<TileEntityType<?>> forgeRegistry = registryEvent.getRegistry();
+
+        slidingDoorEntity = new TileEntityType<>(() -> new SlidingDoorEntity(slidingDoorEntity), Collections.singleton(SCPBlocks.slidingDoorBlock), null);
+        slidingDoorEntity.setRegistryName(SCP.ID, "sliding_door");
+        clockworksEntity = register(ClockworksEntity::new, "clockworks", SCPBlocks.clockworksPanel);
+        crateEntity = register(() -> new CrateEntity(crateEntity), "crate", SCPBlocks.crateBlock);
+        shelfEntity = register(() -> new ShelfEntity(shelfEntity), "shelf", SCPBlocks.acaciaShelf, SCPBlocks.spruceShelf, SCPBlocks.darkOakShelf, SCPBlocks.oakShelf, SCPBlocks.jungleShelf, SCPBlocks.birchShelf);
+        tableEntity = register(() -> new TableEntity(tableEntity), "table_one", SCPBlocks.singleItemTable);
+        tableEntity4 = register(() -> new TableEntity4(tableEntity4), "table_four", SCPBlocks.fourItemTable);
+        forgeRegistry.registerAll(slidingDoorEntity, clockworksEntity, crateEntity, shelfEntity, tableEntity, tableEntity4);
+        monsterPotEntity = register(() -> new MonsterPotEntity(monsterPotEntity), "monster_pot", SCPBlocks.monsterPot);
+        lockEntity = register(() -> new LockEntity(lockEntity), "electronic_lock", SCPBlocks.electronicLock);
+        forgeRegistry.registerAll(monsterPotEntity, lockEntity);
+        ikeaTeleporter = register(() -> new TeleportBlockEntity(ikeaTeleporter), "ikea_teleporter", SCPBlocks.iikeaEntrance, SCPBlocks.iikeaExit);
+        forgeRegistry.register(ikeaTeleporter);
+        oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", SCPBlocks.oldAIBlock);
+        forgeRegistry.registerAll(oldAIEntity);
+        shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
+    }
+
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    private static <E extends TileEntityType<?>> E register(Supplier<TileEntity> supplier, String id, Block... blocks) {
+        TileEntityType<?> type = new TileEntityType<>(supplier, Sets.newHashSet(blocks), null);
+        type.setRegistryName(SCP.ID, id);
+        return (E) type;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <E extends TileEntityType<?>> E register(Supplier<TileEntity> tileEntitySupplier, String id, IForgeRegistry<TileEntityType<?>> forgeRegistry, Block... blocks) {
+        TileEntityType<?> tileEntityType = new TileEntityType<>(tileEntitySupplier, Sets.newHashSet(blocks), null);
+        tileEntityType.setRegistryName(SCP.ID, id);
+        forgeRegistry.register(tileEntityType);
+        return (E) tileEntityType;
+    }
+}

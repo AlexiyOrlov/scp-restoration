@@ -1,0 +1,24 @@
+package dev.buildtool.scp;
+
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.ISeedReader;
+import net.minecraft.world.gen.feature.template.Template;
+import net.minecraftforge.items.CapabilityItemHandler;
+
+import java.util.Collections;
+
+public class TemplateWithRandomLoot extends Template2 {
+    RandomLoot randomLoot;
+
+    public TemplateWithRandomLoot(Template template, RandomLoot loot, ISeedReader seedReader) {
+        super(template, Collections.emptyList(), seedReader);
+        this.randomLoot = loot;
+    }
+
+    @Override
+    protected void addLoot(TileEntity tileEntity) {
+        if (!(tileEntity instanceof ISidedInventory))
+            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> randomLoot.generateInto(itemHandler));
+    }
+}

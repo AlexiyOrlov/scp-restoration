@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:iron_horse_armor",
+  "mode": "rough",
+  "seconds": 20,
+  "result": {
+    "item": "minecraft:iron_ingot",
+    "count": 5
+  }
+}

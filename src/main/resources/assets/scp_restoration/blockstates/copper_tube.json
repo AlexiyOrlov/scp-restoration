@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "scp_restoration:block/copper_tube",
+            "x": 0
+        },
+        "facing=south": {
+            "model": "scp_restoration:block/copper_tube",
+            "y": 180
+        },
+        "facing=up": {
+            "model": "scp_restoration:block/copper_tube",
+            "x": 270
+        },
+        "facing=down": {
+            "model": "scp_restoration:block/copper_tube",
+            "x": 90
+        },
+        "facing=east": {
+            "model": "scp_restoration:block/copper_tube",
+            "y": 90
+        },
+        "facing=west": {
+            "model": "scp_restoration:block/copper_tube",
+            "y": 270
+        }
+    }
+}

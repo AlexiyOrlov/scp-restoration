@@ -1,0 +1,9 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:bow",
+  "mode": "fine",
+  "seconds": 14,
+  "result": {
+    "item": "minecraft:crossbow"
+  }
+}

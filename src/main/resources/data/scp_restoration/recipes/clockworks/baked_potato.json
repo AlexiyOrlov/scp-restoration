@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:potato",
+  "mode": "fine",
+  "seconds": 9,
+  "result": {
+    "item": "minecraft:baked_potato",
+    "count": 1
+  }
+}

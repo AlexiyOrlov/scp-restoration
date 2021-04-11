@@ -1,0 +1,3 @@
+This is a scarecrow which affects behaviour of livestock animals within 100 block range.
+Those animals will become hostile to humans. They will breed by themselves,
+ and if there are more than 10 animals of the same type, a random adult animal of those will be killed.

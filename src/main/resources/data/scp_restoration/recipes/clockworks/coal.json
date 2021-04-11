@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:coal_ore",
+  "mode": "coarse",
+  "seconds": 2,
+  "result": {
+    "item": "minecraft:coal",
+    "count": 2
+  }
+}

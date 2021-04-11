@@ -1,0 +1,4 @@
+This object periodically spawns small hostile entities.
+If a player touches the top of the pot or tries to break it, the pot will spawn
+a burst of these entities.
+The spawn rate can be decreased by surrounding the pot with any ice.

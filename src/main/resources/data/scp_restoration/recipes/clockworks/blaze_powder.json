@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:blaze_rod",
+  "mode": "coarse",
+  "seconds": 1,
+  "result": {
+    "item": "minecraft:blaze_powder",
+    "count": 3
+  }
+}

@@ -1,0 +1,20 @@
+Transforms items depending on the mode, for free.
+Items must be put in from the left side.
+Can be set to automatically ingest items.
+
+Additional transformations can be added via datapack.
+Example json file:
+
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:emerald_ore",
+  "mode": "coarse",
+  "seconds": 3,
+  "result": {
+    "item": "minecraft:emerald",
+    "count": 2
+  }
+}
+
+Mode names: rough, coarse, one_one, fine, very_fine.
+The files should be placed into "data/scp_restoration/clockworks/recipes" directory.

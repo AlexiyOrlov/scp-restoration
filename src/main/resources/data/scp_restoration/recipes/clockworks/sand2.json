@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:sandstone",
+  "mode": "coarse",
+  "seconds": 1,
+  "result": {
+    "item": "minecraft:sand",
+    "count": 1
+  }
+}

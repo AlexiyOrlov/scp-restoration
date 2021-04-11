@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:rabbit",
+  "mode": "fine",
+  "seconds": 10,
+  "result": {
+    "item": "minecraft:cooked_rabbit",
+    "count": 1
+  }
+}

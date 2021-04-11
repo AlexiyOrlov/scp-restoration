@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "scp_restoration:block/brown_pipe",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "scp_restoration:block/brown_pipe"
+    },
+    "axis=z": {
+      "model": "scp_restoration:block/brown_pipe",
+      "x": 90
+    }
+  }
+}

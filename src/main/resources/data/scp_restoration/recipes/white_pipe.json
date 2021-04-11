@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "scp_restoration:white_bricks"
+    },
+    "D": {
+      "tag": "forge:dyes/white"
+    }
+  },
+  "result": {
+    "item": "scp_restoration:white_pipe",
+    "count": 4
+  }
+}

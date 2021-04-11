@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "scp_restoration:acacia_shelf",
+    "scp_restoration:jungle_shelf",
+    "scp_restoration:oak_shelf",
+    "scp_restoration:spruce_shelf",
+    "scp_restoration:dark_oak_shelf",
+    "scp_restoration:birch_shelf"
+  ]
+}

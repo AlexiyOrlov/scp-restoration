@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:melon_seeds",
+  "mode": "one_one",
+  "seconds": 10,
+  "result": {
+    "item": "minecraft:pumpkin_seeds",
+    "count": 1
+  }
+}

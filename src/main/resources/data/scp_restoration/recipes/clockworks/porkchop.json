@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:porkchop",
+  "mode": "fine",
+  "seconds": 11,
+  "result": {
+    "item": "minecraft:cooked_porkchop",
+    "count": 1
+  }
+}

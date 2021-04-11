@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "down": "scp_restoration:block/hole_in_the_wall",
+    "side": "scp_restoration:block/hole_in_the_wall",
+    "up": "scp_restoration:block/hole_in_the_wall_top"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "yyy",
+    " g ",
+    "bbb"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:blue_dye"
+    },
+    "g": {
+      "item": "scp_restoration:gadget"
+    },
+    "y": {
+      "item": "minecraft:yellow_dye"
+    }
+  },
+  "result": {
+    "item": "scp_restoration:keycard",
+    "count": 1
+  }
+}

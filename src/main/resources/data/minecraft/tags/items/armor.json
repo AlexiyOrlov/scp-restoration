@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:boots",
+    "#minecraft:chestplates",
+    "#minecraft:leggings",
+    "#minecraft:boots"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:beetroot_seeds",
+  "mode": "one_one",
+  "seconds": 10,
+  "result": {
+    "item": "minecraft:wheat_seeds",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "scp_restoration:block/acacia_shelf",
+            "x": 0
+        },
+        "facing=south": {
+            "model": "scp_restoration:block/acacia_shelf",
+            "y": 180
+        },
+        "facing=east": {
+            "model": "scp_restoration:block/acacia_shelf",
+            "y": 90
+        },
+        "facing=west": {
+            "model": "scp_restoration:block/acacia_shelf",
+            "y": 270
+        }
+    }
+}

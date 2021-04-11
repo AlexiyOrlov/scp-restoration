@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "scp_restoration:block/building1_slab_bottom"
+        },
+        "type=top": {
+            "model": "scp_restoration:block/building1_slab_top"
+        },
+        "type=double": {
+            "model": "scp_restoration:block/building1"
+        }
+    }
+}

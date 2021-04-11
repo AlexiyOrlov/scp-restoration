@@ -1,0 +1,40 @@
+{
+  "type": "chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_sword",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "levels": {
+                "type": "uniform",
+                "min": 15.0,
+                "max": 22.0
+              },
+              "treasure": true
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_sword",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "levels": {
+                "type": "uniform",
+                "min": 15.0,
+                "max": 22.0
+              },
+              "treasure": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:gravel",
+  "mode": "rough",
+  "seconds": 3,
+  "result": {
+    "item": "minecraft:sand",
+    "count": 1
+  }
+}

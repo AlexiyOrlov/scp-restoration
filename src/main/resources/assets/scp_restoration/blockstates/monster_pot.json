@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,half=bottom": {
+      "model": "scp_restoration:block/monster_pot_bottom",
+      "x": 0
+    },
+    "facing=south,half=bottom": {
+      "model": "scp_restoration:block/monster_pot_bottom",
+      "y": 180
+    },
+    "facing=east,half=bottom": {
+      "model": "scp_restoration:block/monster_pot_bottom",
+      "y": 90
+    },
+    "facing=west,half=bottom": {
+      "model": "scp_restoration:block/monster_pot_bottom",
+      "y": 270
+    },
+    "facing=north,half=top": {
+      "model": "scp_restoration:block/monster_pot_top",
+      "x": 0
+    },
+    "facing=south,half=top": {
+      "model": "scp_restoration:block/monster_pot_top",
+      "y": 180
+    },
+    "facing=east,half=top": {
+      "model": "scp_restoration:block/monster_pot_top",
+      "y": 90
+    },
+    "facing=west,half=top": {
+      "model": "scp_restoration:block/monster_pot_top",
+      "y": 270
+    }
+  }
+}

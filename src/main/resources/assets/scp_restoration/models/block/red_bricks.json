@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "scp_restoration:block/red_bricks"
+    }
+}

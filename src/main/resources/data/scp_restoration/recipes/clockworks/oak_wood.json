@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:dark_oak_wood",
+  "mode": "one_one",
+  "seconds": 8,
+  "result": {
+    "item": "minecraft:oak_wood",
+    "count": 1
+  }
+}

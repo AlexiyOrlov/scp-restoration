@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "scp_restoration:magenta_bricks"
+    },
+    "D": {
+      "tag": "forge:dyes/magenta"
+    }
+  },
+  "result": {
+    "item": "scp_restoration:magenta_pipe",
+    "count": 4
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "scp_restoration:clockworks",
+  "input": "minecraft:leather_horse_armor",
+  "mode": "rough",
+  "seconds": 20,
+  "result": {
+    "item": "minecraft:leather",
+    "count": 5
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "type": {
+    "name": "scp_restoration:iikea",
+    "ultrawarm": false,
+    "natural": true,
+    "piglin_safe": true,
+    "respawn_anchor_works": false,
+    "bed_works": true,
+    "has_raids": false,
+    "has_skylight": false,
+    "has_ceiling": true,
+    "coordinate_scale": 1,
+    "ambient_light": 0,
+    "logical_height": 128,
+    "infiniburn": "minecraft:infiniburn_overworld",
+    "effects": "minecraft:overworld"
+  },
+  "generator": {
+    "type": "minecraft:flat",
+    "seed": -846531265,
+    "settings": {
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 1
+        },
+        {
+          "block": "scp_restoration:building3",
+          "height": 3
+        },
+        {
+          "block": "minecraft:air",
+          "height": 64
+        },
+        {
+          "block": "scp_restoration:building2",
+          "height": 3
+        },
+        {
+          "block": "minecraft:bedrock",
+          "height": 1
+        }
+      ],
+      "structures": {
+        "structures": {}
+      },
+      "biome": "scp_restoration:iikea1",
+      "lakes": false,
+      "features": true
+    },
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "seed": -846531265,
+      "biome": "scp_restoration:iikea1"
+    }
+  }
+}

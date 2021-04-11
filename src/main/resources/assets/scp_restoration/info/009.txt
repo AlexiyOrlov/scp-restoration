@@ -1,0 +1,2 @@
+Spreads by replacing water in a random direction. Can't spread in cold biomes.
+Damages creatures that walk on top of it, turning into more red ice if killed.

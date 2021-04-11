@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " g ",
+    "rrr",
+    " g "
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "g": {
+      "item": "scp_restoration:gadget"
+    }
+  },
+  "result": {
+    "item": "scp_restoration:analyzer",
+    "count": 1
+  }
+}
