@@ -11,18 +11,22 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class SCPTemplate extends Item {
-    protected static final String SCP = "SCP";
 
     public SCPTemplate(Properties p_i48487_1_) {
         super(p_i48487_1_);
@@ -34,8 +38,17 @@ public class SCPTemplate extends Item {
         Direction face = p_195939_1_.getClickedFace();
         ItemStack itemStack = p_195939_1_.getItemInHand();
         CompoundNBT compoundNBT = itemStack.getTag();
-        String scp = compoundNBT.getString(SCP);
-        return super.useOn(p_195939_1_);
+        String scp = compoundNBT.getString("Number");
+        World world = p_195939_1_.getLevel();
+        if (world instanceof IServerWorld) {
+            TemplateManager templateManager = world.getServer().getStructureManager();
+            Template template = templateManager.get(new ResourceLocation(dev.buildtool.scp.SCP.ID, "containers/" + scp));
+            if (template != null) {
+                template.placeInWorld((IServerWorld) world, blockPos.relative(face), new PlacementSettings().setIgnoreEntities(false).setFinalizeEntities(true).setRotation(Utils.directionToRotation(p_195939_1_.getHorizontalDirection())), random);
+                return ActionResultType.SUCCESS;
+            }
+        }
+        return ActionResultType.PASS;
     }
 
     @Override

@@ -3,6 +3,8 @@ package dev.buildtool.scp;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -122,5 +124,28 @@ public class Utils {
             return list;
         }
         throw new IllegalStateException("No SCP annotations found");
+    }
+
+    //TODO Satako
+    public static Rotation directionToRotation(Direction direction) {
+        assert direction.getAxis().isHorizontal();
+        Rotation rotation;
+        switch (direction) {
+            case NORTH:
+                rotation = Rotation.NONE;
+                break;
+            case SOUTH:
+                rotation = Rotation.CLOCKWISE_180;
+                break;
+            case EAST:
+                rotation = Rotation.CLOCKWISE_90;
+                break;
+            case WEST:
+                rotation = Rotation.COUNTERCLOCKWISE_90;
+                break;
+            default:
+                return null;
+        }
+        return rotation.getRotated(Rotation.COUNTERCLOCKWISE_90);
     }
 }
