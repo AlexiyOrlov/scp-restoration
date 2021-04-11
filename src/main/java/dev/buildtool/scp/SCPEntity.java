@@ -32,7 +32,7 @@ public class SCPEntity extends CreatureEntity {
         return false;
     }
 
-    protected boolean canDropLoot() {
+    protected boolean shouldDropLoot() {
         return true;
     }
 
