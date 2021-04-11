@@ -166,17 +166,21 @@ public class SlidingDoorBlock extends BlockHorizontal {
 
     @Override
     public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        SlidingDoorEntity entity= getEntity(worldIn,state,pos);
+        SlidingDoorEntity entity = getEntity(worldIn, state, pos);
         return entity != null && entity.opening;
     }
 
-//    @Override
-//    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
-//        return 1;
-//    }
+    @Override
+    public boolean hasDynamicShape() {
+        return true;
+    }
 
-    private SlidingDoorEntity getEntity(IBlockReader world,BlockState state,BlockPos pos)
-    {
-        return (SlidingDoorEntity) world.getBlockEntity(state.getValue(half)==Half.TOP ? pos.below():pos);
+    @Override
+    public boolean useShapeForLightOcclusion(BlockState p_220074_1_) {
+        return true;
+    }
+
+    private SlidingDoorEntity getEntity(IBlockReader world, BlockState state, BlockPos pos) {
+        return (SlidingDoorEntity) world.getBlockEntity(state.getValue(half) == Half.TOP ? pos.below() : pos);
     }
 }
