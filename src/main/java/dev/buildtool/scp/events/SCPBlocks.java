@@ -69,6 +69,7 @@ public class SCPBlocks {
     public static HumanHireBlock hireBlock;
     public static OldAIBlock oldAIBlock;
     public static dev.buildtool.scp.shelflife.ShelfBlock shelfLifeBlock;
+    public static ContagiousCrystal contagiousCrystal;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -149,6 +150,7 @@ public class SCPBlocks {
         hireBlock = registerBlock(new HumanHireBlock(properties()), "hire_block", forgeRegistry);
         oldAIBlock = registerBlock(new OldAIBlock(properties().noOcclusion()), "old_ai", forgeRegistry);
         shelfLifeBlock = registerBlock(new dev.buildtool.scp.shelflife.ShelfBlock(properties().noOcclusion().sound(SoundType.WOOD).harvestTool(ToolType.AXE)), "shelf_life_block", forgeRegistry);
+        contagiousCrystal = registerBlock(new ContagiousCrystal(properties()), "cont_crystal", forgeRegistry);
     }
 
 
@@ -182,6 +184,7 @@ public class SCPBlocks {
 
         forgeRegistry.register(registerSCP(shelfLifeBlock));
         coloredPipes.forEach(rotatedPillarBlock -> forgeRegistry.register(register(rotatedPillarBlock)));
+        forgeRegistry.register(registerSCP(contagiousCrystal));
     }
 
     private static Item register(Block block) {
