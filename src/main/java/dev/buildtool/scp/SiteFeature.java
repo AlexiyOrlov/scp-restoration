@@ -80,10 +80,13 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
             RegistryKey<World> dimensionTypeRegistryKey = serverWorld.dimension();
 
             if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
-                SCPWorldData = serverWorld.getDataStorage().get(SCPWorldData::new, SCP.ID);
-                generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
-                listInitialized = true;
-                SCP.logger.info("Previously generated: {}", generated);
+                SCPWorldData = Utils.getData(serverWorld);
+                //TODO check
+                if (SCPWorldData != null) {
+                    generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
+                    listInitialized = true;
+                    SCP.logger.info("Previously generated: {}", generated);
+                }
             }
 
             if (SCPWorldData != null && dimensionTypeRegistryKey == World.OVERWORLD) {
