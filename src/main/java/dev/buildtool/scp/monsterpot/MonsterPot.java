@@ -91,7 +91,7 @@ public class MonsterPot extends BlockHorizontal {
             if (!world.isClientSide)
                 potMonster.finalizeSpawn((IServerWorld) world, world.getCurrentDifficultyAt(pos), SpawnReason.SPAWNER, null, null);
             potMonster.setPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-//            potMonster.addVelocity(world.random.nextFloat() * (world.random.nextInt(2) - 1), 0, world.random.nextFloat() * (world.random.nextInt(2) - 1));
+            potMonster.push(world.random.nextFloat() * (world.random.nextInt(2) - 1), 0, world.random.nextFloat() * (world.random.nextInt(2) - 1));
             world.addFreshEntity(potMonster);
         }
     }
