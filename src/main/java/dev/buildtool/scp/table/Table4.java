@@ -57,7 +57,7 @@ public class Table4 extends Table {
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (hit.getDirection() == Direction.UP) {
             Vector3d vector3d = hit.getLocation();
-            Vector3d d = vector3d.subtract(Vector3d.atCenterOf(pos));
+            Vector3d d = vector3d.subtract(Vector3d.atLowerCornerOf(pos));
             TableEntity4 tableEntity4 = (TableEntity4) worldIn.getBlockEntity(pos);
             ItemHandler itemHandler = tableEntity4.itemHandler;
             if (d.x < 0.5) {
