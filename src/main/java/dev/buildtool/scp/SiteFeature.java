@@ -32,6 +32,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
         structures = new RandomizedList<>();
         structures.add(new ResourceLocation(SCP.ID, "containers/005"));
         structures.add(new ResourceLocation(SCP.ID, "containers/009"));
+        structures.add(new ResourceLocation(SCP.ID, "containers/015"));
         structures.add(new ResourceLocation(SCP.ID, "containers/019"));
         structures.add(new ResourceLocation(SCP.ID, "containers/049"));
         structures.add(new ResourceLocation(SCP.ID, "containers/053"));
@@ -81,12 +82,9 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
 
             if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
                 SCPWorldData = Utils.getData(serverWorld);
-                //TODO check
-                if (SCPWorldData != null) {
-                    generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
-                    listInitialized = true;
-                    SCP.logger.info("Previously generated: {}", generated);
-                }
+                generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
+                listInitialized = true;
+                SCP.logger.info("Previously generated: {}", generated);
             }
 
             if (SCPWorldData != null && dimensionTypeRegistryKey == World.OVERWORLD) {
