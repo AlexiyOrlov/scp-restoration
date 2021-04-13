@@ -70,7 +70,7 @@ public class Pipe extends SupportBlock {
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        boolean flag = facingState.isFaceSturdy(worldIn, facingPos, facing) || facingState.getBlock() instanceof Pipe || facingState.getBlock() instanceof Explodable;
+        boolean flag = facingState.isFaceSturdy(worldIn, facingPos, facing) || facingState.getBlock() instanceof Pipe;
         return stateIn.setValue(PROPERTY_BY_DIRECTION.get(facing), flag);
     }
 
