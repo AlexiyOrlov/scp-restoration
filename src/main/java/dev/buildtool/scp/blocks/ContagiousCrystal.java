@@ -2,6 +2,7 @@ package dev.buildtool.scp.blocks;
 
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
+import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -61,7 +62,7 @@ public class ContagiousCrystal extends Block {
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
-        if (!state.isAir(worldIn, fromPos) && blockIn != this) {
+        if (!(blockIn instanceof AirBlock) && blockIn != this) {
             worldIn.getBlockTicks().scheduleTick(pos, this, Functions.minutesToTicks(worldIn.random.nextInt(3) + 1));
         }
     }
