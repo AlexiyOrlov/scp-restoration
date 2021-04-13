@@ -86,7 +86,7 @@ public class Pipe extends SupportBlock {
     @Override
     public void playerDestroy(World p_180657_1_, PlayerEntity p_180657_2_, BlockPos p_180657_3_, BlockState p_180657_4_, @Nullable TileEntity p_180657_5_, ItemStack p_180657_6_) {
         super.playerDestroy(p_180657_1_, p_180657_2_, p_180657_3_, p_180657_4_, p_180657_5_, p_180657_6_);
-        p_180657_1_.explode(null, p_180657_3_.getX(), p_180657_3_.getY(), p_180657_3_.getZ(), 1, Explosion.Mode.NONE);
+        p_180657_1_.explode(null, p_180657_3_.getX() + 0.5, p_180657_3_.getY(), p_180657_3_.getZ() + 0.5, 1, Explosion.Mode.NONE);
     }
 
     @Override

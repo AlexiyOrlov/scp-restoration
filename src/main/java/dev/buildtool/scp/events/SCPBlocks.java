@@ -15,6 +15,7 @@ import dev.buildtool.scp.lamp.SwitchableLamp;
 import dev.buildtool.scp.lock.ElectronicLock;
 import dev.buildtool.scp.monsterpot.MonsterPot;
 import dev.buildtool.scp.oldai.OldAIBlock;
+import dev.buildtool.scp.pipenightmare.Explodable;
 import dev.buildtool.scp.pipenightmare.Pipe;
 import dev.buildtool.scp.shelf.ShelfBlock;
 import dev.buildtool.scp.slidingdoor.SlidingDoorBlock;
@@ -75,6 +76,8 @@ public class SCPBlocks {
     public static Pipe thinPipe;
     public static Pipe thickPipe;
     public static Pipe mediumPipe;
+    public static Explodable vent;
+    public static Explodable boiler;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -157,10 +160,12 @@ public class SCPBlocks {
         shelfLifeBlock = registerBlock(new dev.buildtool.scp.shelflife.ShelfBlock(properties().noOcclusion().sound(SoundType.WOOD).harvestTool(ToolType.AXE)), "shelf_life_block", forgeRegistry);
         contagiousCrystal = registerBlock(new ContagiousCrystal(properties()), "cont_crystal", forgeRegistry);
 
-        //bone, wood, steel, pressed ash, human flesh, glass, and granite nightmare pipes
+        //SCP-015; bone, wood, steel, pressed ash, human flesh, glass, and granite nightmare pipes
         thinPipe = registerBlock(new Pipe(1 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thin_pipe", forgeRegistry);
         mediumPipe = registerBlock(new Pipe(2 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "medium_pipe", forgeRegistry);
         thickPipe = registerBlock(new Pipe(4 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thick_pipe", forgeRegistry);
+        vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE), 2), "vent", forgeRegistry);
+        boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE), 3), "boiler", forgeRegistry);
     }
 
 
@@ -199,6 +204,8 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(thinPipe));
         forgeRegistry.register(registerSCP(mediumPipe));
         forgeRegistry.register(registerSCP(thickPipe));
+        forgeRegistry.register(registerSCP(vent));
+        forgeRegistry.register(registerSCP(boiler));
     }
 
     private static Item register(Block block) {
