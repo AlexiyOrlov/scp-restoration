@@ -137,11 +137,11 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     //TODO check
     @Override
     protected void hurtCurrentlyUsedShield(float damage) {
-        if (damage >= 3.0F && this.useItem.getItem().isShield(this.useItem, this)) {
+        if (damage >= 3.0F && this.getOffhandItem().getItem().isShield(this.getOffhandItem(), this)) {
             int i = 1 + MathHelper.floor(damage);
-            this.useItem.hurtAndBreak(i, this, human -> human.broadcastBreakEvent(getUsedItemHand()));
+            this.getOffhandItem().hurtAndBreak(i, this, human -> human.broadcastBreakEvent(getUsedItemHand()));
 
-            if (this.useItem.isEmpty()) {
+            if (this.getOffhandItem().isEmpty()) {
                 Hand enumhand = this.getUsedItemHand();
                 if (enumhand == Hand.MAIN_HAND) {
                     this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
