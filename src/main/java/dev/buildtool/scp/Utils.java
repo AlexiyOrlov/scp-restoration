@@ -39,7 +39,7 @@ public class Utils {
     }
 
     public static SCPWorldData getData(ServerWorld world) {
-        return world.getDataStorage().get(SCPWorldData::new, SCP.ID);
+        return world.getDataStorage().computeIfAbsent(SCPWorldData::new, SCP.ID);
     }
 
     /**
