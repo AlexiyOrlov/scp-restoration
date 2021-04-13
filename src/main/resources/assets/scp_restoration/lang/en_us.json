@@ -186,6 +186,11 @@
   "block.scp_restoration.hire_block": "Person Hire Station",
   "block.scp_restoration.switchable_lamp": "Switchable Lamp",
   "block.scp_restoration.shelf_life_block": "Shelf Life (SCP-1811)",
+  "block.scp_restoration.thin_pipe": "Thin Pipe (SCP-015)",
+  "block.scp_restoration.thick_pipe": "Thick Pipe (SCP-015)",
+  "block.scp_restoration.medium_pipe": "Medium Pipe (SCP-015)",
+  "block.scp_restoration.vent": "Vent (SCP-015)",
+  "block.scp_restoration.boiler": "Boiler (SCP-015)",
 
   "entity.scp_restoration.sculpture": "Sculpture",
   "entity.scp_restoration.shyguy": "Shyguy",
