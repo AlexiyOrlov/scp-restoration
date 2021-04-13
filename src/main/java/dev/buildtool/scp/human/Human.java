@@ -6,7 +6,6 @@ import dev.buildtool.satako.UniqueList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.goals.*;
 import io.netty.buffer.Unpooled;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
@@ -89,7 +88,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
 
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-//        faceEntity(target, 360, 180);
+        lookAt(target, 360, 180);
         ArrowEntity arrowEntity = new ArrowEntity(level, this);
         double dx = target.getX() - getX();
         double dz = target.getZ() - getZ();
@@ -103,14 +102,20 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     @Override
     protected void blockUsingShield(LivingEntity entityIn) {
         super.blockUsingShield(entityIn);
-        if (entityIn.getMainHandItem().getItem().canDisableShield(entityIn.getMainHandItem(), this.useItem, this, entityIn)) {
-            float f = 0.25F + (float) EnchantmentHelper.getBlockEfficiency(this) * 0.05F;
-            f += 0.75F;
-            if (this.random.nextFloat() < f) {
-//                this.resetActiveHand();
-                this.level.broadcastEntityEvent(this, (byte) 30);
-            }
-        }
+//        if (entityIn.getMainHandItem().getItem().canDisableShield(this.getOffhandItem(), this.useItem, this, entityIn)) {
+//            float f = 0.25F + (float) EnchantmentHelper.getBlockEfficiency(this) * 0.05F;
+//            f += 0.75F;
+//            if (this.random.nextFloat() < f) {
+//                this.blockedByShield(entityIn);
+////                this.resetActiveHand();
+//                this.level.broadcastEntityEvent(this, (byte) 30);
+//            }
+//        }
+    }
+
+    @Override
+    protected void blockedByShield(LivingEntity p_213371_1_) {
+        super.blockedByShield(p_213371_1_);
     }
 
     @Override
@@ -121,7 +126,6 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
 
             if (this.useItem.isEmpty()) {
                 Hand enumhand = this.getUsedItemHand();
-
                 if (enumhand == Hand.MAIN_HAND) {
                     this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
                 } else {

@@ -157,7 +157,7 @@ public class BetterMeleeAttackGoal extends Goal {
       if (distToEnemySqr > d0) {
          //randomly activate shield
          if (attacker.getOffhandItem().isShield(attacker) && attacker.getRandom().nextBoolean()) {
-            System.out.println("blocked");
+
          }
       } else if (distToEnemySqr <= d0 && canAttack()) {
          attacker.swing(Hand.MAIN_HAND);
