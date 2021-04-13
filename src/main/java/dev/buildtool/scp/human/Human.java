@@ -104,7 +104,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     @Override
     protected void blockUsingShield(LivingEntity entityIn) {
         super.blockUsingShield(entityIn);
-        if (entityIn.getMainHandItem().getItem().canDisableShield(this.getOffhandItem(), this.useItem, this, entityIn)) {
+        if (entityIn.getMainHandItem().getItem().canDisableShield(entityIn.getMainHandItem(), this.getOffhandItem(), this, entityIn)) {
             float f = 0.25F + (float) EnchantmentHelper.getBlockEfficiency(this) * 0.05F;
             f += 0.75F;
             if (this.random.nextFloat() < f) {
@@ -148,8 +148,6 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
                 } else {
                     this.setItemSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
                 }
-
-                this.useItem = ItemStack.EMPTY;
                 this.playSound(SoundEvents.SHIELD_BREAK, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
             } else {
                 playSound(SoundEvents.SHIELD_BLOCK, 1, 1);
