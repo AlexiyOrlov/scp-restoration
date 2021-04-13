@@ -9,7 +9,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -26,7 +25,7 @@ public class SupportBlock extends SixWayBlock {
         registerDefaultState(this.stateDefinition.any().setValue(DOWN, false).setValue(UP, false).setValue(NORTH, false).setValue(SOUTH, false).setValue(EAST, false).setValue(WEST, false));
     }
 
-    public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
+    protected BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
         BlockState blockState = blockReader.getBlockState(pos.below());
         BlockState blockState1 = blockReader.getBlockState(pos.above());
         BlockState blockState2 = blockReader.getBlockState(pos.north());
