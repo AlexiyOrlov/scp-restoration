@@ -6,6 +6,7 @@ import dev.buildtool.satako.UniqueList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.goals.*;
 import io.netty.buffer.Unpooled;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
@@ -99,25 +100,41 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         level.addFreshEntity(arrowEntity);
     }
 
+    //TODO check
     @Override
     protected void blockUsingShield(LivingEntity entityIn) {
         super.blockUsingShield(entityIn);
-//        if (entityIn.getMainHandItem().getItem().canDisableShield(this.getOffhandItem(), this.useItem, this, entityIn)) {
-//            float f = 0.25F + (float) EnchantmentHelper.getBlockEfficiency(this) * 0.05F;
-//            f += 0.75F;
-//            if (this.random.nextFloat() < f) {
-//                this.blockedByShield(entityIn);
-////                this.resetActiveHand();
-//                this.level.broadcastEntityEvent(this, (byte) 30);
-//            }
-//        }
+        if (entityIn.getMainHandItem().getItem().canDisableShield(this.getOffhandItem(), this.useItem, this, entityIn)) {
+            float f = 0.25F + (float) EnchantmentHelper.getBlockEfficiency(this) * 0.05F;
+            f += 0.75F;
+            if (this.random.nextFloat() < f) {
+                this.blockedByShield(entityIn);
+//                this.resetActiveHand();
+                this.level.broadcastEntityEvent(this, (byte) 30);
+            }
+        }
     }
 
+    //works
+    @Override
+    public boolean isBlocking() {
+        ItemStack off = getOffhandItem();
+        if (off.getItem().isShield(off, this)) {
+            boolean blocking = random.nextBoolean();
+            if (blocking)
+                playSound(SoundEvents.SHIELD_BLOCK, 1, 1);
+            return blocking;
+        }
+        return super.isBlocking();
+    }
+
+    //TODO check
     @Override
     protected void blockedByShield(LivingEntity p_213371_1_) {
         super.blockedByShield(p_213371_1_);
     }
 
+    //TODO check
     @Override
     protected void hurtCurrentlyUsedShield(float damage) {
         if (damage >= 3.0F && this.useItem.getItem().isShield(this.useItem, this)) {
