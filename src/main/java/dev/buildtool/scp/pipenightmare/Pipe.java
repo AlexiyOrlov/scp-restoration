@@ -7,12 +7,19 @@ import dev.buildtool.scp.infiniteikea.SupportBlock;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 @SCPObject(name = "Pipe Nightmare", number = "015", classification = SCPObject.Classification.EUCLID)
@@ -74,5 +81,24 @@ public class Pipe extends SupportBlock {
                 return ownPos.above();
         }
         return null;
+    }
+
+    @Override
+    public void playerDestroy(World p_180657_1_, PlayerEntity p_180657_2_, BlockPos p_180657_3_, BlockState p_180657_4_, @Nullable TileEntity p_180657_5_, ItemStack p_180657_6_) {
+        super.playerDestroy(p_180657_1_, p_180657_2_, p_180657_3_, p_180657_4_, p_180657_5_, p_180657_6_);
+        p_180657_1_.explode(null, p_180657_3_.getX(), p_180657_3_.getY(), p_180657_3_.getZ(), 1, Explosion.Mode.NONE);
+    }
+
+    @Override
+    public void attack(BlockState p_196270_1_, World p_196270_2_, BlockPos p_196270_3_, PlayerEntity p_196270_4_) {
+        ItemStack stack = p_196270_4_.getMainHandItem();
+        if (stack.getToolTypes().contains(ToolType.PICKAXE)) {
+            if (p_196270_2_.random.nextBoolean())
+                p_196270_4_.hurt(DamageSource.LAVA, 1);
+            else if (p_196270_2_.random.nextBoolean())
+                p_196270_4_.hurt(DamageSource.ON_FIRE, 1);
+            else
+                p_196270_4_.hurt(DamageSource.GENERIC, 1);
+        }
     }
 }
