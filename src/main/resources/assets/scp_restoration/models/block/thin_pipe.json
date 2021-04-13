@@ -3,8 +3,8 @@
   "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
-    "1": "scp_restoration:block/glass_pipe",
-    "particle": "scp_restoration:block/glass_pipe"
+    "1": "scp_restoration:block/brown_noise",
+    "particle": "scp_restoration:block/brown_noise"
   },
   "elements": [
     {
