@@ -1,8 +1,9 @@
 {
   "credit": "Made with Blockbench",
+  "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
-    "1": "scp_restoration:block/brown_noise",
+    "2": "scp_restoration:block/brown_noise",
     "particle": "scp_restoration:block/brown_noise"
   },
   "elements": [
@@ -15,72 +16,62 @@
       "to": [
         12,
         12,
-        7
+        4
       ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          8,
-          8,
-          6
-        ]
-      },
       "faces": {
         "north": {
           "uv": [
-            7,
-            7,
-            9,
-            9
+            0,
+            0,
+            8,
+            8
           ],
-          "texture": "#1",
-          "cullface": "north"
+          "texture": "#2"
         },
         "east": {
           "uv": [
-            9,
-            7,
-            16,
-            9
+            0,
+            0,
+            4,
+            8
           ],
-          "texture": "#1"
+          "texture": "#2"
         },
         "south": {
           "uv": [
             0,
             0,
-            0,
-            0
+            8,
+            8
           ],
-          "texture": "#1"
+          "texture": "#2"
         },
         "west": {
           "uv": [
             0,
-            7,
-            7,
-            9
+            0,
+            4,
+            8
           ],
-          "texture": "#1"
+          "texture": "#2"
         },
         "up": {
           "uv": [
-            7,
             0,
-            9,
-            7
+            0,
+            8,
+            4
           ],
-          "texture": "#1"
+          "texture": "#2"
         },
         "down": {
           "uv": [
-            7,
-            9,
-            9,
-            16
+            0,
+            0,
+            8,
+            4
           ],
-          "texture": "#1"
+          "texture": "#2"
         }
       }
     }
