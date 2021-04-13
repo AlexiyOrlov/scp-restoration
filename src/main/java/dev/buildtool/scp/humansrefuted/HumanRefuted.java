@@ -112,6 +112,6 @@ public class HumanRefuted extends SCPEntity implements Ageable {
 
     @Override
     public int getAmbientSoundInterval() {
-        return Functions.secondsToTicks(10);
+        return Functions.secondsToTicks(20);
     }
 }
