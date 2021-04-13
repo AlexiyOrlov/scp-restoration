@@ -73,6 +73,8 @@ public class SCPBlocks {
     public static ContagiousCrystal contagiousCrystal;
 
     public static Pipe thinPipe;
+    public static Pipe thickPipe;
+    public static Pipe averagePipe;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -155,7 +157,10 @@ public class SCPBlocks {
         shelfLifeBlock = registerBlock(new dev.buildtool.scp.shelflife.ShelfBlock(properties().noOcclusion().sound(SoundType.WOOD).harvestTool(ToolType.AXE)), "shelf_life_block", forgeRegistry);
         contagiousCrystal = registerBlock(new ContagiousCrystal(properties()), "cont_crystal", forgeRegistry);
 
-        thinPipe = registerBlock(new Pipe(1 / 16f, propertiesOf(Material.METAL, ToolType.PICKAXE)), "thin_pipe", forgeRegistry);
+        //bone, wood, steel, pressed ash, human flesh, glass, and granite nightmare pipes
+        thinPipe = registerBlock(new Pipe(2 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thin_pipe", forgeRegistry);
+        averagePipe = registerBlock(new Pipe(5 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "medium_pipe", forgeRegistry);
+        thickPipe = registerBlock(new Pipe(8 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thick_pipe", forgeRegistry);
     }
 
 
@@ -192,6 +197,8 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(contagiousCrystal));
 
         forgeRegistry.register(registerSCP(thinPipe));
+        forgeRegistry.register(registerSCP(averagePipe));
+        forgeRegistry.register(registerSCP(thickPipe));
     }
 
     private static Item register(Block block) {
