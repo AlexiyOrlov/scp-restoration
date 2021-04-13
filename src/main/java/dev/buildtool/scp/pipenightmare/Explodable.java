@@ -1,5 +1,6 @@
 package dev.buildtool.scp.pipenightmare;
 
+import dev.buildtool.scp.SCPObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+@SCPObject(name = "Pipe Nightmare", number = "015", classification = SCPObject.Classification.EUCLID)
 public class Explodable extends Block {
     private final float explosionStregth;
 

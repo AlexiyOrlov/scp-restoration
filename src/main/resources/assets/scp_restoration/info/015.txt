@@ -1,0 +1,3 @@
+SCP-015 consists of various pipes, vents and boilers. It spreads to empty spaces nearby every 1-3 minutes. The pipes
+damage humans who attempt to break them, and explode if broken. Vents and boilers also explode on break. It is advised
+to contain SCP-015 in a fully enclosed space.
