@@ -74,7 +74,7 @@ public class SCPBlocks {
 
     public static Pipe thinPipe;
     public static Pipe thickPipe;
-    public static Pipe averagePipe;
+    public static Pipe mediumPipe;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -158,9 +158,9 @@ public class SCPBlocks {
         contagiousCrystal = registerBlock(new ContagiousCrystal(properties()), "cont_crystal", forgeRegistry);
 
         //bone, wood, steel, pressed ash, human flesh, glass, and granite nightmare pipes
-        thinPipe = registerBlock(new Pipe(2 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thin_pipe", forgeRegistry);
-        averagePipe = registerBlock(new Pipe(5 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "medium_pipe", forgeRegistry);
-        thickPipe = registerBlock(new Pipe(8 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thick_pipe", forgeRegistry);
+        thinPipe = registerBlock(new Pipe(1 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thin_pipe", forgeRegistry);
+        mediumPipe = registerBlock(new Pipe(2 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "medium_pipe", forgeRegistry);
+        thickPipe = registerBlock(new Pipe(4 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thick_pipe", forgeRegistry);
     }
 
 
@@ -197,7 +197,7 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(contagiousCrystal));
 
         forgeRegistry.register(registerSCP(thinPipe));
-        forgeRegistry.register(registerSCP(averagePipe));
+        forgeRegistry.register(registerSCP(mediumPipe));
         forgeRegistry.register(registerSCP(thickPipe));
     }
 
