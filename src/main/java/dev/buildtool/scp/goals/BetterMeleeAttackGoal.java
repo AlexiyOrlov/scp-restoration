@@ -89,7 +89,7 @@ public class BetterMeleeAttackGoal extends Goal {
    /**
     * Execute a one shot task or start executing a continuous task
     */
-   public void startExecuting() {
+   public void start() {
       this.attacker.getNavigation().moveTo(this.path, this.speedTowardsTarget);
       this.attacker.setAggressive(true);
       this.delayCounter = 0;
@@ -107,7 +107,7 @@ public class BetterMeleeAttackGoal extends Goal {
 
       this.attacker.setAggressive(false);
       this.attacker.getNavigation().stop();
-//      attacker.resetActiveHand();
+      attacker.stopUsingItem();
    }
 
    /**
@@ -157,16 +157,15 @@ public class BetterMeleeAttackGoal extends Goal {
       if (distToEnemySqr > d0) {
          //randomly activate shield
          if (attacker.getOffhandItem().isShield(attacker) && attacker.getRandom().nextBoolean()) {
-//            attacker.setActiveHand(Hand.OFF_HAND);
+            System.out.println("blocked");
          }
       } else if (distToEnemySqr <= d0 && canAttack()) {
-//         attacker.setActiveHand(Hand.MAIN_HAND);
+         attacker.swing(Hand.MAIN_HAND);
          this.resetAttackCooldown();
-         this.attacker.swing(Hand.MAIN_HAND);
+//         this.attacker.swing(Hand.MAIN_HAND);
          this.attacker.doHurtTarget(enemy);
-      }
-//      else
-//         attacker.resetActiveHand();
+      } else
+         attacker.stopUsingItem();
 
    }
 

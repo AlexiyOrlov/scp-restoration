@@ -41,7 +41,7 @@ public class CrossbowAttack<T extends MobEntity & IRangedAttackMob & ICrossbowUs
         return this.actor.isHolding(item -> item instanceof CrossbowItem);
     }
 
-    public boolean shouldContinueExecuting() {
+    public boolean canContinueToUse() {
         return this.hasAliveTarget() && (this.canUse() || !this.actor.getNavigation().isStuck()) && this.isEntityHoldingCrossbow();
     }
 
@@ -96,7 +96,7 @@ public class CrossbowAttack<T extends MobEntity & IRangedAttackMob & ICrossbowUs
             }
             this.actor.getMoveControl().strafe(this.backward ? -0.5F : 0.5F, this.movingToLeft ? 0.5F : -0.5F);
 
-            //
+            actor.lookAt(livingEntity, 180, 30);
 
             this.actor.getLookControl().setLookAt(livingEntity, 30.0F, 30.0F);
             if (this.stage == CrossbowAttack.Stage.UNCHARGED) {
