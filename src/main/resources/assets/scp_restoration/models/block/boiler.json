@@ -2,7 +2,7 @@
   "parent": "block/cube_bottom_top",
   "textures": {
     "top": "scp_restoration:block/boiler_top",
-    "bottom": "scp_restoration:block/boiler_bottom",
+    "bottom": "scp_restoration:block/boiler_top",
     "side": "scp_restoration:block/boiler"
   }
 }

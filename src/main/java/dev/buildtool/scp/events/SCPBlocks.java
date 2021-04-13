@@ -161,11 +161,11 @@ public class SCPBlocks {
         contagiousCrystal = registerBlock(new ContagiousCrystal(properties()), "cont_crystal", forgeRegistry);
 
         //SCP-015; bone, wood, steel, pressed ash, human flesh, glass, and granite nightmare pipes
-        thinPipe = registerBlock(new Pipe(1 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thin_pipe", forgeRegistry);
-        mediumPipe = registerBlock(new Pipe(2 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "medium_pipe", forgeRegistry);
-        thickPipe = registerBlock(new Pipe(4 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE)), "thick_pipe", forgeRegistry);
-        vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE), 2), "vent", forgeRegistry);
-        boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE), 3), "boiler", forgeRegistry);
+        thinPipe = registerBlock(new Pipe(1 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE).strength(3)), "thin_pipe", forgeRegistry);
+        mediumPipe = registerBlock(new Pipe(2 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE).strength(3)), "medium_pipe", forgeRegistry);
+        thickPipe = registerBlock(new Pipe(4 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE).strength(3)), "thick_pipe", forgeRegistry);
+        vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE).strength(3), 3), "vent", forgeRegistry);
+        boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
     }
 
 

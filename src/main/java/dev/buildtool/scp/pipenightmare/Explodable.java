@@ -8,7 +8,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class Explodable extends Block {
-    private float explosionStregth;
+    private final float explosionStregth;
 
     public Explodable(Properties p_i48440_1_, float explosionStrength) {
         super(p_i48440_1_);

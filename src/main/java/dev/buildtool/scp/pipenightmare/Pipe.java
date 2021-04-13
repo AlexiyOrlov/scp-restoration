@@ -3,6 +3,7 @@ package dev.buildtool.scp.pipenightmare;
 import dev.buildtool.satako.Constants;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
+import dev.buildtool.scp.events.SCPBlocks;
 import dev.buildtool.scp.infiniteikea.SupportBlock;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
@@ -46,17 +47,30 @@ public class Pipe extends SupportBlock {
     }
 
     @Override
-    public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
-        super.tick(p_225534_1_, p_225534_2_, p_225534_3_, p_225534_4_);
-        BlockPos to = spreadTo(p_225534_2_, p_225534_3_);
+    public void tick(BlockState p_225534_1_, ServerWorld serverWorld, BlockPos pos, Random random) {
+        super.tick(p_225534_1_, serverWorld, pos, random);
+        BlockPos to = spreadTo(serverWorld, pos);
         if (to != null) {
-            p_225534_2_.setBlockAndUpdate(to, defaultBlockState());
+            serverWorld.setBlockAndUpdate(to, defaultBlockState());
+            if (random.nextInt(20) == 1) {
+                for (int i = 0; i < 6; i++) {
+                    Direction direction = Direction.getRandom(random);
+                    BlockPos side = pos.relative(direction);
+                    if (serverWorld.isEmptyBlock(side)) {
+                        if (random.nextBoolean())
+                            serverWorld.setBlockAndUpdate(side, SCPBlocks.vent.defaultBlockState());
+                        else
+                            serverWorld.setBlockAndUpdate(side, SCPBlocks.boiler.defaultBlockState());
+                        break;
+                    }
+                }
+            }
         }
     }
 
     @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        boolean flag = facingState.isFaceSturdy(worldIn, facingPos, facing) || facingState.getBlock() instanceof Pipe;
+        boolean flag = facingState.isFaceSturdy(worldIn, facingPos, facing) || facingState.getBlock() instanceof Pipe || facingState.getBlock() instanceof Explodable;
         return stateIn.setValue(PROPERTY_BY_DIRECTION.get(facing), flag);
     }
 
