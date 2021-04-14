@@ -38,6 +38,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+/**
+ * Use this and subclasses instead of original template, because of block rotation difference
+ */
 public class Template2 extends Template {
 
     protected final List<ResourceLocation> structureLoots;

@@ -2,6 +2,7 @@ package dev.buildtool.scp.template;
 
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
+import dev.buildtool.scp.Template2;
 import dev.buildtool.scp.Utils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -25,6 +26,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
 public class SCPTemplate extends Item {
@@ -45,7 +47,7 @@ public class SCPTemplate extends Item {
             TemplateManager templateManager = world.getServer().getStructureManager();
             Template template = templateManager.get(new ResourceLocation(dev.buildtool.scp.SCP.ID, "containers/" + scp));
             if (template != null) {
-                template.placeInWorld((IServerWorld) world, blockPos.relative(face), new PlacementSettings().setIgnoreEntities(false).setFinalizeEntities(true).setRotation(Functions.directionToRotation(p_195939_1_.getHorizontalDirection())), random);
+                new Template2(template, Collections.emptyList(), ((IServerWorld) world).getLevel()).placeInWorld((IServerWorld) world, blockPos.relative(face), new PlacementSettings().setIgnoreEntities(false).setFinalizeEntities(true).setRotation(Functions.directionToRotation(p_195939_1_.getHorizontalDirection())), random);
                 return ActionResultType.SUCCESS;
             }
         }
