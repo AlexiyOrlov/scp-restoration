@@ -64,7 +64,7 @@ public class OldAIEntity extends BlockEntity2 implements ITickableTileEntity {
                     occupiedPositions.add(randomposition);
                 }
                 knownPositions.add(randomposition);
-                if (!occupiedPositions.isEmpty()) {
+                if (!occupiedPositions.isEmpty() && level.getGameTime() % 20 == 0) {
                     BlockPos randomKnown = occupiedPositions.get(level.random.nextInt(occupiedPositions.size()));
                     BlockState blockState = level.getBlockState(randomKnown);
                     if (blockState.hasProperty(OPEN)) {

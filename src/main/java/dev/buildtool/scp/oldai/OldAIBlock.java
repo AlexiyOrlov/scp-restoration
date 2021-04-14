@@ -13,12 +13,12 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 public class OldAIBlock extends BlockHorizontal {
     public static BooleanProperty active = BlockStateProperties.ENABLED;
@@ -47,15 +47,30 @@ public class OldAIBlock extends BlockHorizontal {
 
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        state = state.cycle(active);
+//        state = state.cycle(active);
         if (worldIn.isClientSide) {
-            if (state.getValue(active)) {
-                player.sendMessage(new TranslationTextComponent("scp.active"), UUID.randomUUID());
-            } else {
-                player.sendMessage(new TranslationTextComponent("scp.inactive"), UUID.randomUUID());
-            }
+            openGui();
+//            if (state.getValue(active)) {
+//                player.sendMessage(new TranslationTextComponent("scp.active"), UUID.randomUUID());
+//            } else {
+//                player.sendMessage(new TranslationTextComponent("scp.inactive"), UUID.randomUUID());
+//            }
         }
-        worldIn.setBlockAndUpdate(pos, state);
+//        worldIn.setBlockAndUpdate(pos, state);
         return ActionResultType.SUCCESS;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void openGui() {
+
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, World world, BlockPos blockPos, Block p_220069_4_, BlockPos p_220069_5_, boolean p_220069_6_) {
+        super.neighborChanged(state, world, blockPos, p_220069_4_, p_220069_5_, p_220069_6_);
+        if (world.hasNeighborSignal(blockPos)) {
+            state = state.cycle(active);
+            world.setBlockAndUpdate(blockPos, state);
+        }
     }
 }

@@ -206,6 +206,8 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(thickPipe));
         forgeRegistry.register(registerSCP(vent));
         forgeRegistry.register(registerSCP(boiler));
+
+        forgeRegistry.register(registerSCP(oldAIBlock));
     }
 
     private static Item register(Block block) {

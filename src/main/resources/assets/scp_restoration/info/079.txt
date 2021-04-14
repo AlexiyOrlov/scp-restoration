@@ -1,0 +1,2 @@
+When powered by a redstone signal, this SCP searches for powerable and openable objects. When it
+finds one, it cycles its state. If multiple objects are available, it cycles random one.

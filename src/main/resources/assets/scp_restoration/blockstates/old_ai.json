@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "enabled=false,facing=south": {
+      "model": "scp_restoration:block/old_ai",
+      "y": 180
+    },
+    "enabled=false,facing=east": {
+      "model": "scp_restoration:block/old_ai",
+      "y": 90
+    },
+    "enabled=true,facing=north": {
+      "model": "scp_restoration:block/old_ai",
+      "x": 0
+    },
+    "enabled=true,facing=south": {
+      "model": "scp_restoration:block/old_ai",
+      "y": 180
+    },
+    "enabled=true,facing=west": {
+      "model": "scp_restoration:block/old_ai",
+      "y": 270
+    },
+    "enabled=false,facing=west": {
+      "model": "scp_restoration:block/old_ai",
+      "y": 270
+    },
+    "enabled=true,facing=east": {
+      "model": "scp_restoration:block/old_ai",
+      "y": 90
+    },
+    "enabled=false,facing=north": {
+      "model": "scp_restoration:block/old_ai",
+      "x": 0
+    }
+  }
+}

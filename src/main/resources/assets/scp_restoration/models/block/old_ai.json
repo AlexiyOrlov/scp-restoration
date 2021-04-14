@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "scp_restoration:block/old_ai_top",
+    "front": "scp_restoration:block/old_ai_front",
+    "side": "scp_restoration:block/old_ai"
+  }
+}
