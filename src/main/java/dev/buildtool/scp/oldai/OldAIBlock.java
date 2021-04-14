@@ -1,6 +1,7 @@
 package dev.buildtool.scp.oldai;
 
 import dev.buildtool.satako.blocks.BlockHorizontal;
+import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.events.SCPTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,6 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
+@SCPObject(name = "Old AI", number = "079", classification = SCPObject.Classification.EUCLID)
 public class OldAIBlock extends BlockHorizontal {
     public static BooleanProperty active = BlockStateProperties.ENABLED;
 
