@@ -2,6 +2,7 @@
 added SCP structure templates;
 added SCP-409;
 added SCP-015;
+added SCP-079;
 full internal update to 1.16.5;
 
 0.4.0:
