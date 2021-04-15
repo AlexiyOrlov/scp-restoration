@@ -50,7 +50,7 @@ public class ThrownItems {
     }
 
     public static class Provider implements ICapabilitySerializable<CompoundNBT> {
-        private LazyOptional<ThrownItemMemory> thrownItemMemoryLazyOptional = LazyOptional.of(ThrownItemsImpl::new);
+        private final LazyOptional<ThrownItemMemory> thrownItemMemoryLazyOptional = LazyOptional.of(ThrownItemsImpl::new);
 
         @Nonnull
         @Override

@@ -75,9 +75,7 @@ public class SCPKnowledge {
         public INBT writeNBT(Capability<Knowledge> capability, Knowledge instance, Direction side) {
             CompoundNBT compoundNBT=new CompoundNBT();
             Map<String,Data> dataMap= instance.knownSCPData();
-            dataMap.forEach((s, data) -> {
-                compoundNBT.put(s, data.saveTo(new CompoundNBT()));
-            });
+            dataMap.forEach((s, data) -> compoundNBT.put(s, data.saveTo(new CompoundNBT())));
             SCP.channel.send(PacketDistributor.ALL.noArg(), new Packet(instance));
             return compoundNBT;
         }
