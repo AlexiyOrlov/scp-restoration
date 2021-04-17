@@ -1,3 +1,6 @@
+0.5.1:
+fixed SCP-1162;
+
 0.5.0:
 added SCP structure templates;
 added SCP-409;

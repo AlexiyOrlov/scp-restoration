@@ -50,22 +50,24 @@ public class ThrownItems {
     }
 
     public static class Provider implements ICapabilitySerializable<CompoundNBT> {
-        private final LazyOptional<ThrownItemMemory> thrownItemMemoryLazyOptional = LazyOptional.of(ThrownItemsImpl::new);
+        private final ThrownItemMemory thrownItemMemoryLazyOptional = new ThrownItemsImpl();
 
         @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-            return THROWNITEMS.orEmpty(cap, thrownItemMemoryLazyOptional);
+            if (cap == THROWNITEMS)
+                return LazyOptional.of(() -> thrownItemMemoryLazyOptional).cast();
+            return LazyOptional.empty();
         }
 
         @Override
         public CompoundNBT serializeNBT() {
-            return (CompoundNBT) THROWNITEMS.writeNBT(thrownItemMemoryLazyOptional.orElse(null), null);
+            return (CompoundNBT) THROWNITEMS.writeNBT(thrownItemMemoryLazyOptional, null);
         }
 
         @Override
         public void deserializeNBT(CompoundNBT nbt) {
-            THROWNITEMS.readNBT(thrownItemMemoryLazyOptional.orElse(null), null, nbt);
+            THROWNITEMS.readNBT(thrownItemMemoryLazyOptional, null, nbt);
         }
     }
 }
