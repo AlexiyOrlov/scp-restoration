@@ -1,3 +1,6 @@
+0.:
+implemented configurable damage on SCP chambers walls;
+
 0.5.1:
 fixed SCP-1162;
 
