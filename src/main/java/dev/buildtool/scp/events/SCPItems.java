@@ -13,9 +13,11 @@ import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -65,18 +67,22 @@ public class SCPItems {
                 World world = context.getLevel();
                 if (!world.isClientSide) {
                     Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world);
-                    BlockPos size = template2.size;
-                    MutableBoundingBox mutableBoundingBox = new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
-                    for (int i = pos.getX(); i < pos.getX() + size.getX(); i++) {
-                        for (int p = pos.getZ(); p < pos.getZ() + size.getZ(); p++) {
-                            for (int j = pos.getY(); j < pos.getY() + size.getY(); j++) {
-
-                                if (i == mutableBoundingBox.x0 || i == mutableBoundingBox.x1 - 1 || p == mutableBoundingBox.z1 - 1 || p == mutableBoundingBox.z0 || j == mutableBoundingBox.y0 || j == mutableBoundingBox.y1 - 1) {
-                                    world.setBlockAndUpdate(new BlockPos(i, j, p), SCPBlocks.resistantGlass.get(random.nextInt(16)).defaultBlockState());
-                                }
-                            }
-                        }
-                    }
+                    final PlacementSettings placementSettings = new PlacementSettings().setRotation(Rotation.getRandom(random));
+                    template2.placeInWorld((IServerWorld) world, pos, placementSettings, random);
+//                    System.out.println(template2.getBoundingBox(placementSettings,pos));
+//
+//                    BlockPos size = template2.getSize();
+//                    MutableBoundingBox mutableBoundingBox =new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
+//                    for (int i = pos.getX(); i < pos.getX() + size.getX(); i++) {
+//                        for (int p = pos.getZ(); p < pos.getZ() + size.getZ(); p++) {
+//                            for (int j = pos.getY(); j < pos.getY() + size.getY(); j++) {
+//
+//                                if (i == mutableBoundingBox.x0 || i == mutableBoundingBox.x1 - 1 || p == mutableBoundingBox.z1 - 1 || p == mutableBoundingBox.z0 || j == mutableBoundingBox.y0 || j == mutableBoundingBox.y1 - 1) {
+//                                    world.setBlockAndUpdate(new BlockPos(i, j, p), SCPBlocks.resistantGlass.get(random.nextInt(16)).defaultBlockState());
+//                                }
+//                            }
+//                        }
+//                    }
                 }
                 return ActionResultType.SUCCESS;
             }

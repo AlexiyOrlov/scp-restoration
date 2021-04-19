@@ -39,6 +39,7 @@ import java.util.Optional;
 import java.util.Random;
 
 /**
+ * A template with configured integrity.
  * Use this and subclasses instead of original template, because of block rotation difference
  */
 public class Template2 extends Template {
@@ -72,10 +73,21 @@ public class Template2 extends Template {
                 int l = Integer.MIN_VALUE;
                 int i1 = Integer.MIN_VALUE;
                 int j1 = Integer.MIN_VALUE;
-
+                if (mutableboundingbox == null)
+                    mutableboundingbox = new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
                 for (BlockInfo template$blockinfo : processBlockInfos(seedReader, pos, blockPos, settings, list, this)) {
                     BlockPos blockpos = template$blockinfo.pos;
-                    if (mutableboundingbox == null || mutableboundingbox.isInside(blockpos)) {
+                    {
+                        int x = blockpos.getX();
+                        int y = blockpos.getY();
+                        int z = blockpos.getZ();
+                        // random skip of outer wall block
+                        if (random.nextDouble() < SCP.chamberDamage.get()) {
+                            if (x == mutableboundingbox.x0 || x == mutableboundingbox.x1 - 1 || y == mutableboundingbox.y0 ||
+                                    y == mutableboundingbox.y1 - 1 || z == mutableboundingbox.z0 || z == mutableboundingbox.z1 - 1) {
+                                continue;
+                            }
+                        }
                         FluidState fluidstate = settings.shouldKeepLiquids() ? seedReader.getFluidState(blockpos) : null;
                         BlockState blockstate = template$blockinfo.state.mirror(settings.getMirror()).rotate(seedReader, blockPos, settings.getRotation());
                         if (template$blockinfo.nbt != null) {

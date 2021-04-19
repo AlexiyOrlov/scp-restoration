@@ -37,11 +37,9 @@ import java.util.Random;
  * Usable in world generation by using the {@link ISeedReader} instance.
  */
 public class GeneratableTemplate extends Template2 {
-    protected ISeedReader seedReader;
 
     public GeneratableTemplate(Template template, List<ResourceLocation> loots, ISeedReader reader) {
         super(template, loots, reader);
-        seedReader = reader;
     }
 
     @Override
