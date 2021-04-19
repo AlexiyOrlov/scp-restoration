@@ -208,10 +208,10 @@ public class Template2 extends Template {
     protected void addEntitiesToWorld(IServerWorld p_237143_1_, BlockPos p_237143_2_, PlacementSettings placementIn) {
         for (Template.EntityInfo template$entityinfo : processEntityInfos(this, p_237143_1_, p_237143_2_, placementIn, this.entityInfoList)) {
             BlockPos blockpos;
-            blockpos = template$entityinfo.blockPos; // FORGE: Position will have already been transformed by processEntityInfos
+            blockpos = template$entityinfo.blockPos;
             if (placementIn.getBoundingBox() == null || placementIn.getBoundingBox().isInside(blockpos)) {
                 CompoundNBT compoundnbt = template$entityinfo.nbt.copy();
-                Vector3d vector3d1 = template$entityinfo.pos; // FORGE: Position will have already been transformed by processEntityInfos
+                Vector3d vector3d1 = template$entityinfo.pos;
                 ListNBT listnbt = new ListNBT();
                 listnbt.add(DoubleNBT.valueOf(vector3d1.x));
                 listnbt.add(DoubleNBT.valueOf(vector3d1.y));

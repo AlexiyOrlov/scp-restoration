@@ -1,9 +1,8 @@
 package dev.buildtool.scp.events;
 
 import dev.buildtool.satako.Functions;
-import dev.buildtool.satako.Methods;
-import dev.buildtool.scp.LootContainer;
 import dev.buildtool.scp.SCP;
+import dev.buildtool.scp.Template2;
 import dev.buildtool.scp.items.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
@@ -11,14 +10,11 @@ import dev.buildtool.scp.template.SCPTemplate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.loot.*;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,8 +23,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SCPItems {
@@ -69,19 +63,22 @@ public class SCPItems {
             public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
                 BlockPos pos = context.getClickedPos();
                 World world = context.getLevel();
-                TileEntity tileEntity = world.getBlockEntity(pos);
-                if (tileEntity instanceof LootContainer) {
-                    if (!world.isClientSide) {
-                        LootContainer lootContainer = (LootContainer) tileEntity;
-                        LootTableManager tableManager = world.getServer().getLootTables();
-                        List<ResourceLocation> lootTables= tableManager.getIds().stream().filter(resourceLocation1 -> resourceLocation1.getNamespace().equals(SCP.ID) && resourceLocation1.getPath().startsWith("structureloot")).collect(Collectors.toList());
-                        LootTable table=tableManager.get(lootTables.get(random.nextInt(lootTables.size())));
-                        table.fill(lootContainer.provide(),new LootContext.Builder((ServerWorld) world).withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(tileEntity.getBlockPos())).create(LootParameterSets.CHEST));
-                        Methods.sendBlockUpdate((ServerWorld) world, pos);
+                if (!world.isClientSide) {
+                    Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world);
+                    BlockPos size = template2.size;
+                    MutableBoundingBox mutableBoundingBox = new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
+                    for (int i = pos.getX(); i < pos.getX() + size.getX(); i++) {
+                        for (int p = pos.getZ(); p < pos.getZ() + size.getZ(); p++) {
+                            for (int j = pos.getY(); j < pos.getY() + size.getY(); j++) {
+
+                                if (i == mutableBoundingBox.x0 || i == mutableBoundingBox.x1 - 1 || p == mutableBoundingBox.z1 - 1 || p == mutableBoundingBox.z0 || j == mutableBoundingBox.y0 || j == mutableBoundingBox.y1 - 1) {
+                                    world.setBlockAndUpdate(new BlockPos(i, j, p), SCPBlocks.resistantGlass.get(random.nextInt(16)).defaultBlockState());
+                                }
+                            }
+                        }
                     }
-                    return ActionResultType.SUCCESS;
                 }
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             }
         };
         forgeRegistry.registerAll(register(tester, "tester"));

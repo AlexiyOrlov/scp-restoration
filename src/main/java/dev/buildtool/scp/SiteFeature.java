@@ -22,7 +22,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class SiteFeature extends Feature<NoFeatureConfig> {
-    RandomizedList<ResourceLocation> structures;
+    public RandomizedList<ResourceLocation> structures;
     public UniqueList<ResourceLocation> generated;
     public boolean listInitialized;
     public dev.buildtool.scp.SCPWorldData SCPWorldData;
