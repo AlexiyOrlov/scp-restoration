@@ -26,6 +26,7 @@ public class FlakCannon extends Firearm{
             flakShard.setPos(shooter.getX()-vector3d.x,shooter.getEyeY(),shooter.getZ()-vector3d.z);
             flakShard.shootFromRotation(shooter,shooter.xRot+random.nextInt(8)-10,shooter.yRot+random.nextInt(16)-8,0,2,1);
 //            flakShard.xRot=random.nextFloat();
+            flakShard.setOwner(shooter);
             if(!world.isClientSide)
                 world.addFreshEntity(flakShard);
         }

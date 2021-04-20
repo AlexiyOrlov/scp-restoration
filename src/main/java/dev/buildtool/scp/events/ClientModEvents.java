@@ -146,7 +146,7 @@ public class ClientModEvents {
 
         RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard,manager -> new EntityRenderer(manager) {
             final ResourceLocation resourceLocation=new ResourceLocation(SCP.ID,"textures/entity/flak_shard.png");
-            FlakShardModel shardModel=new FlakShardModel();
+            final FlakShardModel shardModel=new FlakShardModel();
             @Override
             public ResourceLocation getTextureLocation(Entity p_110775_1_) {
                 return resourceLocation;
