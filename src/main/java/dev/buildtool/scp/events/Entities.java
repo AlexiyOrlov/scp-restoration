@@ -11,6 +11,8 @@ import dev.buildtool.scp.humansrefuted.HumanRefutedChild;
 import dev.buildtool.scp.infiniteikea.FemaleCivilian;
 import dev.buildtool.scp.infiniteikea.IkeaMonster;
 import dev.buildtool.scp.infiniteikea.MaleCivilian;
+import dev.buildtool.scp.items.FlakCannon;
+import dev.buildtool.scp.items.FlakShard;
 import dev.buildtool.scp.monsterpot.PotMonster;
 import dev.buildtool.scp.plaguedoctor.Corpse;
 import dev.buildtool.scp.plaguedoctor.PlagueDoctor;
@@ -60,6 +62,7 @@ public class Entities {
     public static EntityType<MaleCivilian> maleCivilian;
     public static EntityType<FemaleCivilian> femaleCivilian;
     public static EntityType<YoungGirl> youngGirl;
+    public static EntityType<FlakShard> flakShard;
 
     public static ItemGroup SCPs = new ItemGroup("scps") {
         @Override
@@ -131,6 +134,8 @@ public class Entities {
         EntitySpawnPlacementRegistry.register(employeeMonster, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> true);
         EntitySpawnPlacementRegistry.register(femaleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
         EntitySpawnPlacementRegistry.register(maleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
+
+        flakShard=registerEntity("flak_shard",EntityClassification.MISC,FlakShard::new,0.1f,0.1f);
     }
 
 
