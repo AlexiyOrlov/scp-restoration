@@ -15,6 +15,8 @@ import dev.buildtool.scp.humansrefuted.HumanRefutedModel;
 import dev.buildtool.scp.humansrefuted.SCP3199Egg;
 import dev.buildtool.scp.infiniteikea.CivilianRenderer;
 import dev.buildtool.scp.infiniteikea.IkeaMonsterModel;
+import dev.buildtool.scp.items.FlakShard;
+import dev.buildtool.scp.items.FlakShardModel;
 import dev.buildtool.scp.monsterpot.PotMonsterModel1;
 import dev.buildtool.scp.monsterpot.PotMonsterRenderer;
 import dev.buildtool.scp.plaguedoctor.CorpseRenderer;
@@ -38,7 +40,10 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.resources.IResource;
 import net.minecraft.util.ResourceLocation;
@@ -138,6 +143,22 @@ public class ClientModEvents {
         ScreenManager.register(SCPContainers.humanInterContainer, (ScreenManager.IScreenFactory<InteractionContainer, InteractionScreen>) (ScreenManager.IScreenFactory<InteractionContainer, InteractionScreen>) InteractionScreen::new);
         ScreenManager.register(SCPContainers.crateContainer, (ScreenManager.IScreenFactory<CrateContainer, ContainerScreen2<CrateContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.shelfContainer, (ScreenManager.IScreenFactory<ShelfContainer, ContainerScreen2<ShelfContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
+
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard,manager -> new EntityRenderer(manager) {
+            final ResourceLocation resourceLocation=new ResourceLocation(SCP.ID,"textures/entity/flak_shard.png");
+            FlakShardModel shardModel=new FlakShardModel();
+            @Override
+            public ResourceLocation getTextureLocation(Entity p_110775_1_) {
+                return resourceLocation;
+            }
+
+            @Override
+            public void render(Entity entity, float p_225623_2_, float p_225623_3_, MatrixStack matrixStack, IRenderTypeBuffer buffer, int p_225623_6_) {
+                shardModel.setupAnim((FlakShard) entity,0,0,0,0,0);
+                shardModel.renderToBuffer(matrixStack,buffer.getBuffer(shardModel.renderType(getTextureLocation(entity))),p_225623_6_, OverlayTexture.NO_OVERLAY,1,1,1,1);
+                super.render(entity, p_225623_2_, p_225623_3_, matrixStack, buffer, p_225623_6_);
+            }
+        });
     }
 
     public static List<String> getResourceText(String resourcePath) {
