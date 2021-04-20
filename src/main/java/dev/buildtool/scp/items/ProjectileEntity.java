@@ -3,7 +3,12 @@ package dev.buildtool.scp.items;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
@@ -65,6 +70,22 @@ public abstract class ProjectileEntity extends Entity {
       if (!this.leftOwner) {
          this.leftOwner = this.checkLeftOwner();
       }
+      Vector3d vector3d=getDeltaMovement();
+      RayTraceResult raytraceresult = ProjectileHelper.getHitResult(this, this::canHitEntity);
+      if (raytraceresult != null && raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+         this.onHit(raytraceresult);
+      }
+      double d = vector3d.x;
+      double e = vector3d.y;
+      double g = vector3d.z;
+
+
+      double h = this.getX() + d;
+      double j = this.getY() + e;
+      double k = this.getZ() + g;
+      setPos(h,j,k);
+      checkInsideBlocks();
+
       super.tick();
    }
 
@@ -109,10 +130,20 @@ public abstract class ProjectileEntity extends Entity {
 
    }
 
-   protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+   protected void onHitEntity(EntityRayTraceResult entityRayTraceResult) {
+      Entity playerEntity=getOwner();
+      entityRayTraceResult.getEntity().hurt(DamageSource.mobAttack((LivingEntity) playerEntity),1);
+      entityRayTraceResult.getEntity().invulnerableTime=0;
+      remove();
    }
 
    protected void onHitBlock(BlockRayTraceResult blockRayTraceResult) {
+      remove();
+   }
+
+   @Override
+   protected void onInsideBlock(BlockState p_191955_1_) {
+
 
    }
 
