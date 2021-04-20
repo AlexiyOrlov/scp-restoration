@@ -13,7 +13,7 @@ public abstract class Firearm extends Item implements RangedWeapon {
     protected int cooldown;
 
     public Firearm(Properties properties, int cooldown) {
-        super(properties);
+        super(properties.stacksTo(1));
         this.cooldown = cooldown;
     }
 
