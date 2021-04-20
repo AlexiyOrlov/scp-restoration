@@ -20,7 +20,7 @@ public class FlakCannon extends Firearm{
 
     @Override
     public void shoot(World world, LivingEntity shooter, Hand hand, LivingEntity target) {
-        Vector3d vector3d=target.getLookAngle();
+        Vector3d vector3d=shooter.getLookAngle();
         for (int i = 0; i < 6; i++) {
             FlakShard flakShard= Entities.flakShard.create(world);
             flakShard.setPos(shooter.getX()-vector3d.x,shooter.getEyeY(),shooter.getZ()-vector3d.z);
