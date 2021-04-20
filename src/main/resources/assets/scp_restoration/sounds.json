@@ -4,6 +4,14 @@
       "scp_restoration:gunshot"
     ]
   },
+  "flak_cannon": {
+    "category": "player",
+    "sounds": ["scp_restoration:flak_fire"]
+  },
+  "beam_fire": {
+    "category": "player",
+    "sounds": ["scp_restoration:beam_fire"]
+  },
   "rubber_ducky": {
     "category": "player",
     "sounds": [
