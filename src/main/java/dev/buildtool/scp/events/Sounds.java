@@ -21,6 +21,8 @@ public class Sounds {
     public static SoundEvent skeletonKeyUnlock;
     public static SoundEvent doorClosed;
     public static SoundEvent rifleShot;
+    public static SoundEvent beamFire;
+    public static SoundEvent flakCannonFire;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -36,6 +38,8 @@ public class Sounds {
         registry.register(skeletonKeyUnlock = register("unlock"));
         registry.register(doorClosed = register("door_closed"));
         registry.register(rifleShot = register("shot"));
+        registry.register(beamFire=register("beam_fire"));
+        registry.register(flakCannonFire=register("flak_cannon"));
     }
 
     private static SoundEvent register(String name) {
