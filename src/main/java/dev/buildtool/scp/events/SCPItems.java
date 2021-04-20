@@ -69,7 +69,6 @@ public class SCPItems {
                     Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world);
                     final PlacementSettings placementSettings = new PlacementSettings().setRotation(Rotation.getRandom(random));
                     template2.placeInWorld((IServerWorld) world, pos, placementSettings, random);
-//                    System.out.println(template2.getBoundingBox(placementSettings,pos));
 //
 //                    BlockPos size = template2.getSize();
 //                    MutableBoundingBox mutableBoundingBox =new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
@@ -115,6 +114,7 @@ public class SCPItems {
         gadget = register(new Item(properties()), "gadget", forgeRegistry);
         register(new AutoRifle(properties().defaultDurability(1000), 0), "rifle", forgeRegistry);
         scpTemplate = register(new SCPTemplate(single().tab(templates)), "scp_template", forgeRegistry);
+        register(new FlakCannon(properties().defaultDurability(500),30),"flak_cannon",forgeRegistry);
     }
 
     private static Item.Properties scp(){
