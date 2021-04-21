@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "gdg",
-    "IdI",
+    "IsI",
     "gdg"
   ],
   "key": {
@@ -14,6 +14,9 @@
     },
     "I": {
       "item": "minecraft:iron_block"
+    },
+    "s": {
+      "item": "scp_restoration:gadget"
     }
   },
   "result": {
