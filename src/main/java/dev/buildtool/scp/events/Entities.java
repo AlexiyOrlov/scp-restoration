@@ -151,7 +151,7 @@ public class Entities {
 
     @SuppressWarnings("unchecked")
     private static <E extends EntityType<T>, T extends Entity> E registerFastEntity(String id, EntityClassification entityCategory, EntityType.IFactory<T> factory, float width, float height, IForgeRegistry<EntityType<?>> forgeRegistry) {
-        EntityType<T> entityType = EntityType.Builder.of(factory, entityCategory).sized(width, height).setTrackingRange(100).setUpdateInterval(0).build(id);
+        EntityType<T> entityType = EntityType.Builder.of(factory, entityCategory).sized(width, height).setTrackingRange(100).setUpdateInterval(1).build(id);
         entityType.setRegistryName(SCP.ID, id);
         if(forgeRegistry!=null)
             forgeRegistry.register(entityType);
