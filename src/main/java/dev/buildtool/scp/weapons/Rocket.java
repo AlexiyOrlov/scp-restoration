@@ -22,8 +22,10 @@ public class Rocket extends Projectile {
 
     void explode()
     {
-        level.explode(getOwner(),getX(),getY(),getZ(),3, Explosion.Mode.BREAK);
-        remove();
+        if(!level.isClientSide) {
+            level.explode(getOwner(), getX(), getY(), getZ(), 3, Explosion.Mode.BREAK);
+            remove();
+        }
     }
 
     @Override
@@ -41,6 +43,14 @@ public class Rocket extends Projectile {
                         remove();
                     else
                         explode();
+                }
+                else if(getOwner() instanceof PlayerEntity)
+                {
+                    PlayerEntity playerEntity1= (PlayerEntity) getOwner();
+                    if(playerEntity1!=playerEntity)
+                    {
+                        explode();
+                    }
                 }
                 else
                     explode();

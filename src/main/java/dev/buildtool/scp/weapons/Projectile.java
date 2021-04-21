@@ -196,6 +196,7 @@ public abstract class Projectile extends InanimateEntity {
             }
 
             this.setDeltaMovement(vector3d5.x , d2+d0* lightness, vector3d5.z );
+//            updateRotation();
          }
       }
 

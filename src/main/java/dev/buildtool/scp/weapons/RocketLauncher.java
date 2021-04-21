@@ -1,6 +1,7 @@
 package dev.buildtool.scp.weapons;
 
 import dev.buildtool.scp.events.Entities;
+import net.minecraft.command.arguments.EntityAnchorArgument;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -23,6 +24,7 @@ public class RocketLauncher extends Firearm{
     public void shoot(World world, LivingEntity shooter, Hand hand, @Nullable LivingEntity target) {
         Rocket rocket= Entities.rocket.create(world);
         Vector3d lookAngles=shooter.getLookAngle();
+        rocket.setOwner(shooter);
         rocket.setPos(shooter.getX() - lookAngles.x, shooter.getEyeY(), shooter.getZ() - lookAngles.z);
         rocket.shootFromRotation(shooter,shooter.xRot,shooter.yRot,0,1,1);
         world.addFreshEntity(rocket);
