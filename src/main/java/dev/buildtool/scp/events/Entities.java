@@ -23,6 +23,7 @@ import dev.buildtool.scp.tatteredfarmer.TatteredFarmer;
 import dev.buildtool.scp.theteacher.TheTeacherEntity;
 import dev.buildtool.scp.ticklemonster.TickleMonsterEntity;
 import dev.buildtool.scp.unclesam.UncleSam;
+import dev.buildtool.scp.weapons.Rocket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -62,6 +63,7 @@ public class Entities {
     public static EntityType<FemaleCivilian> femaleCivilian;
     public static EntityType<YoungGirl> youngGirl;
     public static EntityType<FlakShard> flakShard;
+    public static EntityType<Rocket> rocket;
 
     public static ItemGroup SCPs = new ItemGroup("scps") {
         @Override
@@ -134,6 +136,7 @@ public class Entities {
         EntitySpawnPlacementRegistry.register(maleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
 
         flakShard=registerFastEntity("flak_shard",EntityClassification.MISC,FlakShard::new,0.1f,0.1f, forgeRegistry);
+        rocket=registerFastEntity("rocket",EntityClassification.MISC,(p_create_1_, p_create_2_) -> new Rocket(p_create_1_,p_create_2_,0,1),0.2f,0.2f,forgeRegistry);
     }
 
 

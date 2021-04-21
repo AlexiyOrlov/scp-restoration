@@ -14,14 +14,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
-public abstract class ProjectileEntity extends InanimateEntity {
+public abstract class Projectile extends InanimateEntity {
    //TODO
-   protected Entity ownerNetworkId;
+   protected UUID ownerNetworkId;
    protected boolean leftOwner;
    protected int damage;
    protected double lightness;
@@ -29,7 +31,7 @@ public abstract class ProjectileEntity extends InanimateEntity {
    /**
     * @param lightness 0 to 1
     */
-   public ProjectileEntity(EntityType<? extends ProjectileEntity> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {
+   public Projectile(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {
       super(p_i231584_1_, p_i231584_2_);
       this.damage=damage_;
       this.lightness = lightness;
@@ -37,7 +39,7 @@ public abstract class ProjectileEntity extends InanimateEntity {
 
    public void setOwner(@Nullable Entity entity) {
       if (entity != null) {
-         this.ownerNetworkId = entity;
+         this.ownerNetworkId = entity.getUUID();
       }
    }
 
@@ -48,7 +50,7 @@ public abstract class ProjectileEntity extends InanimateEntity {
 
    @Nullable
    public Entity getOwner() {
-      return ownerNetworkId;
+      return ownerNetworkId!=null && level instanceof ServerWorld ? ((ServerWorld) level).getEntity(ownerNetworkId):null;
    }
 
    public void addAdditionalSaveData(CompoundNBT p_213281_1_) {

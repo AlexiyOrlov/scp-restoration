@@ -25,7 +25,8 @@ public abstract class Firearm extends Item implements RangedWeapon {
     @Override
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         shoot(worldIn, playerIn, handIn, null);
-        worldIn.playSound(playerIn, playerIn.blockPosition(), fireSound(), SoundCategory.PLAYERS, soundVolume(), 1);
+        if(fireSound()!=null)
+            worldIn.playSound(playerIn, playerIn.blockPosition(), fireSound(), SoundCategory.PLAYERS, soundVolume(), 1);
         playerIn.getCooldowns().addCooldown(this, cooldown());
         ItemStack weapon = playerIn.getItemInHand(handIn);
         weapon.hurtAndBreak(1, playerIn, playerEntity -> playerEntity.broadcastBreakEvent(handIn));

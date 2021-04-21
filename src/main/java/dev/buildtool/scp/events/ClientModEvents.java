@@ -34,6 +34,7 @@ import dev.buildtool.scp.table.TableRenderer;
 import dev.buildtool.scp.tatteredfarmer.ScarecrowModel;
 import dev.buildtool.scp.theteacher.TheTeacher2;
 import dev.buildtool.scp.ticklemonster.TickleMonster;
+import dev.buildtool.scp.weapons.RocketModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -148,7 +149,7 @@ public class ClientModEvents {
                 return true;
             }
         });
-
+        RenderingRegistry.registerEntityRenderingHandler(Entities.rocket,manager -> new EntityRenderer2<>(manager,new RocketModel(),"rocket",false,0));
     }
 
     public static List<String> getResourceText(String resourcePath) {
