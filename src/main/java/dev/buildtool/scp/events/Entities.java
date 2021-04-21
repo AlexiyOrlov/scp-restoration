@@ -133,7 +133,7 @@ public class Entities {
         EntitySpawnPlacementRegistry.register(femaleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
         EntitySpawnPlacementRegistry.register(maleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
 
-        flakShard=registerEntity("flak_shard",EntityClassification.MISC,FlakShard::new,0.1f,0.1f, forgeRegistry);
+        flakShard=registerFastEntity("flak_shard",EntityClassification.MISC,FlakShard::new,0.1f,0.1f, forgeRegistry);
     }
 
 
@@ -146,5 +146,13 @@ public class Entities {
         return (E) entityType;
     }
 
+    @SuppressWarnings("unchecked")
+    private static <E extends EntityType<T>, T extends Entity> E registerFastEntity(String id, EntityClassification entityCategory, EntityType.IFactory<T> factory, float width, float height, IForgeRegistry<EntityType<?>> forgeRegistry) {
+        EntityType<T> entityType = EntityType.Builder.of(factory, entityCategory).sized(width, height).setTrackingRange(100).setUpdateInterval(0).build(id);
+        entityType.setRegistryName(SCP.ID, id);
+        if(forgeRegistry!=null)
+            forgeRegistry.register(entityType);
+        return (E) entityType;
+    }
 
 }
