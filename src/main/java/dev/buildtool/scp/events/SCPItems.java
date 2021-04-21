@@ -7,6 +7,8 @@ import dev.buildtool.scp.items.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
 import dev.buildtool.scp.template.SCPTemplate;
+import dev.buildtool.scp.weapons.AutoRifle;
+import dev.buildtool.scp.weapons.FlakCannon;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;

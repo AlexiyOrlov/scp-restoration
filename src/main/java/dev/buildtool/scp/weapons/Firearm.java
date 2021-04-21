@@ -1,4 +1,4 @@
-package dev.buildtool.scp.items;
+package dev.buildtool.scp.weapons;
 
 import dev.buildtool.scp.RangedWeapon;
 import net.minecraft.entity.player.PlayerEntity;

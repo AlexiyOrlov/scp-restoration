@@ -1,13 +1,8 @@
-package dev.buildtool.scp.items;
+package dev.buildtool.scp.weapons;
 
-import dev.buildtool.satako.InanimateEntity;
-import dev.buildtool.scp.events.Entities;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.play.server.SSpawnMobPacket;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class FlakShard extends ProjectileEntity {

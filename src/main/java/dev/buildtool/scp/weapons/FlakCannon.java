@@ -1,4 +1,4 @@
-package dev.buildtool.scp.items;
+package dev.buildtool.scp.weapons;
 
 import dev.buildtool.scp.events.Entities;
 import dev.buildtool.scp.events.Sounds;
