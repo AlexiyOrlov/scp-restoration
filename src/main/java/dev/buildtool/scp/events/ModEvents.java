@@ -77,6 +77,7 @@ public class ModEvents {
     public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent)
     {
         attributeCreationEvent.put(Entities.flakShard,MonsterEntity.createMonsterAttributes().build());
+        attributeCreationEvent.put(Entities.rocket,MonsterEntity.createMonsterAttributes().build());
     }
 
     @SuppressWarnings("unused")
