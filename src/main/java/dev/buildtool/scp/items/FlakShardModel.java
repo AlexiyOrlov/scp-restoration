@@ -18,7 +18,7 @@ public class FlakShardModel extends EntityModel<FlakShard> {
 
 		bb_main = new ModelRenderer(this);
 		bb_main.setPos(0.0F, 24.0F, 0.0F);
-		
+
 
 		cube_r1 = new ModelRenderer(this);
 		cube_r1.setPos(0.0F, -0.5F, 0.0F);

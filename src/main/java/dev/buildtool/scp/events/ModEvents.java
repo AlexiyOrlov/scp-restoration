@@ -26,6 +26,7 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -70,6 +71,12 @@ public class ModEvents {
         GlobalEntityTypeAttributes.put(Entities.maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).build());
         GlobalEntityTypeAttributes.put(Entities.femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).build());
         GlobalEntityTypeAttributes.put(Entities.youngGirl, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).build());
+    }
+
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent)
+    {
+        attributeCreationEvent.put(Entities.flakShard,MonsterEntity.createMonsterAttributes().build());
     }
 
     @SuppressWarnings("unused")

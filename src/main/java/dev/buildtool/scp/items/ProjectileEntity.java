@@ -1,57 +1,58 @@
 package dev.buildtool.scp.items;
 
-import net.minecraft.block.BlockState;
+import dev.buildtool.satako.InanimateEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
-public abstract class ProjectileEntity extends Entity {
-   protected UUID ownerUUID;
-   protected int ownerNetworkId;
+public abstract class ProjectileEntity extends InanimateEntity {
+   //TODO
+   protected Entity ownerNetworkId;
    protected boolean leftOwner;
+   protected int damage;
+   protected double lightness;
 
-   public ProjectileEntity(EntityType<? extends ProjectileEntity> p_i231584_1_, World p_i231584_2_) {
+   /**
+    * @param lightness 0 to 1
+    */
+   public ProjectileEntity(EntityType<? extends ProjectileEntity> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {
       super(p_i231584_1_, p_i231584_2_);
+      this.damage=damage_;
+      this.lightness = lightness;
    }
 
    public void setOwner(@Nullable Entity entity) {
       if (entity != null) {
-         this.ownerUUID = entity.getUUID();
-         this.ownerNetworkId = entity.getId();
+         this.ownerNetworkId = entity;
       }
+   }
+
+   @Override
+   protected void pushEntities() {
 
    }
 
    @Nullable
    public Entity getOwner() {
-      if (this.ownerUUID != null && this.level instanceof ServerWorld) {
-         return ((ServerWorld)this.level).getEntity(this.ownerUUID);
-      } else {
-         return this.ownerNetworkId != 0 ? this.level.getEntity(this.ownerNetworkId) : null;
-      }
+      return ownerNetworkId;
    }
 
-   protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-      if (this.ownerUUID != null) {
-         p_213281_1_.putUUID("Owner", this.ownerUUID);
-      }
+   public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
+      super.addAdditionalSaveData(p_213281_1_);
 
       if (this.leftOwner) {
          p_213281_1_.putBoolean("LeftOwner", true);
@@ -59,10 +60,8 @@ public abstract class ProjectileEntity extends Entity {
 
    }
 
-   protected void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-      if (p_70037_1_.hasUUID("Owner")) {
-         this.ownerUUID = p_70037_1_.getUUID("Owner");
-      }
+   public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
+      super.readAdditionalSaveData(p_70037_1_);
       this.leftOwner = p_70037_1_.getBoolean("LeftOwner");
    }
 
@@ -70,23 +69,134 @@ public abstract class ProjectileEntity extends Entity {
       if (!this.leftOwner) {
          this.leftOwner = this.checkLeftOwner();
       }
-      Vector3d vector3d=getDeltaMovement();
       RayTraceResult raytraceresult = ProjectileHelper.getHitResult(this, this::canHitEntity);
       if (raytraceresult != null && raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
          this.onHit(raytraceresult);
       }
-      double d = vector3d.x;
-      double e = vector3d.y;
-      double g = vector3d.z;
-
-
-      double h = this.getX() + d;
-      double j = this.getY() + e;
-      double k = this.getZ() + g;
-      setPos(h,j,k);
-      checkInsideBlocks();
-
       super.tick();
+   }
+
+   @Override
+   public void travel(Vector3d p_213352_1_) {
+      if (this.isEffectiveAi() || this.isControlledByLocalInstance()) {
+         double d0;
+         ModifiableAttributeInstance gravity = this.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+         boolean flag = this.getDeltaMovement().y <= 0.0D;
+         d0 = gravity.getValue();
+
+         FluidState fluidstate = this.level.getFluidState(this.blockPosition());
+         if (this.isInWater() && this.isAffectedByFluids() && !this.canStandOnFluid(fluidstate.getType())) {
+            double d8 = this.getY();
+            float f5 = this.getWaterSlowDown();
+            float f6 = 0.02F;
+            float f7 = 0;
+
+            if (!this.onGround) {
+               f7 *= 0.5F;
+            }
+
+            if (f7 > 0.0F) {
+               f5 += (0.54600006F - f5) * f7 / 3.0F;
+               f6 += (this.getSpeed() - f6) * f7 / 3.0F;
+            }
+
+            f6 *= (float)this.getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get()).getValue();
+            this.moveRelative(f6, p_213352_1_);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            Vector3d vector3d6 = this.getDeltaMovement();
+            if (this.horizontalCollision && this.onClimbable()) {
+               vector3d6 = new Vector3d(vector3d6.x, 0.2D, vector3d6.z);
+            }
+
+            this.setDeltaMovement(vector3d6.multiply(f5, 0.8F, f5));
+            Vector3d vector3d2 = this.getFluidFallingAdjustedMovement(d0, flag, this.getDeltaMovement());
+            this.setDeltaMovement(vector3d2);
+            if (this.horizontalCollision && this.isFree(vector3d2.x, vector3d2.y + (double)0.6F - this.getY() + d8, vector3d2.z)) {
+               this.setDeltaMovement(vector3d2.x, 0.3F, vector3d2.z);
+            }
+         } else if (this.isInLava() && this.isAffectedByFluids() && !this.canStandOnFluid(fluidstate.getType())) {
+            double d7 = this.getY();
+            this.moveRelative(0.02F, p_213352_1_);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            if (this.getFluidHeight(FluidTags.LAVA) <= this.getFluidJumpThreshold()) {
+               this.setDeltaMovement(this.getDeltaMovement().multiply(0.5D, 0.8F, 0.5D));
+               Vector3d vector3d3 = this.getFluidFallingAdjustedMovement(d0, flag, this.getDeltaMovement());
+               this.setDeltaMovement(vector3d3);
+            } else {
+               this.setDeltaMovement(this.getDeltaMovement().scale(0.5D));
+            }
+
+            if (!this.isNoGravity()) {
+               this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -d0 / 4.0D, 0.0D));
+            }
+
+            Vector3d vector3d4 = this.getDeltaMovement();
+            if (this.horizontalCollision && this.isFree(vector3d4.x, vector3d4.y + (double)0.6F - this.getY() + d7, vector3d4.z)) {
+               this.setDeltaMovement(vector3d4.x, 0.3F, vector3d4.z);
+            }
+         } else if (this.isFallFlying()) {
+            Vector3d vector3d = this.getDeltaMovement();
+            if (vector3d.y > -0.5D) {
+               this.fallDistance = 1.0F;
+            }
+
+            Vector3d vector3d1 = this.getLookAngle();
+            float f = this.xRot * ((float)Math.PI / 180F);
+            double d1 = Math.sqrt(vector3d1.x * vector3d1.x + vector3d1.z * vector3d1.z);
+            double d3 = Math.sqrt(getHorizontalDistanceSqr(vector3d));
+            double d4 = vector3d1.length();
+            float f1 = MathHelper.cos(f);
+            f1 = (float)((double)f1 * (double)f1 * Math.min(1.0D, d4 / 0.4D));
+            vector3d = this.getDeltaMovement().add(0.0D, d0 * (-1.0D + (double)f1 * 0.75D), 0.0D);
+            if (vector3d.y < 0.0D && d1 > 0.0D) {
+               double d5 = vector3d.y * -0.1D * (double)f1;
+               vector3d = vector3d.add(vector3d1.x * d5 / d1, d5, vector3d1.z * d5 / d1);
+            }
+
+            if (f < 0.0F && d1 > 0.0D) {
+               double d9 = d3 * (double)(-MathHelper.sin(f)) * 0.04D;
+               vector3d = vector3d.add(-vector3d1.x * d9 / d1, d9 * 3.2D, -vector3d1.z * d9 / d1);
+            }
+
+            if (d1 > 0.0D) {
+               vector3d = vector3d.add((vector3d1.x / d1 * d3 - vector3d.x) * 0.1D, 0.0D, (vector3d1.z / d1 * d3 - vector3d.z) * 0.1D);
+            }
+
+            this.setDeltaMovement(vector3d.multiply(0.99F, 0.98F, 0.99F));
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            if (this.horizontalCollision && !this.level.isClientSide) {
+               double d10 = Math.sqrt(getHorizontalDistanceSqr(this.getDeltaMovement()));
+               double d6 = d3 - d10;
+               float f2 = (float)(d6 * 10.0D - 3.0D);
+               if (f2 > 0.0F) {
+                  this.playSound(this.getFallDamageSound((int)f2), 1.0F, 1.0F);
+                  this.hurt(DamageSource.FLY_INTO_WALL, f2);
+               }
+            }
+
+            if (this.onGround && !this.level.isClientSide) {
+               this.setSharedFlag(7, false);
+            }
+         } else {
+            BlockPos blockpos = this.getBlockPosBelowThatAffectsMyMovement();
+            float f3 = this.level.getBlockState(this.getBlockPosBelowThatAffectsMyMovement()).getSlipperiness(level, this.getBlockPosBelowThatAffectsMyMovement(), this);
+            float f4 = this.onGround ? f3 * 0.91F : 0.91F;
+            Vector3d vector3d5 = this.handleRelativeFrictionAndCalculateMovement(p_213352_1_, f3);
+            double d2 = vector3d5.y;
+            if (this.level.isClientSide && !this.level.hasChunkAt(blockpos)) {
+               if (this.getY() > 0.0D) {
+                  d2 = -0.1D;
+               } else {
+                  d2 = 0.0D;
+               }
+            } else if (!this.isNoGravity()) {
+               d2 -= d0;
+            }
+
+            this.setDeltaMovement(vector3d5.x , d2+d0* lightness, vector3d5.z );
+         }
+      }
+
    }
 
    protected boolean checkLeftOwner() {
@@ -131,20 +241,16 @@ public abstract class ProjectileEntity extends Entity {
    }
 
    protected void onHitEntity(EntityRayTraceResult entityRayTraceResult) {
-      Entity playerEntity=getOwner();
-      entityRayTraceResult.getEntity().hurt(DamageSource.mobAttack((LivingEntity) playerEntity),1);
-      entityRayTraceResult.getEntity().invulnerableTime=0;
-      remove();
+      Entity owner=getOwner();
+      Entity traced = entityRayTraceResult.getEntity();
+      if(traced !=owner && traced.getClass()!=getClass()) {
+         traced.hurt(DamageSource.mobAttack((LivingEntity) owner), damage);
+         traced.invulnerableTime = 0;
+      }
    }
 
    protected void onHitBlock(BlockRayTraceResult blockRayTraceResult) {
       remove();
-   }
-
-   @Override
-   protected void onInsideBlock(BlockState p_191955_1_) {
-
-
    }
 
    @OnlyIn(Dist.CLIENT)

@@ -136,6 +136,7 @@ public class Entities {
         EntitySpawnPlacementRegistry.register(maleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
 
         flakShard=registerEntity("flak_shard",EntityClassification.MISC,FlakShard::new,0.1f,0.1f);
+        forgeRegistry.register(flakShard);
     }
 
 

@@ -20,15 +20,17 @@ public class FlakCannon extends Firearm{
 
     @Override
     public void shoot(World world, LivingEntity shooter, Hand hand, LivingEntity target) {
-        Vector3d vector3d=shooter.getLookAngle();
+
+
+        Vector3d vector3d = shooter.getLookAngle();
+
         for (int i = 0; i < 6; i++) {
-            FlakShard flakShard= Entities.flakShard.create(world);
-            flakShard.setPos(shooter.getX()-vector3d.x,shooter.getEyeY(),shooter.getZ()-vector3d.z);
-            flakShard.shootFromRotation(shooter,shooter.xRot+random.nextInt(8)-10,shooter.yRot+random.nextInt(16)-8,0,2,1);
-//            flakShard.xRot=random.nextFloat();
+            FlakShard flakShard = Entities.flakShard.create(world);
+            flakShard.setPos(shooter.getX() - vector3d.x, shooter.getEyeY(), shooter.getZ() - vector3d.z);
+            flakShard.shootFromRotation(shooter, shooter.xRot + random.nextInt(8) - 10, shooter.yRot + random.nextInt(16) - 8, 0, 2, 1);
             flakShard.setOwner(shooter);
-            if(!world.isClientSide)
-                world.addFreshEntity(flakShard);
+            world.addFreshEntity(flakShard);
         }
+
     }
 }

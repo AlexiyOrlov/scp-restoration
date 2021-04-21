@@ -40,6 +40,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.culling.ClippingHelper;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.settings.KeyBinding;
@@ -47,6 +48,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.resources.IResource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -144,21 +147,13 @@ public class ClientModEvents {
         ScreenManager.register(SCPContainers.crateContainer, (ScreenManager.IScreenFactory<CrateContainer, ContainerScreen2<CrateContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.shelfContainer, (ScreenManager.IScreenFactory<ShelfContainer, ContainerScreen2<ShelfContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
 
-        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard,manager -> new EntityRenderer(manager) {
-            final ResourceLocation resourceLocation=new ResourceLocation(SCP.ID,"textures/entity/flak_shard.png");
-            final FlakShardModel shardModel=new FlakShardModel();
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard,manager -> new EntityRenderer2(manager,new FlakShardModel(),"flak_shard",false,0){
             @Override
-            public ResourceLocation getTextureLocation(Entity p_110775_1_) {
-                return resourceLocation;
-            }
-
-            @Override
-            public void render(Entity entity, float p_225623_2_, float p_225623_3_, MatrixStack matrixStack, IRenderTypeBuffer buffer, int p_225623_6_) {
-                shardModel.setupAnim((FlakShard) entity,0,0,0,0,0);
-                shardModel.renderToBuffer(matrixStack,buffer.getBuffer(shardModel.renderType(getTextureLocation(entity))),p_225623_6_, OverlayTexture.NO_OVERLAY,1,1,1,1);
-                super.render(entity, p_225623_2_, p_225623_3_, matrixStack, buffer, p_225623_6_);
+            public boolean shouldRender(Entity p_225626_1_, ClippingHelper p_225626_2_, double p_225626_3_, double p_225626_5_, double p_225626_7_) {
+                return true;
             }
         });
+
     }
 
     public static List<String> getResourceText(String resourcePath) {
