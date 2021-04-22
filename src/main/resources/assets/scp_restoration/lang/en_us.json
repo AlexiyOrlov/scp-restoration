@@ -212,6 +212,8 @@
   "entity.scp_restoration.male": "Guy",
   "entity.scp_restoration.female": "Girl",
   "entity.scp_restoration.young_girl": "Young Girl",
+  "entity.scp_restoration.chaos_ins_soldier": "Chaos Insurgency Soldier",
+
   "effect.scp_restoration.bananas": "Banana overdose",
   "effect.scp_restoration.radiation": "Radiation",
   "scp_restoration.busy": "Clockworks is processing",
