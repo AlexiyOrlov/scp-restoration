@@ -2,8 +2,11 @@ package dev.buildtool.scp.goals;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.util.math.AxisAlignedBB;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class RevengeGoal extends HurtByTargetGoal {
@@ -19,5 +22,16 @@ public class RevengeGoal extends HurtByTargetGoal {
         if (filter != null && this.mob.getTarget() != null && filter.test(mob.getTarget()))
             return false;
         return super.canUse();
+    }
+
+    @Override
+    protected void alertOthers() {
+        super.alertOthers();
+        AxisAlignedBB axisalignedbb = AxisAlignedBB.unitCubeFromLowerCorner(this.mob.position()).inflate(getFollowDistance(), 10.0D, getFollowDistance());
+        List<MobEntity> list = this.mob.level.getLoadedEntitiesOfClass(this.mob.getClass(), axisalignedbb);
+        list.forEach(mobEntity -> {
+            if (mobEntity.getTarget() == null)
+                mobEntity.setTarget(mob.getLastHurtByMob());
+        });
     }
 }
