@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -74,7 +73,6 @@ public class IkeaCivilian extends Human {
         super.registerGoals();
         goalSelector.removeGoal(defend);
         goalSelector.addGoal(4, defend = new HurtByTargetGoal(this).setAlertOthers(MaleCivilian.class, FemaleCivilian.class));
-        goalSelector.addGoal(5, new OpenDoorGoal(this, true));
         targetSelector.addGoal(1, new AttackMonsters(this, true, false));
     }
 

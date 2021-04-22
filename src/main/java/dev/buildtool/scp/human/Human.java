@@ -68,6 +68,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         goalSelector.addGoal(3, new BetterMeleeAttackGoal(this, 1, true, 20));
         goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1));
         goalSelector.addGoal(5, defend = new RevengeGoal(this, livingEntity -> livingEntity.getClass() == getClass()));
+        goalSelector.addGoal(5, new OpenDoorGoal(this, true));
         goalSelector.addGoal(6, new AvoidEntityGoal<>(this, CreeperEntity.class, 5, 1, 1.5));
         goalSelector.addGoal(7, follow = new Follow<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
         Predicate<MobEntity> filter = mobEntity -> {
@@ -81,6 +82,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         goalSelector.addGoal(10, assistPlayer = new Assist<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
         goalSelector.addGoal(10, new LookRandomlyGoal(this));
         goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 32));
+
         namedGoals.add(follow);
         namedGoals.add(guardPosition);
         namedGoals.add(protectOwner);
