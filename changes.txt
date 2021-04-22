@@ -4,6 +4,7 @@ added Flak Cannon;
 added Rocket Launcher;
 human speed in water increased;
 humans, Sculpture and Ikea monster can open doors now;
+added Chaos Insurgency soldiers;
 
 0.5.1:
 fixed SCP-1162;

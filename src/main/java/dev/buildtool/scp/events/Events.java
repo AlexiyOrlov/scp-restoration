@@ -3,6 +3,7 @@ package dev.buildtool.scp.events;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.infiniteikea.RoomGenerator;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -10,6 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -42,6 +44,7 @@ public class Events {
         } else if (category != Biome.Category.OCEAN && category != Biome.Category.THEEND && category != Biome.Category.NETHER && category != Biome.Category.RIVER) {
             //at least in this stage the structure isn't that cut out
             loadingEvent.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> Structures.scpSite.configured(new NoFeatureConfig()));
+            loadingEvent.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(Entities.chaosInsurgencySoldier, 5, 1, 3));
         }
     }
 
