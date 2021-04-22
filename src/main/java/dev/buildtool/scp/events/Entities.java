@@ -1,7 +1,9 @@
 package dev.buildtool.scp.events;
 
+import dev.buildtool.satako.Constants;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.chairs.Sittable;
+import dev.buildtool.scp.human.ChaosInsurgencySoldier;
 import dev.buildtool.scp.human.FemaleCommoner;
 import dev.buildtool.scp.human.Human;
 import dev.buildtool.scp.human.MaleCommoner;
@@ -11,7 +13,6 @@ import dev.buildtool.scp.humansrefuted.HumanRefutedChild;
 import dev.buildtool.scp.infiniteikea.FemaleCivilian;
 import dev.buildtool.scp.infiniteikea.IkeaMonster;
 import dev.buildtool.scp.infiniteikea.MaleCivilian;
-import dev.buildtool.scp.weapons.FlakShard;
 import dev.buildtool.scp.monsterpot.PotMonster;
 import dev.buildtool.scp.plaguedoctor.Corpse;
 import dev.buildtool.scp.plaguedoctor.PlagueDoctor;
@@ -23,17 +24,22 @@ import dev.buildtool.scp.tatteredfarmer.TatteredFarmer;
 import dev.buildtool.scp.theteacher.TheTeacherEntity;
 import dev.buildtool.scp.ticklemonster.TickleMonsterEntity;
 import dev.buildtool.scp.unclesam.UncleSam;
+import dev.buildtool.scp.weapons.FlakShard;
 import dev.buildtool.scp.weapons.Rocket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -64,6 +70,7 @@ public class Entities {
     public static EntityType<YoungGirl> youngGirl;
     public static EntityType<FlakShard> flakShard;
     public static EntityType<Rocket> rocket;
+    public static EntityType<ChaosInsurgencySoldier> chaosInsurgencySoldier;
 
     public static ItemGroup SCPs = new ItemGroup("scps") {
         @Override
@@ -103,10 +110,16 @@ public class Entities {
         items.register(registerEgg(employeeMonster, 0x243CAF, 0xAF9C1E));
         youngGirl = registerEntity("young_girl", EntityClassification.CREATURE, YoungGirl::new, 0.6f, 1, null);
         items.register(registerEgg(youngGirl, 0xaa5915, 0x871131));
+        chaosInsurgencySoldier = registerEntity("chaos_ins_soldier", EntityClassification.MONSTER, ChaosInsurgencySoldier::new, 0.7f, 1.8f, null);
+        items.register(registerEgg(chaosInsurgencySoldier, new Item.Properties().tab(SCPItems.items), 0x307B1F, 0x7B1E1E));
     }
 
     private static Item registerEgg(EntityType<? extends Entity> entityType, int primaryColor, int secondaryColor) {
         return new SpawnEggItem(entityType, primaryColor, secondaryColor, properties()).setRegistryName(SCP.ID, entityType.getRegistryName().getPath() + "_egg");
+    }
+
+    private static Item registerEgg(EntityType<? extends Entity> entityType, Item.Properties properties, int primaryColor, int secondaryColor) {
+        return new SpawnEggItem(entityType, primaryColor, secondaryColor, properties).setRegistryName(SCP.ID, entityType.getRegistryName().getPath() + "_egg");
     }
 
     private static Item.Properties properties() {
@@ -134,17 +147,30 @@ public class Entities {
         EntitySpawnPlacementRegistry.register(employeeMonster, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> true);
         EntitySpawnPlacementRegistry.register(femaleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
         EntitySpawnPlacementRegistry.register(maleCivilian, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> serverWorld.getLightEmission(blockPos) > 0);
+        forgeRegistry.register(chaosInsurgencySoldier);
+        EntitySpawnPlacementRegistry.register(chaosInsurgencySoldier, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (p_test_1_, p_test_2_, p_test_3_, p_test_4_, p_test_5_) -> true);
 
-        flakShard=registerFastEntity("flak_shard",EntityClassification.MISC,FlakShard::new,0.1f,0.1f, forgeRegistry);
-        rocket=registerFastEntity("rocket",EntityClassification.MISC,(p_create_1_, p_create_2_) -> new Rocket(p_create_1_,p_create_2_,0,1),0.2f,0.2f,forgeRegistry);
+        flakShard = registerFastEntity("flak_shard", EntityClassification.MISC, FlakShard::new, 0.1f, 0.1f, forgeRegistry);
+        rocket = registerFastEntity("rocket", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Rocket(p_create_1_, p_create_2_, 0, 1), 0.2f, 0.2f, forgeRegistry);
     }
 
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent) {
+        attributeCreationEvent.put(Entities.flakShard, MonsterEntity.createMonsterAttributes().build());
+        attributeCreationEvent.put(Entities.rocket, MonsterEntity.createMonsterAttributes().build());
+        attributeCreationEvent.put(Entities.maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
+        attributeCreationEvent.put(Entities.femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
+        attributeCreationEvent.put(Entities.maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(Entities.femaleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(Entities.humanEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 60).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(chaosInsurgencySoldier, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
+    }
 
     @SuppressWarnings("unchecked")
     private static <E extends EntityType<T>, T extends Entity> E registerEntity(String id, EntityClassification entityCategory, EntityType.IFactory<T> factory, float width, float height, IForgeRegistry<EntityType<?>> forgeRegistry) {
         EntityType<T> entityType = EntityType.Builder.of(factory, entityCategory).sized(width, height).setTrackingRange(64).setUpdateInterval(3).build(id);
         entityType.setRegistryName(SCP.ID, id);
-        if(forgeRegistry!=null)
+        if (forgeRegistry != null)
             forgeRegistry.register(entityType);
         return (E) entityType;
     }

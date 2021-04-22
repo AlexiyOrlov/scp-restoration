@@ -20,12 +20,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -65,17 +63,6 @@ public class ModEvents {
         GlobalEntityTypeAttributes.put(Entities.tatteredFarmer, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20).build());
         GlobalEntityTypeAttributes.put(Entities.employeeMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 40).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 6).build());
         GlobalEntityTypeAttributes.put(Entities.youngGirl, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).build());
-    }
-
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent) {
-        attributeCreationEvent.put(Entities.flakShard, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(Entities.rocket, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(Entities.maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
-        attributeCreationEvent.put(Entities.femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
-        attributeCreationEvent.put(Entities.maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
-        attributeCreationEvent.put(Entities.femaleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
-        attributeCreationEvent.put(Entities.humanEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 60).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 20).build());
     }
 
     @SuppressWarnings("unused")

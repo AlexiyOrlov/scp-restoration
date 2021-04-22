@@ -13,9 +13,9 @@ import dev.buildtool.scp.human.InteractionScreen;
 import dev.buildtool.scp.human.MaleRenderer;
 import dev.buildtool.scp.humansrefuted.HumanRefutedModel;
 import dev.buildtool.scp.humansrefuted.SCP3199Egg;
+import dev.buildtool.scp.infiniteikea.ChaosISoldierRenderer;
 import dev.buildtool.scp.infiniteikea.CivilianRenderer;
 import dev.buildtool.scp.infiniteikea.IkeaMonsterModel;
-import dev.buildtool.scp.weapons.FlakShardModel;
 import dev.buildtool.scp.monsterpot.PotMonsterModel1;
 import dev.buildtool.scp.monsterpot.PotMonsterRenderer;
 import dev.buildtool.scp.plaguedoctor.CorpseRenderer;
@@ -34,6 +34,7 @@ import dev.buildtool.scp.table.TableRenderer;
 import dev.buildtool.scp.tatteredfarmer.ScarecrowModel;
 import dev.buildtool.scp.theteacher.TheTeacher2;
 import dev.buildtool.scp.ticklemonster.TickleMonster;
+import dev.buildtool.scp.weapons.FlakShardModel;
 import dev.buildtool.scp.weapons.RocketModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -130,6 +131,7 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.maleCivilian, manager -> new CivilianRenderer(manager, new BipedModel2<>(), 0.4f, "civilian1", "civilian2", "civilian3"));
         RenderingRegistry.registerEntityRenderingHandler(Entities.femaleCivilian, manager -> new CivilianRenderer(manager, new BipedModel2<>(), 0.4f, "fem-civilian1", "fem-civilian2", "fem-civilian3"));
         RenderingRegistry.registerEntityRenderingHandler(Entities.youngGirl, manager -> new EntityRenderer2<>(manager, new YoungGirlModel(), "young-girl", false, 0.1f));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.chaosInsurgencySoldier, manager -> new ChaosISoldierRenderer(manager, new BipedModel2<>(), 0.4f, "chaosi-soldier1", "chaosi-soldier2", "chaosi-soldier3"));
 
         RenderTypeLookup.setRenderLayer(SCPBlocks.redIce, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(SCPBlocks.slidingDoorBlock, RenderType.cutout());
