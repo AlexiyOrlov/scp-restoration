@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 
 public class RevengeGoal extends HurtByTargetGoal {
     Predicate<LivingEntity> filter;
-
     public RevengeGoal(CreatureEntity creatureIn, Predicate<LivingEntity> dontTouch, Class<?>... excludeReinforcementTypes) {
         super(creatureIn, excludeReinforcementTypes);
         filter = dontTouch;
@@ -19,7 +18,7 @@ public class RevengeGoal extends HurtByTargetGoal {
 
     @Override
     public boolean canUse() {
-        if (filter != null && this.mob.getTarget() != null && filter.test(mob.getTarget()))
+        if (filter != null && this.mob.getLastHurtByMob() != null && filter.test(mob.getLastHurtByMob()))
             return false;
         return super.canUse();
     }
