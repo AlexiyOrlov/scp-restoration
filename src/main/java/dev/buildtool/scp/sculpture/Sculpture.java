@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,6 +28,8 @@ public class Sculpture extends SCPEntity {
     public Sculpture(EntityType<? extends SCPEntity> type, World worldIn) {
         super(type, worldIn);
         setInvulnerable(true);
+        GroundPathNavigator groundPathNavigator = (GroundPathNavigator) getNavigation();
+        groundPathNavigator.setCanOpenDoors(true);
     }
 
     @Override

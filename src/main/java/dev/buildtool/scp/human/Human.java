@@ -25,6 +25,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -48,6 +49,8 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     public Human(EntityType<? extends SCPEntity> type, World worldIn) {
         super(type, worldIn);
         setCanPickUpLoot(true);
+        GroundPathNavigator groundPathNavigator = (GroundPathNavigator) getNavigation();
+        groundPathNavigator.setCanOpenDoors(true);
     }
 
     public HurtByTargetGoal defend;

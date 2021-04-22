@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -22,6 +23,8 @@ import java.util.Arrays;
 public class IkeaMonster extends SCPEntity {
     public IkeaMonster(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
+        GroundPathNavigator groundPathNavigator = (GroundPathNavigator) getNavigation();
+        groundPathNavigator.setCanOpenDoors(true);
     }
 
     private static final RandomizedList<String> warnings = new RandomizedList<>(Arrays.asList("scp.you.should.leave", "scp.leave.the.store", "scp.all.customers.should.leave"));
