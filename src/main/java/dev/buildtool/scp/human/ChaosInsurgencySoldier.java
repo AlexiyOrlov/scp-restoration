@@ -60,6 +60,8 @@ public class ChaosInsurgencySoldier extends Human {
             setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BOW));
         } else if (random.nextBoolean()) {
             setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.CROSSBOW));
+        } else {
+            setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(itemTags.getTag(new ResourceLocation("swords")).getRandomElement(random)));
         }
 
 
