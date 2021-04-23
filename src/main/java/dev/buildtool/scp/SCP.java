@@ -202,7 +202,7 @@ public class SCP {
             writeClockworksRecipes = builder.define("Create a file listing all Clockworks recipes", true);
             toothBrushCanBreakUnbreakable = builder.define("SCP-063 can break unbreakable blocks", false);
             chamberDamage = builder.comment("Amount of damage appplied to outer walls of generated SCP chambers").defineInRange("SCP chamber damage", 0.0, 0.0, 1.0);
-            chaosSoldierWeight = builder.defineInRange("Spawning frequency of Chaos Insurgency soldiers", 1, 0, 20);
+            chaosSoldierWeight = builder.defineInRange("Spawning frequency of Chaos Insurgency soldiers", 2, 0, 20);
             return builder.build();
         }).getRight());
     }
