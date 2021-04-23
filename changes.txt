@@ -5,6 +5,8 @@ added Rocket Launcher;
 human speed in water increased;
 humans, Sculpture and Ikea monster can open doors now;
 added Chaos Insurgency soldiers;
+improved chamber generation algorithm;
+increased default rarity of chambers;
 
 0.5.1:
 fixed SCP-1162;
