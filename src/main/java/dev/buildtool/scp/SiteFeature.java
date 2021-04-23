@@ -18,13 +18,13 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class SiteFeature extends Feature<NoFeatureConfig> {
     public RandomizedList<ResourceLocation> structures;
     public UniqueList<ResourceLocation> generated;
-    public boolean listInitialized;
     public dev.buildtool.scp.SCPWorldData SCPWorldData;
 
     public SiteFeature() {
@@ -77,38 +77,38 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
             BlockPos topPos = seedReader.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos.Mutable(blockPos.getX(), 64, blockPos.getZ()));
             TemplateManager structureManager = serverWorld.getStructureManager();
 
-            ResourceLocation resourceLocation = structures.getRandom();
-
-            RegistryKey<World> dimensionTypeRegistryKey = serverWorld.dimension();
-
-            if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
-                SCPWorldData = Utils.getData(serverWorld);
-                generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
-                listInitialized = true;
-                SCP.logger.info("Previously generated: {}", generated);
-            }
-
-            if (SCPWorldData != null && dimensionTypeRegistryKey == World.OVERWORLD) {
-                if (generated.contains(resourceLocation))
-                    return false;
-                Template template = structureManager.get(resourceLocation);
-                assert template != null;
-                Template2 template2 = new Template2(template, Structures.structureLootTables.stream().filter(resourceLocation1 -> resourceLocation1.getPath().contains(resourceLocation.getPath().replace("containers/", ""))).collect(Collectors.toList()), seedReader);
-                final BlockPos size = template2.getSize();
-                assert size.getX() < 33 && size.getZ() < 33;
-
-                if (!seedReader.getFluidState(topPos).isEmpty())
-                    topPos = topPos.below();
-                template2.placeInWorld(seedReader, topPos, new PlacementSettings().setRotation(rotation), random);
-                SCP.logger.info("Generated {} at {}", resourceLocation.getPath(), topPos);
-                generated.add(resourceLocation);
-                SCPWorldData.generatedSCPs.add(resourceLocation.toString());
-                if (generated.size() == structures.size()) {
-                    generated.clear();
-                    SCPWorldData.generatedSCPs.clear();
+            Optional<ResourceLocation> optional = structures.stream().filter(resourceLocation1 -> !generated.contains(resourceLocation1)).findAny();
+            if (optional.isPresent()) {
+                RegistryKey<World> dimensionTypeRegistryKey = serverWorld.dimension();
+                ResourceLocation resourceLocation = optional.get();
+                if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
+                    SCPWorldData = Utils.getData(serverWorld);
+                    generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
+                    SCP.logger.info("Previously generated: {}: {}", generated.size(), generated);
                 }
-                SCPWorldData.setDirty(true);
-                return true;
+
+                if (SCPWorldData != null && dimensionTypeRegistryKey == World.OVERWORLD) {
+                    if (generated.contains(resourceLocation))
+                        return false;
+                    Template template = structureManager.get(resourceLocation);
+                    assert template != null;
+                    Template2 template2 = new Template2(template, Structures.structureLootTables.stream().filter(resourceLocation1 -> resourceLocation1.getPath().contains(resourceLocation.getPath().replace("containers/", ""))).collect(Collectors.toList()), seedReader);
+                    final BlockPos size = template2.getSize();
+                    assert size.getX() < 33 && size.getZ() < 33;
+
+                    if (!seedReader.getFluidState(topPos).isEmpty())
+                        topPos = topPos.below();
+                    template2.placeInWorld(seedReader, topPos, new PlacementSettings().setRotation(rotation), random);
+                    SCP.logger.info("Generated {} at {}", resourceLocation.getPath(), topPos);
+                    generated.add(resourceLocation);
+                    SCPWorldData.generatedSCPs.add(resourceLocation.toString());
+                    if (generated.size() == structures.size()) {
+                        generated.clear();
+                        SCPWorldData.generatedSCPs.clear();
+                    }
+                    SCPWorldData.setDirty(true);
+                    return true;
+                }
             }
         }
         return false;
