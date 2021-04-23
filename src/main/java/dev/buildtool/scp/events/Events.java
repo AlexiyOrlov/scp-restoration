@@ -44,7 +44,7 @@ public class Events {
         } else if (category != Biome.Category.OCEAN && category != Biome.Category.THEEND && category != Biome.Category.NETHER && category != Biome.Category.RIVER) {
             //at least in this stage the structure isn't that cut out
             loadingEvent.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> Structures.scpSite.configured(new NoFeatureConfig()));
-            loadingEvent.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(Entities.chaosInsurgencySoldier, 5, 1, 3));
+            loadingEvent.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(Entities.chaosInsurgencySoldier, SCP.chaosSoldierWeight.get(), 1, 3));
         }
     }
 
