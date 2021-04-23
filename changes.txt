@@ -7,6 +7,7 @@ humans, Sculpture and Ikea monster can open doors now;
 added Chaos Insurgency soldiers;
 improved chamber generation algorithm;
 increased default rarity of chambers;
+fixed SCP-914;
 
 0.5.1:
 fixed SCP-1162;

@@ -1,6 +1,7 @@
 package dev.buildtool.scp.human;
 
 import dev.buildtool.scp.SCPEntity;
+import dev.buildtool.scp.goals.BowAttack;
 import dev.buildtool.scp.goals.RevengeGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -39,6 +40,8 @@ public class ChaosInsurgencySoldier extends Human {
     protected void registerGoals() {
         super.registerGoals();
         namedGoals = null;
+        goalSelector.availableGoals.removeIf(prioritizedGoal -> prioritizedGoal.getGoal() instanceof BowAttack);
+        goalSelector.addGoal(1, new BowAttack<>(this, 1, 25, 50));
         goalSelector.removeGoal(defend);
         goalSelector.addGoal(1, defend = new RevengeGoal(this, livingEntity -> livingEntity.getClass() == getClass()).setAlertOthers(ChaosInsurgencySoldier.class));
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Human.class, 0, true, false, livingEntity -> livingEntity instanceof Human && ((Human) livingEntity).getOwner() != null));
