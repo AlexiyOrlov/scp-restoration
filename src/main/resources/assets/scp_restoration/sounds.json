@@ -4,13 +4,23 @@
       "scp_restoration:gunshot"
     ]
   },
+  "rocket_launch": {
+    "category": "player",
+    "sounds": [
+      "scp_restoration:missile-launch"
+    ]
+  },
   "flak_cannon": {
     "category": "player",
-    "sounds": ["scp_restoration:flak_fire"]
+    "sounds": [
+      "scp_restoration:flak_fire"
+    ]
   },
   "beam_fire": {
     "category": "player",
-    "sounds": ["scp_restoration:beam_fire"]
+    "sounds": [
+      "scp_restoration:beam_fire"
+    ]
   },
   "rubber_ducky": {
     "category": "player",

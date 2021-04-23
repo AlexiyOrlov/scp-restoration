@@ -1,7 +1,7 @@
 package dev.buildtool.scp.weapons;
 
 import dev.buildtool.scp.events.Entities;
-import net.minecraft.command.arguments.EntityAnchorArgument;
+import dev.buildtool.scp.events.Sounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -17,7 +17,7 @@ public class RocketLauncher extends Firearm{
 
     @Override
     public SoundEvent fireSound() {
-        return null;
+        return Sounds.rocketLaunch;
     }
 
     @Override
