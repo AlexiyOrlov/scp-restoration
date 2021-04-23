@@ -216,7 +216,8 @@
 
   "effect.scp_restoration.bananas": "Banana overdose",
   "effect.scp_restoration.radiation": "Radiation",
-  "scp_restoration.busy": "Clockworks is processing",
+
+  "scp_restoration.cls.busy": "Clockworks is processing",
   "scp_restoration.too.big.value": "The value is too big",
   "scp_restoration.allowed.range": "Range of operation",
   "scp_restoration.state": "Power state",

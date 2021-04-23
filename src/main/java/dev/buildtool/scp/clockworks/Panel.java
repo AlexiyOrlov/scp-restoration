@@ -44,7 +44,7 @@ public class Panel extends BlockHorizontal {
             if(tileEntity instanceof ClockworksEntity)
             {
                 if(((ClockworksEntity) tileEntity).working)
-                    player.sendMessage(new TranslationTextComponent("scp.cls.busy"), UUID.randomUUID());
+                    player.sendMessage(new TranslationTextComponent("scp_restoration.cls.busy"), UUID.randomUUID());
                 else
                 {
                     if(worldIn.isClientSide)

@@ -32,7 +32,7 @@ public class ClockworksScreen extends Screen2 {
 
         BetterButton start = new BetterButton(centerX - x, 180, new StringTextComponent("Start"), ip -> {
             clockworks.working = true;
-            minecraft.setScreen(null);
+            onClose();
         });
         addButton(start);
         autoInput = addButton(new SwitchButton(centerX - x, 200, new StringTextComponent("Auto-input on"), new StringTextComponent("Auto-input off"), clockworks.autoInput, p_onPress_1_ -> {

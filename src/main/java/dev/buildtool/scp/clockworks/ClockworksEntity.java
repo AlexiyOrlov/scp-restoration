@@ -48,8 +48,8 @@ public class ClockworksEntity extends BlockEntity2 implements ITickableTileEntit
                 BlockPos outputPoint=getBlockPos().relative(left,5);
                 if(input.isEmpty())
                 {
-                   List<ClockworksRecipe>     clockworksRecipes = level.getRecipeManager().getRecipesFor(ModEvents.clockworksRecipeType, null, level);
-                   List<ItemEntity> itemEntities = level.getEntities(EntityType.ITEM, new AxisAlignedBB(inputPoint), itemEntity -> true);
+                   List<ClockworksRecipe> clockworksRecipes = level.getRecipeManager().getRecipesFor(ModEvents.clockworksRecipeType, null, level);
+                    List<ItemEntity> itemEntities = level.getEntities(EntityType.ITEM, new AxisAlignedBB(inputPoint), itemEntity -> true);
                    label:
                    for (ItemEntity itemEntity : itemEntities) {
                         ItemStack item=itemEntity.getItem();
