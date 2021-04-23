@@ -35,7 +35,7 @@ import dev.buildtool.scp.tatteredfarmer.ScarecrowModel;
 import dev.buildtool.scp.theteacher.TheTeacher2;
 import dev.buildtool.scp.ticklemonster.TickleMonster;
 import dev.buildtool.scp.weapons.FlakShardModel;
-import dev.buildtool.scp.weapons.RocketModel;
+import dev.buildtool.scp.weapons.RocketModel2;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -145,13 +145,13 @@ public class ClientModEvents {
         ScreenManager.register(SCPContainers.crateContainer, (ScreenManager.IScreenFactory<CrateContainer, ContainerScreen2<CrateContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.shelfContainer, (ScreenManager.IScreenFactory<ShelfContainer, ContainerScreen2<ShelfContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
 
-        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard,manager -> new EntityRenderer2(manager,new FlakShardModel(),"flak_shard",false,0){
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard, manager -> new EntityRenderer2(manager, new FlakShardModel(), "flak_shard", false, 0) {
             @Override
             public boolean shouldRender(Entity p_225626_1_, ClippingHelper p_225626_2_, double p_225626_3_, double p_225626_5_, double p_225626_7_) {
                 return true;
             }
         });
-        RenderingRegistry.registerEntityRenderingHandler(Entities.rocket,manager -> new EntityRenderer2<>(manager,new RocketModel(),"rocket",false,0));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.rocket, manager -> new EntityRenderer2<>(manager, new RocketModel2(), "rocket", false, 0));
     }
 
     public static List<String> getResourceText(String resourcePath) {
