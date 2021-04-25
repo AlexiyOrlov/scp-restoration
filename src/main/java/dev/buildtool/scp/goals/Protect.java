@@ -55,8 +55,8 @@ public class Protect<M extends MobEntity, L extends LivingEntity> extends NamedG
     public void tick() {
         super.tick();
         if (protectee != null) {
-            LivingEntity revengeTarget = protectee.getKillCredit();
-            if (revengeTarget != null && revengeTarget != protector && !(revengeTarget instanceof Human && ((Human) revengeTarget).getOwner().equals(protectee.getUUID()))) {
+            LivingEntity revengeTarget = protectee.getLastHurtByMob();
+            if (revengeTarget != null && revengeTarget != protector && !(revengeTarget instanceof Human && protectee.getUUID().equals(((Human) revengeTarget).getOwner()))) {
                 protector.setTarget(revengeTarget);
             } else {
                 protector.setTarget(null);
