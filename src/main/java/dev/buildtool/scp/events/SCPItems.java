@@ -9,6 +9,7 @@ import dev.buildtool.scp.swatarmor.PoliceBaton;
 import dev.buildtool.scp.template.SCPTemplate;
 import dev.buildtool.scp.weapons.AutoRifle;
 import dev.buildtool.scp.weapons.FlakCannon;
+import dev.buildtool.scp.weapons.FlameThrower;
 import dev.buildtool.scp.weapons.RocketLauncher;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -105,7 +106,8 @@ public class SCPItems {
         register(new AutoRifle(properties().defaultDurability(1000), 0), "rifle", forgeRegistry);
         scpTemplate = register(new SCPTemplate(single().tab(templates)), "scp_template", forgeRegistry);
         register(new FlakCannon(properties().defaultDurability(500),30),"flak_cannon",forgeRegistry);
-        register(new RocketLauncher(properties().defaultDurability(500),40),"rocket_launcher",forgeRegistry);
+        register(new RocketLauncher(properties().defaultDurability(500), 40), "rocket_launcher", forgeRegistry);
+        register(new FlameThrower(properties().defaultDurability(500), 0), "flamer", forgeRegistry);
     }
 
     private static Item.Properties scp(){
