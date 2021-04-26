@@ -15,7 +15,6 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -51,11 +50,6 @@ public class Sculpture extends SCPEntity {
         return false;
     }
 
-    //    @Override
-//    public boolean isLiving() {
-//        return false;
-//    }
-
     public static boolean canMove(Sculpture sculptureEntity) {
         double range = sculptureEntity.getRange();
         List<LivingEntity> entities = sculptureEntity.level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(sculptureEntity.blockPosition()).inflate(range), livingEntity -> livingEntity instanceof Human || (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).isCreative()));
@@ -69,12 +63,12 @@ public class Sculpture extends SCPEntity {
         return true;
     }
 
-    @Override
-    public boolean isInvulnerableTo(DamageSource source) {
-        return source != DamageSource.OUT_OF_WORLD && super.isInvulnerableTo(source);
-    }
+//    @Override
+//    public boolean isInvulnerableTo(DamageSource source) {
+//        return source != DamageSource.OUT_OF_WORLD && super.isInvulnerableTo(source);
+//    }
 
-    class Wander extends WaterAvoidingRandomWalkingGoal {
+    static class Wander extends WaterAvoidingRandomWalkingGoal {
         public Wander(CreatureEntity creature, double speedIn, float probabilityIn) {
             super(creature, speedIn, probabilityIn);
         }
