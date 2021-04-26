@@ -154,7 +154,7 @@ public class SCP {
             if (entity instanceof Human) {
                 Human human = (Human) entity;
                 if (human.hasOwner()) {
-                    if (human.getLastHurtByMob() == sender) {
+                    if (human.getTarget() == sender) {
                         human.defend.stop();
                         sender.sendMessage(new StringTextComponent(human.getName().getString() + " " + new TranslationTextComponent("scp.forgiven.you").getString()), human.getUUID());
                     }
