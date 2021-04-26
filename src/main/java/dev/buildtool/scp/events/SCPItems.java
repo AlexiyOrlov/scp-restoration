@@ -72,19 +72,6 @@ public class SCPItems {
                     Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world);
                     final PlacementSettings placementSettings = new PlacementSettings().setRotation(Rotation.getRandom(random));
                     template2.placeInWorld((IServerWorld) world, pos, placementSettings, random);
-//
-//                    BlockPos size = template2.getSize();
-//                    MutableBoundingBox mutableBoundingBox =new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
-//                    for (int i = pos.getX(); i < pos.getX() + size.getX(); i++) {
-//                        for (int p = pos.getZ(); p < pos.getZ() + size.getZ(); p++) {
-//                            for (int j = pos.getY(); j < pos.getY() + size.getY(); j++) {
-//
-//                                if (i == mutableBoundingBox.x0 || i == mutableBoundingBox.x1 - 1 || p == mutableBoundingBox.z1 - 1 || p == mutableBoundingBox.z0 || j == mutableBoundingBox.y0 || j == mutableBoundingBox.y1 - 1) {
-//                                    world.setBlockAndUpdate(new BlockPos(i, j, p), SCPBlocks.resistantGlass.get(random.nextInt(16)).defaultBlockState());
-//                                }
-//                            }
-//                        }
-//                    }
                 }
                 return ActionResultType.SUCCESS;
             }
