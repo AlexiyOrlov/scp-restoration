@@ -76,8 +76,10 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         goalSelector.addGoal(7, follow = new Follow<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
         Predicate<MobEntity> filter = mobEntity -> {
             if (mobEntity instanceof CreeperEntity) {
-                return Functions.isHolding(item -> item==Items.BOW, this) || Functions.isHolding(item -> item==Items.CROSSBOW, this);
+                return Functions.isHolding(item -> item == Items.BOW, this) || Functions.isHolding(item -> item == Items.CROSSBOW, this);
             }
+            if (mobEntity instanceof ChaosInsurgencySoldier)
+                return true;
             return mobEntity instanceof IMob;
         };
         goalSelector.addGoal(8, guardPosition = new GuardPosition<>(this, new Class[]{MobEntity.class}, filter));
