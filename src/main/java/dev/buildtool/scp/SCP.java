@@ -129,7 +129,7 @@ public class SCP {
             if (entity instanceof Human) {
                 Human human = (Human) entity;
                 human.setActiveCommand(activateGoal.goalAction);
-                context.getSender().sendMessage(new TranslationTextComponent("scp.activated.goal").append(new StringTextComponent(": " + activateGoal.goalAction)), UUID.randomUUID());
+                context.getSender().sendMessage(new TranslationTextComponent("scp.activated.goal").append(new StringTextComponent(": " + activateGoal.goalAction.toString().toLowerCase())), UUID.randomUUID());
                 context.setPacketHandled(true);
             }
         });
