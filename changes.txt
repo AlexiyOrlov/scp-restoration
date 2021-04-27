@@ -1,6 +1,7 @@
 0.6.1:
 fixed crash occuring on human 'protect' goal;
 humans will avoid taking fall damage;
+humans guarding a position will attack Chaos Insurgency soldiers;
 
 0.6.0:
 implemented configurable damage on SCP chambers walls;
