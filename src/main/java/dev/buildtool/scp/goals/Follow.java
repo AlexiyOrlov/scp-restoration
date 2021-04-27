@@ -41,10 +41,10 @@ public class Follow<E extends MobEntity, C extends LivingEntity> extends NamedGo
 
     @Override
     public void tick() {
-        follower.getNavigation().moveTo(target, 1);
         if (follower.distanceTo(target) < 4) {
             follower.getNavigation().stop();
-        }
+        } else
+            follower.getNavigation().moveTo(target, 1);
     }
 
     @Override
