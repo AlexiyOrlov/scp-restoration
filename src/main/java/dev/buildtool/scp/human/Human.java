@@ -287,4 +287,9 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
             return SoundEvents.PLAYER_ATTACK_STRONG;
         return SoundEvents.PLAYER_ATTACK_KNOCKBACK;
     }
+
+    @Override
+    public int getMaxFallDistance() {
+        return 3;
+    }
 }
