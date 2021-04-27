@@ -36,10 +36,6 @@ public class SCPEntity extends CreatureEntity {
         return true;
     }
 
-//    protected boolean func_230282_cS_() {
-//        return true;
-//    }
-
     public ItemStack getProjectile(ItemStack shootable) {
         if (shootable.getItem() instanceof ShootableItem) {
             Predicate<ItemStack> predicate = ((ShootableItem) shootable.getItem()).getAllSupportedProjectiles();
