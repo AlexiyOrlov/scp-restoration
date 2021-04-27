@@ -2,7 +2,7 @@
 fixed crash occuring on human 'protect' goal;
 humans will avoid taking fall damage;
 humans guarding a position will attack Chaos Insurgency soldiers;
-humans can be healed by food (by half of its saturation);
+humans can be healed by food (by half of its nutrition);
 
 0.6.0:
 implemented configurable damage on SCP chambers walls;
