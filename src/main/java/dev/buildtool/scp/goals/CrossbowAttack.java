@@ -115,7 +115,7 @@ public class CrossbowAttack<T extends MobEntity & IRangedAttackMob & ICrossbowUs
                 if (i >= CrossbowItem.getChargeDuration(itemStack)) {
                     this.actor.releaseUsingItem();
                     this.stage = CrossbowAttack.Stage.CHARGED;
-                    this.chargedTicksLeft = 20 + this.actor.getRandom().nextInt(20);
+                    this.chargedTicksLeft = 10 + this.actor.getRandom().nextInt(20);
                     this.actor.setChargingCrossbow(false);
                 }
             } else if (this.stage == CrossbowAttack.Stage.CHARGED) {
