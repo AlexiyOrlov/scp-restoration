@@ -41,7 +41,6 @@ public class Protect<M extends MobEntity, L extends LivingEntity> extends NamedG
 
     @Override
     public void start() {
-        super.start();
         List<L> pro = protector.level.getEntitiesOfClass(protectedClass, new AxisAlignedBB(protector.blockPosition()).inflate(protector.getAttributeValue(Attributes.FOLLOW_RANGE)), filter);
         pro.stream().findAny().ifPresent(l -> protectee = l);
     }
@@ -53,7 +52,6 @@ public class Protect<M extends MobEntity, L extends LivingEntity> extends NamedG
 
     @Override
     public void tick() {
-        super.tick();
         if (protectee != null) {
             LivingEntity revengeTarget = protectee.getLastHurtByMob();
             if (revengeTarget != null && revengeTarget != protector && !(revengeTarget instanceof Human && protectee.getUUID().equals(((Human) revengeTarget).getOwner()))) {
@@ -71,7 +69,6 @@ public class Protect<M extends MobEntity, L extends LivingEntity> extends NamedG
 
     @Override
     public void stop() {
-        super.stop();
         protectee = null;
         protector.setTarget(null);
     }

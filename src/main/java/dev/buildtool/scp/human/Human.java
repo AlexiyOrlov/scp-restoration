@@ -59,6 +59,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     protected GuardPosition<Human, MobEntity> guardPosition;
     protected Protect<Human, PlayerEntity> protectOwner;
     protected Assist<Human, PlayerEntity> assistPlayer;
+    protected ProtectAndAssist<Human, PlayerEntity> protectAndAssist;
     public UniqueList<NamedGoal> namedGoals;
 
     @Override
@@ -85,13 +86,16 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         goalSelector.addGoal(8, guardPosition = new GuardPosition<>(this, new Class[]{MobEntity.class}, filter));
         goalSelector.addGoal(9, protectOwner = new Protect<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
         goalSelector.addGoal(10, assistPlayer = new Assist<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
-        goalSelector.addGoal(10, new LookRandomlyGoal(this));
-        goalSelector.addGoal(9, new LookAtGoal(this, LivingEntity.class, 32));
+        goalSelector.addGoal(11, protectAndAssist = new ProtectAndAssist<>(this, playerEntity -> playerEntity.getUUID().equals(getOwner()), PlayerEntity.class));
+        goalSelector.addGoal(12, new LookRandomlyGoal(this));
+
+        goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 32));
 
         namedGoals.add(follow);
         namedGoals.add(guardPosition);
         namedGoals.add(protectOwner);
         namedGoals.add(assistPlayer);
+        namedGoals.add(protectAndAssist);
     }
 
     @Override
@@ -116,7 +120,6 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
             f += 0.75F;
             if (this.random.nextFloat() < f) {
                 this.blockedByShield(entityIn);
-//                this.resetActiveHand();
                 this.level.broadcastEntityEvent(this, (byte) 30);
             }
         }
