@@ -1,7 +1,9 @@
 package dev.buildtool.scp;
 
+import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -124,4 +126,23 @@ public class Utils {
         throw new IllegalStateException("No SCP annotations found");
     }
 
+    /**
+     * Checks whether an entity is ally to given human
+     *
+     * @param livingEntity checked
+     */
+    public static boolean isAlly(LivingEntity livingEntity, Human to) {
+        if (livingEntity instanceof Human) {
+            if (to.hasOwner()) {
+                return to.getOwner().equals(((Human) livingEntity).getOwner());
+            }
+        }
+        if (livingEntity instanceof TameableEntity) {
+            if (to.hasOwner()) {
+                TameableEntity tameableEntity = (TameableEntity) livingEntity;
+                return to.getOwner().equals(tameableEntity.getOwnerUUID());
+            }
+        }
+        return false;
+    }
 }
