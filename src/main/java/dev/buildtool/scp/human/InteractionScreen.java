@@ -3,6 +3,7 @@ package dev.buildtool.scp.human;
 import dev.buildtool.satako.gui.*;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.goals.GoalAction;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -25,6 +26,7 @@ public class InteractionScreen extends ContainerScreen2<InteractionContainer> {
         Label name = addButton(new Label(10, 10, human.getDisplayName()));
         addButton(new Label(name.x + name.getWidth() + 10, 10, new StringTextComponent((int) human.getHealth() + "/" + human.getMaxHealth() + " health")));
         addButton(new Label(10, 20, new StringTextComponent("ID: " + human.getUUID())));
+        addButton(new Label(10, height - 20, new StringTextComponent("Range: " + human.getAttribute(Attributes.FOLLOW_RANGE).getValue())));
         if (human.hasOwner()) {
             addButton(new Label(10, 30, new TranslationTextComponent("scp.owner").append(": ").append(minecraft.level.getPlayerByUUID(human.getOwner()).getName()).append(" - " + human.getOwner().toString())));
             if (human.getOwner().equals(minecraft.player.getUUID())) {
