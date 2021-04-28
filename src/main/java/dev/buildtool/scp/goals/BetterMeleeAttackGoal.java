@@ -154,12 +154,7 @@ public class BetterMeleeAttackGoal extends Goal {
 
    protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
       double d0 = this.getAttackReachSqr(enemy);
-      if (distToEnemySqr > d0) {
-         //randomly activate shield
-         if (attacker.getOffhandItem().isShield(attacker) && attacker.getRandom().nextBoolean()) {
-            //block
-         }
-      } else if (distToEnemySqr <= d0 && canAttack()) {
+      if (distToEnemySqr <= d0 && canAttack()) {
          attacker.swing(Hand.MAIN_HAND);
          this.resetAttackCooldown();
          this.attacker.doHurtTarget(enemy);
