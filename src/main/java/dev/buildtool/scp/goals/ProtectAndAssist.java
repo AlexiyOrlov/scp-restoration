@@ -42,13 +42,13 @@ public class ProtectAndAssist<T extends MobEntity, L extends LivingEntity> exten
 
     @Override
     public boolean canContinueToUse() {
-        return super.canContinueToUse();
+        return isOn() && protectee != null && protectee.isAlive();
     }
 
     @Override
     public void tick() {
         LivingEntity target = mob.getTarget();
-        if (target == null || !target.isAlive()) {
+        if ((target == null || !target.isAlive()) && protectee != null) {
             LivingEntity lastHurtMob = protectee.getLastHurtMob();
             boolean isAlly = lastHurtMob instanceof Human && protectee.getUUID().equals(((Human) lastHurtMob).getOwner());
             if (lastHurtMob != null && lastHurtMob != mob && !isAlly && lastHurtMob.isAlive() && !(lastHurtMob instanceof CreeperEntity))

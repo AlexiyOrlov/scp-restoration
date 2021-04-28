@@ -251,11 +251,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     @Override
     public ActionResultType interactAt(PlayerEntity player, Vector3d vec, Hand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
-        if (itemInHand.isEmpty()) {
-            if (level instanceof ServerWorld)
-                NetworkHooks.openGui((ServerPlayerEntity) player, this, packetBuffer -> packetBuffer.writeInt(getId()));
-            return ActionResultType.SUCCESS;
-        } else if (itemInHand.getItem().isEdible() && getHealth() < getMaxHealth()) {
+        if (itemInHand.getItem().isEdible() && getHealth() < getMaxHealth()) {
             this.heal(itemInHand.getItem().getFoodProperties().getNutrition() / 2f);
             itemInHand.getItem().getFoodProperties().getEffects().forEach(effectInstanceFloatPair -> {
                 if (random.nextFloat() < effectInstanceFloatPair.getSecond())
@@ -263,9 +259,11 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
             });
             itemInHand.shrink(1);
             level.playSound(player, this, SoundEvents.GENERIC_EAT, getSoundSource(), 1, 1);
-            return ActionResultType.SUCCESS;
+        } else {
+            if (level instanceof ServerWorld)
+                NetworkHooks.openGui((ServerPlayerEntity) player, this, packetBuffer -> packetBuffer.writeInt(getId()));
         }
-        return super.interactAt(player, vec, hand);
+        return ActionResultType.SUCCESS;
     }
 
 
