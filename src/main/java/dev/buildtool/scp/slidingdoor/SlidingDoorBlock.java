@@ -148,17 +148,6 @@ public class SlidingDoorBlock extends BlockHorizontal {
         }
     }
 
-
-//    @Override
-//    public boolean isTransparent(BlockState state) {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isVariableOpacity() {
-//        return true;
-//    }
-
     @Override
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;
