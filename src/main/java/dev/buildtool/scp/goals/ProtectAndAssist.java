@@ -1,5 +1,6 @@
 package dev.buildtool.scp.goals;
 
+import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -49,20 +50,18 @@ public class ProtectAndAssist<T extends MobEntity, L extends LivingEntity> exten
         LivingEntity target = mob.getTarget();
         if (target == null || !target.isAlive()) {
             LivingEntity lastHurtMob = protectee.getLastHurtMob();
-            if (lastHurtMob != null && lastHurtMob != mob && lastHurtMob.isAlive() && !(lastHurtMob instanceof CreeperEntity))
+            boolean isAlly = lastHurtMob instanceof Human && protectee.getUUID().equals(((Human) lastHurtMob).getOwner());
+            if (lastHurtMob != null && lastHurtMob != mob && !isAlly && lastHurtMob.isAlive() && !(lastHurtMob instanceof CreeperEntity))
                 mob.setTarget(lastHurtMob);
             else {
                 LivingEntity lastHurtByMob = protectee.getLastHurtByMob();
-                if (lastHurtByMob != null && lastHurtByMob != mob && lastHurtByMob.isAlive() && !(lastHurtByMob instanceof CreeperEntity))
+                isAlly = lastHurtByMob instanceof Human && protectee.getUUID().equals(((Human) lastHurtByMob).getOwner());
+                if (lastHurtByMob != null && lastHurtByMob != mob && !isAlly && lastHurtByMob.isAlive() && !(lastHurtByMob instanceof CreeperEntity))
                     mob.setTarget(lastHurtByMob);
                 else if (mob.getTarget() == null && mob.distanceToSqr(protectee) > 4)
                     mob.getNavigation().moveTo(protectee, 1);
                 else mob.getNavigation().stop();
             }
-
-//            if (target != null && (!target.isAlive() || target instanceof CreeperEntity || target == mob || (target instanceof Human && protectee.getUUID().equals(((Human) target).getOwner())))) {
-//                mob.setTarget(null);
-//            }
         }
     }
 
