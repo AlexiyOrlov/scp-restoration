@@ -71,11 +71,11 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         goalSelector.addGoal(0, new SwimGoal(this));
         goalSelector.addGoal(1, new BowAttack<>(this, 1, 13, 50));
         goalSelector.addGoal(2, new CrossbowAttack<>(this, 1, 50));
-        goalSelector.addGoal(3, new BetterMeleeAttackGoal(this, 1, true, 20));
-        goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1));
-        goalSelector.addGoal(5, defend = new RevengeGoal(this, livingEntity -> livingEntity.getClass() == getClass()));
-        goalSelector.addGoal(5, new OpenDoorGoal(this, true));
-        goalSelector.addGoal(6, new AvoidEntityGoal<>(this, CreeperEntity.class, 5, 1, 1.5));
+        goalSelector.addGoal(4, new BetterMeleeAttackGoal(this, 1, true, 20));
+        goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1));
+        goalSelector.addGoal(6, defend = new RevengeGoal(this, livingEntity -> livingEntity.getClass() == getClass() || livingEntity.getUUID().equals(getOwner())));
+        goalSelector.addGoal(8, new OpenDoorGoal(this, true));
+        goalSelector.addGoal(3, new AvoidEntityGoal<>(this, CreeperEntity.class, 5, 1, 1.5));
         goalSelector.addGoal(7, follow = new Follow<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
         Predicate<MobEntity> filter = mobEntity -> {
             if (mobEntity instanceof CreeperEntity) {
