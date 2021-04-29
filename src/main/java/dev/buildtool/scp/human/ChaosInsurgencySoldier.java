@@ -87,4 +87,9 @@ public class ChaosInsurgencySoldier extends Human {
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return true;
     }
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
 }
