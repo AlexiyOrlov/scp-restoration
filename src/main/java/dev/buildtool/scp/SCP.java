@@ -157,6 +157,7 @@ public class SCP {
                     if (human.getTarget() == sender) {
                         human.defend.stop();
                         sender.sendMessage(new StringTextComponent(human.getName().getString() + " " + new TranslationTextComponent("scp.forgiven.you").getString()), human.getUUID());
+                        contextSupplier.get().getSender().closeContainer();
                     }
                 }
                 contextSupplier.get().setPacketHandled(true);
