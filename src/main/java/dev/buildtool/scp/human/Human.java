@@ -1,7 +1,6 @@
 package dev.buildtool.scp.human;
 
 import dev.buildtool.satako.Constants;
-import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.UniqueList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.goals.*;
@@ -16,6 +15,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -69,27 +69,28 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         goalSelector.addGoal(0, new SwimGoal(this));
         goalSelector.addGoal(1, new BowAttack<>(this, 1, 13, 50));
         goalSelector.addGoal(2, new CrossbowAttack<>(this, 1, 50));
-        goalSelector.addGoal(4, new BetterMeleeAttackGoal(this, 1, true, 20));
-        goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1));
-        goalSelector.addGoal(6, defend = new RevengeGoal(this, livingEntity -> livingEntity.getClass() == getClass() || livingEntity.getUUID().equals(getOwner())));
+        goalSelector.addGoal(3, new TridentAttack(this, 1, 40, 7));
+        goalSelector.addGoal(5, new BetterMeleeAttackGoal(this, 1, true, 20));
+        goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1));
+        goalSelector.addGoal(7, defend = new RevengeGoal(this, livingEntity -> livingEntity.getClass() == getClass() || livingEntity.getUUID().equals(getOwner())));
         goalSelector.addGoal(8, new OpenDoorGoal(this, true));
-        goalSelector.addGoal(3, new AvoidEntityGoal<>(this, CreeperEntity.class, 5, 1, 1.5));
-        goalSelector.addGoal(7, follow = new Follow<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
+        goalSelector.addGoal(4, new AvoidEntityGoal<>(this, CreeperEntity.class, 5, 1, 1.5));
+        goalSelector.addGoal(9, follow = new Follow<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
         Predicate<MobEntity> filter = mobEntity -> {
             if (mobEntity instanceof CreeperEntity) {
-                return Functions.isHolding(item -> item == Items.BOW, this) || Functions.isHolding(item -> item == Items.CROSSBOW, this);
+                return isHolding(item -> item instanceof TridentItem) || isHolding(item -> item instanceof BowItem) || isHolding(item -> item instanceof CrossbowItem);
             }
             if (mobEntity instanceof ChaosInsurgencySoldier)
                 return true;
             return mobEntity instanceof IMob;
         };
-        goalSelector.addGoal(8, guardPosition = new GuardPosition<>(this, new Class[]{MobEntity.class}, filter));
-        goalSelector.addGoal(9, protectOwner = new Protect<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
-        goalSelector.addGoal(10, assistPlayer = new Assist<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
-        goalSelector.addGoal(11, protectAndAssist = new ProtectAndAssist<>(this, playerEntity -> playerEntity.getUUID().equals(getOwner()), PlayerEntity.class));
-        goalSelector.addGoal(12, new LookRandomlyGoal(this));
+        goalSelector.addGoal(10, guardPosition = new GuardPosition<>(this, new Class[]{MobEntity.class}, filter));
+        goalSelector.addGoal(11, protectOwner = new Protect<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
+        goalSelector.addGoal(12, assistPlayer = new Assist<>(this, PlayerEntity.class, playerEntity -> playerEntity.getUUID().equals(getOwner())));
+        goalSelector.addGoal(13, protectAndAssist = new ProtectAndAssist<>(this, playerEntity -> playerEntity.getUUID().equals(getOwner()), PlayerEntity.class));
+        goalSelector.addGoal(14, new LookRandomlyGoal(this));
 
-        goalSelector.addGoal(12, new LookAtGoal(this, LivingEntity.class, 32));
+        goalSelector.addGoal(15, new LookAtGoal(this, LivingEntity.class, 32));
 
         namedGoals.add(follow);
         namedGoals.add(guardPosition);
@@ -101,14 +102,20 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
         lookAt(target, 360, 180);
-        ArrowEntity arrowEntity = new ArrowEntity(level, this);
-        double dx = target.getX() - getX();
-        double dz = target.getZ() - getZ();
-        double dy = target.getY(0.333) - arrowEntity.getY();
-        double sqrrt = Math.sqrt(dx * dx + dz * dz);
-        arrowEntity.shoot(dx, dy + sqrrt * 0.2, dz, 1.6f, 0);
-        playSound(SoundEvents.SKELETON_SHOOT, 1, random.nextFloat());
-        level.addFreshEntity(arrowEntity);
+        ProjectileEntity projectileEntity = null;
+        if (isHolding(item -> item instanceof BowItem || item instanceof CrossbowItem))
+            projectileEntity = new ArrowEntity(level, this);
+        else if (isHolding(item -> item instanceof TridentItem))
+            projectileEntity = new TridentEntity(level, this, ItemStack.EMPTY);
+        if (projectileEntity != null) {
+            double dx = target.getX() - getX();
+            double dz = target.getZ() - getZ();
+            double dy = target.getY(0.333) - projectileEntity.getY();
+            double sqrrt = Math.sqrt(dx * dx + dz * dz);
+            projectileEntity.shoot(dx, dy + sqrrt * 0.2, dz, 1.6f, 0);
+            playSound(SoundEvents.SKELETON_SHOOT, 1, random.nextFloat());
+            level.addFreshEntity(projectileEntity);
+        }
     }
 
     //TODO check
@@ -360,7 +367,7 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
             }
 
             Item currentItem = current.getItem();
-            return !(currentItem instanceof CrossbowItem || currentItem instanceof BowItem || currentItem instanceof SwordItem || currentItem instanceof ToolItem);
+            return !(currentItem instanceof CrossbowItem || currentItem instanceof BowItem || currentItem instanceof TridentItem || currentItem instanceof SwordItem || currentItem instanceof ToolItem);
         }
     }
 }

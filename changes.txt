@@ -9,6 +9,7 @@ removed the need for hand to be empty to open human interaction screen;
 humans won't attack their owner if hit;
 Chaos Insurgency soldiers will despawn on peaceful mode;
 fixed human weapon preference;
+humans are able to use Trident;
 
 0.6.0:
 implemented configurable damage on SCP chambers walls;
