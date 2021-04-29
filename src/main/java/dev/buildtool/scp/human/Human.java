@@ -33,8 +33,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -308,10 +306,61 @@ public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser,
         return 3;
     }
 
-    @Nullable
     @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData p_213386_4_, @Nullable CompoundNBT p_213386_5_) {
-        //TODO set names of patreons
-        return super.finalizeSpawn(p_213386_1_, p_213386_2_, p_213386_3_, p_213386_4_, p_213386_5_);
+    protected boolean canReplaceCurrentItem(ItemStack candidate, ItemStack current) {
+        if (current.isEmpty()) {
+            return true;
+        } else if (candidate.getItem() instanceof SwordItem) {
+            if (!(current.getItem() instanceof SwordItem)) {
+                return true;
+            } else {
+                SwordItem sworditem = (SwordItem) candidate.getItem();
+                SwordItem sworditem1 = (SwordItem) current.getItem();
+                if (sworditem.getDamage() != sworditem1.getDamage()) {
+                    return sworditem.getDamage() > sworditem1.getDamage();
+                } else {
+                    return this.canReplaceEqualItem(candidate, current);
+                }
+            }
+        } else if (candidate.getItem() instanceof BowItem && current.getItem() instanceof BowItem) {
+            return this.canReplaceEqualItem(candidate, current);
+        } else if (candidate.getItem() instanceof CrossbowItem && current.getItem() instanceof CrossbowItem) {
+            return this.canReplaceEqualItem(candidate, current);
+        } else if (candidate.getItem() instanceof ArmorItem) {
+            if (EnchantmentHelper.hasBindingCurse(current)) {
+                return false;
+            } else if (!(current.getItem() instanceof ArmorItem)) {
+                return true;
+            } else {
+                ArmorItem armoritem = (ArmorItem) candidate.getItem();
+                ArmorItem armoritem1 = (ArmorItem) current.getItem();
+                if (armoritem.getDefense() != armoritem1.getDefense()) {
+                    return armoritem.getDefense() > armoritem1.getDefense();
+                } else if (armoritem.getToughness() != armoritem1.getToughness()) {
+                    return armoritem.getToughness() > armoritem1.getToughness();
+                } else {
+                    return this.canReplaceEqualItem(candidate, current);
+                }
+            }
+        } else {
+            if (candidate.getItem() instanceof ToolItem) {
+                if (current.getItem() instanceof BlockItem) {
+                    return true;
+                }
+
+                if (current.getItem() instanceof ToolItem) {
+                    ToolItem toolitem = (ToolItem) candidate.getItem();
+                    ToolItem toolitem1 = (ToolItem) current.getItem();
+                    if (toolitem.getAttackDamage() != toolitem1.getAttackDamage()) {
+                        return toolitem.getAttackDamage() > toolitem1.getAttackDamage();
+                    }
+
+                    return this.canReplaceEqualItem(candidate, current);
+                }
+            }
+
+            Item currentItem = current.getItem();
+            return !(currentItem instanceof CrossbowItem || currentItem instanceof BowItem || currentItem instanceof SwordItem || currentItem instanceof ToolItem);
+        }
     }
 }

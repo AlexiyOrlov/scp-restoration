@@ -8,6 +8,7 @@ removed the need for hand to be empty to open human interaction screen;
 5 % chance for a male human to spawn with 30 health;
 humans won't attack their owner if hit;
 Chaos Insurgency soldiers will despawn on peaceful mode;
+fixed human weapon preference;
 
 0.6.0:
 implemented configurable damage on SCP chambers walls;
