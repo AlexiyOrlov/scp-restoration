@@ -60,8 +60,10 @@ public class InteractionScreen extends ContainerScreen2<InteractionContainer> {
             if (selected != null) {
                 GoalAction goalAction = GoalAction.valueOf(selected.string);
                 //send-activate goal
-                human.setActiveCommand(goalAction);
-                SCP.channel.sendToServer(new ActivateGoal(goalAction, human.getId()));
+                if (human.getActiveCommand() != goalAction) {
+                    human.setActiveCommand(goalAction);
+                    SCP.channel.sendToServer(new ActivateGoal(goalAction, human.getId()));
+                }
             }
         }
     }
