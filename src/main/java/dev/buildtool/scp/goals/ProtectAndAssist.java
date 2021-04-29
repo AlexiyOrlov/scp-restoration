@@ -58,7 +58,7 @@ public class ProtectAndAssist<T extends MobEntity, L extends LivingEntity> exten
                 isAlly = lastHurtByMob instanceof Human && protectee.getUUID().equals(((Human) lastHurtByMob).getOwner());
                 if (lastHurtByMob != null && lastHurtByMob != mob && !isAlly && lastHurtByMob.isAlive() && !(lastHurtByMob instanceof CreeperEntity))
                     mob.setTarget(lastHurtByMob);
-                else if (mob.getTarget() == null && mob.distanceToSqr(protectee) > 4)
+                else if ((mob.getTarget() == null || !mob.getTarget().isAlive()) && mob.distanceToSqr(protectee) > 4)
                     mob.getNavigation().moveTo(protectee, 1);
                 else mob.getNavigation().stop();
             }
