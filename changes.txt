@@ -10,6 +10,7 @@ humans won't attack their owner if hit;
 Chaos Insurgency soldiers will despawn on peaceful mode;
 fixed human weapon preference;
 humans are able to use Trident;
+fixed SCP-999's model and texture;
 
 0.6.0:
 implemented configurable damage on SCP chambers walls;
