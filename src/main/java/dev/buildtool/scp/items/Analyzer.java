@@ -40,7 +40,7 @@ public class Analyzer extends Item {
             SCPKnowledge.Data res = CapabilityController.getKnowledge(context.getPlayer()).knownSCPData().putIfAbsent(object.number(), new SCPKnowledge.Data(object.number(), object.classification(), object.name()));
            if(res==null) {
                if (context.getLevel().isClientSide)
-                   context.getPlayer().sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(block.getName()), UUID.randomUUID());
+                   context.getPlayer().sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(object.number()), UUID.randomUUID());
                CapabilityController.syncKnowledge(context.getLevel(), context.getPlayer());
                return ActionResultType.SUCCESS;
            }
@@ -56,7 +56,7 @@ public class Analyzer extends Item {
             SCPKnowledge.Data data = CapabilityController.getKnowledge(playerIn).knownSCPData().putIfAbsent(scpObject.number(), new SCPKnowledge.Data(scpObject.number(), scpObject.classification(), scpObject.name()));
             if(data==null) {
                 if(playerIn.level.isClientSide)
-                    playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(target.getDisplayName()), UUID.randomUUID());
+                    playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(scpObject.number()), UUID.randomUUID());
                 CapabilityController.syncKnowledge(playerIn.level, playerIn);
 
                 return ActionResultType.SUCCESS;
@@ -77,7 +77,7 @@ public class Analyzer extends Item {
                 SCPKnowledge.Data data = CapabilityController.getKnowledge(playerIn).knownSCPData().putIfAbsent(scpObject.number(), new SCPKnowledge.Data(scpObject.number(), scpObject.classification(), scpObject.name()));
                 if(data==null) {
                     if (worldIn.isClientSide)
-                        playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(itemEntity.get(0).getItem().getDisplayName()), UUID.randomUUID());
+                        playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(scpObject.number()), UUID.randomUUID());
                     CapabilityController.syncKnowledge(worldIn, playerIn);
                     return ActionResult.success(playerIn.getItemInHand(handIn));
                 }
