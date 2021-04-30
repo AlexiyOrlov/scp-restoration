@@ -1,9 +1,8 @@
-package dev.buildtool.scp.infiniteikea;
+package dev.buildtool.scp.human;
 
 import dev.buildtool.scp.ArmoredRenderer;
 import dev.buildtool.scp.BipedModel2;
 import dev.buildtool.scp.SCP;
-import dev.buildtool.scp.human.ChaosInsurgencySoldier;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
