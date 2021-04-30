@@ -8,7 +8,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 public class LootBlockScreen extends Screen2 {
-    private LootBlockEntity lootBlockEntity;
+    private final LootBlockEntity lootBlockEntity;
 
     public LootBlockScreen(ITextComponent title, LootBlockEntity lootBlockEntity) {
         super(title);
