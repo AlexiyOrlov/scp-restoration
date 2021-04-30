@@ -29,7 +29,7 @@ import dev.buildtool.scp.table.Table4Renderer;
 import dev.buildtool.scp.table.TableRenderer;
 import dev.buildtool.scp.tatteredfarmer.ScarecrowModel;
 import dev.buildtool.scp.theteacher.TheTeacher2;
-import dev.buildtool.scp.ticklemonster.TickleMonster;
+import dev.buildtool.scp.ticklemonster.TickleMonster2;
 import dev.buildtool.scp.weapons.FlakShardModel;
 import dev.buildtool.scp.weapons.RocketModel2;
 import net.minecraft.client.Minecraft;
@@ -75,7 +75,7 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.corpseEntityType, CorpseRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.humanEntityType, manager -> new ArmoredRenderer<>(manager, new BipedModel2<>(), "human", 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.sculptureEntityType, manager -> new EntityRenderer2(manager, new SculptureModel(), "sculpture", false, 0.3f));
-        RenderingRegistry.registerEntityRenderingHandler(Entities.tickleMonster, manager -> new EntityRenderer2(manager, new TickleMonster(), "tickle_monster", false, 0.9f) {
+        RenderingRegistry.registerEntityRenderingHandler(Entities.tickleMonster, manager -> new EntityRenderer2(manager, new TickleMonster2(), "tickle_monster2", false, 0.9f) {
             @Override
             protected RenderType getRenderType(LivingEntity p_230496_1_, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
                 return RenderType.entityTranslucent(getTextureLocation(p_230496_1_));
