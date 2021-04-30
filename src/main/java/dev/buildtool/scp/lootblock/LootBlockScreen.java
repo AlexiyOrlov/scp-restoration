@@ -18,7 +18,7 @@ public class LootBlockScreen extends Screen2 {
     @Override
     public void init() {
         super.init();
-        TextField textField = addButton(new TextField(centerX, 100, new StringTextComponent(lootBlockEntity.identifier)));
+        TextField textField = addButton(new TextField(centerX, 100, new StringTextComponent(lootBlockEntity.identifier), 150));
         addButton(new BetterButton(centerX, 120, new StringTextComponent("Set"), p_onPress_1_ -> {
             SCP.channel.sendToServer(new SetIdentifier(textField.getValue(), lootBlockEntity.getBlockPos()));
             minecraft.player.closeContainer();
