@@ -38,6 +38,7 @@ public class ModEvents {
     public static IRecipeType<ClockworksRecipe> clockworksRecipeType;
     public static RegistryKey<World> ikeaDimension;
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void setupCommon(FMLCommonSetupEvent commonSetupEvent) {
         clockworksRecipeType = Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(SCP.ID, "clockworks"), new IRecipeType<ClockworksRecipe>() {

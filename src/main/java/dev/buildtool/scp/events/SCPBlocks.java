@@ -13,6 +13,7 @@ import dev.buildtool.scp.infiniteikea.SupportBlock;
 import dev.buildtool.scp.lamp.SmallLamp;
 import dev.buildtool.scp.lamp.SwitchableLamp;
 import dev.buildtool.scp.lock.ElectronicLock;
+import dev.buildtool.scp.lootblock.LootBlock;
 import dev.buildtool.scp.monsterpot.MonsterPot;
 import dev.buildtool.scp.oldai.OldAIBlock;
 import dev.buildtool.scp.pipenightmare.Explodable;
@@ -78,6 +79,8 @@ public class SCPBlocks {
     public static Pipe mediumPipe;
     public static Explodable vent;
     public static Explodable boiler;
+
+    public static LootBlock lootBlock;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -166,6 +169,7 @@ public class SCPBlocks {
         thickPipe = registerBlock(new Pipe(4 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE).strength(3)), "thick_pipe", forgeRegistry);
         vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE).strength(3), 3), "vent", forgeRegistry);
         boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
+        lootBlock = registerBlock(new LootBlock(AbstractBlock.Properties.of(Material.METAL)), "loot_block", forgeRegistry);
     }
 
 
@@ -194,7 +198,6 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(iikeaEntrance));
         forgeRegistry.register(registerSCP(iikeaExit));
         forgeRegistry.register(register(switchableLamp));
-//        forgeRegistry.register(registerSCPWithProperties(oldAIBlock, itemProperties().maxStackSize(1)));
         forgeRegistry.register(new BlockItem(hireBlock, itemProperties().stacksTo(1)).setRegistryName(hireBlock.getRegistryName()));
 
         forgeRegistry.register(registerSCP(shelfLifeBlock));
@@ -208,6 +211,8 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(boiler));
 
         forgeRegistry.register(registerSCP(oldAIBlock));
+
+        forgeRegistry.register(register(lootBlock));
     }
 
     private static Item register(Block block) {

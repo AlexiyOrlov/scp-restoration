@@ -1,6 +1,7 @@
 package dev.buildtool.scp.events;
 
 import dev.buildtool.satako.Functions;
+import dev.buildtool.scp.ChamberLootManager;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.infiniteikea.RoomGenerator;
 import net.minecraft.entity.EntityClassification;
@@ -15,6 +16,7 @@ import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -90,4 +92,8 @@ public class Events {
         Structures.scpSite.SCPWorldData = null;
     }
 
+    @SubscribeEvent
+    public static void registerDataManagers(AddReloadListenerEvent addReloadListenerEvent) {
+        addReloadListenerEvent.addListener(new ChamberLootManager());
+    }
 }

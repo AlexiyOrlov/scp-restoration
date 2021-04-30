@@ -12,6 +12,8 @@ import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.lock.LockEntity;
 import dev.buildtool.scp.lock.OpenLock;
 import dev.buildtool.scp.lock.SetPassword;
+import dev.buildtool.scp.lootblock.LootBlockEntity;
+import dev.buildtool.scp.lootblock.SetIdentifier;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -46,9 +48,10 @@ public class SCP {
     public static ForgeConfigSpec.BooleanValue toothBrushCanBreakUnbreakable;
     public static ForgeConfigSpec.ConfigValue<Double> chamberDamage;
     public static ForgeConfigSpec.IntValue chaosSoldierWeight;
+    private static final String networkProtocolVersion = "2";
     public SCP() {
         int message = 0;
-        channel= NetworkRegistry.newSimpleChannel(new ResourceLocation(ID,"channel1"),() -> "1",s -> s.equals("1"),s -> s.equals("1"));
+        channel = NetworkRegistry.newSimpleChannel(new ResourceLocation(ID, "channel1"), () -> networkProtocolVersion, s -> s.equals(networkProtocolVersion), s -> s.equals(networkProtocolVersion));
         channel.registerMessage(message++, Settings.class, (settings, packetBuffer) -> {
             packetBuffer.writeEnum(settings.mode);
             packetBuffer.writeBlockPos(settings.pos);
@@ -197,6 +200,22 @@ public class SCP {
             }
             context.setPacketHandled(true);
         });
+
+        channel.registerMessage(message++, SetIdentifier.class, (setIdentifier, packetBuffer) -> {
+                    packetBuffer.writeUtf(setIdentifier.identifier);
+                    packetBuffer.writeBlockPos(setIdentifier.pos);
+                }, packetBuffer -> new SetIdentifier(packetBuffer.readUtf(), packetBuffer.readBlockPos()),
+                (setIdentifier, contextSupplier) -> {
+                    NetworkEvent.Context context = contextSupplier.get();
+                    ServerWorld serverWorld = context.getSender().getLevel();
+                    TileEntity tileEntity = serverWorld.getBlockEntity(setIdentifier.pos);
+                    if (tileEntity instanceof LootBlockEntity) {
+                        ((LootBlockEntity) tileEntity).identifier = setIdentifier.identifier;
+                        tileEntity.setChanged();
+                        context.setPacketHandled(true);
+                        context.getSender().sendMessage(new StringTextComponent("Identifier set to: " + setIdentifier.identifier), UUID.randomUUID());
+                    }
+                });
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, new ForgeConfigSpec.Builder().configure(builder -> {
             Structures.rarity = builder.comment("Higher rarity means less chambers").define("SCP chamber rarity", 240);

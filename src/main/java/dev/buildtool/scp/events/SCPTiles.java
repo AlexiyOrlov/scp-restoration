@@ -6,6 +6,7 @@ import dev.buildtool.scp.clockworks.ClockworksEntity;
 import dev.buildtool.scp.crate.CrateEntity;
 import dev.buildtool.scp.infiniteikea.TeleportBlockEntity;
 import dev.buildtool.scp.lock.LockEntity;
+import dev.buildtool.scp.lootblock.LootBlockEntity;
 import dev.buildtool.scp.monsterpot.MonsterPotEntity;
 import dev.buildtool.scp.oldai.OldAIEntity;
 import dev.buildtool.scp.shelf.ShelfEntity;
@@ -36,6 +37,7 @@ public class SCPTiles {
     public static TileEntityType<TeleportBlockEntity> ikeaTeleporter;
     public static TileEntityType<OldAIEntity> oldAIEntity;
     public static TileEntityType<dev.buildtool.scp.shelflife.ShelfEntity> shelfLifeEntity;
+    public static TileEntityType<LootBlockEntity> lootBlockEntity;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -58,6 +60,8 @@ public class SCPTiles {
         oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", SCPBlocks.oldAIBlock);
         forgeRegistry.registerAll(oldAIEntity);
         shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
+        lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
+
     }
 
     @Deprecated
