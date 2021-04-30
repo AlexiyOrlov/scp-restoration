@@ -95,8 +95,8 @@ public class Entities {
         swatArmorEntity = registerEntity("scp912", EntityClassification.CREATURE, SwatArmorEntity::new, 0.7f, 1.8f, null);
         items.registerAll(registerEgg(swatArmorEntity, 0x1A1D19, 0x565857));
 
-        maleCommoner = registerEntity("male", EntityClassification.CREATURE, MaleCommoner::new, 0.7f, 1.8f, null);
-        femaleCommoner = registerEntity("female", EntityClassification.CREATURE, FemaleCommoner::new, 0.7f, 1.8f, null);
+        maleCommoner = registerEntity("male", EntityClassification.CREATURE, MaleCommoner::new, 0.6f, 1.8f, null);
+        femaleCommoner = registerEntity("female", EntityClassification.CREATURE, FemaleCommoner::new, 0.6f, 1.8f, null);
         items.registerAll(new SpawnEggItem(maleCommoner, 0x347BAF, 0x347BAF, properties().tab(SCPItems.items)).setRegistryName(SCP.ID, "male_egg"), new SpawnEggItem(femaleCommoner, 0xAF5D9E, 0xAF5D9E, properties().tab(SCPItems.items)).setRegistryName(SCP.ID, "female_egg"));
         uncleSam = registerEntity("uncle_sam", EntityClassification.CREATURE, UncleSam::new, 0.6f, 1.8f, null);
         items.register(registerEgg(uncleSam, 0x855200, 0x7A7859));
@@ -140,8 +140,8 @@ public class Entities {
         humanRefutedChild = registerEntity("human_refuted_child", EntityClassification.MONSTER, HumanRefutedChild::new, 0.6f, 1.6f, forgeRegistry);
         forgeRegistry.registerAll(theTeacher, tatteredFarmer);
         forgeRegistry.register(employeeMonster);
-        maleCivilian = registerEntity("male_civilian", EntityClassification.CREATURE, MaleCivilian::new, 0.7f, 1.9f, forgeRegistry);
-        femaleCivilian = registerEntity("female_civilian", EntityClassification.CREATURE, FemaleCivilian::new, 0.7f, 1.9f, forgeRegistry);
+        maleCivilian = registerEntity("male_civilian", EntityClassification.CREATURE, MaleCivilian::new, 0.6f, 1.9f, forgeRegistry);
+        femaleCivilian = registerEntity("female_civilian", EntityClassification.CREATURE, FemaleCivilian::new, 0.6f, 1.9f, forgeRegistry);
         forgeRegistry.register(youngGirl);
 
         EntitySpawnPlacementRegistry.register(employeeMonster, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (monsterEntityType, serverWorld, spawnReason, blockPos, random) -> true);
