@@ -26,10 +26,10 @@ public class ChamberLootManager {
                 .addItem(Items.CHICKEN, 5).addItem(Items.POTATO, 5)
                 .addItem(Items.CARROT, 5).addItem(Items.APPLE, 4)
                 .addItem(Items.BEETROOT, 7).addItem(Items.MELON, 8).build());
-        identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("seeds", SCPBlocks.acaciaShelf.defaultBlockState())
+        identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("seeds", SCPBlocks.fourItemTable.defaultBlockState())
                 .addItem(Items.MELON_SEEDS, 2).addItem(Items.PUMPKIN_SEEDS, 2).addItem(Items.WHEAT_SEEDS, 4)
                 .addItem(Items.BEETROOT_SEEDS, 4).build());
-        identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("horse armor", SCPBlocks.birchShelf.defaultBlockState())
+        identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("horse armor", SCPBlocks.fourItemTable.defaultBlockState())
                 .addItem(Items.GOLDEN_HORSE_ARMOR, 2).addItem(Items.LEATHER_HORSE_ARMOR, 2)
                 .addItem(Items.IRON_HORSE_ARMOR, 2).addItem(Items.DIAMOND_HORSE_ARMOR, 2).build());
         identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("other", SCPBlocks.crateBlock.defaultBlockState())
