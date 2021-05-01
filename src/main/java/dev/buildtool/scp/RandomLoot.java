@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class RandomLoot {
     static private final Random random = new Random();
+    public static final String MESSAGE = "The loot can't be modified after it was built";
     private boolean built;
     RandomizedList<Object> randomKeys;
     HashMap<Object, Integer> objectIntegerHashMap;
@@ -23,14 +24,14 @@ public class RandomLoot {
 
     public RandomLoot addItem(IItemProvider item, int maxCount) {
         if (built)
-            throw new IllegalStateException("The loot can't be modified after it was built");
+            throw new IllegalStateException(MESSAGE);
         objectIntegerHashMap.put(item, maxCount);
         return this;
     }
 
     public RandomLoot addItemTag(ITag<Item> itemITag, int maxCount) {
         if (built)
-            throw new IllegalStateException("The loot can't be modified after it was built");
+            throw new IllegalStateException(MESSAGE);
         objectIntegerHashMap.put(itemITag, maxCount);
         return this;
     }
@@ -59,6 +60,10 @@ public class RandomLoot {
                 ItemStack itemStack = new ItemStack(item, random.nextInt(maxCount));
                 if (itemHandler.isItemValid(i, itemStack))
                     itemHandler.insertItem(i, itemStack, false);
+            } else if (obj instanceof ItemStack) {
+                ItemStack stack = (ItemStack) obj;
+                if (itemHandler.isItemValid(i, stack))
+                    itemHandler.insertItem(i, stack, false);
             }
         }
     }
@@ -80,14 +85,27 @@ public class RandomLoot {
                 ItemStack itemStack = new ItemStack(item, random.nextInt(maxCount));
                 if (inventory.canPlaceItem(i, itemStack))
                     inventory.setItem(i, itemStack);
+            } else if (obj instanceof ItemStack) {
+                if (inventory.canPlaceItem(i, (ItemStack) obj))
+                    inventory.setItem(i, (ItemStack) obj);
             }
         }
     }
 
     public RandomLoot addItemTag(ITag.INamedTag<Item> namedTag, int maxCount) {
         if (built)
-            throw new IllegalStateException("The loot can't be modified after it was built");
+            throw new IllegalStateException(MESSAGE);
         objectIntegerHashMap.put(namedTag, maxCount);
+        return this;
+    }
+
+    /**
+     * For non-stackable items
+     */
+    public RandomLoot addItemStack(ItemStack itemStack) {
+        if (built)
+            throw new IllegalStateException(MESSAGE);
+        objectIntegerHashMap.put(itemStack, 1);
         return this;
     }
 }

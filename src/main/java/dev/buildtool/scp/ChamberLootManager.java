@@ -9,11 +9,12 @@ import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ChamberLootManager extends JsonReloadListener {
     static Gson GSON = new GsonBuilder().create();
-
+    Map<ResourceLocation, RandomLoot> randomLootMap = new HashMap<>(30);
     public ChamberLootManager() {
         super(GSON, "chamber_loot");
     }
