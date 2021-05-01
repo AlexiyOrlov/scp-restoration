@@ -2,6 +2,7 @@ package dev.buildtool.scp;
 
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Rotation;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -17,7 +18,7 @@ public class TemplateWithRandomLoot extends Template2 {
     }
 
     @Override
-    protected void addLoot(TileEntity tileEntity) {
+    protected void addLoot(TileEntity tileEntity, Rotation placementRotation) {
         if (!(tileEntity instanceof ISidedInventory))
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> randomLoot.generateInto(itemHandler));
     }

@@ -2,6 +2,7 @@ package dev.buildtool.scp;
 
 import dev.buildtool.scp.lootblock.LootBlockEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Rotation;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -22,7 +23,7 @@ public class SCPCell extends Template2 {
     }
 
     @Override
-    protected void addLoot(TileEntity tileEntity) {
+    protected void addLoot(TileEntity tileEntity, Rotation placementRotation) {
         if (tileEntity instanceof LootBlockEntity) {
             LootBlockEntity lootBlockEntity = (LootBlockEntity) tileEntity;
             Set<RandomLoot> randomLoots = ChamberLootManager.identifiedRandomLootHashMultimap.get(this.scp);

@@ -23,6 +23,7 @@ import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.shapes.BitSetVoxelShapePart;
@@ -117,7 +118,7 @@ public class Template2 extends Template {
                                     tileentity1.load(template$blockinfo.state, template$blockinfo.nbt);
                                     tileentity1.mirror(settings.getMirror());
                                     tileentity1.rotate(settings.getRotation());
-                                    addLoot(tileentity1);
+                                    addLoot(tileentity1, settings.getRotation());
 
                                 }
                             }
@@ -209,7 +210,7 @@ public class Template2 extends Template {
         }
     }
 
-    protected void addLoot(TileEntity tileEntity) {
+    protected void addLoot(TileEntity tileEntity, Rotation placementRotation) {
         if (tileEntity instanceof LootContainer && structureLoots.size() > 0) {
             ResourceLocation resourceLocation = structureLoots.get(seedReader.getRandom().nextInt(structureLoots.size()));
             LootTable lootTable = seedReader.getLevel().getServer().getLootTables().get(resourceLocation);
