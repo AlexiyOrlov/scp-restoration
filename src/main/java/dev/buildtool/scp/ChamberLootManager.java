@@ -1,29 +1,24 @@
 package dev.buildtool.scp;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import net.minecraft.client.resources.JsonReloadListener;
-import net.minecraft.profiler.IProfiler;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
+import com.google.common.collect.HashMultimap;
+import dev.buildtool.scp.events.SCPBlocks;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 
-import java.util.HashMap;
-import java.util.Map;
+public class ChamberLootManager {
+    public static HashMultimap<String, RandomLoot> identifiedRandomLootHashMultimap = HashMultimap.create();
 
-public class ChamberLootManager extends JsonReloadListener {
-    static Gson GSON = new GsonBuilder().create();
-    Map<ResourceLocation, RandomLoot> randomLootMap = new HashMap<>(30);
-    public ChamberLootManager() {
-        super(GSON, "chamber_loot");
-    }
-
-    @Override
-    protected void apply(Map<ResourceLocation, JsonElement> fileLocationJsonElements, IResourceManager resourceManager, IProfiler profiler) {
-        fileLocationJsonElements.forEach((resourceLocation, jsonElement) -> {
-//            System.out.println(resourceLocation + " " + jsonElement);
-            JsonObject jsonObject = jsonElement.getAsJsonObject();
-        });
+    static {
+        identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("ores", SCPBlocks.crateBlock.defaultBlockState())
+                .addItem(Blocks.REDSTONE_ORE, 7).addItem(Blocks.DIAMOND_ORE, 3)
+                .addItem(Blocks.EMERALD_ORE, 4).addItem(Blocks.GOLD_ORE, 5)
+                .addItem(Blocks.LAPIS_ORE, 6).addItem(Blocks.IRON_ORE, 7)
+                .addItem(Blocks.COAL_ORE, 8).build());
+        identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("food", Blocks.CHEST.defaultBlockState())
+                .addItem(Items.BEEF, 3).addItem(Items.PORKCHOP, 3).addItem(Items.MUTTON, 4)
+                .addItem(Items.RABBIT, 4).addItem(Items.SALMON, 4).addItem(Items.COD, 4)
+                .addItem(Items.CHICKEN, 5).addItem(Items.POTATO, 5)
+                .addItem(Items.CARROT, 5).addItem(Items.APPLE, 4)
+                .addItem(Items.BEETROOT, 7).addItem(Items.MELON, 8).build());
     }
 }

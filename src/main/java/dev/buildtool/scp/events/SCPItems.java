@@ -2,7 +2,7 @@ package dev.buildtool.scp.events;
 
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCP;
-import dev.buildtool.scp.Template2;
+import dev.buildtool.scp.SCPCell;
 import dev.buildtool.scp.items.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
@@ -17,12 +17,13 @@ import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -70,9 +71,10 @@ public class SCPItems {
                 BlockPos pos = context.getClickedPos();
                 World world = context.getLevel();
                 if (!world.isClientSide) {
-                    Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world);
+//                    Template2 template2 = new Template2(world.getServer().getStructureManager().get(new ResourceLocation(SCP.ID,"containers/914")), Collections.emptyList(), (ServerWorld) world);
+                    SCPCell scpCell = new SCPCell(world.getServer().getStructureManager().get(new ResourceLocation(SCP.ID, "cell/914")), "914", (ISeedReader) world);
                     final PlacementSettings placementSettings = new PlacementSettings().setRotation(Rotation.getRandom(random));
-                    template2.placeInWorld((IServerWorld) world, pos, placementSettings, random);
+                    scpCell.placeInWorld((IServerWorld) world, pos, placementSettings, random);
                 }
                 return ActionResultType.SUCCESS;
             }

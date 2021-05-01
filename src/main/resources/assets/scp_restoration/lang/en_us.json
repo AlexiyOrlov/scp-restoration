@@ -193,6 +193,7 @@
   "block.scp_restoration.medium_pipe": "Medium Pipe (SCP-015)",
   "block.scp_restoration.vent": "Vent (SCP-015)",
   "block.scp_restoration.boiler": "Boiler (SCP-015)",
+  "block.scp_restoration.loot_block": "Loot Marker",
 
   "entity.scp_restoration.sculpture": "Sculpture",
   "entity.scp_restoration.shyguy": "Shyguy",
