@@ -21,7 +21,7 @@ public class ChamberLootManager extends JsonReloadListener {
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> fileLocationJsonElements, IResourceManager resourceManager, IProfiler profiler) {
         fileLocationJsonElements.forEach((resourceLocation, jsonElement) -> {
-            System.out.println(resourceLocation + " " + jsonElement);
+//            System.out.println(resourceLocation + " " + jsonElement);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
         });
     }
