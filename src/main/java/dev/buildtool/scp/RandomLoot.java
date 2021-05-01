@@ -23,7 +23,8 @@ public class RandomLoot {
     }
 
     public RandomLoot addItem(IItemProvider item, int maxCount) {
-        assert maxCount > 1;
+        if (maxCount == 1)
+            maxCount = 2;
         if (built)
             throw new IllegalStateException(MESSAGE);
         objectChanceHashMap.put(item, maxCount);
@@ -31,7 +32,8 @@ public class RandomLoot {
     }
 
     public RandomLoot addItemTag(ITag<Item> itemITag, int maxCount) {
-        assert maxCount > 1;
+        if (maxCount == 1)
+            maxCount = 2;
         if (built)
             throw new IllegalStateException(MESSAGE);
         objectChanceHashMap.put(itemITag, maxCount);
@@ -46,9 +48,9 @@ public class RandomLoot {
 
 
     public void generateInto(IItemHandler itemHandler) {
-        int entryCount = objectChanceHashMap.size();
+        int entryCount = Math.max(objectChanceHashMap.size(), 1);
         int times = random.nextInt(entryCount);
-        int generateTimes = Math.min(itemHandler.getSlots(), times);
+        int generateTimes = Math.max(1, Math.min(itemHandler.getSlots(), times));
         for (int i = 0; i < generateTimes; i++) {
             Object obj = randomKeys.getRandom();
             int maxCount = objectChanceHashMap.get(obj);
@@ -95,20 +97,12 @@ public class RandomLoot {
     }
 
     public RandomLoot addItemTag(ITag.INamedTag<Item> namedTag, int maxCount) {
-        assert maxCount > 1;
+        if (maxCount == 1)
+            maxCount = 2;
         if (built)
             throw new IllegalStateException(MESSAGE);
         objectChanceHashMap.put(namedTag, maxCount);
         return this;
     }
 
-    /**
-     * For non-stackable items
-     */
-    public RandomLoot addItemStack(ItemStack itemStack) {
-        if (built)
-            throw new IllegalStateException(MESSAGE);
-        objectChanceHashMap.put(itemStack, 2);
-        return this;
-    }
 }
