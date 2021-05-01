@@ -89,9 +89,6 @@ public class RandomLoot {
                 ItemStack itemStack = new ItemStack(item, random.nextInt(maxCount));
                 if (inventory.canPlaceItem(i, itemStack))
                     inventory.setItem(i, itemStack);
-            } else if (obj instanceof ItemStack) {
-                if (inventory.canPlaceItem(i, (ItemStack) obj))
-                    inventory.setItem(i, (ItemStack) obj);
             }
         }
     }
