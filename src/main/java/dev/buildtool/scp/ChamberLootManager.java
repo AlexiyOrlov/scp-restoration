@@ -3,12 +3,18 @@ package dev.buildtool.scp;
 import com.google.common.collect.HashMultimap;
 import dev.buildtool.scp.events.SCPBlocks;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.ITagCollection;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagCollectionManager;
+import net.minecraft.util.ResourceLocation;
 
 public class ChamberLootManager {
     public static HashMultimap<String, RandomLoot> identifiedRandomLootHashMultimap = HashMultimap.create();
 
     static {
+        ITagCollection<Item> itemTags = TagCollectionManager.getInstance().getItems();
         identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("ores", SCPBlocks.crateBlock.defaultBlockState())
                 .addItem(Blocks.REDSTONE_ORE, 7).addItem(Blocks.DIAMOND_ORE, 3)
                 .addItem(Blocks.EMERALD_ORE, 4).addItem(Blocks.GOLD_ORE, 5)
@@ -37,6 +43,10 @@ public class ChamberLootManager {
                 .addItem(Blocks.BIRCH_WOOD, 20).addItem(Blocks.DARK_OAK_WOOD, 20)
                 .addItem(Blocks.JUNGLE_WOOD, 20).addItem(Blocks.SPRUCE_WOOD, 20).build());
 
-
+        //124 fertile soil
+        identifiedRandomLootHashMultimap.put("124", new IdentifiedRandomLoot("crops", SCPBlocks.fourItemTable.defaultBlockState())
+                .addItemTag(itemTags.getTag(new ResourceLocation("forge", "crops")), 24).build());
+        identifiedRandomLootHashMultimap.put("124", new IdentifiedRandomLoot("saplings", Blocks.CHEST.defaultBlockState())
+                .addItemTag(ItemTags.SAPLINGS, 12).build());
     }
 }
