@@ -60,30 +60,31 @@ public class SlidingDoorBlock extends BlockHorizontal {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 
-        SlidingDoorEntity doorEntity= (SlidingDoorEntity) worldIn.getBlockEntity(state.getValue(half)==Half.TOP?pos.below():pos);
-        if(doorEntity!=null) {
-            if(doorEntity.opening) {
+        TileEntity doorEntity = worldIn.getBlockEntity(state.getValue(half) == Half.TOP ? pos.below() : pos);
+        if (doorEntity instanceof SlidingDoorEntity) {
+            SlidingDoorEntity slidingDoorEntity = (SlidingDoorEntity) doorEntity;
+            if (slidingDoorEntity.opening) {
                 switch (state.getValue(FACING)) {
                     case SOUTH:
-                        return shapeX.move(1-doorEntity.openTime/16f,0,0);
+                        return shapeX.move(1 - slidingDoorEntity.openTime / 16f, 0, 0);
                     case EAST:
-                        return shapeZ.move(0,0,doorEntity.openTime/16f-1);
+                        return shapeZ.move(0, 0, slidingDoorEntity.openTime / 16f - 1);
                     case NORTH:
-                        return shapeX.move(doorEntity.openTime/16f-1, 0, 0);
+                        return shapeX.move(slidingDoorEntity.openTime / 16f - 1, 0, 0);
                     case WEST:
-                        return shapeZ.move(0,0,1-doorEntity.openTime/16f);
+                        return shapeZ.move(0, 0, 1 - slidingDoorEntity.openTime / 16f);
                 }
             }
             else{
                 switch (state.getValue(FACING)) {
                     case SOUTH:
-                        return shapeX.move(doorEntity.closeTime/16f,0,0);
+                        return shapeX.move(slidingDoorEntity.closeTime / 16f, 0, 0);
                     case EAST:
-                        return shapeZ.move(0,0,-doorEntity.closeTime/16f);
+                        return shapeZ.move(0, 0, -slidingDoorEntity.closeTime / 16f);
                     case NORTH:
-                        return shapeX.move(-doorEntity.closeTime/16f, 0, 0);
+                        return shapeX.move(-slidingDoorEntity.closeTime / 16f, 0, 0);
                     case WEST:
-                        return shapeZ.move(0,0,doorEntity.closeTime/16f);
+                        return shapeZ.move(0, 0, slidingDoorEntity.closeTime / 16f);
                 }
             }
         }
@@ -121,24 +122,25 @@ public class SlidingDoorBlock extends BlockHorizontal {
         Direction direction = state.getValue(FACING);
         BlockState opposite = worldIn.getBlockState(pos.relative(direction.getClockWise()));
         Half half = state.getValue(SlidingDoorBlock.half);
-        SlidingDoorEntity doorEntity = (SlidingDoorEntity) worldIn.getBlockEntity(half == Half.TOP ? pos.below() : pos);
-        if (doorEntity != null) {
+        TileEntity doorEntity = worldIn.getBlockEntity(half == Half.TOP ? pos.below() : pos);
+        if (doorEntity instanceof SlidingDoorEntity) {
+            SlidingDoorEntity slidingDoorEntity = (SlidingDoorEntity) doorEntity;
             if (worldIn.hasNeighborSignal(pos) || blockIn == Blocks.BARRIER) {
-                doorEntity.opening = true;
-                doorEntity.closing = false;
-                worldIn.blockEvent(pos, this, 0, Math.min(doorEntity.openTime, 16));
+                slidingDoorEntity.opening = true;
+                slidingDoorEntity.closing = false;
+                worldIn.blockEvent(pos, this, 0, Math.min(slidingDoorEntity.openTime, 16));
                 if (half == Half.TOP)
-                    worldIn.blockEvent(pos.below(), this, 0, Math.min(16, doorEntity.openTime));
+                    worldIn.blockEvent(pos.below(), this, 0, Math.min(16, slidingDoorEntity.openTime));
                 //open adjacent door
                 if (opposite.getBlock() == this && opposite.getValue(FACING) == direction.getOpposite()) {
                     neighborChanged(state, worldIn, pos.relative(direction.getClockWise()), Blocks.BARRIER, pos, isMoving);
                 }
             } else if(!worldIn.hasNeighborSignal(pos) || blockIn==Blocks.STRUCTURE_VOID) {
-                doorEntity.closing = true;
-                doorEntity.opening = false;
-                worldIn.blockEvent(pos, this, 1, Math.min(16, doorEntity.closeTime));
+                slidingDoorEntity.closing = true;
+                slidingDoorEntity.opening = false;
+                worldIn.blockEvent(pos, this, 1, Math.min(16, slidingDoorEntity.closeTime));
                 if (half == Half.TOP)
-                    worldIn.blockEvent(pos.below(), this, 1, Math.min(16, doorEntity.closeTime));
+                    worldIn.blockEvent(pos.below(), this, 1, Math.min(16, slidingDoorEntity.closeTime));
 
                 //close adjacent door
                 if (opposite.getBlock() == this && opposite.getValue(FACING) == direction.getOpposite()) {
@@ -170,6 +172,7 @@ public class SlidingDoorBlock extends BlockHorizontal {
     }
 
     private SlidingDoorEntity getEntity(IBlockReader world, BlockState state, BlockPos pos) {
-        return (SlidingDoorEntity) world.getBlockEntity(state.getValue(half) == Half.TOP ? pos.below() : pos);
+        TileEntity blockEntity = world.getBlockEntity(state.getValue(half) == Half.TOP ? pos.below() : pos);
+        return blockEntity instanceof SlidingDoorEntity ? (SlidingDoorEntity) blockEntity : null;
     }
 }
