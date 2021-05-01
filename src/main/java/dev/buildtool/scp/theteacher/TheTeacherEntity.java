@@ -59,8 +59,4 @@ public class TheTeacherEntity extends SCPEntity {
         return false;
     }
 
-    @Override
-    public boolean isInvulnerableTo(DamageSource source) {
-        return source != DamageSource.OUT_OF_WORLD && super.isInvulnerableTo(source);
-    }
 }
