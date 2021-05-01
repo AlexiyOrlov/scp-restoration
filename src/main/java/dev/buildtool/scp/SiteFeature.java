@@ -61,7 +61,6 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
         structures.add(new ResourceLocation(SCP.ID, "containers/3521"));
         structures.add(new ResourceLocation(SCP.ID, "containers/5707"));
         generated = new UniqueList<>(structures.size());
-
     }
 
     @Override
