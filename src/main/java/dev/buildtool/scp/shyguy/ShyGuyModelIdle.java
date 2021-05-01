@@ -54,7 +54,6 @@ public class ShyGuyModelIdle extends EntityModel<ShyguyEntity> {
         leftArm.texOffs(0, 0).addBox(-0.8333F, 1.0F, -1.0F, 2.0F, 8.0F, 2.0F, 0.0F, true);
 
         bb_main = new ModelRenderer(this);
-//        bb_main.setPos(0.0F, 24.0F, 0.0F);
     }
 
     @Override
