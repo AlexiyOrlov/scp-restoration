@@ -16,11 +16,13 @@ import dev.buildtool.scp.lootblock.LootBlockEntity;
 import dev.buildtool.scp.lootblock.SetIdentifier;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
@@ -214,6 +216,23 @@ public class SCP {
                         tileEntity.setChanged();
                         context.setPacketHandled(true);
                         context.getSender().sendMessage(new StringTextComponent("Identifier set to: " + setIdentifier.identifier), UUID.randomUUID());
+                    }
+                });
+
+        channel.registerMessage(message++, DropWeapon.class, (dropWeapon, packetBuffer) -> packetBuffer.writeInt(dropWeapon.humanid),
+                packetBuffer -> new DropWeapon(packetBuffer.readInt()),
+                (dropWeapon, contextSupplier) -> {
+                    NetworkEvent.Context context = contextSupplier.get();
+                    Entity entity = context.getSender().getLevel().getEntity(dropWeapon.humanid);
+                    if (entity instanceof Human) {
+                        Human human = (Human) entity;
+                        if (!human.getMainHandItem().isEmpty()) {
+                            ItemEntity itemEntity = human.spawnAtLocation(human.getMainHandItem().copy(), 2);
+                            itemEntity.setPickUpDelay(30);
+                            human.setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
+                        }
+                        context.setPacketHandled(true);
+                        context.getSender().closeContainer();
                     }
                 });
 

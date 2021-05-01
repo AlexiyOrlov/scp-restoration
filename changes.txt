@@ -11,6 +11,7 @@ Chaos Insurgency soldiers will despawn on peaceful mode;
 fixed human weapon preference;
 humans are able to use Trident;
 fixed SCP-999's model and texture;
+added a command to drop current weapon;
 
 0.6.0:
 implemented configurable damage on SCP chambers walls;

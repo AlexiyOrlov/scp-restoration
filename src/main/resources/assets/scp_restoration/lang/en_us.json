@@ -266,5 +266,6 @@
   "scp.inactive": "Old AI is inactive",
   "scp.name": "Name",
   "scp.found.nothing": "You found nothing inside",
-  "scp.protect.and.assist": "Protect and assist"
+  "scp.protect.and.assist": "Protect and assist",
+  "scp.drop.weapon": "Drop the weapon"
 }
