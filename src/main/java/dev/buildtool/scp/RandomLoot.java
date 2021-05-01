@@ -23,6 +23,7 @@ public class RandomLoot {
     }
 
     public RandomLoot addItem(IItemProvider item, int maxCount) {
+        assert maxCount > 1;
         if (built)
             throw new IllegalStateException(MESSAGE);
         objectIntegerHashMap.put(item, maxCount);
@@ -30,6 +31,7 @@ public class RandomLoot {
     }
 
     public RandomLoot addItemTag(ITag<Item> itemITag, int maxCount) {
+        assert maxCount > 1;
         if (built)
             throw new IllegalStateException(MESSAGE);
         objectIntegerHashMap.put(itemITag, maxCount);
@@ -93,6 +95,7 @@ public class RandomLoot {
     }
 
     public RandomLoot addItemTag(ITag.INamedTag<Item> namedTag, int maxCount) {
+        assert maxCount > 1;
         if (built)
             throw new IllegalStateException(MESSAGE);
         objectIntegerHashMap.put(namedTag, maxCount);
@@ -105,7 +108,7 @@ public class RandomLoot {
     public RandomLoot addItemStack(ItemStack itemStack) {
         if (built)
             throw new IllegalStateException(MESSAGE);
-        objectIntegerHashMap.put(itemStack, 1);
+        objectIntegerHashMap.put(itemStack, 2);
         return this;
     }
 }
