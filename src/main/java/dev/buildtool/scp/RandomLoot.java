@@ -16,17 +16,17 @@ public class RandomLoot {
     public static final String MESSAGE = "The loot can't be modified after it was built";
     private boolean built;
     RandomizedList<Object> randomKeys;
-    HashMap<Object, Integer> objectIntegerHashMap;
+    HashMap<Object, Integer> objectChanceHashMap;
 
     public RandomLoot() {
-        objectIntegerHashMap = new HashMap<>();
+        objectChanceHashMap = new HashMap<>();
     }
 
     public RandomLoot addItem(IItemProvider item, int maxCount) {
         assert maxCount > 1;
         if (built)
             throw new IllegalStateException(MESSAGE);
-        objectIntegerHashMap.put(item, maxCount);
+        objectChanceHashMap.put(item, maxCount);
         return this;
     }
 
@@ -34,24 +34,24 @@ public class RandomLoot {
         assert maxCount > 1;
         if (built)
             throw new IllegalStateException(MESSAGE);
-        objectIntegerHashMap.put(itemITag, maxCount);
+        objectChanceHashMap.put(itemITag, maxCount);
         return this;
     }
 
     public RandomLoot build() {
-        randomKeys = new RandomizedList<>(objectIntegerHashMap.keySet());
+        randomKeys = new RandomizedList<>(objectChanceHashMap.keySet());
         built = true;
         return this;
     }
 
 
     public void generateInto(IItemHandler itemHandler) {
-        int entryCount = objectIntegerHashMap.size();
+        int entryCount = objectChanceHashMap.size();
         int times = random.nextInt(entryCount);
         int generateTimes = Math.min(itemHandler.getSlots(), times);
         for (int i = 0; i < generateTimes; i++) {
             Object obj = randomKeys.getRandom();
-            int maxCount = objectIntegerHashMap.get(obj);
+            int maxCount = objectChanceHashMap.get(obj);
             if (obj instanceof IItemProvider) {
                 ItemStack itemStack = new ItemStack((IItemProvider) obj, random.nextInt(maxCount));
                 if (itemHandler.isItemValid(i, itemStack))
@@ -71,12 +71,12 @@ public class RandomLoot {
     }
 
     public void generateInto(IInventory inventory) {
-        int entryCount = objectIntegerHashMap.size();
+        int entryCount = objectChanceHashMap.size();
         int times = random.nextInt(entryCount);
         int generateTimes = Math.min(inventory.getContainerSize(), times);
         for (int i = 0; i < generateTimes; i++) {
             Object obj = randomKeys.getRandom();
-            int maxCount = objectIntegerHashMap.get(obj);
+            int maxCount = objectChanceHashMap.get(obj);
             if (obj instanceof IItemProvider) {
                 ItemStack itemStack = new ItemStack((IItemProvider) obj, random.nextInt(maxCount));
                 if (inventory.canPlaceItem(i, itemStack))
@@ -98,7 +98,7 @@ public class RandomLoot {
         assert maxCount > 1;
         if (built)
             throw new IllegalStateException(MESSAGE);
-        objectIntegerHashMap.put(namedTag, maxCount);
+        objectChanceHashMap.put(namedTag, maxCount);
         return this;
     }
 
@@ -108,7 +108,7 @@ public class RandomLoot {
     public RandomLoot addItemStack(ItemStack itemStack) {
         if (built)
             throw new IllegalStateException(MESSAGE);
-        objectIntegerHashMap.put(itemStack, 2);
+        objectChanceHashMap.put(itemStack, 2);
         return this;
     }
 }
