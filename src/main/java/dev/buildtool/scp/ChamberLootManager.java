@@ -3,16 +3,20 @@ package dev.buildtool.scp;
 import com.google.common.collect.HashMultimap;
 import dev.buildtool.scp.events.SCPBlocks;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ITagCollection;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Random;
+
 public class ChamberLootManager {
     public static HashMultimap<String, RandomLoot> identifiedRandomLootHashMultimap = HashMultimap.create();
-
+    private static final Random random = new Random();
     static {
         ITagCollection<Item> itemTags = TagCollectionManager.getInstance().getItems();
         identifiedRandomLootHashMultimap.put("914", new IdentifiedRandomLoot("ores", SCPBlocks.crateBlock.defaultBlockState())
@@ -48,5 +52,11 @@ public class ChamberLootManager {
                 .addItemTag(itemTags.getTag(new ResourceLocation("forge", "crops")), 24).build());
         identifiedRandomLootHashMultimap.put("124", new IdentifiedRandomLoot("saplings", Blocks.CHEST.defaultBlockState())
                 .addItemTag(ItemTags.SAPLINGS, 12).build());
+
+        //049 doctor
+        identifiedRandomLootHashMultimap.put("049", new IdentifiedRandomLoot("books and paper", SCPBlocks.fourItemTable.defaultBlockState())
+                .addItem(Items.PAPER, 15).addItem(Items.BOOK, 9)
+                .addItemStack(EnchantmentHelper.enchantItem(random, new ItemStack(Items.BOOK), random.nextInt(30), true)).build());
+
     }
 }
