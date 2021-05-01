@@ -11,6 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 import java.util.HashMap;
 import java.util.Random;
 
+@SuppressWarnings("unchecked")
 public class RandomLoot {
     static private final Random random = new Random();
     public static final String MESSAGE = "The loot can't be modified after it was built";
@@ -45,7 +46,6 @@ public class RandomLoot {
         built = true;
         return this;
     }
-
 
     public void generateInto(IItemHandler itemHandler) {
         int entryCount = Math.max(objectChanceHashMap.size(), 1);
