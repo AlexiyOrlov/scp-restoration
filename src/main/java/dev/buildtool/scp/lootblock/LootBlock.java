@@ -35,8 +35,12 @@ public class LootBlock extends Block {
     }
 
     @Override
-    public ActionResultType use(BlockState p_225533_1_, World world, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-        LootBlockEntity lootBlockEntity = (LootBlockEntity) world.getBlockEntity(p_225533_3_);
+    public ActionResultType use(BlockState p_225533_1_, World world, BlockPos pos, PlayerEntity playerEntity, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+        LootBlockEntity lootBlockEntity = (LootBlockEntity) world.getBlockEntity(pos);
+        if (playerEntity.isCrouching()) {
+            world.setBlockAndUpdate(pos, Block.stateById(lootBlockEntity.storedBlockstate));
+            return ActionResultType.SUCCESS;
+        }
         if (world.isClientSide)
             openScreen(lootBlockEntity);
         return ActionResultType.SUCCESS;
