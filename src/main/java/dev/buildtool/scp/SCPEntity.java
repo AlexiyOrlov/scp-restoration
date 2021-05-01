@@ -1,6 +1,5 @@
 package dev.buildtool.scp;
 
-import dev.buildtool.satako.Functions;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -10,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.IWorld;
@@ -44,14 +42,6 @@ public class SCPEntity extends CreatureEntity {
         } else {
             return ItemStack.EMPTY;
         }
-    }
-
-    @Override
-    public boolean isInvulnerableTo(DamageSource source) {
-        if (source.getDirectEntity() instanceof PlayerEntity)
-            if (!Functions.isPlayerInSurvival((PlayerEntity) source.getDirectEntity()))
-                return false;
-        return super.isInvulnerableTo(source);
     }
 
     @Override
