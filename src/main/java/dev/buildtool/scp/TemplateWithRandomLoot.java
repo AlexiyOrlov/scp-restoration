@@ -8,7 +8,6 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 import java.util.Collections;
-//TODO check for damage application
 public class TemplateWithRandomLoot extends Template2 {
     RandomLoot randomLoot;
 
