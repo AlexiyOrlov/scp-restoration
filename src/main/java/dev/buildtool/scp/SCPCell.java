@@ -16,7 +16,7 @@ public class SCPCell extends Template2 {
      * @param scp      number
      */
     public SCPCell(Template template, String scp, ISeedReader seedReader) {
-        super(template, Collections.emptyList(), seedReader);
+        super(template, Collections.emptyList(), seedReader, false);
         this.scp = scp;
     }
 

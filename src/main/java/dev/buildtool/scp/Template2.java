@@ -47,8 +47,9 @@ public class Template2 extends Template {
 
     protected final List<ResourceLocation> structureLoots;
     protected ISeedReader seedReader;
+    protected boolean applyWallDamage;
 
-    public Template2(Template template, List<ResourceLocation> loots, ISeedReader seedReader) {
+    public Template2(Template template, List<ResourceLocation> loots, ISeedReader seedReader, boolean applyDamage) {
         super();
         setAuthor(template.getAuthor());
         size = template.getSize();
@@ -56,6 +57,7 @@ public class Template2 extends Template {
         this.entityInfoList = template.entityInfoList;
         this.structureLoots = loots;
         this.seedReader = seedReader;
+        this.applyWallDamage = applyDamage;
     }
 
     @Override
@@ -83,7 +85,7 @@ public class Template2 extends Template {
                         int y = blockpos.getY();
                         int z = blockpos.getZ();
                         // random skip of outer wall block
-                        if (random.nextDouble() < SCP.chamberDamage.get()) {
+                        if (applyWallDamage && random.nextDouble() < SCP.chamberDamage.get()) {
                             if (x == mutableboundingbox.x0 || x == mutableboundingbox.x1 - 1 || y == mutableboundingbox.y0 ||
                                     y == mutableboundingbox.y1 - 1 || z == mutableboundingbox.z0 || z == mutableboundingbox.z1 - 1) {
                                 continue;

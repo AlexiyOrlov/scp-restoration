@@ -91,7 +91,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
                         return false;
                     Template template = structureManager.get(resourceLocation);
                     assert template != null;
-                    Template2 template2 = new Template2(template, Structures.structureLootTables.stream().filter(resourceLocation1 -> resourceLocation1.getPath().contains(resourceLocation.getPath().replace("containers/", ""))).collect(Collectors.toList()), seedReader);
+                    Template2 template2 = new Template2(template, Structures.structureLootTables.stream().filter(resourceLocation1 -> resourceLocation1.getPath().contains(resourceLocation.getPath().replace("containers/", ""))).collect(Collectors.toList()), seedReader, true);
                     final BlockPos size = template2.getSize();
                     assert size.getX() < 33 && size.getZ() < 33;
 
