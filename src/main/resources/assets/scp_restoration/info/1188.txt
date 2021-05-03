@@ -1,0 +1,3 @@
+SCP-1188 appears as a standard black flashlight. But instead of producing light, it displaces blocks in a cone
+reaching 20 meters when switched on. When switched off, it places all displaced blocks back to their original
+positions.
