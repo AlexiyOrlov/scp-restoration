@@ -1,3 +1,6 @@
+0.6.2:
+fixed civilian bases in ikea dimension being affected by 'wall damage' option;
+
 0.6.1:
 fixed crash occuring on human 'protect' goal;
 humans will avoid taking fall damage;

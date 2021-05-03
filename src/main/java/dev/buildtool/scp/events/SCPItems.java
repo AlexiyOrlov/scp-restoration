@@ -3,6 +3,7 @@ package dev.buildtool.scp.events;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.Template2;
+import dev.buildtool.scp.displacingflashlight.Flashlight;
 import dev.buildtool.scp.items.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
@@ -108,6 +109,7 @@ public class SCPItems {
         register(new FlakCannon(properties().defaultDurability(500),30),"flak_cannon",forgeRegistry);
         register(new RocketLauncher(properties().defaultDurability(500), 40), "rocket_launcher", forgeRegistry);
         register(new FlameThrower(properties().defaultDurability(500), 0), "flamer", forgeRegistry);
+        register(new Flashlight(scp().stacksTo(1)), "displacement_torch", forgeRegistry);
     }
 
     private static Item.Properties scp(){
