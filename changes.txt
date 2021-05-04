@@ -1,5 +1,6 @@
-0.6.2:
+0.7.0:
 fixed civilian bases in ikea dimension being affected by 'wall damage' option;
+added SCP-1188;
 
 0.6.1:
 fixed crash occuring on human 'protect' goal;

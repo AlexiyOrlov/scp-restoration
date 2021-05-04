@@ -53,6 +53,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
         structures.add(new ResourceLocation(SCP.ID, "containers/914"));
         structures.add(new ResourceLocation(SCP.ID, "containers/999"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1162"));
+        structures.add(new ResourceLocation(SCP.ID, "containers/1188"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1356"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1437"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1811"));
