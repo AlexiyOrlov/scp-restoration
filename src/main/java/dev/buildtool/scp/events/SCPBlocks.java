@@ -176,7 +176,7 @@ public class SCPBlocks {
         vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE).strength(3), 3), "vent", forgeRegistry);
         boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
         lootBlock = registerBlock(new LootBlock(AbstractBlock.Properties.of(Material.METAL)), "loot_block", forgeRegistry);
-        repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE)), "repeating_bomb", forgeRegistry);
+        repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE).noOcclusion()), "repeating_bomb", forgeRegistry);
     }
 
 
