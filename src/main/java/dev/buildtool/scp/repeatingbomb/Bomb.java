@@ -1,5 +1,6 @@
 package dev.buildtool.scp.repeatingbomb;
 
+import dev.buildtool.scp.SCPObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
@@ -11,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+@SCPObject(number = "2948", name = "Repeating Bomb", classification = SCPObject.Classification.SAFE)
 public class Bomb extends FallingBlock {
     static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
