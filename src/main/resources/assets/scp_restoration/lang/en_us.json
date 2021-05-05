@@ -195,6 +195,7 @@
   "block.scp_restoration.vent": "Vent (SCP-015)",
   "block.scp_restoration.boiler": "Boiler (SCP-015)",
   "block.scp_restoration.loot_block": "Loot Marker",
+  "block.scp_restoration.repeating_bomb": "Repeating Bomb (SCP-2948)",
 
   "entity.scp_restoration.sculpture": "Sculpture",
   "entity.scp_restoration.shyguy": "Shyguy",

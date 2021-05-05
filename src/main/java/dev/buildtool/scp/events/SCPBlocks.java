@@ -19,6 +19,7 @@ import dev.buildtool.scp.monsterpot.MonsterPot;
 import dev.buildtool.scp.oldai.OldAIBlock;
 import dev.buildtool.scp.pipenightmare.Explodable;
 import dev.buildtool.scp.pipenightmare.Pipe;
+import dev.buildtool.scp.repeatingbomb.Bomb;
 import dev.buildtool.scp.shelf.ShelfBlock;
 import dev.buildtool.scp.slidingdoor.SlidingDoorBlock;
 import dev.buildtool.scp.table.Table;
@@ -85,6 +86,7 @@ public class SCPBlocks {
     public static Explodable boiler;
 
     public static LootBlock lootBlock;
+    static Bomb repeatingBomb;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -174,6 +176,7 @@ public class SCPBlocks {
         vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE).strength(3), 3), "vent", forgeRegistry);
         boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
         lootBlock = registerBlock(new LootBlock(AbstractBlock.Properties.of(Material.METAL)), "loot_block", forgeRegistry);
+        repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE)), "repeating_bomb", forgeRegistry);
     }
 
 
@@ -230,6 +233,8 @@ public class SCPBlocks {
                 return ActionResultType.SUCCESS;
             }
         }.setRegistryName(lootBlock.getRegistryName()));
+
+        forgeRegistry.register(registerSCP(repeatingBomb));
     }
 
     private static Item register(Block block) {
