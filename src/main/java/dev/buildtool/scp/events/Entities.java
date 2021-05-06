@@ -174,6 +174,7 @@ public class Entities {
         attributeCreationEvent.put(Entities.humanEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 60).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(chaosInsurgencySoldier, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(wallOfFlesh, MonsterEntity.createMonsterAttributes().add(Attributes.ARMOR, 4).add(Attributes.MAX_HEALTH, 1024).add(Attributes.MOVEMENT_SPEED, 0.2).add(Attributes.ATTACK_DAMAGE, 20).build());
+        attributeCreationEvent.put(patchworkBear, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16).add(Attributes.MOVEMENT_SPEED, 0.27).build());
     }
 
     @SuppressWarnings("unchecked")

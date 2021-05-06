@@ -14,6 +14,7 @@ import dev.buildtool.scp.infiniteikea.CivilianRenderer;
 import dev.buildtool.scp.infiniteikea.IkeaMonsterModel;
 import dev.buildtool.scp.monsterpot.PotMonsterModel1;
 import dev.buildtool.scp.monsterpot.PotMonsterRenderer;
+import dev.buildtool.scp.patchworkbear.SCP2295;
 import dev.buildtool.scp.plaguedoctor.CorpseRenderer;
 import dev.buildtool.scp.plaguedoctor.PlagueDoctor3;
 import dev.buildtool.scp.sculpture.SculptureModel;
@@ -150,6 +151,7 @@ public class ClientModEvents {
         });
         RenderingRegistry.registerEntityRenderingHandler(Entities.rocket, manager -> new EntityRenderer2<>(manager, new RocketModel2(), "rocket", false, 0));
         RenderingRegistry.registerEntityRenderingHandler(Entities.wallOfFlesh, manager -> new EntityRenderer2<>(manager, new SCP2059(), "scp2059", false, 1));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.patchworkBear, manager -> new EntityRenderer2<>(manager, new SCP2295(), "scp2295", false, 0.2f));
     }
 
     public static List<String> getResourceText(String resourcePath) {
