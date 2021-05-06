@@ -1,6 +1,7 @@
 package dev.buildtool.scp.wallofflesh;
 
 import dev.buildtool.scp.SCPEntity;
+import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
@@ -10,6 +11,7 @@ import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
+@SCPObject(number = "2059", name = "Wall of Flesh", classification = SCPObject.Classification.EUCLID)
 public class WallOfFlesh extends SCPEntity {
     public WallOfFlesh(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
