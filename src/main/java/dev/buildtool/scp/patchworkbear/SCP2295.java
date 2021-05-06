@@ -5,6 +5,7 @@ package dev.buildtool.scp.patchworkbear;// Made with Blockbench 3.8.4
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import dev.buildtool.satako.Functions;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -67,7 +68,12 @@ public class SCP2295 extends EntityModel<PatchworkBear> {
 
 	@Override
 	public void setupAnim(PatchworkBear entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+		leg.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
+		leg2.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+		arm1.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
+		arm2.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+		head.yRot = Functions.getDefaultHeadYaw(netHeadYaw);
+		head.xRot = Functions.getDefaultHeadPitch(headPitch);
 	}
 
 	@Override
