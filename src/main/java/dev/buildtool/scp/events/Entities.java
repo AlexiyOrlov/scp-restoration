@@ -14,6 +14,7 @@ import dev.buildtool.scp.infiniteikea.FemaleCivilian;
 import dev.buildtool.scp.infiniteikea.IkeaMonster;
 import dev.buildtool.scp.infiniteikea.MaleCivilian;
 import dev.buildtool.scp.monsterpot.PotMonster;
+import dev.buildtool.scp.patchworkbear.PatchworkBear;
 import dev.buildtool.scp.plaguedoctor.Corpse;
 import dev.buildtool.scp.plaguedoctor.PlagueDoctor;
 import dev.buildtool.scp.sculpture.Sculpture;
@@ -73,6 +74,7 @@ public class Entities {
     public static EntityType<Rocket> rocket;
     public static EntityType<ChaosInsurgencySoldier> chaosInsurgencySoldier;
     public static EntityType<WallOfFlesh> wallOfFlesh;
+    public static EntityType<PatchworkBear> patchworkBear;
 
     public static ItemGroup SCPs = new ItemGroup("scps") {
         @Override
@@ -116,6 +118,8 @@ public class Entities {
         items.register(registerEgg(chaosInsurgencySoldier, new Item.Properties().tab(SCPItems.items), 0x307B1F, 0x7B1E1E));
         wallOfFlesh = registerEntity("wall_of_flesh", EntityClassification.MONSTER, WallOfFlesh::new, 1.6f, 1.9f, null);
         items.register(registerEgg(wallOfFlesh, 0xf74848, 0xfff6bd));
+        patchworkBear = registerEntity("patchwork_bear", EntityClassification.CREATURE, PatchworkBear::new, 0.7f, 0.9f, null);
+        items.register(registerEgg(patchworkBear, 0xa9a8a8, 0x4b8b48));
     }
 
     private static Item registerEgg(EntityType<? extends Entity> entityType, int primaryColor, int secondaryColor) {
@@ -156,7 +160,7 @@ public class Entities {
 
         flakShard = registerFastEntity("flak_shard", EntityClassification.MISC, FlakShard::new, 0.1f, 0.1f, forgeRegistry);
         rocket = registerFastEntity("rocket", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Rocket(p_create_1_, p_create_2_, 0, 1), 0.2f, 0.2f, forgeRegistry);
-        forgeRegistry.register(wallOfFlesh);
+        forgeRegistry.registerAll(wallOfFlesh, patchworkBear);
     }
 
     @SubscribeEvent
