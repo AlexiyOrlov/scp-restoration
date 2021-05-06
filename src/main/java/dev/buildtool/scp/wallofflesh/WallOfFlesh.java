@@ -10,6 +10,8 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 @SCPObject(number = "2059", name = "Wall of Flesh", classification = SCPObject.Classification.EUCLID)
@@ -40,5 +42,10 @@ public class WallOfFlesh extends SCPEntity {
             }
         }
         return hurt;
+    }
+
+    @Override
+    protected SoundEvent attackSound() {
+        return SoundEvents.GENERIC_EAT;
     }
 }

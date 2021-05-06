@@ -114,7 +114,7 @@ public class Entities {
         items.register(registerEgg(youngGirl, 0xaa5915, 0x871131));
         chaosInsurgencySoldier = registerEntity("chaos_ins_soldier", EntityClassification.MONSTER, ChaosInsurgencySoldier::new, 0.7f, 1.8f, null);
         items.register(registerEgg(chaosInsurgencySoldier, new Item.Properties().tab(SCPItems.items), 0x307B1F, 0x7B1E1E));
-        wallOfFlesh = registerEntity("wall_of_flesh", EntityClassification.MONSTER, WallOfFlesh::new, 0.9f, 1.9f, null);
+        wallOfFlesh = registerEntity("wall_of_flesh", EntityClassification.MONSTER, WallOfFlesh::new, 1.6f, 1.9f, null);
         items.register(registerEgg(wallOfFlesh, 0xf74848, 0xfff6bd));
     }
 
