@@ -17,7 +17,7 @@ public class SCP2059 extends EntityModel<WallOfFlesh> {
 
         bb_main = new ModelRenderer(this);
         bb_main.setPos(0.0F, 24.0F, 0.0F);
-        bb_main.texOffs(0, 0).addBox(-8.0F, -32.0F, -8.0F, 16.0F, 32.0F, 32.0F, 0.0F, false);
+        bb_main.texOffs(0, 0).addBox(-8.0F, -32.0F, -16.0F, 16.0F, 32.0F, 32.0F, 0.0F, false);
     }
 
     @Override

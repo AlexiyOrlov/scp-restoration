@@ -4,6 +4,7 @@ import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
@@ -21,11 +22,12 @@ public class WallOfFlesh extends SCPEntity {
     protected void registerGoals() {
         super.registerGoals();
         targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
-        targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Human.class, true, false));
-        targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, AgeableEntity.class, true, false));
-        targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, WaterMobEntity.class, true, false));
-        goalSelector.addGoal(0, new SwimGoal(this));
-        goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1));
+        targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Human.class, true, false));
+        targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AgeableEntity.class, true, false));
+        targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, WaterMobEntity.class, true, false));
+        goalSelector.addGoal(1, new SwimGoal(this));
+        goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        goalSelector.addGoal(3, new MeleeAttackGoal(this, 1, false));
     }
 
 
