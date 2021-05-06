@@ -30,6 +30,7 @@ import dev.buildtool.scp.table.TableRenderer;
 import dev.buildtool.scp.tatteredfarmer.ScarecrowModel;
 import dev.buildtool.scp.theteacher.TheTeacher2;
 import dev.buildtool.scp.ticklemonster.TickleMonster2;
+import dev.buildtool.scp.wallofflesh.SCP2059;
 import dev.buildtool.scp.weapons.FlakShardModel;
 import dev.buildtool.scp.weapons.RocketModel2;
 import net.minecraft.client.Minecraft;
@@ -148,6 +149,7 @@ public class ClientModEvents {
             }
         });
         RenderingRegistry.registerEntityRenderingHandler(Entities.rocket, manager -> new EntityRenderer2<>(manager, new RocketModel2(), "rocket", false, 0));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.wallOfFlesh, manager -> new EntityRenderer2<>(manager, new SCP2059(), "scp2059", false, 1));
     }
 
     public static List<String> getResourceText(String resourcePath) {

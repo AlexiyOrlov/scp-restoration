@@ -24,6 +24,7 @@ import dev.buildtool.scp.tatteredfarmer.TatteredFarmer;
 import dev.buildtool.scp.theteacher.TheTeacherEntity;
 import dev.buildtool.scp.ticklemonster.TickleMonsterEntity;
 import dev.buildtool.scp.unclesam.UncleSam;
+import dev.buildtool.scp.wallofflesh.WallOfFlesh;
 import dev.buildtool.scp.weapons.FlakShard;
 import dev.buildtool.scp.weapons.Rocket;
 import net.minecraft.entity.Entity;
@@ -71,6 +72,7 @@ public class Entities {
     public static EntityType<FlakShard> flakShard;
     public static EntityType<Rocket> rocket;
     public static EntityType<ChaosInsurgencySoldier> chaosInsurgencySoldier;
+    public static EntityType<WallOfFlesh> wallOfFlesh;
 
     public static ItemGroup SCPs = new ItemGroup("scps") {
         @Override
@@ -112,6 +114,8 @@ public class Entities {
         items.register(registerEgg(youngGirl, 0xaa5915, 0x871131));
         chaosInsurgencySoldier = registerEntity("chaos_ins_soldier", EntityClassification.MONSTER, ChaosInsurgencySoldier::new, 0.7f, 1.8f, null);
         items.register(registerEgg(chaosInsurgencySoldier, new Item.Properties().tab(SCPItems.items), 0x307B1F, 0x7B1E1E));
+        wallOfFlesh = registerEntity("wall_of_flesh", EntityClassification.MONSTER, WallOfFlesh::new, 0.99f, 1.99f, null);
+        items.register(registerEgg(wallOfFlesh, 0xf74848, 0xfff6bd));
     }
 
     private static Item registerEgg(EntityType<? extends Entity> entityType, int primaryColor, int secondaryColor) {
@@ -152,6 +156,7 @@ public class Entities {
 
         flakShard = registerFastEntity("flak_shard", EntityClassification.MISC, FlakShard::new, 0.1f, 0.1f, forgeRegistry);
         rocket = registerFastEntity("rocket", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Rocket(p_create_1_, p_create_2_, 0, 1), 0.2f, 0.2f, forgeRegistry);
+        forgeRegistry.register(wallOfFlesh);
     }
 
     @SubscribeEvent
@@ -164,6 +169,7 @@ public class Entities {
         attributeCreationEvent.put(Entities.femaleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(Entities.humanEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 60).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(chaosInsurgencySoldier, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(wallOfFlesh, MonsterEntity.createMonsterAttributes().add(Attributes.ARMOR, 4).add(Attributes.MAX_HEALTH, 1024).add(Attributes.MOVEMENT_SPEED, 0.2).add(Attributes.ATTACK_DAMAGE, 20).build());
     }
 
     @SuppressWarnings("unchecked")
