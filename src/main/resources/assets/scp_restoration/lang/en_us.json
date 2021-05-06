@@ -60,6 +60,7 @@
   "item.scp_restoration.chaos_ins_soldier_egg": "Chaos Insurgency Soldier",
   "item.scp_restoration.flamer": "Flamethrower",
   "item.scp_restoration.displacement_torch": "Matter-Displacing Flashlight (SCP-1188)",
+  "item.scp_restoration.wall_of_flesh_egg": "Wall of Flesh (SCP-2059)",
 
   "block.scp_restoration.pizza_box": "The Never-Ending Pizza Box (SCP-458)",
   "block.scp_restoration.red_ice": "Red Ice (SCP-009)",
@@ -217,6 +218,7 @@
   "entity.scp_restoration.female": "Girl",
   "entity.scp_restoration.young_girl": "Young Girl",
   "entity.scp_restoration.chaos_ins_soldier": "Chaos Insurgency Soldier",
+  "entity.scp_restoration.wall_of_flesh": "Wall of Flesh",
 
   "effect.scp_restoration.bananas": "Banana overdose",
   "effect.scp_restoration.radiation": "Radiation",
