@@ -12,6 +12,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Mobs can pickup items into main hand only
+ */
 public class SeekItems extends Goal {
 
     protected MobEntity mobEntity;

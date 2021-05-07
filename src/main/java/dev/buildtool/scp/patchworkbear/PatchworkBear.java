@@ -34,7 +34,7 @@ public class PatchworkBear extends SCPEntity {
         if (current.isEmpty() && (candidate.getItem() == Items.STRING || candidate.getItem().is(ItemTags.WOOL))) {
             return true;
         }
-        return ItemStack.isSame(candidate, current) && current.getCount() < current.getMaxStackSize();
+        return ItemStack.isSame(candidate, current) && current.getCount() < candidate.getMaxStackSize();
     }
 
     @Override
