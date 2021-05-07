@@ -1,3 +1,3 @@
 SCP-2059 is a sentient mass of flesh, bones and organs. It is dominated by a yellow sensory organ,
 resembling an eye. SCP-2059 is hostile to humans and any animals, and will attempt to kill or assimilate
-them on sight. Killed victims restore its health if it's damaged.
+them on sight. Killed victims restore its health.
