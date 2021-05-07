@@ -27,7 +27,6 @@ import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class SCPTemplate extends Item {
@@ -71,7 +70,11 @@ public class SCPTemplate extends Item {
                 p_150895_2_.add(itemStack);
             });
         }
-        p_150895_2_.sort(Comparator.comparing(o -> o.getDisplayName().getString()));
+        p_150895_2_.sort((o1, o2) -> {
+            if (o1.hasTag() && o2.hasTag())
+                return o1.getTag().getString("Number").compareTo(o2.getTag().getString("Number"));
+            return 0;
+        });
     }
 
     @Override
