@@ -56,7 +56,7 @@ public class Analyzer extends Item {
             SCPKnowledge.Data data = CapabilityController.getKnowledge(playerIn).knownSCPData().putIfAbsent(scpObject.number(), new SCPKnowledge.Data(scpObject.number(), scpObject.classification(), scpObject.name()));
             if(data==null) {
                 if(playerIn.level.isClientSide)
-                    playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(scpObject.number()), UUID.randomUUID());
+                    playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append("SCP-" + scpObject.number()), UUID.randomUUID());
                 CapabilityController.syncKnowledge(playerIn.level, playerIn);
 
                 return ActionResultType.SUCCESS;
@@ -77,7 +77,7 @@ public class Analyzer extends Item {
                 SCPKnowledge.Data data = CapabilityController.getKnowledge(playerIn).knownSCPData().putIfAbsent(scpObject.number(), new SCPKnowledge.Data(scpObject.number(), scpObject.classification(), scpObject.name()));
                 if(data==null) {
                     if (worldIn.isClientSide)
-                        playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(scpObject.number()), UUID.randomUUID());
+                        playerIn.sendMessage(new TranslationTextComponent("scp.revealed.data.about").append("SCP-" + scpObject.number()), UUID.randomUUID());
                     CapabilityController.syncKnowledge(worldIn, playerIn);
                     return ActionResult.success(playerIn.getItemInHand(handIn));
                 }
