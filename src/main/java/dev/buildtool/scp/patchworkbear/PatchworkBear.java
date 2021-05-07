@@ -8,9 +8,12 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -19,8 +22,15 @@ import java.util.List;
 @SCPObject(name = "The Bear with a Heart of Patchwork", number = "2295", classification = SCPObject.Classification.SAFE)
 public class PatchworkBear extends SCPEntity {
     final static DataParameter<Boolean> HEALING = EntityDataManager.defineId(PatchworkBear.class, DataSerializers.BOOLEAN);
+
     public PatchworkBear(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
+        setCanPickUpLoot(true);
+    }
+
+    @Override
+    protected boolean canReplaceCurrentItem(ItemStack p_208003_1_, ItemStack p_208003_2_) {
+        return p_208003_1_.isEmpty() && (p_208003_1_.getItem() == Items.STRING || p_208003_1_.getItem().is(ItemTags.WOOL));
     }
 
     @Override
@@ -56,12 +66,12 @@ public class PatchworkBear extends SCPEntity {
             AxisAlignedBB axisAlignedBB = new AxisAlignedBB(blockPosition()).inflate(sense);
             List<PlayerEntity> playerEntities = level.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB, playerEntity -> playerEntity.getHealth() < playerEntity.getMaxHealth() * 0.7);
             List<Human> humans = level.getEntitiesOfClass(Human.class, axisAlignedBB, human -> human.getHealth() < human.getMaxHealth() * 0.7);
-            return !humans.isEmpty() || !playerEntities.isEmpty();
+            return (!getMainHandItem().isEmpty() || !getOffhandItem().isEmpty()) && (!humans.isEmpty() || !playerEntities.isEmpty());
         }
 
         @Override
         public boolean canContinueToUse() {
-            return target != null && target.getHealth() < target.getMaxHealth();
+            return target != null && target.getHealth() < target.getMaxHealth() && (!getOffhandItem().isEmpty() || !getMainHandItem().isEmpty());
         }
 
         @Override
@@ -85,6 +95,11 @@ public class PatchworkBear extends SCPEntity {
                 } else {
                     getNavigation().stop();
                     target.heal(0.25f);
+                    if (!getMainHandItem().isEmpty()) {
+                        getMainHandItem().shrink(1);
+                    } else if (!getOffhandItem().isEmpty()) {
+                        getOffhandItem().shrink(1);
+                    }
                     setHealing(true);
                 }
             } else
