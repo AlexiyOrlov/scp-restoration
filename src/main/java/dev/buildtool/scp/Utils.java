@@ -1,10 +1,13 @@
 package dev.buildtool.scp;
 
 import dev.buildtool.scp.human.Human;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -12,7 +15,11 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkSection;
+import net.minecraft.world.server.ChunkHolder;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 
@@ -144,5 +151,137 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    /**
+     * From {@link World#setBlock(BlockPos, BlockState, int)}
+     */
+    public static boolean setBlockstateSilently(World world, BlockState blockState, BlockPos target) {
+        if (World.isOutsideBuildHeight(target)) {
+            return false;
+        } else if (!world.isClientSide && world.isDebug()) {
+            return false;
+        } else {
+            int flag = 2;
+            Chunk chunk = world.getChunkAt(target);
+
+            target = target.immutable(); // prevent mutable BlockPos leaks
+            BlockSnapshot blockSnapshot = null;
+            if (world.captureBlockSnapshots && !world.isClientSide) {
+                blockSnapshot = BlockSnapshot.create(world.dimension(), world, target, flag);
+                world.capturedBlockSnapshots.add(blockSnapshot);
+            }
+
+            BlockState old = world.getBlockState(target);
+            int oldLight = old.getLightValue(world, target);
+            int oldOpacity = old.getLightBlock(world, target);
+
+            BlockState blockstateChunk = setBlockstate(chunk, target, blockState, false);//chunk.setBlockState(target, blockState, (flag & 64) != 0);
+            if (blockstateChunk == null) {
+                if (blockSnapshot != null) world.capturedBlockSnapshots.remove(blockSnapshot);
+                return false;
+            } else {
+                BlockState blockstate1 = world.getBlockState(target);
+                if (blockstate1 != blockstateChunk && (blockstate1.getLightBlock(world, target) != oldOpacity || blockstate1.getLightValue(world, target) != oldLight || blockstate1.useShapeForLightOcclusion() || blockstateChunk.useShapeForLightOcclusion())) {
+                    world.getProfiler().push("queueCheckLight");
+                    world.getChunkSource().getLightEngine().checkBlock(target);
+                    world.getProfiler().pop();
+                }
+
+                if (blockSnapshot == null) {
+
+//                  world.markAndNotifyBlock(target, chunk, blockstateChunk, blockState, flag, flag);
+                    Block block = blockState.getBlock();
+                    BlockState blockstateWorld = world.getBlockState(target);
+                    {
+                        {
+                            int p_241211_4_ = 1;
+                            if (blockstateWorld == blockState) {
+                                if (blockstateChunk != blockstateWorld) {
+                                    world.setBlocksDirty(target, blockstateChunk, blockstateWorld);
+                                }
+
+                                if (world.isClientSide || chunk.getFullStatus().isOrAfter(ChunkHolder.LocationType.TICKING)) {
+                                    world.sendBlockUpdated(target, blockstateChunk, blockState, flag);
+                                }
+
+                                int i = flag & -34;
+                                blockstateChunk.updateIndirectNeighbourShapes(world, target, i, 0);
+                                blockState.updateIndirectNeighbourShapes(world, target, i, 0);
+
+                                world.onBlockStateChange(target, blockstateChunk, blockstateWorld);
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+    }
+
+    /**
+     * From {@link Chunk#setBlockState(BlockPos, BlockState, boolean)}
+     */
+    public static BlockState setBlockstate(Chunk chunk, BlockPos target, BlockState blockState, boolean p_177436_3_) {
+        int i = target.getX() & 15;
+        int j = target.getY();
+        int k = target.getZ() & 15;
+        ChunkSection chunksection = chunk.getSections()[j >> 4];
+        if (chunksection == Chunk.EMPTY_SECTION) {
+            if (blockState.isAir()) {
+                return null;
+            }
+
+            chunksection = new ChunkSection(j >> 4 << 4);
+            chunk.getSections()[j >> 4] = chunksection;
+        }
+
+        boolean flag = chunksection.isEmpty();
+        BlockState blockstate = chunksection.setBlockState(i, j & 15, k, blockState);
+        if (blockstate == blockState) {
+            return null;
+        } else {
+            Block block = blockState.getBlock();
+            Block block1 = blockstate.getBlock();
+            //TODO?
+//            chunk.heightmaps.get(Heightmap.Type.MOTION_BLOCKING).update(i, j, k, blockState);
+//            chunk.heightmaps.get(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).update(i, j, k, blockState);
+//            chunk.heightmaps.get(Heightmap.Type.OCEAN_FLOOR).update(i, j, k, blockState);
+//            chunk.heightmaps.get(Heightmap.Type.WORLD_SURFACE).update(i, j, k, blockState);
+            boolean flag1 = chunksection.isEmpty();
+            if (flag != flag1) {
+                chunk.getLevel().getChunkSource().getLightEngine().updateSectionStatus(target, flag1);
+            }
+
+            if (!chunk.getLevel().isClientSide) {
+                blockstate.onRemove(chunk.getLevel(), target, blockState, p_177436_3_);
+            } else if ((block1 != block || !blockState.hasTileEntity()) && blockstate.hasTileEntity()) {
+                chunk.getLevel().removeBlockEntity(target);
+            }
+
+            if (!chunksection.getBlockState(i, j & 15, k).is(block)) {
+                return null;
+            } else {
+                if (blockstate.hasTileEntity()) {
+                    TileEntity tileentity = chunk.getBlockEntity(target, Chunk.CreateEntityType.CHECK);
+                    if (tileentity != null) {
+                        tileentity.clearCache();
+                    }
+                }
+
+                if (blockState.hasTileEntity()) {
+                    TileEntity tileentity1 = chunk.getBlockEntity(target, Chunk.CreateEntityType.CHECK);
+                    if (tileentity1 == null) {
+                        tileentity1 = blockState.createTileEntity(chunk.getLevel());
+                        chunk.getLevel().setBlockEntity(target, tileentity1);
+                    } else {
+                        tileentity1.clearCache();
+                    }
+                }
+
+                chunk.setUnsaved(true);
+                return blockstate;
+            }
+        }
     }
 }
