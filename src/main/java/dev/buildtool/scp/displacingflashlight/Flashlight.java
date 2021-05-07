@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  */
 @SCPObject(number = "1188", name = "Matter-Displacing Flashlight", classification = SCPObject.Classification.SAFE)
 public class Flashlight extends Item {
-    private static final String STATE = "Turned on", BLOCK = "Removed block", POSITION = "Position";
+    private static final String STATE = "Turned on";
     public static final String DISPLACED_POSITIONS = "Displaced positions", DISPLACED_BLOCKS = "DIsplaced blocks";
 
     public Flashlight(Properties properties) {
@@ -79,7 +79,7 @@ public class Flashlight extends Item {
                 List<BlockPos> toDisplace = Arrays.stream(previosu).mapToObj(BlockPos::of).collect(Collectors.toList());
                 List<BlockState> toDisplace2 = Arrays.stream(previousblock).mapToObj(Block::stateById).collect(Collectors.toList());
                 vector3ds.forEach(vector3d -> {
-                    BlockRayTraceResult blockRayTraceResult = world.clip(new RayTraceContext(eyePosition, vector3d, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.ANY, playerEntity));
+                    BlockRayTraceResult blockRayTraceResult = world.clip(new RayTraceContext(eyePosition, vector3d, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, playerEntity));
                     BlockPos resultBlockPos = blockRayTraceResult.getBlockPos();
                     BlockState blockState = world.getBlockState(resultBlockPos);
                     if (Functions.canReplaceBlock(resultBlockPos, world) && !world.isEmptyBlock(resultBlockPos)) {
