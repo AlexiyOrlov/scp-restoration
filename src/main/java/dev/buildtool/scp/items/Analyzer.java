@@ -40,7 +40,7 @@ public class Analyzer extends Item {
             SCPKnowledge.Data res = CapabilityController.getKnowledge(context.getPlayer()).knownSCPData().putIfAbsent(object.number(), new SCPKnowledge.Data(object.number(), object.classification(), object.name()));
            if(res==null) {
                if (context.getLevel().isClientSide)
-                   context.getPlayer().sendMessage(new TranslationTextComponent("scp.revealed.data.about").append(object.number()), UUID.randomUUID());
+                   context.getPlayer().sendMessage(new TranslationTextComponent("scp.revealed.data.about").append("SCP-" + object.number()), UUID.randomUUID());
                CapabilityController.syncKnowledge(context.getLevel(), context.getPlayer());
                return ActionResultType.SUCCESS;
            }
