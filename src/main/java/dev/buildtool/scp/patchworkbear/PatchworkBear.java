@@ -1,7 +1,9 @@
 package dev.buildtool.scp.patchworkbear;
 
+import com.google.common.collect.Sets;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
+import dev.buildtool.scp.goals.SeekItems;
 import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -25,12 +27,14 @@ public class PatchworkBear extends SCPEntity {
 
     public PatchworkBear(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
-        setCanPickUpLoot(true);
     }
 
     @Override
-    protected boolean canReplaceCurrentItem(ItemStack p_208003_1_, ItemStack p_208003_2_) {
-        return p_208003_1_.isEmpty() && (p_208003_1_.getItem() == Items.STRING || p_208003_1_.getItem().is(ItemTags.WOOL));
+    protected boolean canReplaceCurrentItem(ItemStack candidate, ItemStack current) {
+        if (current.isEmpty() && (candidate.getItem() == Items.STRING || candidate.getItem().is(ItemTags.WOOL))) {
+            return true;
+        }
+        return ItemStack.isSame(candidate, current) && current.getCount() < current.getMaxStackSize();
     }
 
     @Override
@@ -41,6 +45,7 @@ public class PatchworkBear extends SCPEntity {
         goalSelector.addGoal(3, new LookRandomlyGoal(this));
         goalSelector.addGoal(4, new LookAtGoal(this, LivingEntity.class, 16));
         goalSelector.addGoal(5, new HealHumanGoal());
+        goalSelector.addGoal(6, new SeekItems(this, Sets.newHashSet(Items.STRING), Sets.newHashSet(ItemTags.WOOL)));
     }
 
     @Override
@@ -94,7 +99,7 @@ public class PatchworkBear extends SCPEntity {
                     getNavigation().moveTo(target, 1);
                 } else {
                     getNavigation().stop();
-                    target.heal(0.25f);
+                    target.heal(0.5f);
                     if (!getMainHandItem().isEmpty()) {
                         getMainHandItem().shrink(1);
                     } else if (!getOffhandItem().isEmpty()) {
