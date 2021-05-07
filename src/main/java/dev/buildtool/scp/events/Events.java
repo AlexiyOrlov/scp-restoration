@@ -52,7 +52,7 @@ public class Events {
     public static void onTick(TickEvent.PlayerTickEvent playerTickEvent) {
         PlayerEntity playerEntity = playerTickEvent.player;
         if (playerEntity instanceof ServerPlayerEntity && !playerEntity.isSpectator()) {
-            if (Functions.isHolding(item -> item==SCPItems.rubberDuck, playerEntity)) {
+            if (playerEntity.isHolding(item -> item == SCPItems.rubberDuck)) {
                 List<BlockPos> blockPos = Functions.boundingBoxToPositions(playerEntity.getBoundingBox().inflate(2));
                 blockPos.forEach(pos -> {
                     if (playerEntity.level.isWaterAt(pos))
