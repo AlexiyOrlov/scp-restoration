@@ -27,6 +27,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SCPTemplate extends Item {
@@ -70,16 +71,17 @@ public class SCPTemplate extends Item {
                 p_150895_2_.add(itemStack);
             });
         }
+        p_150895_2_.sort(Comparator.comparing(o -> o.getDisplayName().getString()));
     }
 
     @Override
-    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_) {
-        super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> textComponents, ITooltipFlag p_77624_4_) {
+        super.appendHoverText(p_77624_1_, p_77624_2_, textComponents, p_77624_4_);
         if (p_77624_1_.hasTag()) {
             CompoundNBT compoundNBT = p_77624_1_.getTag();
-            p_77624_3_.add(new StringTextComponent("SCP-" + compoundNBT.getString("Number")));
-            p_77624_3_.add(new TranslationTextComponent("scp.name").append(": " + compoundNBT.getString("Name")));
-            p_77624_3_.add(new StringTextComponent(SCPObject.Classification.valueOf(compoundNBT.getString("Class")).toString()));
+            textComponents.add(new StringTextComponent("SCP-" + compoundNBT.getString("Number")));
+            textComponents.add(new TranslationTextComponent("scp.name").append(": " + compoundNBT.getString("Name")));
+            textComponents.add(new StringTextComponent(SCPObject.Classification.valueOf(compoundNBT.getString("Class")).toString()));
         }
     }
 }
