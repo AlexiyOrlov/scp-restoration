@@ -8,6 +8,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -15,6 +18,7 @@ import java.util.List;
 
 @SCPObject(name = "The Bear with a Heart of Patchwork", number = "2295", classification = SCPObject.Classification.SAFE)
 public class PatchworkBear extends SCPEntity {
+    final static DataParameter<Boolean> HEALING = EntityDataManager.defineId(PatchworkBear.class, DataSerializers.BOOLEAN);
     public PatchworkBear(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
     }
@@ -27,6 +31,20 @@ public class PatchworkBear extends SCPEntity {
         goalSelector.addGoal(3, new LookRandomlyGoal(this));
         goalSelector.addGoal(4, new LookAtGoal(this, LivingEntity.class, 16));
         goalSelector.addGoal(5, new HealHumanGoal());
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(HEALING, false);
+    }
+
+    private void setHealing(boolean b) {
+        entityData.set(HEALING, b);
+    }
+
+    public boolean isHealing() {
+        return entityData.get(HEALING);
     }
 
     private class HealHumanGoal extends Goal {
@@ -67,14 +85,17 @@ public class PatchworkBear extends SCPEntity {
                 } else {
                     getNavigation().stop();
                     target.heal(0.25f);
+                    setHealing(true);
                 }
-            }
+            } else
+                setHealing(false);
         }
 
         @Override
         public void stop() {
             super.stop();
             target = null;
+            setHealing(false);
         }
     }
 }

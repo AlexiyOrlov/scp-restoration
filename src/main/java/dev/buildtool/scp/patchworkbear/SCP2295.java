@@ -70,8 +70,21 @@ public class SCP2295 extends EntityModel<PatchworkBear> {
 	public void setupAnim(PatchworkBear entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		leg.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
 		leg2.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
-		arm1.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
-		arm2.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+		if (entity.isHealing()) {
+			arm1.xRot = Functions.degreesToRadians(-90);
+			arm2.xRot = Functions.degreesToRadians(-110);
+			arm1.zRot = Functions.degreesToRadians(20);
+			arm2.zRot = Functions.degreesToRadians(20);
+			arm1.yRot = Functions.degreesToRadians(-20);
+			arm2.yRot = Functions.degreesToRadians(20);
+		} else {
+			arm1.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
+			arm2.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+			arm1.yRot = 0;
+			arm2.yRot = 0;
+			arm1.zRot = 0;
+			arm2.zRot = 0;
+		}
 		head.yRot = Functions.getDefaultHeadYaw(netHeadYaw);
 		head.xRot = Functions.getDefaultHeadPitch(headPitch);
 	}
