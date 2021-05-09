@@ -83,7 +83,7 @@ public class ShyguyEntity extends SCPEntity {
             List<LivingEntity> watchers = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(blockPosition()).inflate(getRange()), pr -> Functions.isInSightOf(this, pr, 0.1f));
             watchers.remove(this);
             watchers.removeIf(livingEntity -> !(livingEntity instanceof PlayerEntity) && !(livingEntity instanceof Human));
-            watchers.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR::test);
+            watchers.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR.negate()::test);
             watching.addAll(watchers);
             switch (aByte) {
                 //idle
