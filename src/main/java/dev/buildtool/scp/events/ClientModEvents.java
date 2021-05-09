@@ -96,9 +96,9 @@ public class ClientModEvents {
             public void render(LivingEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
                 ShyguyEntity shyguyEntity = (ShyguyEntity) entityIn;
                 byte state = shyguyEntity.getEntityData().get(ShyguyEntity.state);
-                if (state == ShyguyEntity.State.ACTIVE.b)
+                if (state == ShyguyEntity.State.ACTIVE.aByte)
                     model = active;
-                else if (state == ShyguyEntity.State.CRYING.b)
+                else if (state == ShyguyEntity.State.CRYING.aByte)
                     model = crying;
                 else
                     model = idle;
@@ -109,9 +109,9 @@ public class ClientModEvents {
             public ResourceLocation getTextureLocation(LivingEntity entity) {
                 ShyguyEntity shyguyEntity = (ShyguyEntity) entity;
                 byte state = shyguyEntity.getEntityData().get(ShyguyEntity.state);
-                if (state == ShyguyEntity.State.ACTIVE.b)
+                if (state == ShyguyEntity.State.ACTIVE.aByte)
                     return textureActive;
-                else if (state == ShyguyEntity.State.CRYING.b)
+                else if (state == ShyguyEntity.State.CRYING.aByte)
                     return textureCrying;
                 return super.getTextureLocation(entity);
             }

@@ -25,6 +25,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -82,7 +83,7 @@ public class ShyguyEntity extends SCPEntity {
             List<LivingEntity> watchers = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(blockPosition()).inflate(getRange()), pr -> Functions.isInSightOf(this, pr, 0.1f));
             watchers.remove(this);
             watchers.removeIf(livingEntity -> !(livingEntity instanceof PlayerEntity) && !(livingEntity instanceof Human));
-            watchers.removeIf(livingEntity -> livingEntity instanceof PlayerEntity && ((PlayerEntity) livingEntity).isCreative());
+            watchers.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR::test);
             watching.addAll(watchers);
             switch (aByte) {
                 //idle
@@ -177,12 +178,12 @@ public class ShyguyEntity extends SCPEntity {
         goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.25) {
             @Override
             public boolean canUse() {
-                return entityData.get(state) == State.IDLE.b && super.canUse();
+                return entityData.get(state) == State.IDLE.aByte && super.canUse();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return entityData.get(state) == State.IDLE.b && super.canContinueToUse();
+                return entityData.get(state) == State.IDLE.aByte && super.canContinueToUse();
             }
         });
     }
@@ -190,17 +191,21 @@ public class ShyguyEntity extends SCPEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        entityData.define(state, State.IDLE.b);
+        entityData.define(state, State.IDLE.aByte);
     }
 
     public enum State {
         IDLE(0),
         CRYING(1),
         ACTIVE(2);
-        public byte b;
+        public byte aByte;
 
         State(int i) {
-            b = (byte) i;
+            aByte = (byte) i;
         }
+    }
+
+    State getState() {
+        return State.values()[entityData.get(state)];
     }
 }
