@@ -5,6 +5,7 @@ package dev.buildtool.scp.shyguy;// Made with Blockbench 3.8.4
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import dev.buildtool.satako.Functions;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 
@@ -292,7 +293,57 @@ public class SCP096 extends EntityModel<ShyguyEntity> {
 
     @Override
     public void setupAnim(ShyguyEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        //previously the render function, render code was moved to a method below
+        ShyguyEntity.State state = entity.getState();
+        switch (state) {
+            case IDLE:
+                Neck.xRot = Functions.getDefaultHeadPitch(headPitch);
+                Neck.yRot = Functions.getDefaultHeadYaw(netHeadYaw);
+                Leftupperarm.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
+                Rightupperarm.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+                Leftthigh.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+                Rightthigh.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
+                Leftlowerarm.xRot = 0;
+                Leftlowerarm.yRot = 0;
+                Rightlowerarm.xRot = 0;
+                Rightlowerarm.yRot = 0;
+                Righthand.yRot = Functions.degreesToRadians(-45);
+                Lefthand.yRot = Functions.degreesToRadians(45);
+                Head.xRot = 0;
+                break;
+            case CRYING:
+                Head.xRot = Functions.degreesToRadians(30);
+                Neck.yRot = 0;
+                Leftupperarm.xRot = -45;
+                Rightupperarm.xRot = -45;
+                Leftlowerarm.xRot = Functions.degreesToRadians(-90);
+                Rightlowerarm.xRot = Functions.degreesToRadians(-90);
+                Righthand.yRot = -90;
+                Lefthand.yRot = 90;
+                Righthand.xRot = Functions.degreesToRadians(40);
+                Lefthand.xRot = Functions.degreesToRadians(40);
+                Leftlowerarm.yRot = 0;
+                Rightlowerarm.yRot = 0;
+                break;
+
+            case ACTIVE:
+                Neck.xRot = Functions.getDefaultHeadPitch(headPitch);
+                Neck.yRot = Functions.getDefaultHeadYaw(netHeadYaw);
+                Rightlowerarm.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount / 2) - Functions.degreesToRadians(45);
+                Rightlowerarm.yRot = 0;
+                Leftlowerarm.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount / 2) - Functions.degreesToRadians(45);
+                Leftlowerarm.yRot = 0;
+                Righthand.yRot = 0;
+                Lefthand.yRot = 0;
+                Leftupperarm.xRot = 0;
+                Rightupperarm.xRot = 0;
+                Leftthigh.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
+                Rightthigh.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
+                Righthand.yRot = Functions.degreesToRadians(-45);
+                Lefthand.yRot = Functions.degreesToRadians(45);
+                Righthand.xRot = Functions.degreesToRadians(-20);
+                Lefthand.xRot = Functions.degreesToRadians(-20);
+                break;
+        }
     }
 
     @Override
