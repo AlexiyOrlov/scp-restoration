@@ -13,6 +13,7 @@ version = "${version}" #mandatory
 displayName = "SCP Restoration" #mandatory
 # A text field displayed in the mod UI
 authors = "Alexiy" #optional
+credits = "Totemaster"
 logoFile = "scp_restoration.png"
 # The description text for the mod (#mandatory)
 description= '''
