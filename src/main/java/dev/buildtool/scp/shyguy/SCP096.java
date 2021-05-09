@@ -309,9 +309,11 @@ public class SCP096 extends EntityModel<ShyguyEntity> {
                 Righthand.yRot = Functions.degreesToRadians(-45);
                 Lefthand.yRot = Functions.degreesToRadians(45);
                 Head.xRot = 0;
+                Cheeks.y = -2.5f;
+                Lowerjaw.xRot = 0;
                 break;
             case CRYING:
-                Head.xRot = Functions.degreesToRadians(30);
+                Neck.xRot = Functions.degreesToRadians(30);
                 Neck.yRot = 0;
                 Leftupperarm.xRot = -45;
                 Rightupperarm.xRot = -45;
@@ -342,6 +344,8 @@ public class SCP096 extends EntityModel<ShyguyEntity> {
                 Lefthand.yRot = Functions.degreesToRadians(45);
                 Righthand.xRot = Functions.degreesToRadians(-20);
                 Lefthand.xRot = Functions.degreesToRadians(-20);
+                Cheeks.y = 2 / 16f;
+                Lowerjaw.xRot = Functions.degreesToRadians(20);
                 break;
         }
     }
