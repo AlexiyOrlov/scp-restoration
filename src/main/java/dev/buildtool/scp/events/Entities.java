@@ -87,7 +87,6 @@ public class Entities {
     public static void registerSpawnEggs(RegistryEvent.Register<Item> itemRegister) {
         IForgeRegistry<Item> items = itemRegister.getRegistry();
         plagueDoctorEntityType = registerEntity("plague_doctor", EntityClassification.MONSTER, PlagueDoctor::new, 0.8f, 1.9f, null);
-        humanEntityType = registerEntity("human", EntityClassification.CREATURE, Human::new, 0.6f, 1.8f, null);
         sculptureEntityType = registerEntity("sculpture", EntityClassification.MONSTER, Sculpture::new, 0.7f, 1.9f, null);
         SpawnEggItem spawnEggItem = new SpawnEggItem(plagueDoctorEntityType, 0x4e4e4e, 0xd9d9d9, properties());
         items.registerAll(spawnEggItem.setRegistryName(SCP.ID, "plague_doctor_egg"));
@@ -143,7 +142,7 @@ public class Entities {
         humanRefutedEgg = registerEntity("scp3199egg", EntityClassification.MISC, EggEntity::new, 6 / 16f, 7 / 16f, forgeRegistry);
         potMonster = registerEntity("pot_monster", EntityClassification.MONSTER, PotMonster::new, 7 / 16f, 7 / 16f, forgeRegistry);
         forgeRegistry.registerAll(swatArmorEntity);
-        forgeRegistry.registerAll(humanEntityType, sculptureEntityType, tickleMonster, humanRefuted);
+        forgeRegistry.registerAll(sculptureEntityType, tickleMonster, humanRefuted);
         forgeRegistry.registerAll(maleCommoner, femaleCommoner, uncleSam, shyguyEntity);
         humanRefutedChild = registerEntity("human_refuted_child", EntityClassification.MONSTER, HumanRefutedChild::new, 0.6f, 1.6f, forgeRegistry);
         forgeRegistry.registerAll(theTeacher, tatteredFarmer);
@@ -171,7 +170,6 @@ public class Entities {
         attributeCreationEvent.put(Entities.femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
         attributeCreationEvent.put(Entities.maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(Entities.femaleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
-        attributeCreationEvent.put(Entities.humanEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 60).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(chaosInsurgencySoldier, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(wallOfFlesh, MonsterEntity.createMonsterAttributes().add(Attributes.ARMOR, 4).add(Attributes.MAX_HEALTH, 1024).add(Attributes.MOVEMENT_SPEED, 0.2).add(Attributes.ATTACK_DAMAGE, 20).build());
         attributeCreationEvent.put(patchworkBear, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16).add(Attributes.MOVEMENT_SPEED, 0.27).build());

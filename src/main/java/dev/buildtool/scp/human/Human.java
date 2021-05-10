@@ -42,7 +42,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser, INamedContainerProvider {
+public abstract class Human extends SCPEntity implements IRangedAttackMob, ICrossbowUser, INamedContainerProvider {
     protected static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(Human.class, DataSerializers.INT);
     protected static final DataParameter<Optional<UUID>> OWNER = EntityDataManager.defineId(Human.class, DataSerializers.OPTIONAL_UUID);
 

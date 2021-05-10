@@ -70,7 +70,6 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.uncleSam, manager -> new ArmoredRenderer<>(manager, new BipedModel2<>(), "uncle_sam", 0.4f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.plagueDoctorEntityType, manager -> new ArmoredRenderer<>(manager, new PlagueDoctor3(), "plague_doctor", 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.corpseEntityType, CorpseRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(Entities.humanEntityType, manager -> new ArmoredRenderer<>(manager, new BipedModel2<>(), "human", 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.sculptureEntityType, manager -> new EntityRenderer2(manager, new SculptureModel(), "sculpture", false, 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.tickleMonster, manager -> new EntityRenderer2(manager, new TickleMonster2(), "tickle_monster2", false, 0.9f) {
             @Override
