@@ -276,5 +276,9 @@
   "scp.protect.and.assist": "Protect and assist",
   "scp.drop.weapon": "Drop the weapon",
   "scp.select.position": "Specify a destination",
-  "scp.send": "Send"
+  "scp.send": "Send",
+  "scp.parcel.arrived.at": "Parcel arrived to",
+  "scp.target.occupied": "Target position is occupied",
+  "scp.too.far": "Too far",
+  "scp.reset": "Reset position"
 }

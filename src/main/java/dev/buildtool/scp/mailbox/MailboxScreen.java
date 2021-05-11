@@ -29,18 +29,32 @@ public class MailboxScreen extends ContainerScreen2<MailboxContainer> {
         Label y = addButton(new Label(leftPos, x.y + x.getHeight(), new StringTextComponent("Y")));
         Label z = addButton(new Label(leftPos, y.y + y.getHeight(), new StringTextComponent("Z")));
 
-        TextField textFieldX = new TextField(x.x + x.getWidth(), x.y, new StringTextComponent(""), 60);
-        TextField textFieldY = new TextField(y.x + y.getWidth(), y.y, new StringTextComponent(""), 60);
-        TextField textFieldZ = new TextField(z.x + z.getWidth(), z.y, new StringTextComponent(""), 60);
+        TextField textFieldX = new TextField(x.x + x.getWidth(), x.y, new StringTextComponent(mailboxContainer.mailboxEntity.prevX + ""), 60);
+        TextField textFieldY = new TextField(y.x + y.getWidth(), y.y, new StringTextComponent(mailboxContainer.mailboxEntity.prevY + ""), 60);
+        TextField textFieldZ = new TextField(z.x + z.getWidth(), z.y, new StringTextComponent(mailboxContainer.mailboxEntity.prevZ + ""), 60);
         addButton(textFieldX);
         addButton(textFieldY);
         addButton(textFieldZ);
 
-        BetterButton send = new BetterButton(leftPos, textFieldZ.y + textFieldZ.getHeight(), new TranslationTextComponent("scp.send"), p_onPress_1_ -> {
+        BetterButton reset = new BetterButton(textFieldY.x + textFieldY.getWidth(), textFieldY.y, new TranslationTextComponent("scp.reset"), p_onPress_1_ -> {
+            textFieldX.setValue(mailboxContainer.mailboxEntity.getX() + "");
+            textFieldY.setValue(mailboxContainer.mailboxEntity.getY() + "");
+            textFieldZ.setValue(mailboxContainer.mailboxEntity.getZ() + "");
+        });
+        addButton(reset);
+
+        BetterButton send = new BetterButton(leftPos + 30, textFieldZ.y + textFieldZ.getHeight() + 10, new TranslationTextComponent("scp.send"), p_onPress_1_ -> {
             if (!mailboxContainer.mailboxEntity.itemHandler.isEmpty()) {
                 try {
                     BlockPos blockPos = new BlockPos(Integer.parseInt(textFieldX.getValue()), Integer.parseInt(textFieldY.getValue()), Integer.parseInt(textFieldZ.getValue()));
-                    SCP.channel.sendToServer(new SendMail(mailboxContainer.mailboxEntity.getBlockPos(), blockPos));
+                    if (blockPos.distManhattan(minecraft.player.blockPosition()) < 255) {
+                        SCP.channel.sendToServer(new SendMail(mailboxContainer.mailboxEntity.getBlockPos(), blockPos));
+                        mailboxContainer.mailboxEntity.prevX = blockPos.getX();
+                        mailboxContainer.mailboxEntity.prevY = blockPos.getY();
+                        mailboxContainer.mailboxEntity.prevZ = blockPos.getZ();
+                    } else {
+                        minecraft.player.sendMessage(new TranslationTextComponent("scp.too.far"), UUID.randomUUID());
+                    }
                     onClose();
                 } catch (NumberFormatException e) {
                     minecraft.player.sendMessage(new TranslationTextComponent("scp.invalid.value"), UUID.randomUUID());

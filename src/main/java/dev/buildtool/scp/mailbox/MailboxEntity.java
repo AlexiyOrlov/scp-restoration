@@ -25,6 +25,8 @@ public class MailboxEntity extends BlockEntity2 implements INamedContainerProvid
     BlockPos destination = BlockPos.ZERO;
     ItemHandler itemHandler = new ItemHandler(1);
     LazyOptional<ItemHandler> lazyOptional = LazyOptional.of(() -> itemHandler);
+    public int prevX, prevY, prevZ;
+
     public MailboxEntity(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
     }
@@ -46,6 +48,9 @@ public class MailboxEntity extends BlockEntity2 implements INamedContainerProvid
     public CompoundNBT save(CompoundNBT p_189515_1_) {
         p_189515_1_.putLong("Destination", destination.asLong());
         p_189515_1_.put("Item", itemHandler.serializeNBT());
+        p_189515_1_.putInt("X", prevX);
+        p_189515_1_.putInt("Y", prevY);
+        p_189515_1_.putInt("Z", prevZ);
         return super.save(p_189515_1_);
     }
 
@@ -54,6 +59,9 @@ public class MailboxEntity extends BlockEntity2 implements INamedContainerProvid
         super.load(p_230337_1_, p_230337_2_);
         destination = BlockPos.of(p_230337_2_.getLong("Destination"));
         itemHandler.deserializeNBT(p_230337_2_.getCompound("Item"));
+        prevX = p_230337_2_.getInt("X");
+        prevY = p_230337_2_.getInt("Y");
+        prevZ = p_230337_2_.getInt("Z");
     }
 
     @Nonnull
