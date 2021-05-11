@@ -1,6 +1,7 @@
 package dev.buildtool.scp.mailbox;
 
 import dev.buildtool.satako.BlockEntity2;
+import dev.buildtool.scp.events.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +36,7 @@ public class ParcelBlock extends FallingBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return super.createTileEntity(state, world);
+        return SCPTiles.parcelEntityTile.create();
     }
 
     public static class ParcelEntity extends BlockEntity2 {

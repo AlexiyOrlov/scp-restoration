@@ -47,5 +47,6 @@ public class MailboxScreen extends ContainerScreen2<MailboxContainer> {
                 }
             }
         });
+        addButton(send);
     }
 }

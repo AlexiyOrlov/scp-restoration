@@ -7,7 +7,7 @@
   ],
   "textures": {
     "0": "scp_restoration:block/scp3821",
-    "particle": "scp_restoartion:block/scp3821"
+    "particle": "scp_restoration:block/scp3821"
   },
   "elements": [
     {
