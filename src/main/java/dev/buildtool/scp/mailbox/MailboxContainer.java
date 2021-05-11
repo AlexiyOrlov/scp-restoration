@@ -12,7 +12,7 @@ public class MailboxContainer extends Container2 {
     public MailboxContainer(int i, PlayerInventory inventory, PacketBuffer packetBuffer) {
         super(SCPContainers.mailboxContainer, i);
         mailboxEntity = (MailboxEntity) inventory.player.level.getBlockEntity(packetBuffer.readBlockPos());
-        addSlot(new ItemHandlerSlot(mailboxEntity.itemHandler, 0, 18 * 4, 0));
-        addPlayerInventory(0, 40, inventory);
+        addSlot(new ItemHandlerSlot(mailboxEntity.itemHandler, 0, 18 * 4, 80));
+        addPlayerInventory(0, 120, inventory);
     }
 }

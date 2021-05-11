@@ -275,5 +275,6 @@
   "scp.found.nothing": "You found nothing inside",
   "scp.protect.and.assist": "Protect and assist",
   "scp.drop.weapon": "Drop the weapon",
-  "scp.select.position": "Specify a destination"
+  "scp.select.position": "Specify a destination",
+  "scp.send": "Send"
 }

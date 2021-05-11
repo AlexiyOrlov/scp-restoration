@@ -4,6 +4,7 @@ import dev.buildtool.satako.BlockEntity2;
 import dev.buildtool.scp.events.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -24,8 +25,11 @@ public class ParcelBlock extends FallingBlock {
     }
 
     @Override
-    public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-        return super.use(p_225533_1_, p_225533_2_, p_225533_3_, p_225533_4_, p_225533_5_, p_225533_6_);
+    public ActionResultType use(BlockState p_225533_1_, World world, BlockPos blockPos, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
+        ParcelEntity parcelEntity = (ParcelEntity) world.getBlockEntity(blockPos);
+        world.addFreshEntity(new ItemEntity(world, blockPos.getX(), blockPos.getY() + 1, blockPos.getZ(), parcelEntity.mail));
+        world.removeBlock(blockPos, false);
+        return ActionResultType.SUCCESS;
     }
 
     @Override
