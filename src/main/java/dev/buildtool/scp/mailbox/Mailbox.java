@@ -1,6 +1,7 @@
 package dev.buildtool.scp.mailbox;
 
 import dev.buildtool.satako.blocks.BlockHorizontal;
+import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.events.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
+@SCPObject(name = "Stuck In the Mailroom", number = "3821", classification = SCPObject.Classification.EUCLID)
 public class Mailbox extends BlockHorizontal {
     public Mailbox(Properties p_i48440_1_) {
         super(p_i48440_1_);
