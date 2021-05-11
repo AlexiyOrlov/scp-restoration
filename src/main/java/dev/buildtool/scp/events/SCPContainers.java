@@ -3,6 +3,7 @@ package dev.buildtool.scp.events;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.crate.CrateContainer;
 import dev.buildtool.scp.human.InteractionContainer;
+import dev.buildtool.scp.mailbox.MailboxContainer;
 import dev.buildtool.scp.shelflife.ShelfContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -16,6 +17,7 @@ public class SCPContainers {
     public static ContainerType<CrateContainer> crateContainer;
     public static ContainerType<InteractionContainer> humanInterContainer;
     public static ContainerType<ShelfContainer> shelfContainer;
+    public static ContainerType<MailboxContainer> mailboxContainer;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -27,5 +29,7 @@ public class SCPContainers {
         forgeRegistry.register(humanInterContainer.setRegistryName(SCP.ID, "human_interaction"));
         shelfContainer = IForgeContainerType.create(ShelfContainer::new);
         forgeRegistry.register(shelfContainer.setRegistryName(SCP.ID, "shelf_life"));
+        mailboxContainer = IForgeContainerType.create(MailboxContainer::new);
+        forgeRegistry.register(mailboxContainer.setRegistryName(SCP.ID, "mailbox"));
     }
 }

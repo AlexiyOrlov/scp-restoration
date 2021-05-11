@@ -15,6 +15,8 @@ import dev.buildtool.scp.lamp.SwitchableLamp;
 import dev.buildtool.scp.lock.ElectronicLock;
 import dev.buildtool.scp.lootblock.LootBlock;
 import dev.buildtool.scp.lootblock.LootBlockEntity;
+import dev.buildtool.scp.mailbox.Mailbox;
+import dev.buildtool.scp.mailbox.ParcelBlock;
 import dev.buildtool.scp.monsterpot.MonsterPot;
 import dev.buildtool.scp.oldai.OldAIBlock;
 import dev.buildtool.scp.pipenightmare.Explodable;
@@ -87,6 +89,8 @@ public class SCPBlocks {
 
     public static LootBlock lootBlock;
     static Bomb repeatingBomb;
+    static Mailbox mailbox;
+    public static ParcelBlock parcelBlock;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -177,6 +181,8 @@ public class SCPBlocks {
         boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
         lootBlock = registerBlock(new LootBlock(AbstractBlock.Properties.of(Material.METAL)), "loot_block", forgeRegistry);
         repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE).noOcclusion()), "repeating_bomb", forgeRegistry);
+        mailbox = registerBlock(new Mailbox(properties().noOcclusion()), "scp3821", forgeRegistry);
+        parcelBlock = registerBlock(new ParcelBlock(properties()), "parcel", forgeRegistry);
     }
 
 
@@ -235,6 +241,8 @@ public class SCPBlocks {
         }.setRegistryName(lootBlock.getRegistryName()));
 
         forgeRegistry.register(registerSCP(repeatingBomb));
+        forgeRegistry.register(registerSCP(mailbox));
+        forgeRegistry.register(register(parcelBlock));
     }
 
     private static Item register(Block block) {

@@ -7,6 +7,8 @@ import dev.buildtool.scp.crate.CrateEntity;
 import dev.buildtool.scp.infiniteikea.TeleportBlockEntity;
 import dev.buildtool.scp.lock.LockEntity;
 import dev.buildtool.scp.lootblock.LootBlockEntity;
+import dev.buildtool.scp.mailbox.MailboxEntity;
+import dev.buildtool.scp.mailbox.ParcelBlock;
 import dev.buildtool.scp.monsterpot.MonsterPotEntity;
 import dev.buildtool.scp.oldai.OldAIEntity;
 import dev.buildtool.scp.shelf.ShelfEntity;
@@ -38,6 +40,8 @@ public class SCPTiles {
     public static TileEntityType<OldAIEntity> oldAIEntity;
     public static TileEntityType<dev.buildtool.scp.shelflife.ShelfEntity> shelfLifeEntity;
     public static TileEntityType<LootBlockEntity> lootBlockEntity;
+    public static TileEntityType<MailboxEntity> mailboxEntity;
+    public static TileEntityType<ParcelBlock.ParcelEntity> parcelEntityTile;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -61,7 +65,8 @@ public class SCPTiles {
         forgeRegistry.registerAll(oldAIEntity);
         shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
         lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
-
+        mailboxEntity = register(() -> new MailboxEntity(mailboxEntity), "mailbox", forgeRegistry, SCPBlocks.mailbox);
+        parcelEntityTile = register(() -> new ParcelBlock.ParcelEntity(parcelEntityTile), "parcel", forgeRegistry, SCPBlocks.parcelBlock);
     }
 
     @Deprecated

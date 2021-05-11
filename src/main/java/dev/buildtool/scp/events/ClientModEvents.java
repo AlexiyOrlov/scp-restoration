@@ -11,6 +11,7 @@ import dev.buildtool.scp.humansrefuted.HumanRefutedModel;
 import dev.buildtool.scp.humansrefuted.SCP3199Egg;
 import dev.buildtool.scp.infiniteikea.CivilianRenderer;
 import dev.buildtool.scp.infiniteikea.IkeaMonsterModel;
+import dev.buildtool.scp.mailbox.MailboxScreen;
 import dev.buildtool.scp.monsterpot.PotMonsterModel1;
 import dev.buildtool.scp.monsterpot.PotMonsterRenderer;
 import dev.buildtool.scp.patchworkbear.SCP2295;
@@ -136,7 +137,7 @@ public class ClientModEvents {
         ScreenManager.register(SCPContainers.humanInterContainer, (ScreenManager.IScreenFactory<InteractionContainer, InteractionScreen>) (ScreenManager.IScreenFactory<InteractionContainer, InteractionScreen>) InteractionScreen::new);
         ScreenManager.register(SCPContainers.crateContainer, (ScreenManager.IScreenFactory<CrateContainer, ContainerScreen2<CrateContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.shelfContainer, (ScreenManager.IScreenFactory<ShelfContainer, ContainerScreen2<ShelfContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
-
+        ScreenManager.register(SCPContainers.mailboxContainer, MailboxScreen::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard, manager -> new EntityRenderer2(manager, new FlakShardModel(), "flak_shard", false, 0) {
             @Override
             public boolean shouldRender(Entity p_225626_1_, ClippingHelper p_225626_2_, double p_225626_3_, double p_225626_5_, double p_225626_7_) {

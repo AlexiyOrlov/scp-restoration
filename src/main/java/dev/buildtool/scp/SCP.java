@@ -6,6 +6,7 @@ import dev.buildtool.scp.clockworks.ClockworksEntity;
 import dev.buildtool.scp.clockworks.ClockworksRecipe;
 import dev.buildtool.scp.clockworks.Settings;
 import dev.buildtool.scp.events.Entities;
+import dev.buildtool.scp.events.SCPBlocks;
 import dev.buildtool.scp.events.Structures;
 import dev.buildtool.scp.goals.GoalAction;
 import dev.buildtool.scp.human.*;
@@ -14,6 +15,8 @@ import dev.buildtool.scp.lock.OpenLock;
 import dev.buildtool.scp.lock.SetPassword;
 import dev.buildtool.scp.lootblock.LootBlockEntity;
 import dev.buildtool.scp.lootblock.SetIdentifier;
+import dev.buildtool.scp.mailbox.ParcelBlock;
+import dev.buildtool.scp.mailbox.SendMail;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ItemEntity;
@@ -36,6 +39,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.items.CapabilityItemHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -233,6 +237,24 @@ public class SCP {
                         }
                         context.setPacketHandled(true);
                         context.getSender().closeContainer();
+                    }
+                });
+
+        channel.registerMessage(message++, SendMail.class, (sendMail, packetBuffer) -> {
+                    packetBuffer.writeBlockPos(sendMail.tilePos);
+                    packetBuffer.writeBlockPos(sendMail.targetPos);
+                }, packetBuffer -> new SendMail(packetBuffer.readBlockPos(), packetBuffer.readBlockPos()),
+                (sendMail, contextSupplier) -> {
+                    NetworkEvent.Context context = contextSupplier.get();
+                    ServerWorld serverWorld = context.getSender().getLevel();
+                    if (serverWorld.isEmptyBlock(sendMail.targetPos)) {
+                        serverWorld.setBlockAndUpdate(sendMail.targetPos, SCPBlocks.parcelBlock.defaultBlockState());
+                        ItemStack itemStack = serverWorld.getBlockEntity(sendMail.tilePos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).extractItem(0, 64, false);
+                        ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) serverWorld.getBlockEntity(sendMail.targetPos);
+                        parcelEntity.mail = itemStack;
+                        parcelEntity.setChanged();
+                    } else {
+                        context.getSender().sendMessage(new TranslationTextComponent("scp.target.occupied"), UUID.randomUUID());
                     }
                 });
 
