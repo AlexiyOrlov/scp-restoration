@@ -198,6 +198,8 @@
   "block.scp_restoration.boiler": "Boiler (SCP-015)",
   "block.scp_restoration.loot_block": "Loot Marker",
   "block.scp_restoration.repeating_bomb": "Repeating Bomb (SCP-2948)",
+  "block.scp_restoration.parcel": "Parcel",
+  "block.scp_restoration.scp3821": "Stuck In the Mailroom (SCP-3821)",
 
   "entity.scp_restoration.sculpture": "Sculpture",
   "entity.scp_restoration.shyguy": "Shyguy",

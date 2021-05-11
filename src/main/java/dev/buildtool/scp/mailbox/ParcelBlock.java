@@ -2,8 +2,8 @@ package dev.buildtool.scp.mailbox;
 
 import dev.buildtool.satako.BlockEntity2;
 import dev.buildtool.scp.events.SCPTiles;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ParcelBlock extends FallingBlock {
+public class ParcelBlock extends Block {
     public ParcelBlock(Properties p_i48401_1_) {
         super(p_i48401_1_);
     }

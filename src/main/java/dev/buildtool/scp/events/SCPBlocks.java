@@ -181,8 +181,8 @@ public class SCPBlocks {
         boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
         lootBlock = registerBlock(new LootBlock(AbstractBlock.Properties.of(Material.METAL)), "loot_block", forgeRegistry);
         repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE).noOcclusion()), "repeating_bomb", forgeRegistry);
-        mailbox = registerBlock(new Mailbox(properties().noOcclusion().strength(-1)), "scp3821", forgeRegistry);
-        parcelBlock = registerBlock(new ParcelBlock(properties()), "parcel", forgeRegistry);
+        mailbox = registerBlock(new Mailbox(properties().noOcclusion()), "scp3821", forgeRegistry);
+        parcelBlock = registerBlock(new ParcelBlock(properties().strength(-1)), "parcel", forgeRegistry);
     }
 
 
