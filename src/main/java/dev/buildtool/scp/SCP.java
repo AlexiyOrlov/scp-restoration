@@ -249,24 +249,25 @@ public class SCP {
                 (sendMail, contextSupplier) -> {
                     NetworkEvent.Context context = contextSupplier.get();
                     ServerWorld serverWorld = context.getSender().getLevel();
-                    BlockPos empty = serverWorld.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING, sendMail.targetPos);
-
-                    if (serverWorld.isEmptyBlock(empty)) {
-                        serverWorld.setBlockAndUpdate(empty, SCPBlocks.parcelBlock.defaultBlockState());
-                        ;
-                        MailboxEntity blockEntity = (MailboxEntity) serverWorld.getBlockEntity(sendMail.tilePos);
-                        ItemStack itemStack = blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).extractItem(0, 64, false);
-                        ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) serverWorld.getBlockEntity(empty);
-                        parcelEntity.mail = itemStack;
-                        parcelEntity.setChanged();
-                        context.getSender().sendMessage(new TranslationTextComponent("scp.parcel.arrived.at").append(" " + empty.getX() + " " + empty.getY() + " " + empty.getZ()), UUID.randomUUID());
-                        blockEntity.prevX = empty.getX();
-                        blockEntity.prevY = empty.getY();
-                        blockEntity.prevZ = empty.getZ();
-                        blockEntity.setChanged();
-                    } else {
-                        context.getSender().sendMessage(new TranslationTextComponent("scp.target.occupied"), UUID.randomUUID());
-                    }
+                    if (serverWorld.isLoaded(sendMail.targetPos)) {
+                        BlockPos empty = serverWorld.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING, sendMail.targetPos);
+                        if (serverWorld.isEmptyBlock(empty)) {
+                            serverWorld.setBlockAndUpdate(empty, SCPBlocks.parcelBlock.defaultBlockState());
+                            MailboxEntity blockEntity = (MailboxEntity) serverWorld.getBlockEntity(sendMail.tilePos);
+                            ItemStack itemStack = blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null).extractItem(0, 64, false);
+                            ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) serverWorld.getBlockEntity(empty);
+                            parcelEntity.mail = itemStack;
+                            parcelEntity.setChanged();
+                            context.getSender().sendMessage(new TranslationTextComponent("scp.parcel.arrived.at").append(" " + empty.getX() + " " + empty.getY() + " " + empty.getZ()), UUID.randomUUID());
+                            blockEntity.prevX = empty.getX();
+                            blockEntity.prevY = empty.getY();
+                            blockEntity.prevZ = empty.getZ();
+                            blockEntity.setChanged();
+                        } else {
+                            context.getSender().sendMessage(new TranslationTextComponent("scp.target.occupied"), UUID.randomUUID());
+                        }
+                    } else
+                        context.getSender().sendMessage(new TranslationTextComponent("scp.position.not.loaded"), UUID.randomUUID());
                 });
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, new ForgeConfigSpec.Builder().configure(builder -> {

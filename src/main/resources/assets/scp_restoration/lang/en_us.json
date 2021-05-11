@@ -282,5 +282,6 @@
   "scp.parcel.arrived.at": "Parcel arrived to",
   "scp.target.occupied": "Target position is occupied",
   "scp.too.far": "Too far",
-  "scp.reset": "Reset position"
+  "scp.reset": "Reset position",
+  "scp.position.not.loaded": "Target position is not loaded"
 }

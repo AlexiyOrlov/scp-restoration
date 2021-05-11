@@ -47,14 +47,10 @@ public class MailboxScreen extends ContainerScreen2<MailboxContainer> {
             if (!mailboxContainer.mailboxEntity.itemHandler.isEmpty()) {
                 try {
                     BlockPos blockPos = new BlockPos(Integer.parseInt(textFieldX.getValue()), Integer.parseInt(textFieldY.getValue()), Integer.parseInt(textFieldZ.getValue()));
-                    if (blockPos.distManhattan(minecraft.player.blockPosition()) < 255) {
                         SCP.channel.sendToServer(new SendMail(mailboxContainer.mailboxEntity.getBlockPos(), blockPos));
                         mailboxContainer.mailboxEntity.prevX = blockPos.getX();
                         mailboxContainer.mailboxEntity.prevY = blockPos.getY();
                         mailboxContainer.mailboxEntity.prevZ = blockPos.getZ();
-                    } else {
-                        minecraft.player.sendMessage(new TranslationTextComponent("scp.too.far"), UUID.randomUUID());
-                    }
                     onClose();
                 } catch (NumberFormatException e) {
                     minecraft.player.sendMessage(new TranslationTextComponent("scp.invalid.value"), UUID.randomUUID());
