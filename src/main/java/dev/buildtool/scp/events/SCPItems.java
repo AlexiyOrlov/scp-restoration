@@ -48,6 +48,7 @@ public class SCPItems {
     static public Item banana, rubberDuck, gadget;
 
     public static SCPTemplate scpTemplate;
+    static StasisCage stasisCage;
 
     static ItemGroup templates = new ItemGroup("scp.templates") {
         @Override
@@ -110,6 +111,7 @@ public class SCPItems {
         register(new RocketLauncher(properties().defaultDurability(500), 40), "rocket_launcher", forgeRegistry);
         register(new FlameThrower(properties().defaultDurability(500), 0), "flamer", forgeRegistry);
         register(new Flashlight(scp().stacksTo(1)), "displacement_torch", forgeRegistry);
+        register(new StasisCage(single()), "stasis_cage", forgeRegistry);
     }
 
     private static Item.Properties scp(){

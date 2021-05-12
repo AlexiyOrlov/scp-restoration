@@ -1,6 +1,7 @@
 0.7.1:
 changed Shyguy's model;
 added SCP-3821;
+(add entity transportation)
 
 0.7.0:
 fixed civilian bases in ikea dimension being affected by 'wall damage' option;
