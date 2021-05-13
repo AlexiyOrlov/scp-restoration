@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.CompoundNBT;
@@ -50,7 +51,12 @@ public abstract class Projectile extends InanimateEntity {
 
    @Nullable
    public Entity getOwner() {
-      return ownerNetworkId!=null && level instanceof ServerWorld ? ((ServerWorld) level).getEntity(ownerNetworkId):null;
+      if (ownerNetworkId != null) {
+         PlayerEntity playerEntity = level.getPlayerByUUID(ownerNetworkId);
+         if (playerEntity != null)
+            return playerEntity;
+      }
+      return ownerNetworkId != null && level instanceof ServerWorld ? ((ServerWorld) level).getEntity(ownerNetworkId) : null;
    }
 
    public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
@@ -249,7 +255,8 @@ public abstract class Projectile extends InanimateEntity {
       if(traced !=owner && traced.getClass()!=getClass()) {
          traced.hurt(DamageSource.mobAttack((LivingEntity) owner), damage);
          traced.invulnerableTime = 0;
-         remove();
+         if (!level.isClientSide)
+            remove();
       }
    }
 
