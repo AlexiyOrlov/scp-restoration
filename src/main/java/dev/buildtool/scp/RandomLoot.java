@@ -105,7 +105,7 @@ public class RandomLoot {
     public ItemStack getRandomItem() {
         Object randomKey = randomKeys.getRandom();
         int amount = objectChanceHashMap.get(randomKey);
-        amount = RandomLoot.random.nextInt(amount);
+        amount = Math.max(1, RandomLoot.random.nextInt(amount));
         if (randomKey instanceof IItemProvider) {
             return new ItemStack((IItemProvider) randomKey, amount);
         } else if (randomKey instanceof ITag) {
