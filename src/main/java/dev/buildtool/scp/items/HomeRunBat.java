@@ -23,6 +23,8 @@ public class HomeRunBat extends Item {
 
     @Override
     public ActionResultType interactLivingEntity(ItemStack bat, PlayerEntity playerEntity, LivingEntity livingEntity, Hand p_111207_4_) {
+        if (playerEntity.getCooldowns().isOnCooldown(this))
+            return ActionResultType.PASS;
         if (livingEntity.isAttackable()) {
             livingEntity.hurt(DamageSource.playerAttack(playerEntity).bypassArmor(), livingEntity.getMaxHealth());
             if (livingEntity.isDeadOrDying()) {
@@ -33,15 +35,15 @@ public class HomeRunBat extends Item {
                     for (int i = 0; i < biggest * 200; i += 1) {
                         int dirx = random.nextBoolean() ? 1 : -1;
                         int dirz = random.nextBoolean() ? 1 : -1;
-                        int ry = random.nextInt(5);
-                        serverWorld.sendParticles(new BlockParticleData(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()), livingEntity.getX(), livingEntity.getY() + ry, livingEntity.getZ(), 0, random.nextDouble() * dirx, random.nextDouble(), random.nextDouble() * dirz, 0);
+                        int ry = random.nextInt(4);
+                        serverWorld.sendParticles(new BlockParticleData(ParticleTypes.BLOCK, Blocks.REDSTONE_WIRE.defaultBlockState()), livingEntity.getX(), livingEntity.getY() + ry, livingEntity.getZ(), 0, random.nextDouble() * dirx, random.nextDouble(), random.nextDouble() * dirz, 0);
                     }
                 }
                 playerEntity.level.playSound(null, livingEntity.blockPosition(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundCategory.PLAYERS, 1, 1);
 
             }
             playerEntity.getCooldowns().addCooldown(this, Functions.minutesToTicks(1));
-            return ActionResultType.SUCCESS;
+            return ActionResultType.sidedSuccess(playerEntity.level.isClientSide);
         }
         return super.interactLivingEntity(bat, playerEntity, livingEntity, p_111207_4_);
     }
