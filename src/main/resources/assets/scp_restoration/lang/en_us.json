@@ -1,7 +1,7 @@
 {
-  "itemGroup.scp.blocks": "SCP Restoration: blocks",
-  "itemGroup.scp.items": "SCP Restoration: items",
-  "itemGroup.scps": "SCP Restoration: objects",
+  "itemGroup.scp.blocks": "SCP Restoration blocks",
+  "itemGroup.scp.items": "SCP Restoration items",
+  "itemGroup.scps": "SCP Restoration objects",
   "itemGroup.scp.templates": "SCP Restoration templates",
 
   "death.attack.radiation": "Died from radiation",
