@@ -1,6 +1,5 @@
 package dev.buildtool.scp.events;
 
-import dev.buildtool.satako.Constants;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.capability.SCPKnowledge;
 import dev.buildtool.scp.capability.ThrownItems;
@@ -9,10 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.RegistryKey;
@@ -47,23 +42,6 @@ public class ModEvents {
 
         CapabilityManager.INSTANCE.register(SCPKnowledge.Knowledge.class, new SCPKnowledge.Storage(), SCPKnowledge.KnowledgeImpl::new);
         CapabilityManager.INSTANCE.register(ThrownItems.ThrownItemMemory.class, new ThrownItems.Storage(), ThrownItems.ThrownItemsImpl::new);
-
-        GlobalEntityTypeAttributes.put(Entities.plagueDoctorEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 512).build());
-        GlobalEntityTypeAttributes.put(Entities.corpseEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 20).add(Attributes.MOVEMENT_SPEED, 0.23).add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.MAX_HEALTH, 20).build());
-        GlobalEntityTypeAttributes.put(Entities.sculptureEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 64).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 20).build());
-        GlobalEntityTypeAttributes.put(Entities.tickleMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.27).add(Attributes.ARMOR, 3).add(Attributes.MAX_HEALTH, 40).build());
-        GlobalEntityTypeAttributes.put(Entities.humanRefuted, MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.FOLLOW_RANGE, 64).add(Attributes.MAX_HEALTH, 220).add(Attributes.ATTACK_DAMAGE, 10).build());
-        GlobalEntityTypeAttributes.put(Entities.humanRefutedChild, MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MAX_HEALTH, 110).add(Attributes.ATTACK_DAMAGE, 5).build());
-        GlobalEntityTypeAttributes.put(Entities.humanRefutedEgg, MonsterEntity.createMonsterAttributes().add(Attributes.ARMOR, 30).add(Attributes.MAX_HEALTH, 14).build());
-        GlobalEntityTypeAttributes.put(Entities.potMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 4).add(Attributes.MOVEMENT_SPEED, 0.25).add(Attributes.ATTACK_DAMAGE, 2).build());
-        GlobalEntityTypeAttributes.put(Entities.uncleSam, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 0.28).build());
-        GlobalEntityTypeAttributes.put(Entities.swatArmorEntity, MonsterEntity.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.MOVEMENT_SPEED, 0.28).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.ARMOR, 20).add(Attributes.MAX_HEALTH, 40).build());
-        GlobalEntityTypeAttributes.put(Entities.shyguyEntity, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 1024).add(Attributes.ATTACK_DAMAGE, 7).add(Attributes.MOVEMENT_SPEED, 0.5).add(Attributes.FOLLOW_RANGE, 64).build());
-        GlobalEntityTypeAttributes.put(Entities.theTeacher, MonsterEntity.createMonsterAttributes().add(Attributes.FLYING_SPEED, 0.3).add(Attributes.FOLLOW_RANGE, 16).build());
-        GlobalEntityTypeAttributes.put(Entities.sittableEntityType, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 1).build());
-        GlobalEntityTypeAttributes.put(Entities.tatteredFarmer, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20).build());
-        GlobalEntityTypeAttributes.put(Entities.employeeMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 40).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 6).build());
-        GlobalEntityTypeAttributes.put(Entities.youngGirl, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).build());
     }
 
     @SuppressWarnings("unused")

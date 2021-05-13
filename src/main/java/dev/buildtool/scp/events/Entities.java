@@ -29,10 +29,7 @@ import dev.buildtool.scp.unclesam.UncleSam;
 import dev.buildtool.scp.wallofflesh.WallOfFlesh;
 import dev.buildtool.scp.weapons.FlakShard;
 import dev.buildtool.scp.weapons.Rocket;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.Item;
@@ -167,16 +164,32 @@ public class Entities {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent) {
-        attributeCreationEvent.put(Entities.flakShard, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(Entities.rocket, MonsterEntity.createMonsterAttributes().build());
+        attributeCreationEvent.put(flakShard, MonsterEntity.createMonsterAttributes().build());
+        attributeCreationEvent.put(rocket, MonsterEntity.createMonsterAttributes().build());
         attributeCreationEvent.put(flare, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(Entities.maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
-        attributeCreationEvent.put(Entities.femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
-        attributeCreationEvent.put(Entities.maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
-        attributeCreationEvent.put(Entities.femaleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
+        attributeCreationEvent.put(femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
+        attributeCreationEvent.put(maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(femaleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(chaosInsurgencySoldier, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
         attributeCreationEvent.put(wallOfFlesh, MonsterEntity.createMonsterAttributes().add(Attributes.ARMOR, 4).add(Attributes.MAX_HEALTH, 1024).add(Attributes.MOVEMENT_SPEED, 0.2).add(Attributes.ATTACK_DAMAGE, 20).build());
         attributeCreationEvent.put(patchworkBear, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 16).add(Attributes.MOVEMENT_SPEED, 0.27).build());
+        attributeCreationEvent.put(plagueDoctorEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(Attributes.MAX_HEALTH, 512).build());
+        attributeCreationEvent.put(corpseEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 20).add(Attributes.MOVEMENT_SPEED, 0.23).add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(sculptureEntityType, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 64).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 20).build());
+        attributeCreationEvent.put(tickleMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.27).add(Attributes.ARMOR, 3).add(Attributes.MAX_HEALTH, 40).build());
+        attributeCreationEvent.put(humanRefuted, MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.FOLLOW_RANGE, 64).add(Attributes.MAX_HEALTH, 220).add(Attributes.ATTACK_DAMAGE, 10).build());
+        attributeCreationEvent.put(humanRefutedChild, MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MAX_HEALTH, 110).add(Attributes.ATTACK_DAMAGE, 5).build());
+        attributeCreationEvent.put(humanRefutedEgg, MonsterEntity.createMonsterAttributes().add(Attributes.ARMOR, 30).add(Attributes.MAX_HEALTH, 14).build());
+        attributeCreationEvent.put(potMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 4).add(Attributes.MOVEMENT_SPEED, 0.25).add(Attributes.ATTACK_DAMAGE, 2).build());
+        attributeCreationEvent.put(uncleSam, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 0.28).build());
+        attributeCreationEvent.put(swatArmorEntity, MonsterEntity.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.MOVEMENT_SPEED, 0.28).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.ARMOR, 20).add(Attributes.MAX_HEALTH, 40).build());
+        attributeCreationEvent.put(shyguyEntity, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 1024).add(Attributes.ATTACK_DAMAGE, 7).add(Attributes.MOVEMENT_SPEED, 0.5).add(Attributes.FOLLOW_RANGE, 64).build());
+        attributeCreationEvent.put(theTeacher, MonsterEntity.createMonsterAttributes().add(Attributes.FLYING_SPEED, 0.3).add(Attributes.FOLLOW_RANGE, 16).build());
+        attributeCreationEvent.put(sittableEntityType, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 1).build());
+        attributeCreationEvent.put(tatteredFarmer, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20).build());
+        attributeCreationEvent.put(employeeMonster, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 40).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 6).build());
+        attributeCreationEvent.put(youngGirl, MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).build());
     }
 
     @SuppressWarnings("unchecked")
