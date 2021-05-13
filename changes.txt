@@ -5,6 +5,7 @@ added Stasis Cage;
 added SCP-1577;
 added SCP-2398;
 added SCP-403;
+fixed Auto-rifle not working;
 
 0.7.0:
 fixed civilian bases in ikea dimension being affected by 'wall damage' option;
