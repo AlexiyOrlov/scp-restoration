@@ -60,5 +60,7 @@ public class Flare extends Projectile {
         super.onHitBlock(blockRayTraceResult);
         level.setBlockAndUpdate(blockRayTraceResult.getBlockPos().relative(blockRayTraceResult.getDirection()), SCPBlocks.parcelBlock.defaultBlockState());
         ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) level.getBlockEntity(blockRayTraceResult.getBlockPos().relative(blockRayTraceResult.getDirection()));
+        parcelEntity.mail = RANDOM_LOOT.getRandomItem();
+        parcelEntity.setChanged();
     }
 }

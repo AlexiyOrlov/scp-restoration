@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
@@ -24,6 +26,7 @@ public class FlareGun extends Item {
         flare.setPos(playerEntity.getX() - lookAngles.x, playerEntity.getEyeY(), playerEntity.getZ() - lookAngles.z);
         flare.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0, 1, 1);
         world.addFreshEntity(flare);
+        world.playSound(playerEntity, playerEntity.blockPosition(), SoundEvents.FIREWORK_ROCKET_SHOOT, SoundCategory.PLAYERS, 1, 1);
 //        playerEntity.getCooldowns().addCooldown(this, Functions.minutesToTicks(10));
         return ActionResult.success(playerEntity.getItemInHand(hand));
     }
