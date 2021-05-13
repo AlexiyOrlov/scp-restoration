@@ -89,7 +89,7 @@ public class Utils {
         Vector3d vector3d = null;
 
         for (Entity entity1 : world.getEntities(shooter, boundingBox, filter)) {
-            AxisAlignedBB axisalignedbb = entity1.getBoundingBox().inflate((double) entity1.getPickRadius());
+            AxisAlignedBB axisalignedbb = entity1.getBoundingBox().inflate(entity1.getPickRadius());
             Optional<Vector3d> optional = axisalignedbb.clip(startVec, endVec);
             if (axisalignedbb.contains(startVec)) {
                 if (d0 >= 0.0D) {

@@ -11,6 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.tags.ITagCollection;
 import net.minecraft.tags.ITagCollectionSupplier;
 import net.minecraft.tags.TagCollectionManager;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -42,25 +43,33 @@ public class Flare extends Projectile {
      */
     public Flare(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {
         super(p_i231584_1_, p_i231584_2_, damage_, lightness);
+        noCulling = true;
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (!level.isClientSide) {
-            level.setBlockAndUpdate(blockPosition(), SCPBlocks.invisibleLight.defaultBlockState());
+        if (!level.isClientSide && level.isEmptyBlock(blockPosition().relative(getDirection().getOpposite()))) {
+            level.setBlockAndUpdate(blockPosition().relative(getDirection().getOpposite()), SCPBlocks.invisibleLight.defaultBlockState());
             if (!lightPosition.equals(BlockPos.ZERO))
                 level.removeBlock(lightPosition, false);
-            lightPosition = blockPosition();
+            lightPosition = blockPosition().relative(getDirection().getOpposite());
         }
     }
 
     @Override
     protected void onHitBlock(BlockRayTraceResult blockRayTraceResult) {
         super.onHitBlock(blockRayTraceResult);
-        level.setBlockAndUpdate(blockRayTraceResult.getBlockPos().relative(blockRayTraceResult.getDirection()), SCPBlocks.parcelBlock.defaultBlockState());
-        ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) level.getBlockEntity(blockRayTraceResult.getBlockPos().relative(blockRayTraceResult.getDirection()));
-        parcelEntity.mail = RANDOM_LOOT.getRandomItem();
-        parcelEntity.setChanged();
+        BlockPos blockPos = blockRayTraceResult.getBlockPos();
+        Direction facing = blockRayTraceResult.getDirection();
+        //TODO remove light
+        if (!level.isClientSide) {
+            level.setBlockAndUpdate(blockPos.relative(facing), SCPBlocks.parcelBlock.defaultBlockState());
+            ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) level.getBlockEntity(blockPos.relative(facing));
+            parcelEntity.mail = RANDOM_LOOT.getRandomItem();
+            parcelEntity.setChanged();
+            if (level.getBlockState(lightPosition) == SCPBlocks.invisibleLight.defaultBlockState())
+                level.removeBlock(lightPosition, false);
+        }
     }
 }

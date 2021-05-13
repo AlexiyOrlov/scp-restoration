@@ -11,9 +11,6 @@ import net.minecraft.world.World;
 
 public class Rocket extends Projectile {
     /**
-     * @param p_i231584_1_
-     * @param p_i231584_2_
-     * @param damage_
      * @param lightness    0 to 1
      */
     public Rocket(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {

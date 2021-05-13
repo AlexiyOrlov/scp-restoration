@@ -72,7 +72,7 @@ public abstract class Projectile extends InanimateEntity {
          this.leftOwner = this.checkLeftOwner();
       }
       RayTraceResult raytraceresult = ProjectileHelper.getHitResult(this, this::canHitEntity);
-      if (raytraceresult != null && raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
+      if (raytraceresult.getType() != RayTraceResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
          this.onHit(raytraceresult);
       }
       super.tick();
@@ -249,6 +249,7 @@ public abstract class Projectile extends InanimateEntity {
       if(traced !=owner && traced.getClass()!=getClass()) {
          traced.hurt(DamageSource.mobAttack((LivingEntity) owner), damage);
          traced.invulnerableTime = 0;
+         remove();
       }
    }
 
