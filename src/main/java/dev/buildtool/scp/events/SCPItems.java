@@ -108,13 +108,13 @@ public class SCPItems {
         gadget = register(new Item(properties()), "gadget", forgeRegistry);
         register(new AutoRifle(properties().defaultDurability(1000), 0), "rifle", forgeRegistry);
         scpTemplate = register(new SCPTemplate(single().tab(templates)), "scp_template", forgeRegistry);
-        register(new FlakCannon(properties().defaultDurability(500),30),"flak_cannon",forgeRegistry);
+        register(new FlakCannon(properties().defaultDurability(500), 30), "flak_cannon", forgeRegistry);
         register(new RocketLauncher(properties().defaultDurability(500), 40), "rocket_launcher", forgeRegistry);
         register(new FlameThrower(properties().defaultDurability(500), 0), "flamer", forgeRegistry);
         register(new Flashlight(scp().stacksTo(1)), "displacement_torch", forgeRegistry);
         register(new StasisCage(single()), "stasis_cage", forgeRegistry);
-        register(new FlareGun(scp()), "flare_gun", forgeRegistry);
-        register(new HomeRunBat(scp()), "homerun_bat", forgeRegistry);
+        register(new FlareGun(scp().stacksTo(1)), "flare_gun", forgeRegistry);
+        register(new HomeRunBat(scp().stacksTo(1)), "homerun_bat", forgeRegistry);
     }
 
     private static Item.Properties scp(){
