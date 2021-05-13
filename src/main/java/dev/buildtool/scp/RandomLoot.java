@@ -102,4 +102,16 @@ public class RandomLoot {
         return this;
     }
 
+    public ItemStack getRandomItem() {
+        Object randomKey = randomKeys.getRandom();
+        int amount = objectChanceHashMap.get(randomKey);
+        amount = RandomLoot.random.nextInt(amount);
+        if (randomKey instanceof IItemProvider) {
+            return new ItemStack((IItemProvider) randomKey, amount);
+        } else if (randomKey instanceof ITag) {
+            ITag<Item> tag = (ITag<Item>) randomKey;
+            return new ItemStack(tag.getRandomElement(random), amount);
+        }
+        return ItemStack.EMPTY;
+    }
 }
