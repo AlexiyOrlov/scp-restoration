@@ -185,7 +185,7 @@ public class SCPBlocks {
         repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE).noOcclusion()), "repeating_bomb", forgeRegistry);
         mailbox = registerBlock(new Mailbox(properties().noOcclusion()), "scp3821", forgeRegistry);
         parcelBlock = registerBlock(new ParcelBlock(properties().strength(-1)), "parcel", forgeRegistry);
-        crate = registerBlock(new Crate(properties()), "wooden_crate", forgeRegistry);
+        crate = registerBlock(new Crate(propertiesOf(Material.WOOD, ToolType.AXE)), "wooden_crate", forgeRegistry);
     }
 
 
