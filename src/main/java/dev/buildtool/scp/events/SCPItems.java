@@ -114,6 +114,7 @@ public class SCPItems {
         register(new Flashlight(scp().stacksTo(1)), "displacement_torch", forgeRegistry);
         register(new StasisCage(single()), "stasis_cage", forgeRegistry);
         register(new FlareGun(scp()), "flare_gun", forgeRegistry);
+        register(new HomeRunBat(scp()), "homerun_bat", forgeRegistry);
     }
 
     private static Item.Properties scp(){

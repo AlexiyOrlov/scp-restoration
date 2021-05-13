@@ -3,6 +3,7 @@ changed Shyguy's model;
 added SCP-3821;
 added Stasis Cage;
 added SCP-1577;
+added SCP-2398;
 
 0.7.0:
 fixed civilian bases in ikea dimension being affected by 'wall damage' option;
