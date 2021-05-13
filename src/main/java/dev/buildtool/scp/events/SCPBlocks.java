@@ -6,6 +6,7 @@ import dev.buildtool.scp.blocks.*;
 import dev.buildtool.scp.chairs.Chair;
 import dev.buildtool.scp.clockworks.Panel;
 import dev.buildtool.scp.crate.CrateBlock;
+import dev.buildtool.scp.flaregun.Crate;
 import dev.buildtool.scp.human.HumanHireBlock;
 import dev.buildtool.scp.infiniteikea.EntranceBlock;
 import dev.buildtool.scp.infiniteikea.ExitBlock;
@@ -91,6 +92,7 @@ public class SCPBlocks {
     static Bomb repeatingBomb;
     static Mailbox mailbox;
     public static ParcelBlock parcelBlock;
+    public static Crate crate;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -183,6 +185,7 @@ public class SCPBlocks {
         repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE).noOcclusion()), "repeating_bomb", forgeRegistry);
         mailbox = registerBlock(new Mailbox(properties().noOcclusion()), "scp3821", forgeRegistry);
         parcelBlock = registerBlock(new ParcelBlock(properties().strength(-1)), "parcel", forgeRegistry);
+        crate = registerBlock(new Crate(properties()), "wooden_crate", forgeRegistry);
     }
 
 
@@ -243,6 +246,7 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(repeatingBomb));
         forgeRegistry.register(registerSCP(mailbox));
         forgeRegistry.register(register(parcelBlock));
+        forgeRegistry.register(register(crate));
     }
 
     private static Item register(Block block) {

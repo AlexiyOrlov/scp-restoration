@@ -2,7 +2,6 @@ package dev.buildtool.scp.flaregun;
 
 import dev.buildtool.scp.RandomLoot;
 import dev.buildtool.scp.events.SCPBlocks;
-import dev.buildtool.scp.mailbox.ParcelBlock;
 import dev.buildtool.scp.weapons.Projectile;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -16,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 public class Flare extends Projectile {
     static {
@@ -60,10 +60,10 @@ public class Flare extends Projectile {
         BlockPos blockPos = blockRayTraceResult.getBlockPos();
         Direction facing = blockRayTraceResult.getDirection();
         if (!level.isClientSide) {
-            level.setBlockAndUpdate(blockPos.relative(facing), SCPBlocks.parcelBlock.defaultBlockState());
-            ParcelBlock.ParcelEntity parcelEntity = (ParcelBlock.ParcelEntity) level.getBlockEntity(blockPos.relative(facing));
-            parcelEntity.mail = RANDOM_LOOT.getRandomItem();
-            parcelEntity.setChanged();
+            level.setBlockAndUpdate(blockPos.relative(facing), SCPBlocks.crate.defaultBlockState());
+            CrateEntity crateEntity = (CrateEntity) level.getBlockEntity(blockPos.relative(facing));
+            crateEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(itemHandler -> itemHandler.insertItem(0, RANDOM_LOOT.getRandomItem(), false));
+            crateEntity.setChanged();
         }
     }
 }

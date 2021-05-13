@@ -42,6 +42,7 @@ public class SCPTiles {
     public static TileEntityType<LootBlockEntity> lootBlockEntity;
     public static TileEntityType<MailboxEntity> mailboxEntity;
     public static TileEntityType<ParcelBlock.ParcelEntity> parcelEntityTile;
+    public static TileEntityType<dev.buildtool.scp.flaregun.CrateEntity> woodenCrate;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -67,6 +68,7 @@ public class SCPTiles {
         lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
         mailboxEntity = register(() -> new MailboxEntity(mailboxEntity), "mailbox", forgeRegistry, SCPBlocks.mailbox);
         parcelEntityTile = register(() -> new ParcelBlock.ParcelEntity(parcelEntityTile), "parcel", forgeRegistry, SCPBlocks.parcelBlock);
+        woodenCrate = register(() -> new dev.buildtool.scp.flaregun.CrateEntity(woodenCrate), "wooden_crate", forgeRegistry, SCPBlocks.crate);
     }
 
     @Deprecated
