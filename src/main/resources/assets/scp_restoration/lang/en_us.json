@@ -63,6 +63,7 @@
   "item.scp_restoration.wall_of_flesh_egg": "Wall of Flesh (SCP-2059)",
   "item.scp_restoration.patchwork_bear_egg": "The Bear with a Heart of Patchwork (SCP-2295)",
   "item.scp_restoration.stasis_cage": "Stasis Cage",
+  "item.scp_restoration.flare_gun": "A Flare Gun (SCP-1577)",
 
   "block.scp_restoration.pizza_box": "The Never-Ending Pizza Box (SCP-458)",
   "block.scp_restoration.red_ice": "Red Ice (SCP-009)",
@@ -201,6 +202,7 @@
   "block.scp_restoration.repeating_bomb": "Repeating Bomb (SCP-2948)",
   "block.scp_restoration.parcel": "Parcel",
   "block.scp_restoration.scp3821": "Stuck In the Mailroom (SCP-3821)",
+  "block.scp_restoration.wooden_crate": "Wooden Crate",
 
   "entity.scp_restoration.sculpture": "Sculpture",
   "entity.scp_restoration.shyguy": "Shyguy",
