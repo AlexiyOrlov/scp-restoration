@@ -6,6 +6,7 @@ import dev.buildtool.scp.BipedModel2;
 import dev.buildtool.scp.EntityRenderer2;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.crate.CrateContainer;
+import dev.buildtool.scp.flaregun.FlareModel;
 import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.humansrefuted.HumanRefutedModel;
 import dev.buildtool.scp.humansrefuted.SCP3199Egg;
@@ -147,6 +148,7 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.rocket, manager -> new EntityRenderer2<>(manager, new RocketModel2(), "rocket", false, 0));
         RenderingRegistry.registerEntityRenderingHandler(Entities.wallOfFlesh, manager -> new EntityRenderer2<>(manager, new SCP2059(), "scp2059", false, 1));
         RenderingRegistry.registerEntityRenderingHandler(Entities.patchworkBear, manager -> new EntityRenderer2<>(manager, new SCP2295(), "scp2295", false, 0.2f));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flare, manager -> new EntityRenderer2<>(manager, new FlareModel(), "rocket", false, 0));
     }
 
     public static List<String> getResourceText(String resourcePath) {

@@ -4,6 +4,7 @@ import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.Template2;
 import dev.buildtool.scp.displacingflashlight.Flashlight;
+import dev.buildtool.scp.flaregun.FlareGun;
 import dev.buildtool.scp.items.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
@@ -112,6 +113,7 @@ public class SCPItems {
         register(new FlameThrower(properties().defaultDurability(500), 0), "flamer", forgeRegistry);
         register(new Flashlight(scp().stacksTo(1)), "displacement_torch", forgeRegistry);
         register(new StasisCage(single()), "stasis_cage", forgeRegistry);
+        register(new FlareGun(scp()), "flare_gun", forgeRegistry);
     }
 
     private static Item.Properties scp(){

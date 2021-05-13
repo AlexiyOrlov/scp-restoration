@@ -10,22 +10,21 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 
 public class FlakShardModel extends EntityModel<FlakShard> {
 	private final ModelRenderer bb_main;
-	private final ModelRenderer cube_r1;
 
 	public FlakShardModel() {
-		texWidth = 16;
-		texHeight = 16;
+        texWidth = 16;
+        texHeight = 16;
 
-		bb_main = new ModelRenderer(this);
-		bb_main.setPos(0.0F, 24.0F, 0.0F);
+        bb_main = new ModelRenderer(this);
+        bb_main.setPos(0.0F, 24.0F, 0.0F);
 
 
-		cube_r1 = new ModelRenderer(this);
-		cube_r1.setPos(0.0F, -0.5F, 0.0F);
-		bb_main.addChild(cube_r1);
-		setRotationAngle(cube_r1, -0.7854F, -0.7854F, 0.0F);
-		cube_r1.texOffs(0, 0).addBox(-0.5F, -0.5F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
-	}
+        ModelRenderer cube_r1 = new ModelRenderer(this);
+        cube_r1.setPos(0.0F, -0.5F, 0.0F);
+        bb_main.addChild(cube_r1);
+        setRotationAngle(cube_r1, -0.7854F, -0.7854F, 0.0F);
+        cube_r1.texOffs(0, 0).addBox(-0.5F, -0.5F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+    }
 
 	@Override
 	public void setupAnim(FlakShard entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){

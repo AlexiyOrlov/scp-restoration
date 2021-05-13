@@ -3,6 +3,7 @@ package dev.buildtool.scp.events;
 import dev.buildtool.satako.Constants;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.chairs.Sittable;
+import dev.buildtool.scp.flaregun.Flare;
 import dev.buildtool.scp.human.ChaosInsurgencySoldier;
 import dev.buildtool.scp.human.FemaleCommoner;
 import dev.buildtool.scp.human.Human;
@@ -75,6 +76,7 @@ public class Entities {
     public static EntityType<ChaosInsurgencySoldier> chaosInsurgencySoldier;
     public static EntityType<WallOfFlesh> wallOfFlesh;
     public static EntityType<PatchworkBear> patchworkBear;
+    public static EntityType<Flare> flare;
 
     public static ItemGroup SCPs = new ItemGroup("scps") {
         @Override
@@ -160,12 +162,14 @@ public class Entities {
         flakShard = registerFastEntity("flak_shard", EntityClassification.MISC, FlakShard::new, 0.1f, 0.1f, forgeRegistry);
         rocket = registerFastEntity("rocket", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Rocket(p_create_1_, p_create_2_, 0, 1), 0.2f, 0.2f, forgeRegistry);
         forgeRegistry.registerAll(wallOfFlesh, patchworkBear);
+        flare = registerFastEntity("flare", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Flare(flare, p_create_2_, 2, 1), 0.1f, 0.1f, forgeRegistry);
     }
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent) {
         attributeCreationEvent.put(Entities.flakShard, MonsterEntity.createMonsterAttributes().build());
         attributeCreationEvent.put(Entities.rocket, MonsterEntity.createMonsterAttributes().build());
+        attributeCreationEvent.put(flare, MonsterEntity.createMonsterAttributes().build());
         attributeCreationEvent.put(Entities.maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
         attributeCreationEvent.put(Entities.femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
         attributeCreationEvent.put(Entities.maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());
