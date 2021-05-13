@@ -65,7 +65,7 @@ public class Utils {
         AxisAlignedBB box = entity.getBoundingBox().expandTowards(vec3d2.multiply(d, d, d)).expandTowards(1.0D, 1.0D, 1.0D);
         double e = d;
         e *= e;
-        EntityRayTraceResult entityHitResult = rayTraceEntities(entity, vec3d, vec3d3, box, (entityx) -> !entityx.isSpectator() && entityx.canBeCollidedWith(), e);
+        EntityRayTraceResult entityHitResult = rayTraceEntities(entity, vec3d, vec3d3, box, (entityx) -> !entityx.isSpectator() && entityx.isAttackable(), e);
         if (entityHitResult != null) {
             Entity hit = entityHitResult.getEntity();
             if (entity instanceof LivingEntity && ((LivingEntity) entity).canSee(hit)) {
