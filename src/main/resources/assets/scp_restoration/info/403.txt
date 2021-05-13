@@ -1,0 +1,2 @@
+SCP-403 is a visually unremarkable lighter. When held active up to 10 seconds, it charges up, and when released,
+creates an explosion proportionally strong to the time used. The explosion is harmless to the operator.
