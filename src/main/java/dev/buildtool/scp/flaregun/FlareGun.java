@@ -1,5 +1,6 @@
 package dev.buildtool.scp.flaregun;
 
+import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.events.Entities;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +28,7 @@ public class FlareGun extends Item {
         flare.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0, 1, 1);
         world.addFreshEntity(flare);
         world.playSound(playerEntity, playerEntity.blockPosition(), SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundCategory.PLAYERS, 1, 1);
-//        playerEntity.getCooldowns().addCooldown(this, Functions.minutesToTicks(10));
+        playerEntity.getCooldowns().addCooldown(this, Functions.secondsToTicks(3));
         return ActionResult.success(playerEntity.getItemInHand(hand));
     }
 }
