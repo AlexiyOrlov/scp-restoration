@@ -1,5 +1,6 @@
 0.8.1:
 fixed Shyguy sticking under blocks when attacking;
+restrict Stasis Cage to SCP mobs;
 
 0.8.0:
 changed Shyguy's model;

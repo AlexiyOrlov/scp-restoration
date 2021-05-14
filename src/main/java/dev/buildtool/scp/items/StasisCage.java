@@ -1,5 +1,6 @@
 package dev.buildtool.scp.items;
 
+import dev.buildtool.scp.SCPEntity;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -30,7 +31,7 @@ public class StasisCage extends Item {
 
     @Override
     public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerEntity, LivingEntity livingEntity, Hand hand) {
-        if (!stack.hasTag()) {
+        if (!stack.hasTag() && livingEntity instanceof SCPEntity) {
             CompoundNBT compoundNBT = livingEntity.serializeNBT();
             stack.getOrCreateTag().put(ENTITY, compoundNBT);
             stack.getTag().putString("Name", livingEntity.getName().getString());
