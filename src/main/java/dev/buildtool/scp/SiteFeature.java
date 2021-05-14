@@ -43,6 +43,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
         structures.add(new ResourceLocation(SCP.ID, "containers/173"));
         structures.add(new ResourceLocation(SCP.ID, "containers/124"));
         structures.add(new ResourceLocation(SCP.ID, "containers/207"));
+        structures.add(new ResourceLocation(SCP.ID, "containers/403"));
         structures.add(new ResourceLocation(SCP.ID, "containers/409"));
         structures.add(new ResourceLocation(SCP.ID, "containers/458"));
         structures.add(new ResourceLocation(SCP.ID, "containers/500"));
@@ -56,13 +57,16 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
         structures.add(new ResourceLocation(SCP.ID, "containers/1188"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1356"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1437"));
+        structures.add(new ResourceLocation(SCP.ID, "containers/1577"));
         structures.add(new ResourceLocation(SCP.ID, "containers/1811"));
         structures.add(new ResourceLocation(SCP.ID, "containers/2059"));
         structures.add(new ResourceLocation(SCP.ID, "containers/2295"));
+        structures.add(new ResourceLocation(SCP.ID, "containers/2398"));
         structures.add(new ResourceLocation(SCP.ID, "containers/2948"));
         structures.add(new ResourceLocation(SCP.ID, "containers/3008"));
         structures.add(new ResourceLocation(SCP.ID, "containers/3199"));
         structures.add(new ResourceLocation(SCP.ID, "containers/3521"));
+        structures.add(new ResourceLocation(SCP.ID, "containers/3821"));
         structures.add(new ResourceLocation(SCP.ID, "containers/5707"));
         generated = new UniqueList<>(structures.size());
     }
