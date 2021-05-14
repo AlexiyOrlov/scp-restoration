@@ -95,11 +95,9 @@ public class ShyguyEntity extends SCPEntity {
                 //crying
                 case 1:
                     if (aggroTime == 0) {
-                        {
-                            entityData.set(state, (byte) 2);
-                            cryInterval = 0;
-                            navigation = new ClimberPathNavigator(this, level);
-                        }
+                        entityData.set(state, (byte) 2);
+                        cryInterval = 0;
+                        navigation = new ClimberPathNavigator(this, level);
                     } else {
                         aggroTime--;
                         if (cryInterval == 0) {
@@ -130,7 +128,10 @@ public class ShyguyEntity extends SCPEntity {
                             });
                         }
 
+                    } else if (!level.isEmptyBlock(blockPosition().above(3))) {
+                        level.destroyBlock(blockPosition().above(3), true);
                     }
+
                     watching.removeIf(livingEntity -> !livingEntity.isAlive());
                     if (watching.isEmpty()) {
                         entityData.set(state, (byte) 0);
