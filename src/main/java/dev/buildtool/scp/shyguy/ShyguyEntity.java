@@ -6,9 +6,7 @@ import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.events.Sounds;
 import dev.buildtool.scp.human.Human;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -208,4 +206,12 @@ public class ShyguyEntity extends SCPEntity {
     State getState() {
         return State.values()[entityData.get(state)];
     }
+
+
+    @Override
+    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
+        return p_213348_2_.height;
+    }
+
+
 }
