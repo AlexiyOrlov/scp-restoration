@@ -70,8 +70,8 @@ public class OldAIBlock extends BlockHorizontal {
     }
 
     @Override
-    public void neighborChanged(BlockState state, World world, BlockPos blockPos, Block p_220069_4_, BlockPos p_220069_5_, boolean p_220069_6_) {
-        super.neighborChanged(state, world, blockPos, p_220069_4_, p_220069_5_, p_220069_6_);
+    public void neighborChanged(BlockState state, World world, BlockPos blockPos, Block p_220069_4_, BlockPos from, boolean p_220069_6_) {
+        super.neighborChanged(state, world, blockPos, p_220069_4_, from, p_220069_6_);
         if (world.hasNeighborSignal(blockPos)) {
             state = state.cycle(active);
             world.setBlockAndUpdate(blockPos, state);
@@ -80,6 +80,6 @@ public class OldAIBlock extends BlockHorizontal {
 
     @Override
     public boolean shouldCheckWeakPower(BlockState state, IWorldReader world, BlockPos pos, Direction side) {
-        return true;
+        return true; //isn't called
     }
 }
