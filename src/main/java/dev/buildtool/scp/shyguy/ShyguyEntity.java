@@ -1,7 +1,7 @@
 package dev.buildtool.scp.shyguy;
 
 import dev.buildtool.satako.Functions;
-import dev.buildtool.satako.RandomizedList;
+import dev.buildtool.satako.UniqueList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.events.Sounds;
@@ -41,7 +41,7 @@ public class ShyguyEntity extends SCPEntity {
     List<UUID> targets;
     int aggroTime;
     int cryInterval;
-    RandomizedList<LivingEntity> watching = new RandomizedList<>();
+    UniqueList<LivingEntity> watching = new UniqueList<>();
     static public final DataParameter<Byte> state = EntityDataManager.defineId(ShyguyEntity.class, DataSerializers.BYTE);
     static final Predicate<PlayerEntity> playerEntityPredicate = playerEntity -> !playerEntity.isCreative() && !playerEntity.isSpectator();
 
@@ -78,7 +78,7 @@ public class ShyguyEntity extends SCPEntity {
         super.tick();
         if (!level.isClientSide) {
             Byte aByte = entityData.get(ShyguyEntity.state);
-            List<LivingEntity> watchers = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(blockPosition()).inflate(getRange()), pr -> Functions.isInSightOf(this, pr, 0.1f));
+            List<LivingEntity> watchers = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(blockPosition()).inflate(getRange()), pr -> Functions.isInSightOf(this, pr, 0.2f));
             watchers.remove(this);
             watchers.removeIf(livingEntity -> !(livingEntity instanceof PlayerEntity) && !(livingEntity instanceof Human));
             watchers.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR.negate()::test);
@@ -97,7 +97,7 @@ public class ShyguyEntity extends SCPEntity {
                     if (aggroTime == 0) {
                         entityData.set(state, (byte) 2);
                         cryInterval = 0;
-                        navigation = new ClimberPathNavigator(this, level);
+//                        navigation = new ClimberPathNavigator(this, level);
                     } else {
                         aggroTime--;
                         if (cryInterval == 0) {
@@ -118,18 +118,18 @@ public class ShyguyEntity extends SCPEntity {
                         setTarget(null);
                         watching.remove(getTarget());
                     }
-                    if (getTarget() != null && getNavigation().isStuck()) {
+                    if (getTarget() != null) {
                         Direction direction = getDirection();
                         BlockPos pos = blockPosition().above();
                         if (getTarget().getY() <= getY()) {
-                            Stream.of(pos.relative(direction), pos.below().relative(direction)).forEach(pos1 -> {
+                            Stream.of(pos.relative(direction), pos.below().relative(direction), pos.relative(direction).above()).forEach(pos1 -> {
                                 if (level.getBlockState(pos1).getDestroySpeed(level, pos1) != -1)
                                     level.destroyBlock(pos1, true);
                             });
+                        } else if (getTarget().getY() > getY() + 3 && !level.isEmptyBlock(blockPosition().above(3))) {
+                            level.destroyBlock(blockPosition().above(3), true);
                         }
 
-                    } else if (!level.isEmptyBlock(blockPosition().above(3))) {
-                        level.destroyBlock(blockPosition().above(3), true);
                     }
 
                     watching.removeIf(livingEntity -> !livingEntity.isAlive());
