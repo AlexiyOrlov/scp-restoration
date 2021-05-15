@@ -1,6 +1,7 @@
 0.8.1:
-fixed Shyguy sticking under blocks when attacking;
+changed Shyguy' behaviour;
 restrict Stasis Cage to SCP mobs;
+changed max chamber damage to 0.9;
 
 0.8.0:
 changed Shyguy's model;
