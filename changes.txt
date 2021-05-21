@@ -2,6 +2,7 @@
 changed Shyguy' behaviour;
 restrict Stasis Cage to SCP mobs;
 changed max chamber damage to 0.9;
+Escalating lighter will automatically create explosion if held up to maximum time.
 
 0.8.0:
 changed Shyguy's model;

@@ -41,4 +41,11 @@ public class Lighter extends Item {
                 world.explode(livingEntity, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), duration / 10f, Explosion.Mode.DESTROY);
         }
     }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack itemStack, World world, LivingEntity livingEntity) {
+        if (!world.isClientSide)
+            world.explode(livingEntity, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), getUseDuration(itemStack) / 10f, Explosion.Mode.DESTROY);
+        return itemStack;
+    }
 }
