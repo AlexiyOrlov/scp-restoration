@@ -1,8 +1,9 @@
 0.8.1:
-changed Shyguy' behaviour;
+changed Shyguy's behaviour;
 restrict Stasis Cage to SCP mobs;
 changed max chamber damage to 0.9;
 Escalating lighter will automatically create explosion if held up to maximum time.
+Cola bottles add insomnia to the player;
 
 0.8.0:
 changed Shyguy's model;

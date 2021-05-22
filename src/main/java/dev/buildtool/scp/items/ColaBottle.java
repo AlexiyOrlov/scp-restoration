@@ -2,6 +2,7 @@ package dev.buildtool.scp.items;
 
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
+import dev.buildtool.scp.events.SCPEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -13,6 +14,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+
+import java.util.Collections;
 
 @SCPObject(number = "207", classification = SCPObject.Classification.SAFE, name = "Cola Bottles")
 public class ColaBottle extends Item {
@@ -41,6 +44,9 @@ public class ColaBottle extends Item {
         entityLiving.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, Functions.minutesToTicks(10), 2));
         entityLiving.addEffect(new EffectInstance(Effects.JUMP, Functions.minutesToTicks(10), 2));
         entityLiving.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, Functions.minutesToTicks(10), 2));
+        EffectInstance insomnia = new EffectInstance(SCPEffects.insomnia, Functions.minutesToTicks(10));
+        insomnia.setCurativeItems(Collections.emptyList());
+        entityLiving.addEffect(insomnia);
         stack.shrink(1);
         return stack;
     }

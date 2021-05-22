@@ -10,6 +10,7 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber
@@ -82,7 +84,10 @@ public class Events {
     @SubscribeEvent
     public static void trySleep(PlayerSleepInBedEvent playerSleepInBedEvent) {
         PlayerEntity playerEntity = playerSleepInBedEvent.getPlayer();
-        //TODO insomnia from scp-207
+        if (playerEntity.hasEffect(SCPEffects.insomnia)) {
+            playerSleepInBedEvent.setResult(PlayerEntity.SleepResult.OTHER_PROBLEM);
+            playerEntity.sendMessage(new TranslationTextComponent("scp.insomnia.active"), UUID.randomUUID());
+        }
     }
 
     @SubscribeEvent

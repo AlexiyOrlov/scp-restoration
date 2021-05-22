@@ -15,6 +15,7 @@ public class SCPEffects {
 
     public static BananaDeathEffect bananaDeathEffect;
     public static Radiation radiation;
+    public static Effect insomnia;
     @SuppressWarnings("unused")
     @SubscribeEvent
     public static void registerEffects(RegistryEvent.Register<Effect> effectRegister) {
@@ -23,5 +24,8 @@ public class SCPEffects {
         forgeRegistry.register(bananaDeathEffect.setRegistryName(SCP.ID, "bananas"));
         radiation = new Radiation(EffectType.HARMFUL, 0x42AF35);
         forgeRegistry.register(radiation.setRegistryName(SCP.ID, "radiation"));
+        insomnia = new Effect(EffectType.HARMFUL, 0xff0000) {
+        };
+        forgeRegistry.register(insomnia.setRegistryName(SCP.ID, "insomnia"));
     }
 }

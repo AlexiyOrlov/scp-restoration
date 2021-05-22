@@ -231,6 +231,7 @@
 
   "effect.scp_restoration.bananas": "Banana overdose",
   "effect.scp_restoration.radiation": "Radiation",
+  "effect.scp_restoration.insomnia": "Insomnia",
 
   "scp_restoration.cls.busy": "Clockworks is processing",
   "scp_restoration.too.big.value": "The value is too big",
@@ -288,5 +289,6 @@
   "scp.target.occupied": "Target position is occupied",
   "scp.too.far": "Too far",
   "scp.reset": "Reset position",
-  "scp.position.not.loaded": "Target position is not loaded"
+  "scp.position.not.loaded": "Target position is not loaded",
+  "scp.insomnia.active": "You have insomnia"
 }
