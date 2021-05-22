@@ -1,16 +1,12 @@
 package dev.buildtool.scp.weapons;
 
-import dev.buildtool.satako.Functions;
+import dev.buildtool.scp.events.Entities;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ArmorStandEntity;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
@@ -21,31 +17,18 @@ public class FlameThrower extends Firearm {
 
     @Override
     public SoundEvent fireSound() {
-        return null;
+        return SoundEvents.FIRE_AMBIENT;
     }
 
     @Override
     public void shoot(World world, LivingEntity shooter, Hand hand, @Nullable LivingEntity target) {
-        for (LivingEntity livingentity : shooter.level.getEntitiesOfClass(LivingEntity.class, shooter.getBoundingBox().inflate(5.0D, 0.25D, 5.0D))) {
-            if (livingentity != shooter && Functions.isInSightOf(livingentity, shooter, 45f) && !shooter.isAlliedTo(livingentity) && (!(livingentity instanceof ArmorStandEntity) || !((ArmorStandEntity) livingentity).isMarker()) && shooter.distanceToSqr(livingentity) < 25.0D) {
-                livingentity.knockback(0.4F, MathHelper.sin(shooter.yRot * ((float) Math.PI / 180F)), -MathHelper.cos(shooter.yRot * ((float) Math.PI / 180F)));
-                livingentity.hurt(DamageSource.ON_FIRE, 2);
-                livingentity.setSecondsOnFire(3);
-            }
-        }
-        shooter.level.playSound(null, shooter.getX(), shooter.getY(), shooter.getZ(), SoundEvents.FIRE_AMBIENT, shooter.getSoundSource(), 1.0F, 1.0F);
-        double d0 = -MathHelper.sin(shooter.yRot * ((float) Math.PI / 180F));
-        double d1 = MathHelper.cos(shooter.yRot * ((float) Math.PI / 180F));
-        if (shooter.level instanceof ServerWorld) {
-            {
-                ServerWorld serverWorld = (ServerWorld) shooter.level;
-                double signx = Math.signum(d0);
-                double signz = -Math.signum(d1);
-                //TODO
-                for (int i = 0; i < 20; i++) {
-                    serverWorld.sendParticles(ParticleTypes.FLAME, shooter.getX() + d0 + signx * random.nextInt(5), shooter.getY() + shooter.getEyeHeight() - 0.2, shooter.getZ() + d1 + signz * random.nextInt(5), 0, d0, 0, d1, 0);
-                }
-            }
+        Vector3d vector3d = shooter.getLookAngle();
+        for (int i = 0; i < 12; i++) {
+            Flame flakShard = Entities.flame.create(world);
+            flakShard.setPos(shooter.getX() - vector3d.x, shooter.getEyeY() - 2 / 16d, shooter.getZ() - vector3d.z);
+            flakShard.shootFromRotation(shooter, shooter.xRot, shooter.yRot + random.nextInt(32) - 16, 0, 2, 1);
+            flakShard.setOwner(shooter);
+            world.addFreshEntity(flakShard);
         }
     }
 }

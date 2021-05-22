@@ -28,14 +28,18 @@ public abstract class Projectile extends InanimateEntity {
    protected boolean leftOwner;
    protected int damage;
    protected double lightness;
+   protected int invulAfterImpact;
 
    /**
-    * @param lightness 0 to 1
+    * @param lightness                  0 to 1
+    * @param invulnerabilityAfterImpact
     */
-   public Projectile(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {
+   public Projectile(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness, int invulnerabilityAfterImpact) {
       super(p_i231584_1_, p_i231584_2_);
-      this.damage=damage_;
+      setSilent(true);
+      this.damage = damage_;
       this.lightness = lightness;
+      this.invulAfterImpact = invulnerabilityAfterImpact;
    }
 
    public void setOwner(@Nullable Entity entity) {
@@ -254,7 +258,7 @@ public abstract class Projectile extends InanimateEntity {
       Entity traced = entityRayTraceResult.getEntity();
       if(traced !=owner && traced.getClass()!=getClass()) {
          traced.hurt(DamageSource.mobAttack((LivingEntity) owner), damage);
-         traced.invulnerableTime = 0;
+         traced.invulnerableTime = invulAfterImpact;
          if (!level.isClientSide)
             remove();
       }
@@ -295,14 +299,24 @@ public abstract class Projectile extends InanimateEntity {
    }
 
    protected static float lerpRotation(float p_234614_0_, float p_234614_1_) {
-      while(p_234614_1_ - p_234614_0_ < -180.0F) {
+      while (p_234614_1_ - p_234614_0_ < -180.0F) {
          p_234614_0_ -= 360.0F;
       }
 
-      while(p_234614_1_ - p_234614_0_ >= 180.0F) {
+      while (p_234614_1_ - p_234614_0_ >= 180.0F) {
          p_234614_0_ += 360.0F;
       }
 
       return MathHelper.lerp(0.2F, p_234614_0_, p_234614_1_);
+   }
+
+   @Override
+   public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+      return false;
+   }
+
+   @Override
+   protected boolean isMovementNoisy() {
+      return false;
    }
 }

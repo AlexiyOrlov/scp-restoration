@@ -39,7 +39,7 @@ public class Flare extends Projectile {
      * @param lightness    0 to 1
      */
     public Flare(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness) {
-        super(p_i231584_1_, p_i231584_2_, damage_, lightness);
+        super(p_i231584_1_, p_i231584_2_, damage_, lightness, 0);
         noCulling = true;
     }
 

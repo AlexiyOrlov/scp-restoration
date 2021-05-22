@@ -31,6 +31,7 @@ import dev.buildtool.scp.theteacher.TheTeacher2;
 import dev.buildtool.scp.ticklemonster.TickleMonster2;
 import dev.buildtool.scp.wallofflesh.SCP2059;
 import dev.buildtool.scp.weapons.FlakShardModel;
+import dev.buildtool.scp.weapons.FlameModel;
 import dev.buildtool.scp.weapons.RocketModel2;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -81,37 +82,6 @@ public class ClientModEvents {
         });
         RenderingRegistry.registerEntityRenderingHandler(Entities.humanRefuted, manager -> new EntityRenderer2<>(manager, new HumanRefutedModel(1), "scp3199", false, 0.7f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.humanRefutedChild, manager -> new EntityRenderer2<>(manager, new HumanRefutedModel(0.5f), "scp3199", false, 0.3f));
-//        RenderingRegistry.registerEntityRenderingHandler(Entities.shyguyEntity, manager -> new EntityRenderer2(manager, new ShyGuyModelIdle(), "shyguy-idle", false, 0.2f) {
-//            final ShyGuyModelCrying crying = new ShyGuyModelCrying();
-//            final ShyGuyModelActive active = new ShyGuyModelActive();
-//            final ShyGuyModelIdle idle = new ShyGuyModelIdle();
-//            final ResourceLocation textureCrying = new ResourceLocation(SCP.ID, "textures/entity/shyguy2.png");
-//            final ResourceLocation textureActive = new ResourceLocation(SCP.ID, "textures/entity/shyguy-active.png");
-//
-//            @Override
-//            public void render(LivingEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-//                ShyguyEntity shyguyEntity = (ShyguyEntity) entityIn;
-//                byte state = shyguyEntity.getEntityData().get(ShyguyEntity.state);
-//                if (state == ShyguyEntity.State.ACTIVE.aByte)
-//                    model = active;
-//                else if (state == ShyguyEntity.State.CRYING.aByte)
-//                    model = crying;
-//                else
-//                    model = idle;
-//                super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-//            }
-//
-//            @Override
-//            public ResourceLocation getTextureLocation(LivingEntity entity) {
-//                ShyguyEntity shyguyEntity = (ShyguyEntity) entity;
-//                byte state = shyguyEntity.getEntityData().get(ShyguyEntity.state);
-//                if (state == ShyguyEntity.State.ACTIVE.aByte)
-//                    return textureActive;
-//                else if (state == ShyguyEntity.State.CRYING.aByte)
-//                    return textureCrying;
-//                return super.getTextureLocation(entity);
-//            }
-//        });
         RenderingRegistry.registerEntityRenderingHandler(Entities.shyguyEntity, manager -> new EntityRenderer2<>(manager, new SCP096(), "scp096", false, 0.2f));
 
         RenderingRegistry.registerEntityRenderingHandler(Entities.theTeacher, manager -> new EntityRenderer2<>(manager, new TheTeacher2(), "the_teacher", false, 0));
@@ -149,6 +119,7 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.wallOfFlesh, manager -> new EntityRenderer2<>(manager, new SCP2059(), "scp2059", false, 1));
         RenderingRegistry.registerEntityRenderingHandler(Entities.patchworkBear, manager -> new EntityRenderer2<>(manager, new SCP2295(), "scp2295", false, 0.2f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.flare, manager -> new EntityRenderer2<>(manager, new FlareModel(), "rocket", false, 0));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flame, manager -> new EntityRenderer2<>(manager, new FlameModel(), "flak_shard", false, 0));
     }
 
     public static List<String> getResourceText(String resourcePath) {
