@@ -24,11 +24,11 @@ public class FlameThrower extends Firearm {
     public void shoot(World world, LivingEntity shooter, Hand hand, @Nullable LivingEntity target) {
         Vector3d vector3d = shooter.getLookAngle();
         for (int i = 0; i < 12; i++) {
-            Flame flakShard = Entities.flame.create(world);
-            flakShard.setPos(shooter.getX() - vector3d.x, shooter.getEyeY() - 2 / 16d, shooter.getZ() - vector3d.z);
-            flakShard.shootFromRotation(shooter, shooter.xRot, shooter.yRot + random.nextInt(32) - 16, 0, 2, 1);
-            flakShard.setOwner(shooter);
-            world.addFreshEntity(flakShard);
+            Flame flame = Entities.flame.create(world);
+            flame.setPos(shooter.getX() - vector3d.x, shooter.getEyeY() - 2 / 16d, shooter.getZ() - vector3d.z);
+            flame.shootFromRotation(shooter, shooter.xRot, shooter.yRot + random.nextInt(32) - 16, 0, 2, 1);
+            flame.setOwner(shooter);
+            world.addFreshEntity(flame);
         }
     }
 }

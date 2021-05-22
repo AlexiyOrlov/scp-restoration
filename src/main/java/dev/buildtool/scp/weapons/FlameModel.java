@@ -29,14 +29,13 @@ public class FlameModel extends EntityModel<Flame> {
 
     @Override
     public void setupAnim(Flame entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-//		entity.level.addParticle(new BlockParticleData(ParticleTypes.FALLING_DUST, Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState()),entity.getX(),entity.getY(),entity.getZ(),0,0,0);
         entity.level.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
     }
 
     @Override
     public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-//		bb_main.render(matrixStack, buffer, packedLight, packedOverlay);
-    }
+
+	}
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
