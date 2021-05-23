@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dFd",
+    "IGI",
+    "IBI"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:lava_bucket"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "G": {
+      "item": "scp_restoration:gadget"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "scp_restoration:flamer",
+    "count": 1
+  }
+}

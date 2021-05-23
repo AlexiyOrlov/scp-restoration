@@ -271,7 +271,7 @@ public class SCP {
                 });
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, new ForgeConfigSpec.Builder().configure(builder -> {
-            Structures.rarity = builder.comment("Higher rarity means less chambers").define("SCP chamber rarity", 240);
+            Structures.rarity = builder.comment("Higher rarity means less chambers").define("SCP chamber rarity", 200);
             writeClockworksRecipes = builder.define("Create a file listing all Clockworks recipes", true);
             toothBrushCanBreakUnbreakable = builder.define("SCP-063 can break unbreakable blocks", false);
             chamberDamage = builder.comment("Amount of damage appplied to outer walls of generated SCP chambers").defineInRange("SCP chamber damage", 0.0, 0.0, 0.9);
