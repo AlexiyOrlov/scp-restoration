@@ -5,6 +5,7 @@ changed max chamber damage to 0.9;
 Escalating lighter will automatically create explosion if held up to maximum time.
 Cola bottles add insomnia to the player;
 made a Flamethrower;
+mobs can walk on rails now;
 
 0.8.0:
 changed Shyguy's model;
