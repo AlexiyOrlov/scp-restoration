@@ -84,7 +84,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
             BlockPos topPos = seedReader.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos.Mutable(blockPos.getX(), 64, blockPos.getZ()));
             TemplateManager structureManager = serverWorld.getStructureManager();
 
-            Optional<ResourceLocation> optional = structures.stream().filter(resourceLocation1 -> !generated.contains(resourceLocation1)).findAny();
+            Optional<ResourceLocation> optional = structures.stream().filter(resourceLocation1 -> !generated.contains(resourceLocation1) && !SCP.scpBlacklist.contains(resourceLocation1)).findAny();
             if (optional.isPresent()) {
                 RegistryKey<World> dimensionTypeRegistryKey = serverWorld.dimension();
                 ResourceLocation resourceLocation = optional.get();

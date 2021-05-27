@@ -45,6 +45,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Mod(SCP.ID)
@@ -57,6 +64,7 @@ public class SCP {
     public static ForgeConfigSpec.ConfigValue<Double> chamberDamage;
     public static ForgeConfigSpec.IntValue chaosSoldierWeight;
     private static final String networkProtocolVersion = "2";
+    public static List<ResourceLocation> scpBlacklist = new ArrayList<>(40);
     public SCP() {
         int message = 0;
         channel = NetworkRegistry.newSimpleChannel(new ResourceLocation(ID, "channel1"), () -> networkProtocolVersion, s -> s.equals(networkProtocolVersion), s -> s.equals(networkProtocolVersion));
@@ -278,6 +286,24 @@ public class SCP {
             chaosSoldierWeight = builder.defineInRange("Spawning frequency of Chaos Insurgency soldiers", 2, 0, 20);
             return builder.build();
         }).getRight());
+        Path scpBlacklist = Paths.get("config", "scp-blacklist.ini");
+        if (Files.notExists(scpBlacklist)) {
+            try {
+                Files.createFile(scpBlacklist);
+                Files.write(scpBlacklist, Collections.singleton("# One SCP number per line"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            List<String> strings = Files.readAllLines(scpBlacklist);
+            strings.forEach(s -> {
+                if (!s.startsWith("#"))
+                    SCP.scpBlacklist.add(new ResourceLocation(ID, "containers/" + s.trim()));
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

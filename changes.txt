@@ -6,6 +6,7 @@ Escalating lighter will automatically create explosion if held up to maximum tim
 Cola bottles add insomnia to the player;
 made a Flamethrower;
 mobs can walk on rails now;
+added SCP blacklist;
 
 0.8.0:
 changed Shyguy's model;
