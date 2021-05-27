@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShootableItem;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.IWorld;
@@ -19,6 +20,7 @@ import java.util.function.Predicate;
 public class SCPEntity extends CreatureEntity {
     public SCPEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
+        setPathfindingMalus(PathNodeType.UNPASSABLE_RAIL, 0);
     }
 
     public double getRange() {
