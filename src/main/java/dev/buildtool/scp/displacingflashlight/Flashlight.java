@@ -48,7 +48,6 @@ public class Flashlight extends Item {
             List<BlockPos> blockPosSet = Arrays.stream(previosu).mapToObj(BlockPos::of).collect(Collectors.toList());
             List<BlockState> blockStateList = Arrays.stream(previousblock).mapToObj(Block::stateById).collect(Collectors.toList());
             for (int i = 0; i < blockPosSet.size(); i++) {
-//                world.setBlock(blockPosSet.get(i), blockStateList.get(i), 0);
                 Utils.setBlockstateSilently(world, blockStateList.get(i), blockPosSet.get(i));
             }
             stack.getTag().remove(DISPLACED_POSITIONS);
@@ -85,7 +84,6 @@ public class Flashlight extends Item {
                     BlockPos resultBlockPos = blockRayTraceResult.getBlockPos();
                     BlockState blockState = world.getBlockState(resultBlockPos);
                     if (Functions.canReplaceBlock(resultBlockPos, world) && !world.isEmptyBlock(resultBlockPos)) {
-//                        world.destroyBlock(resultBlockPos, false);
                         Utils.setBlockstateSilently(world, Blocks.AIR.defaultBlockState(), resultBlockPos);
                         toDisplace.add(resultBlockPos);
                         toDisplace2.add(blockState);
