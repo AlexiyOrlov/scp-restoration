@@ -50,7 +50,10 @@ public class YoungGirl extends SCPEntity {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (source.getDirectEntity() instanceof LivingEntity) {
+        if (source.getEntity() instanceof LivingEntity) {
+            source.getEntity().hurt(source, amount);
+            return false;
+        } else if (source.getDirectEntity() instanceof LivingEntity) {
             source.getDirectEntity().hurt(source, amount);
             return false;
         }
