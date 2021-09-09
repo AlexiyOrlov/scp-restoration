@@ -18,6 +18,7 @@ import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -68,6 +69,7 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
         structures.add(new ResourceLocation(SCP.ID, "containers/3521"));
         structures.add(new ResourceLocation(SCP.ID, "containers/3821"));
         structures.add(new ResourceLocation(SCP.ID, "containers/5707"));
+        Collections.shuffle(structures);
         generated = new UniqueList<>(structures.size());
     }
 
