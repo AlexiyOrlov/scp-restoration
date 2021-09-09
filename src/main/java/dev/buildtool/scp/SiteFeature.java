@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class SiteFeature extends Feature<NoFeatureConfig> {
     public RandomizedList<ResourceLocation> structures;
     public UniqueList<ResourceLocation> generated;
-    public dev.buildtool.scp.SCPWorldData SCPWorldData;
+    public dev.buildtool.scp.SCPWorldData scpWorldData;
 
     public SiteFeature() {
         super(NoFeatureConfig.CODEC);
@@ -88,13 +88,13 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
             if (optional.isPresent()) {
                 RegistryKey<World> dimensionTypeRegistryKey = serverWorld.dimension();
                 ResourceLocation resourceLocation = optional.get();
-                if (SCPWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
-                    SCPWorldData = Utils.getData(serverWorld);
-                    generated.addAll(SCPWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
+                if (scpWorldData == null && dimensionTypeRegistryKey == World.OVERWORLD) {
+                    scpWorldData = Utils.getData(serverWorld);
+                    generated.addAll(scpWorldData.generatedSCPs.stream().map(ResourceLocation::new).collect(Collectors.toList()));
                     SCP.logger.info("Previously generated: {}: {}", generated.size(), generated);
                 }
 
-                if (SCPWorldData != null && dimensionTypeRegistryKey == World.OVERWORLD) {
+                if (scpWorldData != null && dimensionTypeRegistryKey == World.OVERWORLD) {
                     if (generated.contains(resourceLocation))
                         return false;
                     Template template = structureManager.get(resourceLocation);
@@ -108,12 +108,12 @@ public class SiteFeature extends Feature<NoFeatureConfig> {
                     template2.placeInWorld(seedReader, topPos, new PlacementSettings().setRotation(rotation), random);
                     SCP.logger.info("Generated {} at {}", resourceLocation.getPath(), topPos);
                     generated.add(resourceLocation);
-                    SCPWorldData.generatedSCPs.add(resourceLocation.toString());
+                    scpWorldData.generatedSCPs.add(resourceLocation.toString());
                     if (generated.size() == structures.size()) {
                         generated.clear();
-                        SCPWorldData.generatedSCPs.clear();
+                        scpWorldData.generatedSCPs.clear();
                     }
-                    SCPWorldData.setDirty(true);
+                    scpWorldData.setDirty(true);
                     return true;
                 }
             }

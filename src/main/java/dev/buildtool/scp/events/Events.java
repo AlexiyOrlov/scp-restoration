@@ -92,7 +92,7 @@ public class Events {
 
     @SubscribeEvent
     public static void onServerStop(FMLServerStoppedEvent serverStoppedEvent) {
-        Structures.scpSite.SCPWorldData = null;
+        Structures.scpSite.scpWorldData = null;
     }
 
 //    @SubscribeEvent
