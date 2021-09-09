@@ -1,3 +1,6 @@
+0.8.2:
+fixed Young Girl getting damaged by projectiles;
+
 0.8.1:
 changed Shyguy's behaviour;
 restrict Stasis Cage to SCP mobs;
