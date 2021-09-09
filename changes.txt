@@ -1,6 +1,7 @@
 0.8.2:
 fixed Young Girl getting damaged by projectiles with a shooter present;
 SCP structures now generate in a random order instead of sequential;
+added SCP-117;
 
 0.8.1:
 changed Shyguy's behaviour;
