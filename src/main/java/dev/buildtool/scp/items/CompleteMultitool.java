@@ -26,10 +26,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
-
-import javax.annotation.Nullable;
-import java.util.Set;
 
 @SCPObject(name = "Complete Multitool",number ="117",classification = SCPObject.Classification.SAFE)
 public class CompleteMultitool extends Item {
@@ -44,6 +40,8 @@ public class CompleteMultitool extends Item {
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if(random.nextBoolean())
+            attacker.hurt(DamageSource.GENERIC,1);
         stack.hurtAndBreak(1, attacker, (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         return true;
     }
@@ -64,6 +62,8 @@ public class CompleteMultitool extends Item {
                 useContext.getItemInHand().hurtAndBreak(1, playerentity, (p_219999_1_) -> {
                     p_219999_1_.broadcastBreakEvent(useContext.getHand());
                 });
+                if(random.nextBoolean())
+                    playerentity.hurt(DamageSource.GENERIC,1);
             }
 
             return ActionResultType.sidedSuccess(world.isClientSide());
@@ -79,6 +79,8 @@ public class CompleteMultitool extends Item {
                     itemstack.hurtAndBreak(1, playerentity, (p_219998_1_) -> {
                         p_219998_1_.broadcastBreakEvent(useContext.getHand());
                     });
+                    if(random.nextBoolean())
+                        playerentity.hurt(DamageSource.GENERIC,1);
                 }
 
                 return ActionResultType.sidedSuccess(world.isClientSide());
@@ -97,7 +99,8 @@ public class CompleteMultitool extends Item {
 
     @Override
     public boolean mineBlock(ItemStack p_179218_1_, World p_179218_2_, BlockState p_179218_3_, BlockPos p_179218_4_, LivingEntity user) {
-        user.hurt(DamageSource.GENERIC,1);
+        if(random.nextBoolean())
+            user.hurt(DamageSource.GENERIC,1);
         return super.mineBlock(p_179218_1_, p_179218_2_, p_179218_3_, p_179218_4_, user);
     }
 }
