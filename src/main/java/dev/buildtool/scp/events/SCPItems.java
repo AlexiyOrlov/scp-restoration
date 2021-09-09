@@ -25,6 +25,9 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -49,7 +52,7 @@ public class SCPItems {
     static public Item banana, rubberDuck, gadget;
 
     public static SCPTemplate scpTemplate;
-    static StasisCage stasisCage;
+    static Item completeMultitool;
 
     static ItemGroup templates = new ItemGroup("scp.templates") {
         @Override
@@ -116,6 +119,8 @@ public class SCPItems {
         register(new FlareGun(scp().stacksTo(1)), "flare_gun", forgeRegistry);
         register(new HomeRunBat(scp().stacksTo(1)), "homerun_bat", forgeRegistry);
         register(new Lighter(scp().stacksTo(1)), "escal_lighter", forgeRegistry);
+
+        register(new CompleteMultitool(scp().stacksTo(1).addToolType(ToolType.AXE,4).addToolType(ToolType.HOE,4).addToolType(ToolType.SHOVEL,4).addToolType(ToolType.PICKAXE,4)),"complete_multitool",forgeRegistry);
     }
 
     private static Item.Properties scp(){
