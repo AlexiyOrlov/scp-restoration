@@ -61,7 +61,7 @@ public class UncleSam extends SCPEntity {
         if (stack.getItem() == Items.ROTTEN_FLESH) {
             setItemInHand(Hand.OFF_HAND, stack.copy());
             if (level.isClientSide)
-                player.sendMessage(new TranslationTextComponent("scp.job.will.be.done.in").append(" " + Functions.ticksToSeconds(stack.getCount() * 60)).append(new TranslationTextComponent(" scp.seconds")), getUUID());
+                player.sendMessage(new TranslationTextComponent("scp.job.will.be.done.in").append(" " + Functions.ticksToSeconds(stack.getCount() * 60)).append(" ").append(new TranslationTextComponent("scp.seconds")), getUUID());
             stack.shrink(stack.getCount());
             level.playSound(player, getX(), getY(), getZ(), SoundEvents.ITEM_PICKUP, SoundCategory.NEUTRAL, 1, 0.6f);
             return ActionResultType.SUCCESS;
