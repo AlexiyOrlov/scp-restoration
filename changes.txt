@@ -1,5 +1,5 @@
 0.8.2:
-fixed Young Girl getting damaged by projectiles;
+fixed Young Girl getting damaged by projectiles with a shooter present;
 SCP structures now generate in a random order instead of straight;
 
 0.8.1:
