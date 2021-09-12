@@ -7,7 +7,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -30,6 +29,7 @@ import net.minecraft.world.World;
 @SCPObject(name = "Complete Multitool",number ="117",classification = SCPObject.Classification.SAFE)
 public class CompleteMultitool extends Item {
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
+    private final int damageChance = 3;
 
     public CompleteMultitool(Properties p_i48487_1_) {
         super(p_i48487_1_);
@@ -40,8 +40,8 @@ public class CompleteMultitool extends Item {
     }
 
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if(random.nextBoolean())
-            attacker.hurt(DamageSource.GENERIC,1);
+        if (random.nextInt(damageChance) == 0)
+            attacker.hurt(DamageSource.GENERIC, 1);
         stack.hurtAndBreak(1, attacker, (entity) -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         return true;
     }
@@ -62,8 +62,8 @@ public class CompleteMultitool extends Item {
                 useContext.getItemInHand().hurtAndBreak(1, playerentity, (p_219999_1_) -> {
                     p_219999_1_.broadcastBreakEvent(useContext.getHand());
                 });
-                if(random.nextBoolean())
-                    playerentity.hurt(DamageSource.GENERIC,1);
+                if (random.nextInt(damageChance) == 0)
+                    playerentity.hurt(DamageSource.GENERIC, 1);
             }
 
             return ActionResultType.sidedSuccess(world.isClientSide());
@@ -79,8 +79,8 @@ public class CompleteMultitool extends Item {
                     itemstack.hurtAndBreak(1, playerentity, (p_219998_1_) -> {
                         p_219998_1_.broadcastBreakEvent(useContext.getHand());
                     });
-                    if(random.nextBoolean())
-                        playerentity.hurt(DamageSource.GENERIC,1);
+                    if (random.nextInt(damageChance) == 0)
+                        playerentity.hurt(DamageSource.GENERIC, 1);
                 }
 
                 return ActionResultType.sidedSuccess(world.isClientSide());
@@ -99,8 +99,8 @@ public class CompleteMultitool extends Item {
 
     @Override
     public boolean mineBlock(ItemStack p_179218_1_, World p_179218_2_, BlockState p_179218_3_, BlockPos p_179218_4_, LivingEntity user) {
-        if(random.nextBoolean())
-            user.hurt(DamageSource.GENERIC,1);
+        if (random.nextInt(damageChance) == 0)
+            user.hurt(DamageSource.GENERIC, 1);
         return super.mineBlock(p_179218_1_, p_179218_2_, p_179218_3_, p_179218_4_, user);
     }
 }
