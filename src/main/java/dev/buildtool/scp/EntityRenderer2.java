@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
-
+//promote
 public class EntityRenderer2<E extends LivingEntity, M extends EntityModel<E>> extends LivingRenderer<E, M> {
 
     private final ResourceLocation texture;
