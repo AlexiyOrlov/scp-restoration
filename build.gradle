@@ -120,7 +120,7 @@ processResources{
     }
 }
 repositories {
-    def satakoBuilds=file(rootProject.getProperties().get('libsDir'))
+    def satakoBuilds=file(new File(rootProject.getBuildDir(),"libs"))
     flatDir{
         dirs(satakoBuilds)
     }
@@ -132,7 +132,7 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${property('forge_version')}"
     implementation(rootProject)
-    runtime(fg.deobf('dev.buildtool:Satako:4.2.5-1.16.5:'));
+    runtimeOnly(fg.deobf('dev.buildtool:Satako:4.2.5-1.16.5:'));
 
 }
 
