@@ -103,4 +103,25 @@ public class CompleteMultitool extends Item {
             user.hurt(DamageSource.GENERIC, 1);
         return super.mineBlock(p_179218_1_, p_179218_2_, p_179218_3_, p_179218_4_, user);
     }
+
+    @Override
+    public net.minecraft.util.ActionResultType interactLivingEntity(ItemStack stack, net.minecraft.entity.player.PlayerEntity playerIn, LivingEntity entity, net.minecraft.util.Hand hand) {
+        if (entity.level.isClientSide) return net.minecraft.util.ActionResultType.PASS;
+        if (entity instanceof net.minecraftforge.common.IForgeShearable) {
+            net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable) entity;
+            BlockPos pos = new BlockPos(entity.getX(), entity.getY(), entity.getZ());
+            if (target.isShearable(stack, entity.level, pos)) {
+                java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level, pos,
+                        net.minecraft.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.enchantment.Enchantments.BLOCK_FORTUNE, stack));
+                java.util.Random rand = new java.util.Random();
+                drops.forEach(d -> {
+                    net.minecraft.entity.item.ItemEntity ent = entity.spawnAtLocation(d, 1.0F);
+                    ent.setDeltaMovement(ent.getDeltaMovement().add((rand.nextFloat() - rand.nextFloat()) * 0.1F, rand.nextFloat() * 0.05F, (rand.nextFloat() - rand.nextFloat()) * 0.1F));
+                });
+                stack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(hand));
+            }
+            return net.minecraft.util.ActionResultType.SUCCESS;
+        }
+        return net.minecraft.util.ActionResultType.PASS;
+    }
 }
