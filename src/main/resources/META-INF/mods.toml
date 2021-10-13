@@ -8,7 +8,7 @@ license = "All rights reserved. SCP concepts belong to their authors"
 # The modid of the mod
 modId = "scp_restoration" #mandatory
 #version number of the mod
-version = "0.8.3" #mandatory
+version = "0.8.4" #mandatory
 # A display name for the mod
 displayName = "SCP Restoration" #mandatory
 # A text field displayed in the mod UI

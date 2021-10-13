@@ -41,22 +41,24 @@ public class TatteredFarmer extends InanimateEntity {
             List<AnimalEntity> animals = level.getEntitiesOfClass(AnimalEntity.class, getBoundingBox().inflate(100), animalEntity -> animalEntity instanceof AbstractHorseEntity ||
                     animalEntity instanceof ChickenEntity || animalEntity instanceof PigEntity || animalEntity instanceof SheepEntity || animalEntity instanceof CowEntity ||
                     animalEntity instanceof RabbitEntity);
-            animals.forEach(animalEntity -> {
-                if (!affectedAnimals.contains(animalEntity)) {
-                    animalEntity.goalSelector.addGoal(5, new AdditionalMeleeAttack(animalEntity, 1.5f, true, 20, 1 + animalEntity.getBbWidth()));
-                    animalEntity.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(animalEntity, PlayerEntity.class, true, false));
-                    animalEntity.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(animalEntity, Human.class, true, false));
-                    animalEntity.goalSelector.availableGoals.stream().filter(prioritizedGoal -> prioritizedGoal.getGoal() instanceof PanicGoal).findFirst().ifPresent(prioritizedGoal -> {
-                        animalEntity.goalSelector.availableGoals.remove(prioritizedGoal);
-                        animalEntity.goalSelector.removeGoal(prioritizedGoal);
-                    });
-                    animalEntity.goalSelector.availableGoals.stream().filter(prioritizedGoal -> prioritizedGoal.getGoal() instanceof AvoidEntityGoal).collect(Collectors.toSet()).forEach(prioritizedGoal -> {
-                        animalEntity.goalSelector.availableGoals.remove(prioritizedGoal);
-                        animalEntity.goalSelector.removeGoal(prioritizedGoal);
-                    });
-                    affectedAnimals.add(animalEntity);
-                }
-            });
+            if (animals.size() < 40) {
+                animals.forEach(animalEntity -> {
+                    if (!affectedAnimals.contains(animalEntity)) {
+                        animalEntity.goalSelector.addGoal(5, new AdditionalMeleeAttack(animalEntity, 1.5f, true, 20, 1 + animalEntity.getBbWidth()));
+                        animalEntity.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(animalEntity, PlayerEntity.class, true, false));
+                        animalEntity.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(animalEntity, Human.class, true, false));
+                        animalEntity.goalSelector.availableGoals.stream().filter(prioritizedGoal -> prioritizedGoal.getGoal() instanceof PanicGoal).findFirst().ifPresent(prioritizedGoal -> {
+                            animalEntity.goalSelector.availableGoals.remove(prioritizedGoal);
+                            animalEntity.goalSelector.removeGoal(prioritizedGoal);
+                        });
+                        animalEntity.goalSelector.availableGoals.stream().filter(prioritizedGoal -> prioritizedGoal.getGoal() instanceof AvoidEntityGoal).collect(Collectors.toSet()).forEach(prioritizedGoal -> {
+                            animalEntity.goalSelector.availableGoals.remove(prioritizedGoal);
+                            animalEntity.goalSelector.removeGoal(prioritizedGoal);
+                        });
+                        affectedAnimals.add(animalEntity);
+                    }
+                });
+            }
             for (Class<? extends AnimalEntity> animalClass : animalClasses) {
                 List<AnimalEntity> animalEntities = level.getEntitiesOfClass(animalClass, getBoundingBox().inflate(100));
                 if (animalEntities.size() > 1) {
