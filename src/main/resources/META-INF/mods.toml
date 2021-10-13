@@ -8,7 +8,7 @@ license = "All rights reserved. SCP concepts belong to their authors"
 # The modid of the mod
 modId = "scp_restoration" #mandatory
 #version number of the mod
-version = "${version}" #mandatory
+version = "0.8.3" #mandatory
 # A display name for the mod
 displayName = "SCP Restoration" #mandatory
 # A text field displayed in the mod UI
@@ -16,7 +16,7 @@ authors = "Alexiy" #optional
 credits = "Totemaster"
 logoFile = "scp_restoration.png"
 # The description text for the mod (#mandatory)
-description= '''
+description = '''
 Adds objects from the SCP wiki.
 The objects generate in containement chambers in the world; their rarity can be adjusted.
 '''
