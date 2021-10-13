@@ -36,7 +36,9 @@ public class FertileSoil extends Block {
         if(block instanceof IGrowable)
         {
             ((IGrowable) block).performBonemeal(worldIn, rand, above, worldIn.getBlockState(above));
-            ((IGrowable) block).performBonemeal(worldIn, rand, above, worldIn.getBlockState(above));
+            block = worldIn.getBlockState(above).getBlock();
+            if (block instanceof IGrowable)
+                ((IGrowable) block).performBonemeal(worldIn, rand, above, worldIn.getBlockState(above));
         }
     }
 
