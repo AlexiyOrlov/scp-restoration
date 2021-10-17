@@ -256,7 +256,7 @@ public class SCPBlocks {
 
     private static Item registerSCP(Block block) {
         assert block.getRegistryName() != null;
-        return new BlockItem(block, itemProperties().tab(Entities.SCPs)).setRegistryName(block.getRegistryName());
+        return new BlockItem(block, itemProperties().tab(Entities.SCPs).rarity(Rarity.RARE)).setRegistryName(block.getRegistryName());
     }
 
     private static Item registerSCPWithProperties(Block block, Item.Properties properties) {

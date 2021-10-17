@@ -25,8 +25,6 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -124,7 +122,7 @@ public class SCPItems {
     }
 
     private static Item.Properties scp(){
-        return new Item.Properties().tab(Entities.SCPs);
+        return new Item.Properties().tab(Entities.SCPs).rarity(Rarity.RARE);
     }
 
     public static Item.Properties properties() {

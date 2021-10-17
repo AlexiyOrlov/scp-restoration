@@ -1,5 +1,6 @@
 0.8.3:
 fixed possible crash caused by Fertile Soil;
+changed SCP item rarity to 'rare';
 
 0.8.2:
 fixed Young Girl getting damaged by projectiles with a shooter present;
