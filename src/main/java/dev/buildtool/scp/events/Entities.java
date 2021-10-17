@@ -98,7 +98,7 @@ public class Entities {
 
         maleCommoner = registerEntity("male", EntityClassification.CREATURE, MaleCommoner::new, 0.6f, 1.8f, null);
         femaleCommoner = registerEntity("female", EntityClassification.CREATURE, FemaleCommoner::new, 0.6f, 1.8f, null);
-        items.registerAll(new SpawnEggItem(maleCommoner, 0x347BAF, 0x347BAF, properties().tab(SCPItems.items)).setRegistryName(SCP.ID, "male_egg"), new SpawnEggItem(femaleCommoner, 0xAF5D9E, 0xAF5D9E, properties().tab(SCPItems.items)).setRegistryName(SCP.ID, "female_egg"));
+        items.registerAll(new SpawnEggItem(maleCommoner, 0x347BAF, 0x347BAF, new Item.Properties().rarity(Rarity.UNCOMMON).tab(SCPItems.items)).setRegistryName(SCP.ID, "male_egg"), new SpawnEggItem(femaleCommoner, 0xAF5D9E, 0xAF5D9E, new Item.Properties().rarity(Rarity.UNCOMMON).tab(SCPItems.items)).setRegistryName(SCP.ID, "female_egg"));
         uncleSam = registerEntity("uncle_sam", EntityClassification.CREATURE, UncleSam::new, 0.6f, 1.8f, null);
         items.register(registerEgg(uncleSam, 0x855200, 0x7A7859));
         shyguyEntity = registerEntity("shyguy", EntityClassification.MONSTER, ShyguyEntity::new, 0.6f, 2.9f, null);
