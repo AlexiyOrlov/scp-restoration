@@ -33,10 +33,7 @@ import dev.buildtool.scp.weapons.Rocket;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.RegistryEvent;
@@ -131,7 +128,7 @@ public class Entities {
     }
 
     private static Item.Properties properties() {
-        return new Item.Properties().tab(SCPs);
+        return new Item.Properties().tab(SCPs).rarity(Rarity.RARE);
     }
 
     @SubscribeEvent
