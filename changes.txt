@@ -2,6 +2,7 @@
 fixed possible crash caused by Fertile Soil;
 changed SCP item rarity to 'rare';
 crates from the Flare gun no longer drop themselves;
+added a configurable limit of items provided by SCP-1182;
 
 0.8.3:
 fixed possible animal overflow cause by Tattered Farmer;

@@ -1,5 +1,6 @@
 package dev.buildtool.scp.capability;
 
+import dev.buildtool.scp.SCP;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -18,8 +19,10 @@ public class ThrownItemController {
         ItemStack stack = tossEvent.getEntityItem().getItem();
         PlayerEntity playerEntity = tossEvent.getPlayer();
         playerEntity.getCapability(ThrownItems.THROWNITEMS).ifPresent(thrownItemMemory -> {
-            thrownItemMemory.thrownItems().add(stack);
-            worldItems.put(stack, tossEvent.getEntityItem().getId());
+            if (thrownItemMemory.thrownItems().size() < SCP.scp1162ItemLimit.get()) {
+                thrownItemMemory.thrownItems().add(stack);
+                worldItems.put(stack, tossEvent.getEntityItem().getId());
+            }
         });
     }
 

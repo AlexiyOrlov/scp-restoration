@@ -63,6 +63,7 @@ public class SCP {
     public static ForgeConfigSpec.BooleanValue toothBrushCanBreakUnbreakable;
     public static ForgeConfigSpec.ConfigValue<Double> chamberDamage;
     public static ForgeConfigSpec.IntValue chaosSoldierWeight;
+    public static ForgeConfigSpec.IntValue scp1162ItemLimit;
     private static final String networkProtocolVersion = "2";
     public static List<ResourceLocation> scpBlacklist = new ArrayList<>(40);
     public SCP() {
@@ -284,6 +285,7 @@ public class SCP {
             toothBrushCanBreakUnbreakable = builder.define("SCP-063 can break unbreakable blocks", false);
             chamberDamage = builder.comment("Amount of damage appplied to outer walls of generated SCP chambers").defineInRange("SCP chamber damage", 0.0, 0.0, 0.9);
             chaosSoldierWeight = builder.defineInRange("Spawning frequency of Chaos Insurgency soldiers", 2, 0, 20);
+            scp1162ItemLimit = builder.defineInRange("SCP-1162 item limit per player", 54, 10, 150);
             return builder.build();
         }).getRight());
         Path scpBlacklist = Paths.get("config", "scp-blacklist.ini");
