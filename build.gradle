@@ -84,7 +84,7 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory project.file('dat')
 
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
