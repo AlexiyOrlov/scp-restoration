@@ -13,7 +13,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.8.4-1.16.5'
-group = property('maven_group')
+group = 'dev.buildtool'
 archivesBaseName = 'SCP Restoration'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
@@ -114,19 +114,15 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    def satakoBuilds=file(new File(rootProject.getBuildDir(),"libs"))
-    flatDir{
-        dirs(satakoBuilds)
-    }
+    mavenLocal()
 }
 
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft "net.minecraftforge:forge:${property('forge_version')}"
-    implementation(rootProject)
-    runtimeOnly(fg.deobf('dev.buildtool:Satako:4.2.5-1.16.5:'));
+    minecraft "net.minecraftforge:forge:1.16.5-36.2.39"
+    implementation(fg.deobf('dev.buildtool:satako:4.2.12-1.16.5'));
 
 }
 
@@ -135,11 +131,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title": "scp_restoration",
-                "Specification-Vendor": project.property('author'),
+                "Specification-Vendor": 'Alexiy',
                 "Specification-Version": "1",
                 "Implementation-Title": project.name,
                 "Implementation-Version": archiveVersion,
-                "Implementation-Vendor" :project.property('author'),
+                "Implementation-Vendor" :'Alexiy',
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
