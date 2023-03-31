@@ -302,8 +302,8 @@ public class SCP {
             chamberDamage = builder.comment("Amount of damage appplied to outer walls of generated SCP chambers").defineInRange("SCP chamber damage", 0.0, 0.0, 0.9);
             chaosSoldierWeight = builder.defineInRange("Spawning frequency of Chaos Insurgency soldiers", 2, 0, 20);
             scp1162ItemLimit = builder.defineInRange("SCP-1162 item limit per player", 54, 10, 150);
-            hardDriveRarity=builder.comment("Higher value means less frequent hard drive occurrence").defineInRange("SCP hard drive rarity",200,20,200000);
-            blacklistedSCPs=builder.comment("These SCPs won't occur").defineList("Blacklisted SCPs", Collections::emptyList, o -> o instanceof String);
+            hardDriveRarity = builder.comment("Higher value means less frequent hard drive occurrence").defineInRange("SCP hard drive rarity", 200, 20, 200000);
+            blacklistedSCPs = builder.comment("These SCPs won't occur. Type their numbers as strings").defineList("Blacklisted SCPs", Collections::emptyList, o -> o instanceof String);
             return builder.build();
         }).getRight());
     }
