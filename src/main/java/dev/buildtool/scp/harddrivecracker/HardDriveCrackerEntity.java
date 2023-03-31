@@ -4,7 +4,6 @@ import dev.buildtool.satako.BlockEntity2;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.ItemHandler;
 import dev.buildtool.scp.SCP;
-import dev.buildtool.scp.registration.SCPItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -36,6 +35,7 @@ public class HardDriveCrackerEntity extends BlockEntity2 implements ITickableTil
                 if (inProgress) {
                     if (time == 0) {
                         //hard drive cracked
+                        itemHandler.getStackInSlot(0).getOrCreateTag().putBoolean(HardDrive.CRACKED, true);
                         time = Functions.minutesToTicks(15);
                         inProgress = false;
                     } else

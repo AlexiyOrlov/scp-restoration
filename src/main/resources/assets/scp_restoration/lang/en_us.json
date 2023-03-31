@@ -3,6 +3,7 @@
   "itemGroup.scp.items": "SCP Restoration items",
   "itemGroup.scps": "SCP Restoration objects",
   "itemGroup.scp.templates": "SCP Restoration templates",
+  "itemGroup.scp.hard.drives": "SCP Restoration hard drives",
 
   "death.attack.radiation": "Died from radiation",
   "death.attack.scp.lost.organ": "You lost a vital organ",
@@ -67,6 +68,7 @@
   "item.scp_restoration.homerun_bat": "Home Run Bat (SCP-2398)",
   "item.scp_restoration.escal_lighter": "Escalating Lighter (SCP-403)",
   "item.scp_restoration.complete_multitool": "Complete Multitool (SCP-117)",
+  "item.scp_restoration.scp_hard_drive": "Hard Drive",
 
   "block.scp_restoration.pizza_box": "The Never-Ending Pizza Box (SCP-458)",
   "block.scp_restoration.red_ice": "Red Ice (SCP-009)",
@@ -206,6 +208,8 @@
   "block.scp_restoration.parcel": "Parcel",
   "block.scp_restoration.scp3821": "Stuck In the Mailroom (SCP-3821)",
   "block.scp_restoration.wooden_crate": "Wooden Crate",
+  "block.scp_restoration.hard_drive_cracker": "Hard Drive Cracker",
+  "block.scp_restoration.hard_drive_store": "Hard Drive Store",
 
   "entity.scp_restoration.sculpture": "Sculpture",
   "entity.scp_restoration.shyguy": "Shyguy",
@@ -292,5 +296,10 @@
   "scp.reset": "Reset position",
   "scp.position.not.loaded": "Target position is not loaded",
   "scp.insomnia.active": "You have insomnia",
-  "scp.time.left": "Time left: %s"
+  "scp.time.left": "Time left: %s",
+  "scp.cracked": "Cracked",
+  "scp.encrypted": "Encrypted",
+  "scp.blocks.are.present": "There are blocks in the way that are preventing the structure from placement: %s",
+  "scp.placed.preview": "Placed structure preview",
+  "scp.need.to.crack.drive": "You must crack this drive first"
 }

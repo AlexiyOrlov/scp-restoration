@@ -1,6 +1,7 @@
 package dev.buildtool.scp.registration;
 
 import dev.buildtool.satako.blocks.BlockDirectional;
+import dev.buildtool.scp.PreviewBlock;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.blockscps.*;
 import dev.buildtool.scp.chairs.Chair;
@@ -98,6 +99,8 @@ public class SCPBlocks {
     public static HardDriveCrackerBlock hardDriveCrackerBlock;
     public static HardDriveStore hardDriveStore;
 
+    public static PreviewBlock previewBlock;
+
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
         public ItemStack makeIcon() {
@@ -191,8 +194,10 @@ public class SCPBlocks {
         parcelBlock = registerBlock(new ParcelBlock(properties().strength(-1)), "parcel", forgeRegistry);
         crate = registerBlock(new Crate(propertiesOf(Material.WOOD, ToolType.AXE)), "wooden_crate", forgeRegistry);
 
-        hardDriveCrackerBlock=registerBlock(new HardDriveCrackerBlock(properties()),"hard_drive_cracker",forgeRegistry);
-        hardDriveStore=registerBlock(new HardDriveStore(properties()),"hard_drive_store",forgeRegistry);
+        hardDriveCrackerBlock = registerBlock(new HardDriveCrackerBlock(properties()), "hard_drive_cracker", forgeRegistry);
+        hardDriveStore = registerBlock(new HardDriveStore(properties()), "hard_drive_store", forgeRegistry);
+
+        previewBlock = registerBlock(new PreviewBlock(properties().noCollission().noOcclusion().noDrops().isViewBlocking((p_test_1_, p_test_2_, p_test_3_) -> false)), "preview_block", forgeRegistry);
     }
 
 

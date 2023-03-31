@@ -28,7 +28,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-
+@Deprecated
 public class SCPTemplate extends Item {
 
     public SCPTemplate(Properties p_i48487_1_) {

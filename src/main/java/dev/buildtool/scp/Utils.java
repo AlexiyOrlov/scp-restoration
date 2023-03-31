@@ -119,7 +119,7 @@ public class Utils {
     }
 
     /**
-     * @return list of scp annotations
+     * @return list of scp annotations with values 'number', 'name' and 'classification'
      */
     public static List<Map<String, Object>> getAllSCPs() {
         Optional<ModFileScanData> optional = ModList.get().getAllScanData().stream().filter(modFileScanData -> modFileScanData.getIModInfoData().get(0).getMods().get(0).getModId().equals(dev.buildtool.scp.SCP.ID)).findFirst();
@@ -190,8 +190,6 @@ public class Utils {
 
                 if (blockSnapshot == null) {
 
-//                  world.markAndNotifyBlock(target, chunk, blockstateChunk, blockState, flag, flag);
-                    Block block = blockState.getBlock();
                     BlockState blockstateWorld = world.getBlockState(target);
                     {
                         {
@@ -243,11 +241,6 @@ public class Utils {
         } else {
             Block block = blockState.getBlock();
             Block block1 = blockstate.getBlock();
-            //TODO?
-//            chunk.heightmaps.get(Heightmap.Type.MOTION_BLOCKING).update(i, j, k, blockState);
-//            chunk.heightmaps.get(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).update(i, j, k, blockState);
-//            chunk.heightmaps.get(Heightmap.Type.OCEAN_FLOOR).update(i, j, k, blockState);
-//            chunk.heightmaps.get(Heightmap.Type.WORLD_SURFACE).update(i, j, k, blockState);
             boolean flag1 = chunksection.isEmpty();
             if (flag != flag1) {
                 chunk.getLevel().getChunkSource().getLightEngine().updateSectionStatus(target, flag1);

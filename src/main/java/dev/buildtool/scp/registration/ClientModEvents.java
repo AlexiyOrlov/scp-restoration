@@ -72,7 +72,7 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.uncleSam, manager -> new ArmoredRenderer<>(manager, new BipedModel2<>(), "uncle_sam", 0.4f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.plagueDoctorEntityType, manager -> new ArmoredRenderer<>(manager, new PlagueDoctor3(), "plague_doctor", 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.corpseEntityType, CorpseRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(Entities.sculptureEntityType, manager -> new EntityRenderer2(manager, new SculptureModel(), "sculpture", false, 0.3f));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.sculptureEntityType, manager -> new EntityRenderer2<>(manager, new SculptureModel(), "sculpture", false, 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.tickleMonster, manager -> new EntityRenderer2(manager, new TickleMonster2(), "tickle_monster2", false, 0.9f) {
             @Override
             protected RenderType getRenderType(LivingEntity p_230496_1_, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
@@ -115,6 +115,8 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.patchworkBear, manager -> new EntityRenderer2<>(manager, new SCP2295(), "scp2295", false, 0.2f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.flare, FlareRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.flame, FlameRenderer::new);
+
+        RenderTypeLookup.setRenderLayer(SCPBlocks.previewBlock, RenderType.translucent());
     }
 
     public static List<String> getResourceText(String resourcePath) {
