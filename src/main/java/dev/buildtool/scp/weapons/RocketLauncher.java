@@ -22,11 +22,12 @@ public class RocketLauncher extends Firearm{
 
     @Override
     public void shoot(World world, LivingEntity shooter, Hand hand, @Nullable LivingEntity target) {
-        Rocket rocket= Entities.rocket.create(world);
-        Vector3d lookAngles=shooter.getLookAngle();
+        Rocket rocket = Entities.rocket.create(world);
+        Vector3d lookAngles = shooter.getLookAngle();
         rocket.setOwner(shooter);
         rocket.setPos(shooter.getX() - lookAngles.x, shooter.getEyeY(), shooter.getZ() - lookAngles.z);
-        rocket.shootFromRotation(shooter,shooter.xRot,shooter.yRot,0,1,1);
+        //5th parameter is velocity
+        rocket.shootFromRotation(shooter, shooter.xRot, shooter.yRot, 0, 3, 1);
         world.addFreshEntity(rocket);
     }
 }

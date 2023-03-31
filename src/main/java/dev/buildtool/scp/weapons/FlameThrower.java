@@ -26,7 +26,7 @@ public class FlameThrower extends Firearm {
         for (int i = 0; i < 12; i++) {
             Flame flame = Entities.flame.create(world);
             flame.setPos(shooter.getX() - vector3d.x, shooter.getEyeY() - 2 / 16d, shooter.getZ() - vector3d.z);
-            flame.shootFromRotation(shooter, shooter.xRot, shooter.yRot + random.nextInt(32) - 16, 0, 2, 1);
+            flame.shootFromRotation(shooter, shooter.xRot, shooter.yRot + random.nextInt(32) - 16, 0, 6, 1);
             flame.setOwner(shooter);
             world.addFreshEntity(flame);
         }

@@ -11,6 +11,8 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -56,7 +58,8 @@ public class Projectile2 extends DamagingProjectileEntity {
                 }
             } else entity.hurt(DamageSource.playerAttack((PlayerEntity) owner), damage);
         } else entity.hurt(new DamageSource(SCP.ID + ".projectile"), damage);
-        remove();
+        if (ownerUUID != null && !ownerUUID.equals(entity.getUUID()))
+            remove();
     }
 
     @Override
@@ -70,25 +73,12 @@ public class Projectile2 extends DamagingProjectileEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-//        int movementMultiplier=40;
-//        setDeltaMovement(getDeltaMovement().add(xPower*movementMultiplier,yPower*movementMultiplier,zPower*movementMultiplier));
-    }
-
-    @Override
-    public void shoot(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_) {
-        super.shoot(p_70186_1_, p_70186_3_, p_70186_5_, p_70186_7_, p_70186_8_);
-    }
-
-    @Override
     public void shootFromRotation(Entity p_234612_1_, float p_234612_2_, float p_234612_3_, float p_234612_4_, float p_234612_5_, float p_234612_6_) {
-        super.shootFromRotation(p_234612_1_, p_234612_2_, p_234612_3_, p_234612_4_, p_234612_5_, p_234612_6_);
-//        float f = -MathHelper.sin(p_234612_3_ * ((float)Math.PI / 180F)) * MathHelper.cos(p_234612_2_ * ((float)Math.PI / 180F));
-//        float f1 = -MathHelper.sin((p_234612_2_ + p_234612_4_) * ((float)Math.PI / 180F));
-//        float f2 = MathHelper.cos(p_234612_3_ * ((float)Math.PI / 180F)) * MathHelper.cos(p_234612_2_ * ((float)Math.PI / 180F));
-//        this.shoot(f, f1, f2, p_234612_5_, p_234612_6_);
-//        Vector3d vector3d = p_234612_1_.getDeltaMovement();
-//        this.setDeltaMovement(this.getDeltaMovement().add(vector3d.x, vector3d.y, vector3d.z));
+        float f = -MathHelper.sin(p_234612_3_ * ((float) Math.PI / 180F)) * MathHelper.cos(p_234612_2_ * ((float) Math.PI / 180F));
+        float f1 = -MathHelper.sin((p_234612_2_ + p_234612_4_) * ((float) Math.PI / 180F));
+        float f2 = MathHelper.cos(p_234612_3_ * ((float) Math.PI / 180F)) * MathHelper.cos(p_234612_2_ * ((float) Math.PI / 180F));
+        this.shoot(f, f1, f2, p_234612_5_, p_234612_6_);
+        Vector3d vector3d = p_234612_1_.getDeltaMovement();
+        this.setDeltaMovement(this.getDeltaMovement().add(vector3d.x, vector3d.y, vector3d.z));
     }
 }
