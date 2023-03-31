@@ -2,7 +2,7 @@ package dev.buildtool.scp.mailbox;
 
 import dev.buildtool.satako.Container2;
 import dev.buildtool.satako.ItemHandlerSlot;
-import dev.buildtool.scp.events.SCPContainers;
+import dev.buildtool.scp.registration.SCPContainers;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketBuffer;
 

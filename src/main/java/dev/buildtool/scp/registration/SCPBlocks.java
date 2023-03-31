@@ -1,4 +1,4 @@
-package dev.buildtool.scp.events;
+package dev.buildtool.scp.registration;
 
 import dev.buildtool.satako.blocks.BlockDirectional;
 import dev.buildtool.scp.SCP;
@@ -59,7 +59,7 @@ public class SCPBlocks {
     static ElectronicLock electronicLock;
     public static ArrayList<Block> resistantGlass = new ArrayList<>(16);
     public static ArrayList<Block> resistantBricks = new ArrayList<>(16);
-    static ArrayList<SlabBlock> brickSlabs = new ArrayList<>(16);
+    public static ArrayList<SlabBlock> brickSlabs = new ArrayList<>(16);
     public static ArrayList<Block> solidColorBlocks = new ArrayList<>(16);
     public static ArrayList<RotatedPillarBlock> coloredPipes = new ArrayList<>(16);
     public static CrateBlock crateBlock;

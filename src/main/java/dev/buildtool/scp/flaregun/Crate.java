@@ -1,7 +1,7 @@
 package dev.buildtool.scp.flaregun;
 
 import dev.buildtool.satako.blocks.Block2;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;

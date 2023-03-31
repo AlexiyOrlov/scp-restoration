@@ -2,8 +2,8 @@ package dev.buildtool.scp.plaguedoctor;
 
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.Entities;
-import dev.buildtool.scp.events.SCPItems;
+import dev.buildtool.scp.registration.Entities;
+import dev.buildtool.scp.registration.SCPItems;
 import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

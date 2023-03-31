@@ -2,8 +2,8 @@ package dev.buildtool.scp.lock;
 
 import dev.buildtool.satako.Constants;
 import dev.buildtool.satako.blocks.BlockDirectional;
-import dev.buildtool.scp.events.SCPItems;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPItems;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

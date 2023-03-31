@@ -1,6 +1,7 @@
 package dev.buildtool.scp.events;
 
 import dev.buildtool.scp.capability.InfoScreen;
+import dev.buildtool.scp.registration.ClientModEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;

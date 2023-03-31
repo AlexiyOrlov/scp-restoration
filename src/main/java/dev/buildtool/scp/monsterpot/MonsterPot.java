@@ -2,8 +2,8 @@ package dev.buildtool.scp.monsterpot;
 
 import dev.buildtool.satako.blocks.BlockHorizontal;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.Entities;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.Entities;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;

@@ -1,7 +1,7 @@
 package dev.buildtool.scp;
 
 import dev.buildtool.satako.UniqueList;
-import dev.buildtool.scp.events.SCPBlocks;
+import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.harddrivecracker.HardDriveStoreEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;

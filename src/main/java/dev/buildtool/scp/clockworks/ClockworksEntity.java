@@ -3,7 +3,7 @@ package dev.buildtool.scp.clockworks;
 import dev.buildtool.satako.BlockEntity2;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.events.ModEvents;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;

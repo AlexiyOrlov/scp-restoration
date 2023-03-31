@@ -291,5 +291,6 @@
   "scp.too.far": "Too far",
   "scp.reset": "Reset position",
   "scp.position.not.loaded": "Target position is not loaded",
-  "scp.insomnia.active": "You have insomnia"
+  "scp.insomnia.active": "You have insomnia",
+  "scp.time.left": "Time left: %s"
 }

@@ -3,7 +3,7 @@ package dev.buildtool.scp.blocks;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.blocks.Block2;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.Sounds;
+import dev.buildtool.scp.registration.Sounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;

@@ -1,7 +1,7 @@
 package dev.buildtool.scp.items;
 
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.Sounds;
+import dev.buildtool.scp.registration.Sounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

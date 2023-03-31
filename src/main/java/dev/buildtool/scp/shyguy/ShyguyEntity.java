@@ -4,7 +4,7 @@ import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.UniqueList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.Sounds;
+import dev.buildtool.scp.registration.Sounds;
 import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;

@@ -2,7 +2,7 @@ package dev.buildtool.scp.flaregun;
 
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.Entities;
+import dev.buildtool.scp.registration.Entities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

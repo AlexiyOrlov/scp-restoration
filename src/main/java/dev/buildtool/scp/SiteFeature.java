@@ -2,7 +2,7 @@ package dev.buildtool.scp;
 
 import dev.buildtool.satako.RandomizedList;
 import dev.buildtool.satako.UniqueList;
-import dev.buildtool.scp.events.Structures;
+import dev.buildtool.scp.registration.Structures;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;

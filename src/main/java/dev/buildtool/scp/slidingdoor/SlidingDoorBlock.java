@@ -1,7 +1,7 @@
 package dev.buildtool.scp.slidingdoor;
 
 import dev.buildtool.satako.blocks.BlockHorizontal;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;

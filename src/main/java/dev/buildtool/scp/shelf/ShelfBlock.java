@@ -1,7 +1,7 @@
 package dev.buildtool.scp.shelf;
 
 import dev.buildtool.satako.blocks.BlockHorizontal;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;

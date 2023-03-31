@@ -4,7 +4,7 @@ import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.RandomizedList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.SCPBlocks;
+import dev.buildtool.scp.registration.SCPBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.CreatureEntity;

@@ -1,7 +1,7 @@
 package dev.buildtool.scp.humansrefuted;
 
 import dev.buildtool.satako.Functions;
-import dev.buildtool.scp.events.Entities;
+import dev.buildtool.scp.registration.Entities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;

@@ -1,4 +1,4 @@
-package dev.buildtool.scp.events;
+package dev.buildtool.scp.registration;
 
 import dev.buildtool.satako.gui.ContainerScreen2;
 import dev.buildtool.scp.ArmoredRenderer;
@@ -7,7 +7,6 @@ import dev.buildtool.scp.EntityRenderer2;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.crate.CrateContainer;
 import dev.buildtool.scp.flaregun.FlareModel;
-import dev.buildtool.scp.harddrivecracker.HardDriveCrackerContainer;
 import dev.buildtool.scp.harddrivecracker.HardDriveCrackerScreen;
 import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.humansrefuted.HumanRefutedModel;

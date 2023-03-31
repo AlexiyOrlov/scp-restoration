@@ -4,6 +4,7 @@ import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.capability.SCPKnowledge;
 import dev.buildtool.scp.capability.ThrownItems;
 import dev.buildtool.scp.clockworks.ClockworksRecipe;
+import dev.buildtool.scp.registration.SCPBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;

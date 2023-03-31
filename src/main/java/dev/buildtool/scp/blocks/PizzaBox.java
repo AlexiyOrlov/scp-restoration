@@ -2,7 +2,7 @@ package dev.buildtool.scp.blocks;
 
 import dev.buildtool.satako.blocks.BlockHorizontal;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.SCPItems;
+import dev.buildtool.scp.registration.SCPItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

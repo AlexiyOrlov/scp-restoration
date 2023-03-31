@@ -1,7 +1,7 @@
 package dev.buildtool.scp.mailbox;
 
 import dev.buildtool.satako.BlockEntity2;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;

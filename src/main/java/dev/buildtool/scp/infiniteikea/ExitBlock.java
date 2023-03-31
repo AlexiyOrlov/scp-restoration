@@ -4,7 +4,7 @@ import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.SCPWorldData;
 import dev.buildtool.scp.Utils;
 import dev.buildtool.scp.events.ModEvents;
-import dev.buildtool.scp.events.SCPTiles;
+import dev.buildtool.scp.registration.SCPTiles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PortalInfo;
 import net.minecraft.entity.Entity;

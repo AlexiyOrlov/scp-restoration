@@ -2,7 +2,7 @@ package dev.buildtool.scp.monsterpot;
 
 import dev.buildtool.satako.BlockEntity2;
 import dev.buildtool.satako.Functions;
-import dev.buildtool.scp.events.Entities;
+import dev.buildtool.scp.registration.Entities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.SpawnReason;

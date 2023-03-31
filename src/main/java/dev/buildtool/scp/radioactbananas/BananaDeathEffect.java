@@ -1,8 +1,8 @@
 package dev.buildtool.scp.radioactbananas;
 
 import dev.buildtool.satako.Functions;
-import dev.buildtool.scp.events.SCPEffects;
-import dev.buildtool.scp.events.SCPItems;
+import dev.buildtool.scp.registration.SCPEffects;
+import dev.buildtool.scp.registration.SCPItems;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

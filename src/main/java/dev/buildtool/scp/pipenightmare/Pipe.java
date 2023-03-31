@@ -3,7 +3,7 @@ package dev.buildtool.scp.pipenightmare;
 import dev.buildtool.satako.Constants;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.SCPBlocks;
+import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.infiniteikea.SupportBlock;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;

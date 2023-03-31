@@ -1,7 +1,7 @@
 package dev.buildtool.scp.harddrivecracker;
 
 import dev.buildtool.satako.BlockEntity2;
-import dev.buildtool.scp.events.SCPItems;
+import dev.buildtool.scp.registration.SCPItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;

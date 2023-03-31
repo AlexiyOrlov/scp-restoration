@@ -2,7 +2,7 @@ package dev.buildtool.scp.swatarmor;
 
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.SCPItems;
+import dev.buildtool.scp.registration.SCPItems;
 import dev.buildtool.scp.goals.BetterMeleeAttackGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

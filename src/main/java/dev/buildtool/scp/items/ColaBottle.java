@@ -2,7 +2,7 @@ package dev.buildtool.scp.items;
 
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.events.SCPEffects;
+import dev.buildtool.scp.registration.SCPEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

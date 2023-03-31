@@ -1,9 +1,7 @@
 package dev.buildtool.scp.chairs;
 
 import dev.buildtool.satako.InanimateEntity;
-import dev.buildtool.scp.events.Entities;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
+import dev.buildtool.scp.registration.Entities;
 import net.minecraft.world.World;
 
 public class Sittable extends InanimateEntity {

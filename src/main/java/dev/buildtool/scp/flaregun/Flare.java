@@ -1,7 +1,7 @@
 package dev.buildtool.scp.flaregun;
 
 import dev.buildtool.scp.RandomLoot;
-import dev.buildtool.scp.events.SCPBlocks;
+import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.weapons.Projectile;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;

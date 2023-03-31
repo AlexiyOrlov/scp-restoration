@@ -1,4 +1,4 @@
-package dev.buildtool.scp.events;
+package dev.buildtool.scp.registration;
 
 import dev.buildtool.scp.HardDriveContainerGenerator;
 import dev.buildtool.scp.SCP;

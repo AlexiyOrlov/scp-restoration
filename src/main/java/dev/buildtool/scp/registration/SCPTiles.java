@@ -1,4 +1,4 @@
-package dev.buildtool.scp.events;
+package dev.buildtool.scp.registration;
 
 import com.google.common.collect.Sets;
 import dev.buildtool.scp.SCP;

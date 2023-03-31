@@ -4,7 +4,7 @@ import dev.buildtool.satako.RandomizedList;
 import dev.buildtool.scp.RandomLoot;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.TemplateWithRandomLoot;
-import dev.buildtool.scp.events.SCPBlocks;
+import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.lamp.SmallLamp;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

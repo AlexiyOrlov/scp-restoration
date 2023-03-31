@@ -1,7 +1,7 @@
 package dev.buildtool.scp.slidingdoor;
 
 import dev.buildtool.satako.BlockEntity2;
-import dev.buildtool.scp.events.Sounds;
+import dev.buildtool.scp.registration.Sounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;

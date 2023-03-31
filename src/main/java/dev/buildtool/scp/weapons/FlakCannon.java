@@ -1,7 +1,7 @@
 package dev.buildtool.scp.weapons;
 
-import dev.buildtool.scp.events.Entities;
-import dev.buildtool.scp.events.Sounds;
+import dev.buildtool.scp.registration.Entities;
+import dev.buildtool.scp.registration.Sounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;

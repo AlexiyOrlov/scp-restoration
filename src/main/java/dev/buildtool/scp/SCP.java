@@ -5,9 +5,11 @@ import dev.buildtool.scp.capability.SCPKnowledge;
 import dev.buildtool.scp.clockworks.ClockworksEntity;
 import dev.buildtool.scp.clockworks.ClockworksRecipe;
 import dev.buildtool.scp.clockworks.Settings;
-import dev.buildtool.scp.events.Entities;
-import dev.buildtool.scp.events.SCPBlocks;
-import dev.buildtool.scp.events.Structures;
+import dev.buildtool.scp.harddrivecracker.CrackingProgress;
+import dev.buildtool.scp.harddrivecracker.HardDriveCrackerEntity;
+import dev.buildtool.scp.harddrivecracker.StartCracking;
+import dev.buildtool.scp.registration.Entities;
+import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.goals.GoalAction;
 import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.lock.LockEntity;
@@ -109,7 +111,7 @@ public class SCP {
             }
             return packet;
         }, (packet, contextSupplier) -> {
-            new ClientProxy<>().accept(packet, contextSupplier);
+            new ClientProxy().synchronizeKnowledge(packet, contextSupplier);
         });
 
         channel.registerMessage(message++, SetPassword.class, (setPassword, packetBuffer) -> {
@@ -281,8 +283,26 @@ public class SCP {
                         context.getSender().sendMessage(new TranslationTextComponent("scp.position.not.loaded"), UUID.randomUUID());
                 });
 
+        channel.registerMessage(message++, CrackingProgress.class,(crackingProgress, packetBuffer) -> {
+            packetBuffer.writeBlockPos(crackingProgress.pos);
+            packetBuffer.writeInt(crackingProgress.timeLeft);
+        },packetBuffer -> new CrackingProgress(packetBuffer.readBlockPos(),packetBuffer.readInt()),(crackingProgress, contextSupplier) -> {
+            new ClientProxy().synchronizeCrackerTime(crackingProgress,contextSupplier.get());
+        });
+        channel.registerMessage(message++, StartCracking.class,(startCracking, packetBuffer) -> {
+                packetBuffer.writeBlockPos(startCracking.blockPos);
+            },packetBuffer -> new StartCracking(packetBuffer.readBlockPos()),(startCracking, contextSupplier) -> {
+            ServerWorld serverWorld=contextSupplier.get().getSender().getLevel();
+            TileEntity tileEntity=serverWorld.getBlockEntity(startCracking.blockPos);
+            if(tileEntity instanceof HardDriveCrackerEntity)
+            {
+                HardDriveCrackerEntity crackerEntity= (HardDriveCrackerEntity) tileEntity;
+                crackerEntity.inProgress=true;
+                crackerEntity.setChanged();
+                contextSupplier.get().setPacketHandled(true);
+            }
+        });
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, new ForgeConfigSpec.Builder().configure(builder -> {
-//            Structures.rarity = builder.comment("Higher rarity means less chambers").define("SCP chamber rarity", 200);
             writeClockworksRecipes = builder.define("Create a file listing all Clockworks recipes", true);
             toothBrushCanBreakUnbreakable = builder.define("SCP-063 can break unbreakable blocks", false);
             chamberDamage = builder.comment("Amount of damage appplied to outer walls of generated SCP chambers").defineInRange("SCP chamber damage", 0.0, 0.0, 0.9);
