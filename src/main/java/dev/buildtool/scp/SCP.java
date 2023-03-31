@@ -5,12 +5,10 @@ import dev.buildtool.scp.capability.SCPKnowledge;
 import dev.buildtool.scp.clockworks.ClockworksEntity;
 import dev.buildtool.scp.clockworks.ClockworksRecipe;
 import dev.buildtool.scp.clockworks.Settings;
+import dev.buildtool.scp.goals.GoalAction;
 import dev.buildtool.scp.harddrivecracker.CrackingProgress;
 import dev.buildtool.scp.harddrivecracker.HardDriveCrackerEntity;
 import dev.buildtool.scp.harddrivecracker.StartCracking;
-import dev.buildtool.scp.registration.Entities;
-import dev.buildtool.scp.registration.SCPBlocks;
-import dev.buildtool.scp.goals.GoalAction;
 import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.lock.LockEntity;
 import dev.buildtool.scp.lock.OpenLock;
@@ -20,6 +18,8 @@ import dev.buildtool.scp.lootblock.SetIdentifier;
 import dev.buildtool.scp.mailbox.MailboxEntity;
 import dev.buildtool.scp.mailbox.ParcelBlock;
 import dev.buildtool.scp.mailbox.SendMail;
+import dev.buildtool.scp.registration.Entities;
+import dev.buildtool.scp.registration.SCPBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ItemEntity;
@@ -47,11 +47,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -67,7 +62,6 @@ public class SCP {
     public static ForgeConfigSpec.IntValue chaosSoldierWeight;
     public static ForgeConfigSpec.IntValue scp1162ItemLimit;
     private static final String networkProtocolVersion = "2";
-    public static List<ResourceLocation> scpBlacklist = new ArrayList<>(40);
     public static ForgeConfigSpec.IntValue hardDriveRarity;
     public static ForgeConfigSpec.ConfigValue<List<?>> blacklistedSCPs;
     public SCP() {
@@ -312,25 +306,5 @@ public class SCP {
             blacklistedSCPs=builder.comment("These SCPs won't occur").defineList("Blacklisted SCPs", Collections::emptyList, o -> o instanceof String);
             return builder.build();
         }).getRight());
-        Path scpBlacklist = Paths.get("config", "scp-blacklist.ini");
-        if (Files.notExists(scpBlacklist)) {
-            try {
-                Files.createFile(scpBlacklist);
-                Files.write(scpBlacklist, Collections.singleton("# One SCP number per line"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            List<String> strings = Files.readAllLines(scpBlacklist);
-            strings.forEach(s -> {
-                if (!s.startsWith("#"))
-                    SCP.scpBlacklist.add(new ResourceLocation(ID, "containers/" + s.trim()));
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
-
 }
