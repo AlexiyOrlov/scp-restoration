@@ -119,58 +119,46 @@ public class SCPBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> register)
     {
         IForgeRegistry<Block> forgeRegistry = register.getRegistry();
-        forgeRegistry.register(register(pizzaBox = new PizzaBox(AbstractBlock.Properties.of(Material.CAKE, MaterialColor.COLOR_YELLOW).noOcclusion()), "pizza_box"));
-        forgeRegistry.register(register(cactus = new BlastingCactus(AbstractBlock.Properties.of(Material.CACTUS)), "cactus_mine"));
+        registerBlock(pizzaBox = new PizzaBox(AbstractBlock.Properties.of(Material.CAKE, MaterialColor.COLOR_YELLOW).noOcclusion()), "pizza_box", forgeRegistry);
+        registerBlock(cactus = new BlastingCactus(AbstractBlock.Properties.of(Material.CACTUS)), "cactus_mine", forgeRegistry);
         registerBlock(fertileSoil = new FertileSoil(propertiesOf(Material.DIRT, ToolType.SHOVEL).sound(SoundType.GRASS).randomTicks()), "fertile_soil", forgeRegistry);
-        forgeRegistry.register(register(redIce = new RedIce(AbstractBlock.Properties.of(Material.ICE).noOcclusion().sound(SoundType.GLASS)), "red_ice"));
+        registerBlock(redIce = new RedIce(AbstractBlock.Properties.of(Material.ICE).noOcclusion().sound(SoundType.GLASS)), "red_ice", forgeRegistry);
 
         Arrays.stream(DyeColor.values()).forEach(color -> {
-            resistantGlass.add(register(new StainedGlassBlock(color, properties().noOcclusion()), color.getName() + "_glass"));
-            resistantBricks.add(register(new Block(properties()), color.getName() + "_bricks"));
-            solidColorBlocks.add(register(new Block(properties()), color.getName() + "_solid"));
-            coloredPipes.add(register(new RotatedPillarBlock(properties().noOcclusion()), color.getName() + "_pipe"));
+            resistantGlass.add(registerBlock(new StainedGlassBlock(color, properties().noOcclusion()), color.getName() + "_glass", forgeRegistry));
+            resistantBricks.add(registerBlock(new Block(properties()), color.getName() + "_bricks", forgeRegistry));
+            solidColorBlocks.add(registerBlock(new Block(properties()), color.getName() + "_solid", forgeRegistry));
+            coloredPipes.add(registerBlock(new RotatedPillarBlock(properties().noOcclusion()), color.getName() + "_pipe", forgeRegistry));
         });
 
-        resistantBricks.forEach(forgeRegistry::register);
-        resistantGlass.forEach(forgeRegistry::register);
-        solidColorBlocks.forEach(forgeRegistry::register);
-        coloredPipes.forEach(forgeRegistry::register);
-
-        slidingDoorBlock = register(new SlidingDoorBlock(properties().noOcclusion()), "sliding_door");
-        clockworksPanel = register(new Panel(properties()), "clockworks_panel");
-        clockworksChamber = register(new Block(properties()), "chamber_block");
-        clockworksBase = register(new Block(properties()), "clockwork_base");
-        forgeRegistry.registerAll(slidingDoorBlock, clockworksPanel, clockworksBase, clockworksChamber);
-        electronicLock = register(new ElectronicLock(properties().noOcclusion()), "lock");
-        crateBlock = register(new CrateBlock(properties()), "crate");
-        copperTube = register(new BlockDirectional(properties().noOcclusion()), "copper_tube");
-        forgeRegistry.registerAll(electronicLock, crateBlock, copperTube);
+        slidingDoorBlock = registerBlock(new SlidingDoorBlock(properties().noOcclusion()), "sliding_door", forgeRegistry);
+        clockworksPanel = registerBlock(new Panel(properties()), "clockworks_panel", forgeRegistry);
+        clockworksChamber = registerBlock(new Block(properties()), "chamber_block", forgeRegistry);
+        clockworksBase = registerBlock(new Block(properties()), "clockwork_base", forgeRegistry);
+        electronicLock = registerBlock(new ElectronicLock(properties().noOcclusion()), "lock", forgeRegistry);
+        crateBlock = registerBlock(new CrateBlock(properties()), "crate", forgeRegistry);
+        copperTube = registerBlock(new BlockDirectional(properties().noOcclusion()), "copper_tube", forgeRegistry);
         acaciaShelf = registerBlock(new ShelfBlock(propertiesOf(Material.WOOD, ToolType.AXE).noOcclusion().sound(SoundType.WOOD)), "acacia_shelf", forgeRegistry);
         birchShelf = registerBlock(new ShelfBlock(propertiesOf(Material.WOOD, ToolType.AXE).noOcclusion().sound(SoundType.WOOD)), "birch_shelf", forgeRegistry);
         jungleShelf = registerBlock(new ShelfBlock(propertiesOf(Material.WOOD, ToolType.AXE).noOcclusion().sound(SoundType.WOOD)), "jungle_shelf", forgeRegistry);
         oakShelf = registerBlock(new ShelfBlock(propertiesOf(Material.WOOD, ToolType.AXE).noOcclusion().sound(SoundType.WOOD)), "oak_shelf", forgeRegistry);
         darkOakShelf = registerBlock(new ShelfBlock(propertiesOf(Material.WOOD, ToolType.AXE).noOcclusion().sound(SoundType.WOOD)), "dark_oak_shelf", forgeRegistry);
         spruceShelf = registerBlock(new ShelfBlock(propertiesOf(Material.WOOD, ToolType.AXE).noOcclusion().sound(SoundType.WOOD)), "spruce_shelf", forgeRegistry);
-        singleItemTable = register(new Table(properties().noOcclusion()), "one_item_table");
-        chair = register(new Chair(properties().noOcclusion()), "chair");
-        smallLamp = register(new SmallLamp(properties().strength(1.5f, 50).noCollission().lightLevel(value -> 15)), "small_lamp");
-        fourItemTable = register(new Table4(properties().noOcclusion()), "four_item_table");
-        forgeRegistry.registerAll(singleItemTable, chair, smallLamp, fourItemTable);
-        monsterPot = register(new MonsterPot(properties().noOcclusion()), "monster_pot");
-        holeInTheWall = register(new HoleInTheWall(properties()), "hole_in_the_wall");
-        forgeRegistry.registerAll(monsterPot, holeInTheWall);
-        holeToAnotherPlace = register(new HoleToAnotherPlace(properties()), "hole_to_another_place");
-        supportBlock = register(new SupportBlock(1 / 16f, properties()), "support_bar");
-        forgeRegistry.registerAll(supportBlock, holeToAnotherPlace);
-        buildingBlock1 = register(new Block(properties()), "building1");
-        buildingBlock2 = register(new Block(properties()), "building2");
-        buildingBlock3 = register(new BlockDirectional(properties()), "building3");
-        scpSlab1 = register(new SlabBlock(properties()), "building1_slab");
-        scpSlab2 = register(new SlabBlock(properties()), "building2_slab");
-        scpSlab3 = register(new SlabBlock(properties()), "building3_slab");
+        singleItemTable = registerBlock(new Table(properties().noOcclusion()), "one_item_table", forgeRegistry);
+        chair = registerBlock(new Chair(properties().noOcclusion()), "chair", forgeRegistry);
+        smallLamp = registerBlock(new SmallLamp(properties().strength(1.5f, 50).noCollission().lightLevel(value -> 15)), "small_lamp", forgeRegistry);
+        fourItemTable = registerBlock(new Table4(properties().noOcclusion()), "four_item_table", forgeRegistry);
+        monsterPot = registerBlock(new MonsterPot(properties().noOcclusion()), "monster_pot", forgeRegistry);
+        holeInTheWall = registerBlock(new HoleInTheWall(properties()), "hole_in_the_wall", forgeRegistry);
+        holeToAnotherPlace = registerBlock(new HoleToAnotherPlace(properties()), "hole_to_another_place", forgeRegistry);
+        supportBlock = registerBlock(new SupportBlock(1 / 16f, properties()), "support_bar", forgeRegistry);
+        buildingBlock1 = registerBlock(new Block(properties()), "building1", forgeRegistry);
+        buildingBlock2 = registerBlock(new Block(properties()), "building2", forgeRegistry);
+        buildingBlock3 = registerBlock(new BlockDirectional(properties()), "building3", forgeRegistry);
+        scpSlab1 = registerBlock(new SlabBlock(properties()), "building1_slab", forgeRegistry);
+        scpSlab2 = registerBlock(new SlabBlock(properties()), "building2_slab", forgeRegistry);
+        scpSlab3 = registerBlock(new SlabBlock(properties()), "building3_slab", forgeRegistry);
         resistantBricks.forEach(block -> brickSlabs.add(registerBlock(new SlabBlock(properties()), block.getRegistryName().getPath() + "_slab", forgeRegistry)));
-        forgeRegistry.registerAll(buildingBlock1, buildingBlock2, scpSlab1, scpSlab2);
-        forgeRegistry.registerAll(buildingBlock3, scpSlab3);
         cinderblock = registerBlock(new Block(properties()), "cinderblock", forgeRegistry);
         invisibleLight = registerBlock(new AirBlock(AbstractBlock.Properties.copy(Blocks.AIR).lightLevel(value -> 15).noDrops()), "light", forgeRegistry);
 
@@ -188,7 +176,6 @@ public class SCPBlocks {
         thickPipe = registerBlock(new Pipe(4 / 16f, propertiesOf(Material.GLASS, ToolType.PICKAXE).strength(3)), "thick_pipe", forgeRegistry);
         vent = registerBlock(new Explodable(propertiesOf(Material.METAL, ToolType.PICKAXE).strength(3), 3), "vent", forgeRegistry);
         boiler = registerBlock(new Explodable(propertiesOf(Material.HEAVY_METAL, ToolType.PICKAXE).strength(3), 4), "boiler", forgeRegistry);
-        lootBlock = registerBlock(new LootBlock(AbstractBlock.Properties.of(Material.METAL)), "loot_block", forgeRegistry);
         repeatingBomb = registerBlock(new Bomb(properties().strength(3, Integer.MAX_VALUE).noOcclusion()), "repeating_bomb", forgeRegistry);
         mailbox = registerBlock(new Mailbox(properties().noOcclusion()), "scp3821", forgeRegistry);
         parcelBlock = registerBlock(new ParcelBlock(properties().strength(-1)), "parcel", forgeRegistry);
@@ -294,12 +281,6 @@ public class SCPBlocks {
     private static <B extends Block> B registerBlock(B block, String name, IForgeRegistry<Block> registry) {
         block.setRegistryName(SCP.ID, name);
         registry.register(block);
-        return block;
-    }
-
-    @Deprecated
-    private static <B extends Block> B register(B block, String id) {
-        block.setRegistryName(SCP.ID, id);
         return block;
     }
 }

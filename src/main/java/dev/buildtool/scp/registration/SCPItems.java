@@ -76,11 +76,13 @@ public class SCPItems {
     public static void registerItems(RegistryEvent.Register<Item> itemRegister) {
         IForgeRegistry<Item> forgeRegistry = itemRegister.getRegistry();
         PanaceaPill panaceaPills = new PanaceaPill(scp().stacksTo(47));
-        pizzaSlice = register(new Item(properties().food(new Food.Builder().nutrition(5).saturationMod(0.4f).build()).tab(items).stacksTo(16)), "pizza_slice");
-        forgeRegistry.registerAll(register(panaceaPills, "panacea_pill"), register(skeletonKey = new SkeletonKey(scp().stacksTo(1)), "skeleton_key"),
-                register(new Tothbrush(scp().stacksTo(1)), "tothbrush"), register(infiniteCanteen = new InfiniteCanteen(scp().stacksTo(1)), "infinite_canteen"));
-        forgeRegistry.registerAll(register(new Analyzer(single()), "analyzer"), pizzaSlice);
-        Item tester = new Item(single()) {
+        pizzaSlice = register(new Item(properties().food(new Food.Builder().nutrition(5).saturationMod(0.4f).build()).tab(items).stacksTo(16)), "pizza_slice", forgeRegistry);
+        register(panaceaPills, "panacea_pill", forgeRegistry);
+        skeletonKey = register(new SkeletonKey(scp().stacksTo(1)), "skeleton_key", forgeRegistry);
+        register(new Tothbrush(scp().stacksTo(1)), "tothbrush", forgeRegistry);
+        infiniteCanteen = register(new InfiniteCanteen(scp().stacksTo(1)), "infinite_canteen", forgeRegistry);
+        register(new Analyzer(single()), "analyzer", forgeRegistry);
+        Item tester = register(new Item(new Item.Properties().stacksTo(1)) {
             @Override
             public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
                 BlockPos pos = context.getClickedPos();
@@ -92,25 +94,21 @@ public class SCPItems {
                 }
                 return ActionResultType.SUCCESS;
             }
-        };
-        forgeRegistry.registerAll(register(tester, "tester"));
-        policeBaton = register(new PoliceBaton(single()), "police_baton");
-        scalpel = register(new SwordItem(ItemTier.GOLD, 3, -2.4f, single()), "scalpel");
-        keyCard = register(new KeyCard(single()), "keycard");
-        forgeRegistry.registerAll(scalpel, policeBaton, keyCard);
-        Item bananaPill = new BananaPill(SCPItems.scp().stacksTo(16).food(new Food.Builder(). nutrition(0).saturationMod(0).alwaysEat().effect(() -> {
+        }, "tester", forgeRegistry);
+        policeBaton = register(new PoliceBaton(single()), "police_baton", forgeRegistry);
+        scalpel = register(new SwordItem(ItemTier.GOLD, 3, -2.4f, single()), "scalpel", forgeRegistry);
+        keyCard = register(new KeyCard(single()), "keycard", forgeRegistry);
+        Item bananaPill = new BananaPill(SCPItems.scp().stacksTo(16).food(new Food.Builder().nutrition(0).saturationMod(0).alwaysEat().effect(() -> {
             EffectInstance effectInstance = new EffectInstance(SCPEffects.bananaDeathEffect, Functions.minutesToTicks(31));
             effectInstance.setCurativeItems(Collections.emptyList());
             return effectInstance;
         }, 1).build()));
 
-        banana = register(new Item(properties().food(new Food.Builder().nutrition(4).saturationMod(0.5f).build())), "banana");
-        forgeRegistry.registerAll(banana, bananaPill.setRegistryName(SCP.ID, "scp3521"));
-        forgeRegistry.register(register(new ColaBottle(scp().stacksTo(24)), "cola_bottle"));
+        banana = register(new Item(properties().food(new Food.Builder().nutrition(4).saturationMod(0.5f).build())), "banana", forgeRegistry);
+        forgeRegistry.register(register(new ColaBottle(scp().stacksTo(24)), "cola_bottle", forgeRegistry));
 
         Item item = new RubberDucky(SCPItems.scp().stacksTo(1));
-        rubberDuck = register(item, "rubber_duck");
-        forgeRegistry.registerAll(rubberDuck);
+        rubberDuck = register(item, "rubber_duck", forgeRegistry);
         register(new Item(single()) {
             @Override
             public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {
@@ -120,7 +118,6 @@ public class SCPItems {
         }, "killer", forgeRegistry);
         gadget = register(new Item(properties()), "gadget", forgeRegistry);
         register(new AutoRifle(properties().defaultDurability(1000), 0), "rifle", forgeRegistry);
-//        scpTemplate = register(new SCPTemplate(single().tab(templates)), "scp_template", forgeRegistry);
         register(new FlakCannon(properties().defaultDurability(500), 30), "flak_cannon", forgeRegistry);
         register(new RocketLauncher(properties().defaultDurability(500), 40), "rocket_launcher", forgeRegistry);
         register(new FlameThrower(properties().defaultDurability(500), 0), "flamer", forgeRegistry);
@@ -146,16 +143,9 @@ public class SCPItems {
         return new Item.Properties().tab(items).stacksTo(1);
     }
 
-    @Deprecated
-    private static <T extends Item> T register(T item, String id) {
-        item.setRegistryName(SCP.ID, id);
-        return item;
-    }
-
     private static <I extends Item> I register(I item, String name, IForgeRegistry<Item> itemIForgeRegistry) {
         item.setRegistryName(SCP.ID, name);
         itemIForgeRegistry.register(item);
         return item;
     }
-
 }

@@ -128,7 +128,11 @@ public class HardDrive extends Item {
                 drive.getTag().putBoolean(HardDrive.CRACKED, true);
                 stacks.add(drive);
             });
-            stacks.sort(Comparator.comparing(o -> Integer.valueOf(o.getTag().getString(NUMBER))));
+            stacks.sort(Comparator.comparing(o -> {
+                if (o.hasTag() && o.getTag().contains(NUMBER))
+                    return Integer.valueOf(o.getTag().getString(NUMBER));
+                return 0;
+            }));
         }
     }
 }

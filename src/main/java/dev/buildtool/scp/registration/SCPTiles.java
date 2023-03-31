@@ -55,18 +55,18 @@ public class SCPTiles {
 
         slidingDoorEntity = new TileEntityType<>(() -> new SlidingDoorEntity(slidingDoorEntity), Collections.singleton(SCPBlocks.slidingDoorBlock), null);
         slidingDoorEntity.setRegistryName(SCP.ID, "sliding_door");
-        clockworksEntity = register(ClockworksEntity::new, "clockworks", SCPBlocks.clockworksPanel);
-        crateEntity = register(() -> new CrateEntity(crateEntity), "crate", SCPBlocks.crateBlock);
-        shelfEntity = register(() -> new ShelfEntity(shelfEntity), "shelf", SCPBlocks.acaciaShelf, SCPBlocks.spruceShelf, SCPBlocks.darkOakShelf, SCPBlocks.oakShelf, SCPBlocks.jungleShelf, SCPBlocks.birchShelf);
-        tableEntity = register(() -> new TableEntity(tableEntity), "table_one", SCPBlocks.singleItemTable);
-        tableEntity4 = register(() -> new TableEntity4(tableEntity4), "table_four", SCPBlocks.fourItemTable);
+        clockworksEntity = register(ClockworksEntity::new, "clockworks", forgeRegistry, SCPBlocks.clockworksPanel);
+        crateEntity = register(() -> new CrateEntity(crateEntity), "crate", forgeRegistry, SCPBlocks.crateBlock);
+        shelfEntity = register(() -> new ShelfEntity(shelfEntity), "shelf", forgeRegistry, SCPBlocks.acaciaShelf, SCPBlocks.spruceShelf, SCPBlocks.darkOakShelf, SCPBlocks.oakShelf, SCPBlocks.jungleShelf, SCPBlocks.birchShelf);
+        tableEntity = register(() -> new TableEntity(tableEntity), "table_one", forgeRegistry, SCPBlocks.singleItemTable);
+        tableEntity4 = register(() -> new TableEntity4(tableEntity4), "table_four", forgeRegistry, SCPBlocks.fourItemTable);
         forgeRegistry.registerAll(slidingDoorEntity, clockworksEntity, crateEntity, shelfEntity, tableEntity, tableEntity4);
-        monsterPotEntity = register(() -> new MonsterPotEntity(monsterPotEntity), "monster_pot", SCPBlocks.monsterPot);
-        lockEntity = register(() -> new LockEntity(lockEntity), "electronic_lock", SCPBlocks.electronicLock);
+        monsterPotEntity = register(() -> new MonsterPotEntity(monsterPotEntity), "monster_pot", forgeRegistry, SCPBlocks.monsterPot);
+        lockEntity = register(() -> new LockEntity(lockEntity), "electronic_lock", forgeRegistry, SCPBlocks.electronicLock);
         forgeRegistry.registerAll(monsterPotEntity, lockEntity);
-        ikeaTeleporter = register(() -> new TeleportBlockEntity(ikeaTeleporter), "ikea_teleporter", SCPBlocks.iikeaEntrance, SCPBlocks.iikeaExit);
+        ikeaTeleporter = register(() -> new TeleportBlockEntity(ikeaTeleporter), "ikea_teleporter", forgeRegistry, SCPBlocks.iikeaEntrance, SCPBlocks.iikeaExit);
         forgeRegistry.register(ikeaTeleporter);
-        oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", SCPBlocks.oldAIBlock);
+        oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", forgeRegistry, SCPBlocks.oldAIBlock);
         forgeRegistry.registerAll(oldAIEntity);
         shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
         lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
@@ -75,14 +75,6 @@ public class SCPTiles {
         woodenCrate = register(() -> new dev.buildtool.scp.flaregun.CrateEntity(woodenCrate), "wooden_crate", forgeRegistry, SCPBlocks.crate);
         hardDriveCracker=register(() -> new HardDriveCrackerEntity(hardDriveCracker),"hard_drive_cracker",forgeRegistry,SCPBlocks.hardDriveCrackerBlock);
         hardDriveStore=register(() -> new HardDriveStoreEntity(hardDriveStore),"hard_drive_store",forgeRegistry,SCPBlocks.hardDriveStore);
-    }
-
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static <E extends TileEntityType<?>> E register(Supplier<TileEntity> supplier, String id, Block... blocks) {
-        TileEntityType<?> type = new TileEntityType<>(supplier, Sets.newHashSet(blocks), null);
-        type.setRegistryName(SCP.ID, id);
-        return (E) type;
     }
 
     @SuppressWarnings("unchecked")
