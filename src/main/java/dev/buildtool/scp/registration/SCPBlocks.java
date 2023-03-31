@@ -2,7 +2,7 @@ package dev.buildtool.scp.registration;
 
 import dev.buildtool.satako.blocks.BlockDirectional;
 import dev.buildtool.scp.SCP;
-import dev.buildtool.scp.blocks.*;
+import dev.buildtool.scp.blockscps.*;
 import dev.buildtool.scp.chairs.Chair;
 import dev.buildtool.scp.clockworks.Panel;
 import dev.buildtool.scp.crate.CrateBlock;

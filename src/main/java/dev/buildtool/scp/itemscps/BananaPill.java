@@ -1,4 +1,4 @@
-package dev.buildtool.scp.items;
+package dev.buildtool.scp.itemscps;
 
 import dev.buildtool.scp.SCPObject;
 import net.minecraft.item.Item;

@@ -1,4 +1,4 @@
-package dev.buildtool.scp.blocks;
+package dev.buildtool.scp.blockscps;
 
 import dev.buildtool.scp.SCPObject;
 import net.minecraft.block.Block;

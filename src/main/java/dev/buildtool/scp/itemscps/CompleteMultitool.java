@@ -1,4 +1,4 @@
-package dev.buildtool.scp.items;
+package dev.buildtool.scp.itemscps;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

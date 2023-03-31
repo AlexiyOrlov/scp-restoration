@@ -4,8 +4,8 @@ import dev.buildtool.satako.RandomizedList;
 import dev.buildtool.scp.RandomLoot;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.TemplateWithRandomLoot;
-import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.lamp.SmallLamp;
+import dev.buildtool.scp.registration.SCPBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -44,9 +44,6 @@ public class RoomGenerator extends Feature<NoFeatureConfig> {
     ITag<Block> BANNERS;
     ITag<Block> FENCES;
     ITag<Block> SLABS;
-    ITag<Block> STAIRS;
-    ITag<Block> FLOWERS;
-    ITag<Block> TRAPDOORS;
     ITag<Block> WALLS;
     private final RandomizedList<ITag<Block>> randomBlockTagList;
     private final ITag<Block> containers;
@@ -67,10 +64,6 @@ public class RoomGenerator extends Feature<NoFeatureConfig> {
         BANNERS = blockTags.getTag(BlockTags.BANNERS.getName());
         FENCES = blockTags.getTag(BlockTags.FENCES.getName());
         SLABS = blockTags.getTag(BlockTags.SLABS.getName());
-        /*unused*/
-        FLOWERS = blockTags.getTag(BlockTags.FLOWERS.getName());
-        /*unused*/
-        TRAPDOORS = blockTags.getTag(BlockTags.TRAPDOORS.getName());
         WALLS = blockTags.getTag(BlockTags.WALLS.getName());
         randomBlockTagList = new RandomizedList<>(Arrays.asList(WALLS, FENCES, WOOL, WOODS, PLANKS));
         containers = TagCollectionManager.getInstance().getBlocks().getTag(new ResourceLocation(SCP.ID, "containers"));
