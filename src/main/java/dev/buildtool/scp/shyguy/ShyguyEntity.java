@@ -4,8 +4,8 @@ import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.UniqueList;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.registration.Sounds;
 import dev.buildtool.scp.human.Human;
+import dev.buildtool.scp.registration.Sounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -33,7 +33,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 @SCPObject(number = "096", classification = SCPObject.Classification.EUCLID, name = "Shyguy")
@@ -43,7 +42,6 @@ public class ShyguyEntity extends SCPEntity {
     int cryInterval;
     UniqueList<LivingEntity> watching = new UniqueList<>();
     static public final DataParameter<Byte> state = EntityDataManager.defineId(ShyguyEntity.class, DataSerializers.BYTE);
-    static final Predicate<PlayerEntity> playerEntityPredicate = playerEntity -> !playerEntity.isCreative() && !playerEntity.isSpectator();
 
     public ShyguyEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
@@ -81,7 +79,7 @@ public class ShyguyEntity extends SCPEntity {
             List<LivingEntity> watchers = level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(blockPosition()).inflate(getRange()), pr -> Functions.isInSightOf(this, pr, 0.2f));
             watchers.remove(this);
             watchers.removeIf(livingEntity -> !(livingEntity instanceof PlayerEntity) && !(livingEntity instanceof Human));
-            watchers.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR.negate()::test);
+            watchers.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR.negate());
             watching.addAll(watchers);
             switch (aByte) {
                 //idle
@@ -133,6 +131,7 @@ public class ShyguyEntity extends SCPEntity {
                     }
 
                     watching.removeIf(livingEntity -> !livingEntity.isAlive());
+                    watching.removeIf(EntityPredicates.NO_CREATIVE_OR_SPECTATOR.negate());
                     if (watching.isEmpty()) {
                         entityData.set(state, (byte) 0);
                         navigation = new GroundPathNavigator(this, level);
