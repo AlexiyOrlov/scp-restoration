@@ -11,6 +11,7 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.resources.IResource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -61,14 +62,15 @@ public class InfoScreen  extends Screen2 {
     @Override
     public void init() {
         super.init();
-        addButton(new Label(centerX, 3, new TranslationTextComponent("scp.discovered.scps").append(" (" + scpData.keySet().size() + "/" + stringListHashMap.size() + ")")));
-        int spaceY=20;
-        int spaceX=10;
+        IFormattableTextComponent textComponent = new TranslationTextComponent("scp.discovered.scps").append(" (" + scpData.keySet().size() + "/" + stringListHashMap.size() + ")");
+        addButton(new Label(centerX - font.width(textComponent) / 2, 3, textComponent));
+        int spaceY = 20;
+        int spaceX = 10;
         for (String s : scpData.keySet()) {
-            addButton(new BetterButton(spaceX,spaceY,new StringTextComponent(s),p_onPress_1_ -> {
-                minecraft.setScreen(new SCPEntry(new StringTextComponent(""),this,s));
+            addButton(new BetterButton(spaceX, spaceY, new StringTextComponent(s), p_onPress_1_ -> {
+                minecraft.setScreen(new SCPEntry(new StringTextComponent(""), this, s));
             }));
-            spaceY+=20;
+            spaceY += 20;
             if (spaceY > this.height - 20) {
                 spaceX += font.width("______");
                 spaceY = 20;
