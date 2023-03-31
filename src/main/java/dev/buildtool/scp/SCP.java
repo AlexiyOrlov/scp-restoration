@@ -66,6 +66,8 @@ public class SCP {
     public static ForgeConfigSpec.IntValue scp1162ItemLimit;
     private static final String networkProtocolVersion = "2";
     public static List<ResourceLocation> scpBlacklist = new ArrayList<>(40);
+    public static ForgeConfigSpec.IntValue hardDriveRarity;
+    public static ForgeConfigSpec.ConfigValue<List<?>> blacklistedSCPs;
     public SCP() {
         int message = 0;
         channel = NetworkRegistry.newSimpleChannel(new ResourceLocation(ID, "channel1"), () -> networkProtocolVersion, s -> s.equals(networkProtocolVersion), s -> s.equals(networkProtocolVersion));
@@ -280,12 +282,14 @@ public class SCP {
                 });
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, new ForgeConfigSpec.Builder().configure(builder -> {
-            Structures.rarity = builder.comment("Higher rarity means less chambers").define("SCP chamber rarity", 200);
+//            Structures.rarity = builder.comment("Higher rarity means less chambers").define("SCP chamber rarity", 200);
             writeClockworksRecipes = builder.define("Create a file listing all Clockworks recipes", true);
             toothBrushCanBreakUnbreakable = builder.define("SCP-063 can break unbreakable blocks", false);
             chamberDamage = builder.comment("Amount of damage appplied to outer walls of generated SCP chambers").defineInRange("SCP chamber damage", 0.0, 0.0, 0.9);
             chaosSoldierWeight = builder.defineInRange("Spawning frequency of Chaos Insurgency soldiers", 2, 0, 20);
             scp1162ItemLimit = builder.defineInRange("SCP-1162 item limit per player", 54, 10, 150);
+            hardDriveRarity=builder.comment("Higher value means less frequent hard drive occurrence").defineInRange("SCP hard drive rarity",200,20,200000);
+            blacklistedSCPs=builder.comment("These SCPs won't occur").defineList("Blacklisted SCPs", Collections::emptyList, o -> o instanceof String);
             return builder.build();
         }).getRight());
         Path scpBlacklist = Paths.get("config", "scp-blacklist.ini");

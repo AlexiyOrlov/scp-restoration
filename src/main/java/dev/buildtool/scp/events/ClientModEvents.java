@@ -7,6 +7,8 @@ import dev.buildtool.scp.EntityRenderer2;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.crate.CrateContainer;
 import dev.buildtool.scp.flaregun.FlareModel;
+import dev.buildtool.scp.harddrivecracker.HardDriveCrackerContainer;
+import dev.buildtool.scp.harddrivecracker.HardDriveCrackerScreen;
 import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.humansrefuted.HumanRefutedModel;
 import dev.buildtool.scp.humansrefuted.SCP3199Egg;
@@ -109,6 +111,7 @@ public class ClientModEvents {
         ScreenManager.register(SCPContainers.crateContainer, (ScreenManager.IScreenFactory<CrateContainer, ContainerScreen2<CrateContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.shelfContainer, (ScreenManager.IScreenFactory<ShelfContainer, ContainerScreen2<ShelfContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.mailboxContainer, MailboxScreen::new);
+        ScreenManager.register(SCPContainers.hardDriveCrackerContainer, HardDriveCrackerScreen::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard, manager -> new EntityRenderer2(manager, new FlakShardModel(), "flak_shard", false, 0) {
             @Override
             public boolean shouldRender(Entity p_225626_1_, ClippingHelper p_225626_2_, double p_225626_3_, double p_225626_5_, double p_225626_7_) {

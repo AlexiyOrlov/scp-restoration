@@ -38,14 +38,14 @@ import java.util.stream.Collectors;
 public class Events {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void biomesLoad(BiomeLoadingEvent loadingEvent) {
+    public static void onBiomesLoad(BiomeLoadingEvent loadingEvent) {
         ResourceLocation biomeName = loadingEvent.getName();
         Biome.Category category = loadingEvent.getCategory();
         if (biomeName != null && biomeName.equals(new ResourceLocation(SCP.ID, "iikea1"))) {
             loadingEvent.getGeneration().getFeatures(GenerationStage.Decoration.RAW_GENERATION).add(() -> new ConfiguredFeature<>(new RoomGenerator(), new NoFeatureConfig()));
         } else if (category != Biome.Category.OCEAN && category != Biome.Category.THEEND && category != Biome.Category.NETHER && category != Biome.Category.RIVER) {
             //at least in this stage the structure isn't that cut out
-            loadingEvent.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> Structures.scpSite.configured(new NoFeatureConfig()));
+            loadingEvent.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> Structures.hardDriveContainerGenerator.configured(new NoFeatureConfig()));
             loadingEvent.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(Entities.chaosInsurgencySoldier, SCP.chaosSoldierWeight.get(), 1, 3));
         }
     }
@@ -92,11 +92,8 @@ public class Events {
 
     @SubscribeEvent
     public static void onServerStop(FMLServerStoppedEvent serverStoppedEvent) {
-        Structures.scpSite.scpWorldData = null;
+//        Structures.scpSite.scpWorldData = null;
+        Structures.hardDriveContainerGenerator.scpWorldData=null;
     }
 
-//    @SubscribeEvent
-//    public static void registerDataManagers(AddReloadListenerEvent addReloadListenerEvent) {
-//        addReloadListenerEvent.addListener(new ChamberLootManager());
-//    }
 }

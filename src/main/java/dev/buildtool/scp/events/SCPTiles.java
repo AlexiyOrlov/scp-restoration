@@ -4,6 +4,8 @@ import com.google.common.collect.Sets;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.clockworks.ClockworksEntity;
 import dev.buildtool.scp.crate.CrateEntity;
+import dev.buildtool.scp.harddrivecracker.HardDriveCrackerEntity;
+import dev.buildtool.scp.harddrivecracker.HardDriveStoreEntity;
 import dev.buildtool.scp.infiniteikea.TeleportBlockEntity;
 import dev.buildtool.scp.lock.LockEntity;
 import dev.buildtool.scp.lootblock.LootBlockEntity;
@@ -43,6 +45,8 @@ public class SCPTiles {
     public static TileEntityType<MailboxEntity> mailboxEntity;
     public static TileEntityType<ParcelBlock.ParcelEntity> parcelEntityTile;
     public static TileEntityType<dev.buildtool.scp.flaregun.CrateEntity> woodenCrate;
+    public static TileEntityType<HardDriveCrackerEntity> hardDriveCracker;
+    public static TileEntityType<HardDriveStoreEntity> hardDriveStore;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -69,6 +73,8 @@ public class SCPTiles {
         mailboxEntity = register(() -> new MailboxEntity(mailboxEntity), "mailbox", forgeRegistry, SCPBlocks.mailbox);
         parcelEntityTile = register(() -> new ParcelBlock.ParcelEntity(parcelEntityTile), "parcel", forgeRegistry, SCPBlocks.parcelBlock);
         woodenCrate = register(() -> new dev.buildtool.scp.flaregun.CrateEntity(woodenCrate), "wooden_crate", forgeRegistry, SCPBlocks.crate);
+        hardDriveCracker=register(() -> new HardDriveCrackerEntity(hardDriveCracker),"hard_drive_cracker",forgeRegistry,SCPBlocks.hardDriveCrackerBlock);
+        hardDriveStore=register(() -> new HardDriveStoreEntity(hardDriveStore),"hard_drive_store",forgeRegistry,SCPBlocks.hardDriveStore);
     }
 
     @Deprecated

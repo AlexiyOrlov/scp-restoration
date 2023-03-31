@@ -2,6 +2,7 @@ package dev.buildtool.scp.events;
 
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.crate.CrateContainer;
+import dev.buildtool.scp.harddrivecracker.HardDriveCrackerContainer;
 import dev.buildtool.scp.human.InteractionContainer;
 import dev.buildtool.scp.mailbox.MailboxContainer;
 import dev.buildtool.scp.shelflife.ShelfContainer;
@@ -18,6 +19,7 @@ public class SCPContainers {
     public static ContainerType<InteractionContainer> humanInterContainer;
     public static ContainerType<ShelfContainer> shelfContainer;
     public static ContainerType<MailboxContainer> mailboxContainer;
+    public static ContainerType<HardDriveCrackerContainer> hardDriveCrackerContainer;
 
     @SuppressWarnings("unused")
     @SubscribeEvent
@@ -31,5 +33,7 @@ public class SCPContainers {
         forgeRegistry.register(shelfContainer.setRegistryName(SCP.ID, "shelf_life"));
         mailboxContainer = IForgeContainerType.create(MailboxContainer::new);
         forgeRegistry.register(mailboxContainer.setRegistryName(SCP.ID, "mailbox"));
+        hardDriveCrackerContainer=IForgeContainerType.create(HardDriveCrackerContainer::new);
+        forgeRegistry.register(hardDriveCrackerContainer.setRegistryName(SCP.ID,"hard_drive_cracker"));
     }
 }

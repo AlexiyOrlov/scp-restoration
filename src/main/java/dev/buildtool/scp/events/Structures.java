@@ -1,5 +1,6 @@
 package dev.buildtool.scp.events;
 
+import dev.buildtool.scp.HardDriveContainerGenerator;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.SiteFeature;
 import net.minecraft.util.ResourceLocation;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Structures {
+    public static final HardDriveContainerGenerator hardDriveContainerGenerator = new HardDriveContainerGenerator();
     public static SiteFeature scpSite;
     public static List<ResourceLocation> structureLootTables;
     public static ForgeConfigSpec.ConfigValue<Integer> rarity;
@@ -23,7 +25,7 @@ public class Structures {
     public static void register(RegistryEvent.Register<Feature<?>> featureRegister) throws IOException {
         IForgeRegistry<Feature<?>> registry = featureRegister.getRegistry();
         scpSite = new SiteFeature();
-        registry.register(scpSite.setRegistryName(SCP.ID, "scp_site"));
+        registry.register(hardDriveContainerGenerator.setRegistryName(SCP.ID,"scp_hard_drive_generator"));
     }
 
 }

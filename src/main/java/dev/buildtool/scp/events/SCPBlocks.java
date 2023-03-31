@@ -7,6 +7,8 @@ import dev.buildtool.scp.chairs.Chair;
 import dev.buildtool.scp.clockworks.Panel;
 import dev.buildtool.scp.crate.CrateBlock;
 import dev.buildtool.scp.flaregun.Crate;
+import dev.buildtool.scp.harddrivecracker.HardDriveCrackerBlock;
+import dev.buildtool.scp.harddrivecracker.HardDriveStore;
 import dev.buildtool.scp.human.HumanHireBlock;
 import dev.buildtool.scp.infiniteikea.EntranceBlock;
 import dev.buildtool.scp.infiniteikea.ExitBlock;
@@ -46,7 +48,6 @@ import java.util.Arrays;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SCPBlocks {
-    static ArrayList<Block> droppableBlocks = new ArrayList<>();
     static PizzaBox pizzaBox;
     static BlastingCactus cactus;
     static FertileSoil fertileSoil;
@@ -93,6 +94,9 @@ public class SCPBlocks {
     static Mailbox mailbox;
     public static ParcelBlock parcelBlock;
     public static Crate crate;
+
+    public static HardDriveCrackerBlock hardDriveCrackerBlock;
+    public static HardDriveStore hardDriveStore;
 
     static ItemGroup blocks = new ItemGroup("scp.blocks") {
         @Override
@@ -186,6 +190,9 @@ public class SCPBlocks {
         mailbox = registerBlock(new Mailbox(properties().noOcclusion()), "scp3821", forgeRegistry);
         parcelBlock = registerBlock(new ParcelBlock(properties().strength(-1)), "parcel", forgeRegistry);
         crate = registerBlock(new Crate(propertiesOf(Material.WOOD, ToolType.AXE)), "wooden_crate", forgeRegistry);
+
+        hardDriveCrackerBlock=registerBlock(new HardDriveCrackerBlock(properties()),"hard_drive_cracker",forgeRegistry);
+        hardDriveStore=registerBlock(new HardDriveStore(properties()),"hard_drive_store",forgeRegistry);
     }
 
 
@@ -228,6 +235,7 @@ public class SCPBlocks {
 
         forgeRegistry.register(registerSCP(oldAIBlock));
 
+
         forgeRegistry.register(new BlockItem(lootBlock, itemProperties()) {
             @Override
             public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
@@ -247,6 +255,8 @@ public class SCPBlocks {
         forgeRegistry.register(registerSCP(mailbox));
         forgeRegistry.register(register(parcelBlock));
         forgeRegistry.register(register(crate));
+        forgeRegistry.register(register(hardDriveStore));
+        forgeRegistry.register(register(hardDriveCrackerBlock));
     }
 
     private static Item register(Block block) {
@@ -279,7 +289,6 @@ public class SCPBlocks {
     private static <B extends Block> B registerBlock(B block, String name, IForgeRegistry<Block> registry) {
         block.setRegistryName(SCP.ID, name);
         registry.register(block);
-        droppableBlocks.add(block);
         return block;
     }
 

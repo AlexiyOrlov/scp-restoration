@@ -13,14 +13,18 @@ import dev.buildtool.scp.weapons.AutoRifle;
 import dev.buildtool.scp.weapons.FlakCannon;
 import dev.buildtool.scp.weapons.FlameThrower;
 import dev.buildtool.scp.weapons.RocketLauncher;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
@@ -31,7 +35,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
+import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SCPItems {
@@ -50,7 +56,8 @@ public class SCPItems {
     static public Item banana, rubberDuck, gadget;
 
     public static SCPTemplate scpTemplate;
-    static Item completeMultitool;
+
+    public static Item scpHardDrive;
 
     static ItemGroup templates = new ItemGroup("scp.templates") {
         @Override
@@ -119,6 +126,20 @@ public class SCPItems {
         register(new Lighter(scp().stacksTo(1)), "escal_lighter", forgeRegistry);
 
         register(new CompleteMultitool(scp().stacksTo(1).addToolType(ToolType.AXE,4).addToolType(ToolType.HOE,4).addToolType(ToolType.SHOVEL,4).addToolType(ToolType.PICKAXE,4)),"complete_multitool",forgeRegistry);
+        scpHardDrive=register(new Item(single()){
+            @Override
+            public void appendHoverText(ItemStack stack, @Nullable World p_77624_2_, List<ITextComponent> textComponents, ITooltipFlag p_77624_4_) {
+                super.appendHoverText(stack, p_77624_2_, textComponents, p_77624_4_);
+                if(stack.hasTag()){
+                    CompoundNBT compoundNBT=stack.getTag();
+                    if(compoundNBT.contains("Number")){
+                        String number=compoundNBT.getString("Number");
+                        textComponents.add(new StringTextComponent("SCP-"+number));
+                    }
+                }
+            }
+        },"scp_hard_drive",forgeRegistry);
+
     }
 
     private static Item.Properties scp(){
