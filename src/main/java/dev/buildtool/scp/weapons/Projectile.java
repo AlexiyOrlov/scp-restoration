@@ -21,9 +21,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
-
+@Deprecated
 public abstract class Projectile extends InanimateEntity {
-   //TODO
+
    protected UUID ownerNetworkId;
    protected boolean leftOwner;
    protected int damage;
@@ -32,7 +32,6 @@ public abstract class Projectile extends InanimateEntity {
 
    /**
     * @param lightness                  0 to 1
-    * @param invulnerabilityAfterImpact
     */
    public Projectile(EntityType<? extends Projectile> p_i231584_1_, World p_i231584_2_, int damage_, double lightness, int invulnerabilityAfterImpact) {
       super(p_i231584_1_, p_i231584_2_);

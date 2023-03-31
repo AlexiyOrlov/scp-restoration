@@ -156,18 +156,18 @@ public class Entities {
         EntitySpawnPlacementRegistry.register(chaosInsurgencySoldier, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, (p_test_1_, p_test_2_, p_test_3_, p_test_4_, p_test_5_) -> true);
 
         flakShard = registerFastEntity("flak_shard", EntityClassification.MISC, FlakShard::new, 0.1f, 0.1f, forgeRegistry);
-        rocket = registerFastEntity("rocket", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Rocket(p_create_1_, p_create_2_, 0, 1), 0.2f, 0.2f, forgeRegistry);
+        rocket = registerFastEntity("rocket", EntityClassification.MISC, Rocket::new, 0.2f, 0.2f, forgeRegistry);
         forgeRegistry.registerAll(wallOfFlesh, patchworkBear);
-        flare = registerFastEntity("flare", EntityClassification.MISC, (p_create_1_, p_create_2_) -> new Flare(flare, p_create_2_, 2, 1), 0.1f, 0.1f, forgeRegistry);
+        flare = registerFastEntity("flare", EntityClassification.MISC, Flare::new, 0.1f, 0.1f, forgeRegistry);
         flame = registerFastEntity("flame", EntityClassification.MISC, Flame::new, 0.1f, 0.1f, forgeRegistry);
     }
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent attributeCreationEvent) {
-        attributeCreationEvent.put(flakShard, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(rocket, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(flare, MonsterEntity.createMonsterAttributes().build());
-        attributeCreationEvent.put(flame, MonsterEntity.createMonsterAttributes().build());
+//        attributeCreationEvent.put(flakShard, MonsterEntity.createMonsterAttributes().build());
+//        attributeCreationEvent.put(rocket, MonsterEntity.createMonsterAttributes().build());
+//        attributeCreationEvent.put(flare, MonsterEntity.createMonsterAttributes().build());
+//        attributeCreationEvent.put(flame, MonsterEntity.createMonsterAttributes().build());
         attributeCreationEvent.put(maleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
         attributeCreationEvent.put(femaleCivilian, MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_WALK_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).build());
         attributeCreationEvent.put(maleCommoner, MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 32).add(Attributes.MOVEMENT_SPEED, Constants.PLAYER_SPRINT_SPEED).add(Attributes.ATTACK_DAMAGE, 1).add(ForgeMod.SWIM_SPEED.get(), 3).add(Attributes.MAX_HEALTH, 20).build());

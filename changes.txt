@@ -1,3 +1,6 @@
+0.8.5:
+decreased lag in Ikea dimension;
+
 0.8.4:
 fixed possible crash caused by Fertile Soil;
 changed SCP item rarity to 'rare';

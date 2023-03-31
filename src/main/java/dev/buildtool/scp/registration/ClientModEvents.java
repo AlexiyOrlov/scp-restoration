@@ -6,7 +6,7 @@ import dev.buildtool.scp.BipedModel2;
 import dev.buildtool.scp.EntityRenderer2;
 import dev.buildtool.scp.SCP;
 import dev.buildtool.scp.crate.CrateContainer;
-import dev.buildtool.scp.flaregun.FlareModel;
+import dev.buildtool.scp.flaregun.FlareRenderer;
 import dev.buildtool.scp.harddrivecracker.HardDriveCrackerScreen;
 import dev.buildtool.scp.human.*;
 import dev.buildtool.scp.humansrefuted.HumanRefutedModel;
@@ -31,16 +31,14 @@ import dev.buildtool.scp.tatteredfarmer.ScarecrowModel;
 import dev.buildtool.scp.theteacher.TheTeacher2;
 import dev.buildtool.scp.ticklemonster.TickleMonster2;
 import dev.buildtool.scp.wallofflesh.SCP2059;
-import dev.buildtool.scp.weapons.FlakShardModel;
-import dev.buildtool.scp.weapons.FlameModel;
-import dev.buildtool.scp.weapons.RocketModel2;
+import dev.buildtool.scp.weapons.FlakShardRenderer;
+import dev.buildtool.scp.weapons.FlameRenderer;
+import dev.buildtool.scp.weapons.RocketRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.culling.ClippingHelper;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.resources.IResource;
 import net.minecraft.util.ResourceLocation;
@@ -111,17 +109,12 @@ public class ClientModEvents {
         ScreenManager.register(SCPContainers.shelfContainer, (ScreenManager.IScreenFactory<ShelfContainer, ContainerScreen2<ShelfContainer>>) (t, f, c) -> new ContainerScreen2<>(t, f, c, true));
         ScreenManager.register(SCPContainers.mailboxContainer, MailboxScreen::new);
         ScreenManager.register(SCPContainers.hardDriveCrackerContainer, HardDriveCrackerScreen::new);
-        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard, manager -> new EntityRenderer2(manager, new FlakShardModel(), "flak_shard", false, 0) {
-            @Override
-            public boolean shouldRender(Entity p_225626_1_, ClippingHelper p_225626_2_, double p_225626_3_, double p_225626_5_, double p_225626_7_) {
-                return true;
-            }
-        });
-        RenderingRegistry.registerEntityRenderingHandler(Entities.rocket, manager -> new EntityRenderer2<>(manager, new RocketModel2(), "rocket", false, 0));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flakShard, FlakShardRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.rocket, RocketRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(Entities.wallOfFlesh, manager -> new EntityRenderer2<>(manager, new SCP2059(), "scp2059", false, 1));
         RenderingRegistry.registerEntityRenderingHandler(Entities.patchworkBear, manager -> new EntityRenderer2<>(manager, new SCP2295(), "scp2295", false, 0.2f));
-        RenderingRegistry.registerEntityRenderingHandler(Entities.flare, manager -> new EntityRenderer2<>(manager, new FlareModel(), "rocket", false, 0));
-        RenderingRegistry.registerEntityRenderingHandler(Entities.flame, manager -> new EntityRenderer2<>(manager, new FlameModel(), "flak_shard", false, 0));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flare, FlareRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(Entities.flame, FlameRenderer::new);
     }
 
     public static List<String> getResourceText(String resourcePath) {
