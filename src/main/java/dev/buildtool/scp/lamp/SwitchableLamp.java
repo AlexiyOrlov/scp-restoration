@@ -40,6 +40,6 @@ public class SwitchableLamp extends SmallLamp {
             if (state.getValue(on))
                 worldIn.setBlockAndUpdate(pos, state.setValue(on, false));
         }
-        worldIn.getBlockTicks().scheduleTick(pos, this, 20);
+        worldIn.getBlockTicks().scheduleTick(pos, this, 20 * 60);
     }
 }
