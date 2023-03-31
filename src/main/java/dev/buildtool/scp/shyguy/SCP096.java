@@ -306,8 +306,8 @@ public class SCP096 extends EntityModel<ShyguyEntity> {
                 Leftlowerarm.yRot = 0;
                 Rightlowerarm.xRot = 0;
                 Rightlowerarm.yRot = 0;
-                Righthand.yRot = Functions.degreesToRadians(-45);
-                Lefthand.yRot = Functions.degreesToRadians(45);
+                setRotationAngle(Righthand, Functions.degreesToRadians(0), Functions.degreesToRadians(-29.18f), 0);
+                setRotationAngle(Lefthand, Functions.degreesToRadians(0), Functions.degreesToRadians(29.19f), 0);
                 Head.xRot = 0;
                 Cheeks.y = -2.5f;
                 Lowerjaw.xRot = 0;
@@ -315,16 +315,16 @@ public class SCP096 extends EntityModel<ShyguyEntity> {
             case CRYING:
                 Neck.xRot = Functions.degreesToRadians(30);
                 Neck.yRot = 0;
-                Leftupperarm.xRot = -45;
-                Rightupperarm.xRot = -45;
-                Leftlowerarm.xRot = Functions.degreesToRadians(-90);
-                Rightlowerarm.xRot = Functions.degreesToRadians(-90);
-                Righthand.yRot = -90;
-                Lefthand.yRot = 90;
-                Righthand.xRot = Functions.degreesToRadians(40);
-                Lefthand.xRot = Functions.degreesToRadians(40);
+                Leftupperarm.xRot = Functions.degreesToRadians(-30);
+                Rightupperarm.xRot = Functions.degreesToRadians(-30);
+                Leftlowerarm.xRot = Functions.degreesToRadians(-110);
                 Leftlowerarm.yRot = 0;
+                Rightlowerarm.xRot = Functions.degreesToRadians(-110);
                 Rightlowerarm.yRot = 0;
+                Righthand.yRot = Functions.degreesToRadians(-90);
+                Lefthand.yRot = Functions.degreesToRadians(90);
+                Righthand.xRot = Functions.degreesToRadians(35);
+                Lefthand.xRot = Functions.degreesToRadians(35);
                 break;
 
             case ACTIVE:
@@ -334,16 +334,12 @@ public class SCP096 extends EntityModel<ShyguyEntity> {
                 Rightlowerarm.yRot = 0;
                 Leftlowerarm.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount / 2) - Functions.degreesToRadians(45);
                 Leftlowerarm.yRot = 0;
-                Righthand.yRot = 0;
-                Lefthand.yRot = 0;
                 Leftupperarm.xRot = 0;
                 Rightupperarm.xRot = 0;
                 Leftthigh.xRot = Functions.getDefaultXRightLimbRotation(limbSwing, limbSwingAmount);
                 Rightthigh.xRot = Functions.getDefaultXLeftLimbRotation(limbSwing, limbSwingAmount);
-                Righthand.yRot = Functions.degreesToRadians(-45);
-                Lefthand.yRot = Functions.degreesToRadians(45);
-                Righthand.xRot = Functions.degreesToRadians(-20);
-                Lefthand.xRot = Functions.degreesToRadians(-20);
+                setRotationAngle(Righthand, Functions.degreesToRadians(0), Functions.degreesToRadians(-29.18f), 0);
+                setRotationAngle(Lefthand, Functions.degreesToRadians(0), Functions.degreesToRadians(29.19f), 0);
                 Cheeks.y = 2 / 16f;
                 Lowerjaw.xRot = Functions.degreesToRadians(20);
                 break;
