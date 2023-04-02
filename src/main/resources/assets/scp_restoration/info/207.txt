@@ -1,1 +1,2 @@
-This is a special Cola drink that applies strong jump, mining, swimming and speed buffs.
+This is a special Cola drink that applies strong jump, mining, swimming and
+speed buffs.

@@ -1,4 +1,4 @@
 Uncle Sam transforms all rotten flesh given to him into random edible meat.
 One piece of flesh yields 1-5 pieces of meat. Sam will try to deposit meat into
-containers nearby, otherwise he'll drop it on the ground.
-He needs a sword-like item to transform meat. He is a pacifist and thus doesn't fight.
+containers nearby, otherwise he'll drop it on the ground. He needs a sword-like
+ item to transform meat. He is a pacifist and thus doesn't fight.

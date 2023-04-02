@@ -1,3 +1,4 @@
-SCP-3821 is a standard postal service collection box. It is able to deliver parcels with items to any loaded position.
-Upon sucessful send action, a parcel with inserted item will appear at appropriate position; the item can be retrieved
-by right clicking the parcel.
+SCP-3821 is a standard postal service collection box. It is able to
+deliver parcels with items to any loaded position. Upon successful send action,
+ a parcel with inserted item will appear at appropriate position; the item can
+  be retrieved by right clicking the parcel.

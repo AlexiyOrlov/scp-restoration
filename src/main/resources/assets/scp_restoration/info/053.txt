@@ -1,2 +1,2 @@
-It's a 3-year-old girl. Any living mob in a close proximity to her will
-try to attack her, but any damage will be dealt back to the attacker.
+It's a 3-year-old girl. Any living mob in a proximity to her will try to attack
+ her, but any damage will be dealt back to the attacker.

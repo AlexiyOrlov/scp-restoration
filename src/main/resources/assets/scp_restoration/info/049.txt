@@ -1,3 +1,2 @@
-Hunts humans and cuts them with his scalpel.
-Upon death of a player an animated corpse will take his place, with his skin if
-it's available.
+Hunts humans and cuts them with his scalpel. Upon death of a player an
+animated corpse will take his place, with his skin if it's available.

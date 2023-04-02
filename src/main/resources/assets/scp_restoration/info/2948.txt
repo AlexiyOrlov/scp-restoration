@@ -1,2 +1,3 @@
-SCP-2948 is a bomb which creates explosion upon falling. Strength of its explosion is proportional to
- distance fallen. Furthermore, it doesn't disappear when detonated, and is immune to any explosion.
+SCP-2948 is a bomb which creates explosion upon falling. Strength of its explosion
+ is proportional to distance fallen. Furthermore, it doesn't disappear when
+ detonated, and is immune to any explosion.

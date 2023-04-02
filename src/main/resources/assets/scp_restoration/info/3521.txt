@@ -1,7 +1,7 @@
 SCP-3521 is a yellow gel tablet.
 After 30 minutes since consumption, the consumer will have his stomach filled
-with radioactive bananas, and die.
-The level of radiation is low, and bananas are edible.
+with radioactive bananas, and die. The level of radiation is low, and bananas
+ are edible.
 
 Following is an excerpt from a text message conversation recovered
 from the cell phone found near the supply of SCP-3521 during its discovery:

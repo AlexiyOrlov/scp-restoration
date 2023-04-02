@@ -1,5 +1,7 @@
 SCP-3008 is a dimension resembling interior of an IKEA furniture store.
-It is inhabited by an unknown amount of civilians and SCP-3008-2, humanoid entities that wear IKEA employee uniform.
-SCP-3008-2 are neutral during the daytime, and become hostile to all creatures during nighttime. Due to that a stranger
-might encounter small civilian bases amidst the dimension, where some useful resources can be found.
-To enter SCP-3008, the player must be sneaking inside the teleportation block.
+It is inhabited by an unknown amount of civilians and SCP-3008-2, humanoid
+ entities that wear IKEA employee uniform. SCP-3008-2 are neutral during the
+ daytime, and become hostile to all creatures during nighttime. Due to that a
+  stranger might encounter small civilian bases amidst the dimension, where some
+   useful resources can be found. To enter SCP-3008, the player must be sneaking
+   inside the teleportation block.

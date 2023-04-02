@@ -1,4 +1,4 @@
-SCP-1162 is a hole in a cinderblock wall.
-If a player clicks the hole, he might receive one of the items he dropped some time ago.
-This will happen in exchange for a random item currently present in his inventory.
-If his inventory is empty, he will suffer random amount of damage.
+SCP-1162 is a hole in a cinderblock wall. If a player clicks the hole,
+ he might receive one of the items he dropped some time ago. This will happen
+  in exchange for a random item currently present in his inventory. If his
+   inventory is empty, he will suffer random amount of damage.

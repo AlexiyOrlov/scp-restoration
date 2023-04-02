@@ -1,2 +1,3 @@
-SCP-1577 is a flare gun. When a flare is shot from this gun and collides with a block, a container appears,
-containing random item useful in combat. The flare can deal small damage to mobs.
+SCP-1577 is a flare gun. When a flare is shot from this gun and collides with a
+block, a container appears, containing random item useful in combat. The flare
+ can deal small damage to mobs.
