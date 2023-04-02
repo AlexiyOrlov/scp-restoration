@@ -113,7 +113,7 @@ public class InfoScreen  extends Screen2 {
                 drawCenteredString(matrixStack, font, "Class: " + data.classification, centerX, 25 + textVerticalPosition, 0xffffffff);
                 drawCenteredString(matrixStack, font, "Name: " + data.officialName, centerX, 40 + textVerticalPosition, 0xffffffff);
 
-                List<String> stringList = splitString(text, new ArrayList<>());
+                List<String> stringList = splitString(text, new ArrayList<>(), 0);
                 for (String information : stringList) {
                     drawString(matrixStack, font, information, 10, 15 * offsetY + textVerticalPosition, 0xffffffff);
                     offsetY++;
@@ -135,21 +135,35 @@ public class InfoScreen  extends Screen2 {
         }
     }
 
-    private List<String> splitString(List<String> strings, List<String> returnList) {
-        for (String string : strings) {
-            if (font.width(string) > width - 30) {
-                String part = string.substring(0, string.lastIndexOf(' '));
-                while (font.width(part) > width - 30) {
-                    part = part.substring(0, part.length() - 2);
+    private List<String> splitString(List<String> strings, List<String> returnList, int nextIndex) {
+        String string = strings.get(nextIndex);
+        if (font.width(string) > width - 30) {
+            String part = string.substring(0, string.lastIndexOf(' '));
+            while (font.width(part) > width - 30) {
+                part = part.substring(0, part.length() - 2);
+            }
+            while (!part.endsWith(" ")) {
+                part = part.substring(0, part.length() - 2);
+            }
+            String part2 = string.substring(part.length());
+            returnList.add(part);
+            returnList.add(part2);
+            int indexOfNext = strings.indexOf(string) + 1;
+            if (indexOfNext < strings.size()) {
+                splitString(strings, returnList, indexOfNext);
+            }
+        } else {
+            if (string.isEmpty()) {
+                splitString(strings, returnList, nextIndex + 1);
+            } else {
+                returnList.add(string);
+                int indexOfNext = strings.indexOf(string) + 1;
+                if (indexOfNext < strings.size()) {
+                    splitString(strings, returnList, indexOfNext);
                 }
-                while (!part.endsWith(" ")) {
-                    part = part.substring(0, part.length() - 2);
-                }
-                String part2 = string.substring(part.length());
-                returnList.add(part);
-                returnList.add(part2);
-            } else returnList.add(string);
+            }
         }
+
         return returnList;
     }
 }
