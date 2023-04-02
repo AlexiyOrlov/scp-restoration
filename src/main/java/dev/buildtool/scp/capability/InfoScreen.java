@@ -147,7 +147,19 @@ public class InfoScreen  extends Screen2 {
             }
             String part2 = string.substring(part.length());
             returnList.add(part);
-            returnList.add(part2);
+            if (font.width(part2) <= width - 30) {
+                int next = nextIndex + 1;
+                if (next < strings.size()) {
+                    String nextString = strings.get(next);
+                    if (font.width(part2 + nextString) <= width - 30) {
+                        returnList.add(part2 + nextString);
+                        if (next + 1 < strings.size())
+                            splitString(strings, returnList, next + 1);
+                    } else returnList.add(part2);
+                } else {
+                    returnList.add(part2);
+                }
+            }
             int indexOfNext = strings.indexOf(string) + 1;
             if (indexOfNext < strings.size()) {
                 splitString(strings, returnList, indexOfNext);
