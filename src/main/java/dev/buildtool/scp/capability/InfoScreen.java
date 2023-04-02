@@ -25,8 +25,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class InfoScreen  extends Screen2 {
-    LinkedHashMap<String, List<String>> stringListHashMap=new LinkedHashMap<>();
-    LinkedHashMap<String, SCPKnowledge.Data> scpData=new LinkedHashMap<>();
+    LinkedHashMap<String, List<String>> scpInfo = new LinkedHashMap<>();
+    LinkedHashMap<String, SCPKnowledge.Data> scpData = new LinkedHashMap<>();
     public InfoScreen(ClientPlayerEntity player, ITextComponent title) {
         super(title);
 
@@ -40,13 +40,14 @@ public class InfoScreen  extends Screen2 {
                 try {
                     IResource resource = Minecraft.getInstance().getResourceManager().getResource(new ResourceLocation(SCP.ID, "info/" + number + ".txt"));
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
-                    ArrayList<String> strings = new ArrayList<>();
+                    List<String> text = new ArrayList<>();
                     String line;
                     while ((line = bufferedReader.readLine()) != null) {
-                        strings.add(line);
+                        text.add(line);
+                        ;
                     }
                     bufferedReader.close();
-                    stringListHashMap.put(number, strings);
+                    scpInfo.put(number, text);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -63,7 +64,7 @@ public class InfoScreen  extends Screen2 {
     public void init() {
         super.init();
         Set<String> keySet = scpData.keySet();
-        IFormattableTextComponent textComponent = new TranslationTextComponent("scp.discovered.scps").append(" (" + keySet.size() + "/" + stringListHashMap.size() + ")");
+        IFormattableTextComponent textComponent = new TranslationTextComponent("scp.discovered.scps").append(" (" + keySet.size() + "/" + scpInfo.size() + ")");
         addButton(new Label(centerX - font.width(textComponent) / 2, 3, textComponent));
         int spaceY = 20;
         int spaceX = 10;
@@ -102,33 +103,20 @@ public class InfoScreen  extends Screen2 {
             matrixStack.pushPose();
             //wrong parameter names
             drawCenteredString(matrixStack,font,"SCP-"+scp,centerX,10+textVerticalPosition,0xffffffff);
-            int offsetY=4;
+            int offsetY = 4;
+            List<String> text = scpInfo.get(scp);
             if(scpData.isEmpty()) {
-                for (String s : stringListHashMap.get(scp)) {
-                    drawString(matrixStack, font, s, 10, 15 * offsetY, 0xffffffff);
-                    offsetY++;
-                }
+                //
             }
             else {
                 SCPKnowledge.Data data = scpData.get(scp);
                 drawCenteredString(matrixStack, font, "Class: " + data.classification, centerX, 25 + textVerticalPosition, 0xffffffff);
                 drawCenteredString(matrixStack, font, "Name: " + data.officialName, centerX, 40 + textVerticalPosition, 0xffffffff);
-                List<String> stringList = stringListHashMap.get(scp);
-                if (stringList != null) {
-                    for (String information : stringList) {
-                        if (font.width(information + "   ") >= width) {
-                            int i = information.length() / 2;
-                            int f = information.indexOf(' ', i);
-                            String part1 = information.substring(0, f);
-                            String part2 = information.substring(f);
-                            drawString(matrixStack, font, part1, 10, 15 * offsetY + textVerticalPosition, 0xffffffff);
-                            offsetY++;
-                            drawString(matrixStack, font, part2, 10, 15 * offsetY + textVerticalPosition, 0xffffffff);
-                        } else {
-                            drawString(matrixStack, font, information, 10, 15 * offsetY + textVerticalPosition, 0xffffffff);
-                        }
-                        offsetY++;
-                    }
+
+                List<String> stringList = splitString(text, new ArrayList<>());
+                for (String information : stringList) {
+                    drawString(matrixStack, font, information, 10, 15 * offsetY + textVerticalPosition, 0xffffffff);
+                    offsetY++;
                 }
 
             }
@@ -137,7 +125,7 @@ public class InfoScreen  extends Screen2 {
 
         @Override
         public boolean mouseScrolled(double p_mouseScrolled_1_, double p_mouseScrolled_3_, double amount) {
-            textVerticalPosition+=amount*5;
+            textVerticalPosition += amount * 5;
             return super.mouseScrolled(p_mouseScrolled_1_, p_mouseScrolled_3_, amount);
         }
 
@@ -145,5 +133,23 @@ public class InfoScreen  extends Screen2 {
         public void onClose() {
             minecraft.setScreen(prev);
         }
+    }
+
+    private List<String> splitString(List<String> strings, List<String> returnList) {
+        for (String string : strings) {
+            if (font.width(string) > width - 30) {
+                String part = string.substring(0, string.lastIndexOf(' '));
+                while (font.width(part) > width - 30) {
+                    part = part.substring(0, part.length() - 2);
+                }
+                while (!part.endsWith(" ")) {
+                    part = part.substring(0, part.length() - 2);
+                }
+                String part2 = string.substring(part.length());
+                returnList.add(part);
+                returnList.add(part2);
+            } else returnList.add(string);
+        }
+        return returnList;
     }
 }

@@ -64,13 +64,6 @@ public class SCPItems {
 
     public static Item scpHardDrive;
 
-//    static ItemGroup templates = new ItemGroup("scp.templates") {
-//        @Override
-//        public ItemStack makeIcon() {
-//            return new ItemStack(scpTemplate);
-//        }
-//    };
-
     @SuppressWarnings("unused")
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> itemRegister) {
@@ -105,7 +98,7 @@ public class SCPItems {
         }, 1).build()));
 
         banana = register(new Item(properties().food(new Food.Builder().nutrition(4).saturationMod(0.5f).build())), "banana", forgeRegistry);
-        forgeRegistry.register(register(new ColaBottle(scp().stacksTo(24)), "cola_bottle", forgeRegistry));
+        register(new ColaBottle(scp().stacksTo(24)), "cola_bottle", forgeRegistry);
 
         Item item = new RubberDucky(SCPItems.scp().stacksTo(1));
         rubberDuck = register(item, "rubber_duck", forgeRegistry);
