@@ -301,5 +301,6 @@
   "scp.encrypted": "Encrypted",
   "scp.blocks.are.present": "There are blocks in the way that are preventing the structure from placement: %s",
   "scp.placed.preview": "Placed structure preview",
-  "scp.need.to.crack.drive": "You must crack this drive first"
+  "scp.need.to.crack.drive": "You must crack this drive first",
+  "scp.start.cracking.drive": "Start cracking"
 }

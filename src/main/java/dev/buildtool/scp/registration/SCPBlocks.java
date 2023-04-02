@@ -18,7 +18,6 @@ import dev.buildtool.scp.lamp.SmallLamp;
 import dev.buildtool.scp.lamp.SwitchableLamp;
 import dev.buildtool.scp.lock.ElectronicLock;
 import dev.buildtool.scp.lootblock.LootBlock;
-import dev.buildtool.scp.lootblock.LootBlockEntity;
 import dev.buildtool.scp.mailbox.Mailbox;
 import dev.buildtool.scp.mailbox.ParcelBlock;
 import dev.buildtool.scp.monsterpot.MonsterPot;
@@ -34,10 +33,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.*;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -227,27 +223,10 @@ public class SCPBlocks {
 
         forgeRegistry.register(registerSCP(oldAIBlock));
 
-
-        forgeRegistry.register(new BlockItem(lootBlock, itemProperties()) {
-            @Override
-            public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
-                BlockPos target = context.getClickedPos();
-                World world = context.getLevel();
-                BlockState blockState = world.getBlockState(target);
-                int blockid = Block.getId(blockState);
-                world.setBlockAndUpdate(target, lootBlock.defaultBlockState());
-                LootBlockEntity lootBlockEntity = (LootBlockEntity) world.getBlockEntity(target);
-                lootBlockEntity.storedBlockstate = blockid;
-                lootBlockEntity.setChanged();
-                return ActionResultType.SUCCESS;
-            }
-        }.setRegistryName(lootBlock.getRegistryName()));
-
         forgeRegistry.register(registerSCP(repeatingBomb));
         forgeRegistry.register(registerSCP(mailbox));
         forgeRegistry.register(register(parcelBlock));
         forgeRegistry.register(register(crate));
-        forgeRegistry.register(register(hardDriveStore));
         forgeRegistry.register(register(hardDriveCrackerBlock));
     }
 

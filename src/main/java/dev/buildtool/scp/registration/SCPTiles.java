@@ -25,7 +25,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.Collections;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -53,27 +52,22 @@ public class SCPTiles {
     public static void registerBlockEntities(RegistryEvent.Register<TileEntityType<?>> registryEvent) {
         IForgeRegistry<TileEntityType<?>> forgeRegistry = registryEvent.getRegistry();
 
-        slidingDoorEntity = new TileEntityType<>(() -> new SlidingDoorEntity(slidingDoorEntity), Collections.singleton(SCPBlocks.slidingDoorBlock), null);
-        slidingDoorEntity.setRegistryName(SCP.ID, "sliding_door");
+        slidingDoorEntity = register(() -> new SlidingDoorEntity(slidingDoorEntity), "sliding_door", forgeRegistry, SCPBlocks.slidingDoorBlock);
         clockworksEntity = register(ClockworksEntity::new, "clockworks", forgeRegistry, SCPBlocks.clockworksPanel);
         crateEntity = register(() -> new CrateEntity(crateEntity), "crate", forgeRegistry, SCPBlocks.crateBlock);
         shelfEntity = register(() -> new ShelfEntity(shelfEntity), "shelf", forgeRegistry, SCPBlocks.acaciaShelf, SCPBlocks.spruceShelf, SCPBlocks.darkOakShelf, SCPBlocks.oakShelf, SCPBlocks.jungleShelf, SCPBlocks.birchShelf);
         tableEntity = register(() -> new TableEntity(tableEntity), "table_one", forgeRegistry, SCPBlocks.singleItemTable);
         tableEntity4 = register(() -> new TableEntity4(tableEntity4), "table_four", forgeRegistry, SCPBlocks.fourItemTable);
-        forgeRegistry.registerAll(slidingDoorEntity, clockworksEntity, crateEntity, shelfEntity, tableEntity, tableEntity4);
         monsterPotEntity = register(() -> new MonsterPotEntity(monsterPotEntity), "monster_pot", forgeRegistry, SCPBlocks.monsterPot);
         lockEntity = register(() -> new LockEntity(lockEntity), "electronic_lock", forgeRegistry, SCPBlocks.electronicLock);
-        forgeRegistry.registerAll(monsterPotEntity, lockEntity);
         ikeaTeleporter = register(() -> new TeleportBlockEntity(ikeaTeleporter), "ikea_teleporter", forgeRegistry, SCPBlocks.iikeaEntrance, SCPBlocks.iikeaExit);
-        forgeRegistry.register(ikeaTeleporter);
         oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", forgeRegistry, SCPBlocks.oldAIBlock);
-        forgeRegistry.registerAll(oldAIEntity);
-        shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
+        shelfLifeEntity = register(() -> new ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
         lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
         mailboxEntity = register(() -> new MailboxEntity(mailboxEntity), "mailbox", forgeRegistry, SCPBlocks.mailbox);
         parcelEntityTile = register(() -> new ParcelBlock.ParcelEntity(parcelEntityTile), "parcel", forgeRegistry, SCPBlocks.parcelBlock);
-        woodenCrate = register(() -> new dev.buildtool.scp.flaregun.CrateEntity(woodenCrate), "wooden_crate", forgeRegistry, SCPBlocks.crate);
-        hardDriveCracker=register(() -> new HardDriveCrackerEntity(hardDriveCracker),"hard_drive_cracker",forgeRegistry,SCPBlocks.hardDriveCrackerBlock);
+        woodenCrate = register(() -> new CrateEntity(woodenCrate), "wooden_crate", forgeRegistry, SCPBlocks.crate);
+        hardDriveCracker = register(() -> new HardDriveCrackerEntity(hardDriveCracker), "hard_drive_cracker", forgeRegistry, SCPBlocks.hardDriveCrackerBlock);
         hardDriveStore=register(() -> new HardDriveStoreEntity(hardDriveStore),"hard_drive_store",forgeRegistry,SCPBlocks.hardDriveStore);
     }
 
