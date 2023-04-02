@@ -4,11 +4,13 @@ import dev.buildtool.satako.BlockEntity2;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.ItemHandler;
 import dev.buildtool.scp.SCP;
+import dev.buildtool.scp.registration.SCPItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -17,6 +19,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.PacketDistributor;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class HardDriveCrackerEntity extends BlockEntity2 implements ITickableTileEntity, INamedContainerProvider {
@@ -25,7 +28,12 @@ public class HardDriveCrackerEntity extends BlockEntity2 implements ITickableTil
     public boolean inProgress;
     public HardDriveCrackerEntity(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
-        itemHandler=new ItemHandler(1);
+        itemHandler = new ItemHandler(1) {
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                return stack.getItem() == SCPItems.scpHardDrive && !stack.getOrCreateTag().getBoolean(HardDrive.CRACKED);
+            }
+        };
     }
 
     @Override

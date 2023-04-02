@@ -21,9 +21,8 @@ public class HardDriveCrackerContainer extends Container2 {
     @Override
     public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
         ItemStack stack=getSlot(index).getItem();
-        if(stack.getItem()== SCPItems.scpHardDrive)
-        {
-            if(!moveItemStackTo(stack,0,1,false))
+        if (stack.getItem() == SCPItems.scpHardDrive && !stack.getOrCreateTag().getBoolean(HardDrive.CRACKED)) {
+            if (!moveItemStackTo(stack, 0, 1, false))
                 return ItemStack.EMPTY;
         }
         return super.quickMoveStack(playerIn, index);
