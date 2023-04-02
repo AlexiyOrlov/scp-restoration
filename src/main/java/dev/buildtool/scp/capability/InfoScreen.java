@@ -62,11 +62,14 @@ public class InfoScreen  extends Screen2 {
     @Override
     public void init() {
         super.init();
-        IFormattableTextComponent textComponent = new TranslationTextComponent("scp.discovered.scps").append(" (" + scpData.keySet().size() + "/" + stringListHashMap.size() + ")");
+        Set<String> keySet = scpData.keySet();
+        IFormattableTextComponent textComponent = new TranslationTextComponent("scp.discovered.scps").append(" (" + keySet.size() + "/" + stringListHashMap.size() + ")");
         addButton(new Label(centerX - font.width(textComponent) / 2, 3, textComponent));
         int spaceY = 20;
         int spaceX = 10;
-        for (String s : scpData.keySet()) {
+        List<String> sortedKeys = new ArrayList<>(keySet);
+        sortedKeys.sort(Comparator.comparing(Integer::valueOf));
+        for (String s : sortedKeys) {
             addButton(new BetterButton(spaceX, spaceY, new StringTextComponent(s), p_onPress_1_ -> {
                 minecraft.setScreen(new SCPEntry(new StringTextComponent(""), this, s));
             }));

@@ -51,7 +51,6 @@ public class SCPKnowledge {
             this.officialName = officialName;
         }
 
-//        public List<String> information;
         public CompoundNBT saveTo(CompoundNBT compoundNBT)
         {
             compoundNBT.putString("Number",number);
@@ -103,7 +102,7 @@ public class SCPKnowledge {
 
     public static class Provider implements ICapabilitySerializable<CompoundNBT>
     {
-        KnowledgeImpl knowledge=new KnowledgeImpl();
+        private final KnowledgeImpl knowledge = new KnowledgeImpl();
         @Nonnull
         @Override
         public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
