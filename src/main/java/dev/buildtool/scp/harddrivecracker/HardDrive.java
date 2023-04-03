@@ -55,7 +55,7 @@ public class HardDrive extends Item {
                         ServerWorld serverWorld = (ServerWorld) world;
                         TemplateManager templateManager = serverWorld.getStructureManager();
                         BlockPos startPosition = itemUseContext.getClickedPos().relative(itemUseContext.getClickedFace());
-                        Template template = templateManager.get(new ResourceLocation(SCP.ID, "containers/" + compoundNBT.getString(NUMBER)));
+                        Template template = templateManager.get(new ResourceLocation(SCP.ID, "cell/" + compoundNBT.getString(NUMBER)));
                         PlacementSettings placementSettings = new PlacementSettings().setIgnoreEntities(false).setFinalizeEntities(true).setRotation(Functions.directionToRotation(itemUseContext.getHorizontalDirection()));
                         if (player.isCrouching()) {
                             if (template != null) {
@@ -80,7 +80,6 @@ public class HardDrive extends Item {
                             for (Template.Palette palette : template.palettes) {
                                 List<Template.BlockInfo> blockInfoList = palette.blocks();
                                 for (Template.BlockInfo blockInfo : blockInfoList) {
-                                    BlockState blockState = blockInfo.state;
                                     BlockPos blockPos = blockInfo.pos;
                                     BlockPos positionToPlaceAt = Template.calculateRelativePosition(placementSettings, blockPos).offset(startPosition);
                                     if (serverWorld.getBlockState(positionToPlaceAt).isAir()) {
