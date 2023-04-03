@@ -62,7 +62,7 @@ public class SCPTiles {
         lockEntity = register(() -> new LockEntity(lockEntity), "electronic_lock", forgeRegistry, SCPBlocks.electronicLock);
         ikeaTeleporter = register(() -> new TeleportBlockEntity(ikeaTeleporter), "ikea_teleporter", forgeRegistry, SCPBlocks.iikeaEntrance, SCPBlocks.iikeaExit);
         oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", forgeRegistry, SCPBlocks.oldAIBlock);
-        shelfLifeEntity = register(() -> new ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
+        shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
         lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
         mailboxEntity = register(() -> new MailboxEntity(mailboxEntity), "mailbox", forgeRegistry, SCPBlocks.mailbox);
         parcelEntityTile = register(() -> new ParcelBlock.ParcelEntity(parcelEntityTile), "parcel", forgeRegistry, SCPBlocks.parcelBlock);

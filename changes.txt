@@ -6,6 +6,7 @@ merged SCP blacklist into the config file;
 designed new algorithm of acquiring SCPs - they no longer generate in the world;
 chair is now sittable;
 landmine cacti won't explode around players in creative mode;
+SCP-914 will not work if its blocks are missing;
 
 0.8.4:
 fixed possible crash caused by Fertile Soil;
