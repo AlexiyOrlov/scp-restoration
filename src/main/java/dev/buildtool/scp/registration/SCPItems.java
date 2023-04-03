@@ -11,7 +11,6 @@ import dev.buildtool.scp.items.StasisCage;
 import dev.buildtool.scp.itemscps.*;
 import dev.buildtool.scp.lock.KeyCard;
 import dev.buildtool.scp.swatarmor.PoliceBaton;
-import dev.buildtool.scp.template.SCPTemplate;
 import dev.buildtool.scp.weapons.AutoRifle;
 import dev.buildtool.scp.weapons.FlakCannon;
 import dev.buildtool.scp.weapons.FlameThrower;
@@ -60,8 +59,6 @@ public class SCPItems {
     static public KeyCard keyCard;
     static public Item banana, rubberDuck, gadget;
 
-    public static SCPTemplate scpTemplate;
-
     public static Item scpHardDrive;
 
     @SuppressWarnings("unused")
@@ -91,11 +88,11 @@ public class SCPItems {
         policeBaton = register(new PoliceBaton(single()), "police_baton", forgeRegistry);
         scalpel = register(new SwordItem(ItemTier.GOLD, 3, -2.4f, single()), "scalpel", forgeRegistry);
         keyCard = register(new KeyCard(single()), "keycard", forgeRegistry);
-        Item bananaPill = new BananaPill(SCPItems.scp().stacksTo(16).food(new Food.Builder().nutrition(0).saturationMod(0).alwaysEat().effect(() -> {
+        register(new BananaPill(SCPItems.scp().stacksTo(16).food(new Food.Builder().nutrition(0).saturationMod(0).alwaysEat().effect(() -> {
             EffectInstance effectInstance = new EffectInstance(SCPEffects.bananaDeathEffect, Functions.minutesToTicks(31));
             effectInstance.setCurativeItems(Collections.emptyList());
             return effectInstance;
-        }, 1).build()));
+        }, 1).build())), "scp3521", forgeRegistry);
 
         banana = register(new Item(properties().food(new Food.Builder().nutrition(4).saturationMod(0.5f).build())), "banana", forgeRegistry);
         register(new ColaBottle(scp().stacksTo(24)), "cola_bottle", forgeRegistry);
