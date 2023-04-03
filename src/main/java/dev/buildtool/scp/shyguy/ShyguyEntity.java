@@ -196,7 +196,7 @@ public class ShyguyEntity extends SCPEntity {
         IDLE(0),
         CRYING(1),
         ACTIVE(2);
-        public byte aByte;
+        public final byte aByte;
 
         State(int i) {
             aByte = (byte) i;

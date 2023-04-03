@@ -1,5 +1,5 @@
 Shyguy is a passive creature until a human looks at his head - in this case,
 shyguy will cover his face and sob for a while, then becomes enraged - he will
 pursue those who viewed its face and kill them, breaking blocks blocking its path.
-After the victims are dead, he will return to passive state. He is able to climb
-to some extent, and has maximum possible health, which regenerates.
+After the victims are dead, he will return to passive state. He has maximum possible
+ health which regenerates.
