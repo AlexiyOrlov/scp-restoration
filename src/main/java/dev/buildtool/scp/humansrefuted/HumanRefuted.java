@@ -4,9 +4,9 @@ import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.Ageable;
 import dev.buildtool.scp.SCPEntity;
 import dev.buildtool.scp.SCPObject;
+import dev.buildtool.scp.human.Human;
 import dev.buildtool.scp.registration.Entities;
 import dev.buildtool.scp.registration.Sounds;
-import dev.buildtool.scp.human.Human;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
@@ -112,6 +112,6 @@ public class HumanRefuted extends SCPEntity implements Ageable {
 
     @Override
     public int getAmbientSoundInterval() {
-        return Functions.secondsToTicks(20);
+        return Functions.minutesToTicks(1);
     }
 }

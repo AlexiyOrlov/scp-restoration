@@ -51,7 +51,6 @@ public class ShelfBlock extends BlockHorizontal {
         if (player instanceof ServerPlayerEntity) {
             NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) worldIn.getBlockEntity(pos), packetBuffer -> packetBuffer.writeBlockPos(pos));
         }
-
         return ActionResultType.SUCCESS;
     }
 
