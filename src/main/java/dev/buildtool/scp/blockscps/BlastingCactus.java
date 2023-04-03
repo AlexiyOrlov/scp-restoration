@@ -44,8 +44,8 @@ public class BlastingCactus extends Block {
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        AxisAlignedBB axisAlignedBB=new AxisAlignedBB(pos).inflate(3);
-        List<LivingEntity> livingEntities=worldIn.getEntitiesOfClass(LivingEntity.class,axisAlignedBB,livingEntity -> livingEntity.attackable() && EntityPredicates.NO_SPECTATORS.test(livingEntity));
+        AxisAlignedBB axisAlignedBB = new AxisAlignedBB(pos).inflate(3);
+        List<LivingEntity> livingEntities = worldIn.getEntitiesOfClass(LivingEntity.class, axisAlignedBB, livingEntity -> livingEntity.attackable() && EntityPredicates.NO_CREATIVE_OR_SPECTATOR.test(livingEntity));
         if(!livingEntities.isEmpty())
         {
             worldIn.removeBlock(pos,false);
