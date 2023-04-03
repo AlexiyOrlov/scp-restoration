@@ -51,8 +51,8 @@ public class SCPBlocks {
     public static RedIce redIce;
     public static SlidingDoorBlock slidingDoorBlock;
     static Panel clockworksPanel;
-    static Block clockworksBase;
-    static Block clockworksChamber;
+    public static Block clockworksBase;
+    public static Block clockworksChamber;
     static ElectronicLock electronicLock;
     public static ArrayList<Block> resistantGlass = new ArrayList<>(16);
     public static ArrayList<Block> resistantBricks = new ArrayList<>(16);
