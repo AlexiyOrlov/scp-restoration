@@ -1,1 +1,1 @@
-Provides infininte pizza slices as long as the player is hungry.
+Provides infinite pizza slices as long as the player is hungry.
