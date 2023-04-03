@@ -5,6 +5,7 @@ import dev.buildtool.scp.ArmoredRenderer;
 import dev.buildtool.scp.BipedModel2;
 import dev.buildtool.scp.EntityRenderer2;
 import dev.buildtool.scp.SCP;
+import dev.buildtool.scp.chairs.SittableRenderer;
 import dev.buildtool.scp.crate.CrateContainer;
 import dev.buildtool.scp.flaregun.FlareRenderer;
 import dev.buildtool.scp.harddrivecracker.HardDriveCrackerScreen;
@@ -117,6 +118,8 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.flame, FlameRenderer::new);
 
         RenderTypeLookup.setRenderLayer(SCPBlocks.previewBlock, RenderType.translucent());
+
+        RenderingRegistry.registerEntityRenderingHandler(Entities.sittableEntityType, SittableRenderer::new);
     }
 
     public static List<String> getResourceText(String resourcePath) {

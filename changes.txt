@@ -4,6 +4,7 @@ fixed shyguy's animations;
 fixed shyguy not stopping attacking non-survival players;
 merged SCP blacklist into the config file;
 designed new algorithm of acquiring SCPs - they no longer generate in the world;
+chair is now sittable;
 
 0.8.4:
 fixed possible crash caused by Fertile Soil;

@@ -3,8 +3,8 @@ package dev.buildtool.scp.pipenightmare;
 import dev.buildtool.satako.Constants;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
-import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.infiniteikea.SupportBlock;
+import dev.buildtool.scp.registration.SCPBlocks;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,8 +26,7 @@ import java.util.Random;
 @SCPObject(name = "Pipe Nightmare", number = "015", classification = SCPObject.Classification.EUCLID)
 public class Pipe extends SupportBlock {
     /**
-     * @param apothem    width
-     * @param properties
+     * @param apothem width
      */
     public Pipe(float apothem, Properties properties) {
         super(apothem, properties);
