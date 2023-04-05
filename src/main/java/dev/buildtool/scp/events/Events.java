@@ -96,8 +96,8 @@ public class Events {
 
     @SubscribeEvent
     public static void onServerStop(FMLServerStoppedEvent serverStoppedEvent) {
-//        Structures.scpSite.scpWorldData = null;
-        Structures.hardDriveContainerGenerator.scpWorldData=null;
+        Structures.hardDriveContainerGenerator.scpWorldData = null;
+        Structures.hardDriveContainerGenerator.alreadyGeneratedSCPDrives.clear();
     }
 
 }

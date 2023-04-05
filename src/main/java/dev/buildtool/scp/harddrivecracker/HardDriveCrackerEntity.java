@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class HardDriveCrackerEntity extends BlockEntity2 implements ITickableTileEntity, INamedContainerProvider {
-    public int time=Functions.minutesToTicks(15);
+    public int time = Functions.minutesToTicks(10);
     ItemHandler itemHandler;
     public boolean inProgress;
     public HardDriveCrackerEntity(TileEntityType<?> tileEntityType) {
@@ -44,7 +44,7 @@ public class HardDriveCrackerEntity extends BlockEntity2 implements ITickableTil
                     if (time == 0) {
                         //hard drive cracked
                         itemHandler.getStackInSlot(0).getOrCreateTag().putBoolean(HardDrive.CRACKED, true);
-                        time = Functions.minutesToTicks(15);
+                        time = Functions.minutesToTicks(10);
                         inProgress = false;
                     } else
                         time--;

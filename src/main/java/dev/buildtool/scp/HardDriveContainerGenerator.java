@@ -1,8 +1,8 @@
 package dev.buildtool.scp;
 
 import dev.buildtool.satako.UniqueList;
-import dev.buildtool.scp.registration.SCPBlocks;
 import dev.buildtool.scp.harddrivecracker.HardDriveStoreEntity;
+import dev.buildtool.scp.registration.SCPBlocks;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -13,20 +13,19 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 public class HardDriveContainerGenerator extends Feature<NoFeatureConfig> {
-    UniqueList<String> alreadyGeneratedSCPDrives;
+    public UniqueList<String> alreadyGeneratedSCPDrives;
     List<String> allSCPs;
     public SCPWorldData scpWorldData;
 
     public HardDriveContainerGenerator() {
         super(NoFeatureConfig.CODEC);
-        alreadyGeneratedSCPDrives=new UniqueList<>();
-        allSCPs=new ArrayList<>();
+        alreadyGeneratedSCPDrives = new UniqueList<>();
+        allSCPs = new UniqueList<>();
         Utils.getAllSCPs().forEach(stringObjectMap -> {
             allSCPs.add(stringObjectMap.get("number").toString());
         });

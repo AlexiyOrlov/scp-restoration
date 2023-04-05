@@ -4,15 +4,10 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.satako.gui.BetterButton;
 import dev.buildtool.satako.gui.ContainerScreen2;
-import dev.buildtool.satako.gui.Label;
 import dev.buildtool.scp.SCP;
-import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 public class HardDriveCrackerScreen extends ContainerScreen2<HardDriveCrackerContainer> {
     HardDriveCrackerContainer container;
@@ -24,10 +19,11 @@ public class HardDriveCrackerScreen extends ContainerScreen2<HardDriveCrackerCon
     @Override
     public void init() {
         super.init();
-        if(container.entity.time==Functions.minutesToTicks(15)) {
+        if (!container.entity.inProgress) {
             TranslationTextComponent translationTextComponent = new TranslationTextComponent("scp.start.cracking.drive");
-            BetterButton startCracking = new BetterButton(centerX-font.width(translationTextComponent.getString())/2, 40, translationTextComponent, button -> {
-                if(!container.entity.itemHandler.isEmpty()) {
+            BetterButton startCracking = new BetterButton(centerX - font.width(translationTextComponent.getString()) / 2, 40, translationTextComponent, button -> {
+                if (!container.entity.itemHandler.isEmpty()) {
+                    container.entity.inProgress = true;
                     SCP.channel.sendToServer(new StartCracking(container.entity.getBlockPos()));
                     button.active = false;
                 }
