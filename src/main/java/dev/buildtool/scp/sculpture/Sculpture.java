@@ -52,7 +52,7 @@ public class Sculpture extends SCPEntity {
 
     public static boolean canMove(Sculpture sculptureEntity) {
         double range = sculptureEntity.getRange();
-        List<LivingEntity> entities = sculptureEntity.level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(sculptureEntity.blockPosition()).inflate(range), livingEntity -> livingEntity instanceof Human || (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).isCreative()));
+        List<LivingEntity> entities = sculptureEntity.level.getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(sculptureEntity.blockPosition()).inflate(range), livingEntity -> livingEntity instanceof Human || (livingEntity instanceof PlayerEntity && (!((PlayerEntity) livingEntity).isCreative() || livingEntity.isSpectator())));
 
         entities.removeIf(entityLivingBase -> entityLivingBase.hasEffect(Effects.BLINDNESS) && sculptureEntity.distanceTo(entityLivingBase) > 6);
         for (LivingEntity entity : entities) {
@@ -62,11 +62,6 @@ public class Sculpture extends SCPEntity {
         }
         return true;
     }
-
-//    @Override
-//    public boolean isInvulnerableTo(DamageSource source) {
-//        return source != DamageSource.OUT_OF_WORLD && super.isInvulnerableTo(source);
-//    }
 
     static class Wander extends WaterAvoidingRandomWalkingGoal {
         public Wander(CreatureEntity creature, double speedIn, float probabilityIn) {

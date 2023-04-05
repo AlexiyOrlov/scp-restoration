@@ -20,7 +20,7 @@ import dev.buildtool.scp.monsterpot.PotMonsterRenderer;
 import dev.buildtool.scp.patchworkbear.SCP2295;
 import dev.buildtool.scp.plaguedoctor.CorpseRenderer;
 import dev.buildtool.scp.plaguedoctor.PlagueDoctor3;
-import dev.buildtool.scp.sculpture.SculptureModel;
+import dev.buildtool.scp.sculpture.SCP173Model;
 import dev.buildtool.scp.shelf.ShelfRenderer;
 import dev.buildtool.scp.shelflife.ShelfContainer;
 import dev.buildtool.scp.shyguy.SCP096;
@@ -73,7 +73,7 @@ public class ClientModEvents {
         RenderingRegistry.registerEntityRenderingHandler(Entities.uncleSam, manager -> new ArmoredRenderer<>(manager, new BipedModel2<>(), "uncle_sam", 0.4f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.plagueDoctorEntityType, manager -> new ArmoredRenderer<>(manager, new PlagueDoctor3(), "plague_doctor", 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.corpseEntityType, CorpseRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(Entities.sculptureEntityType, manager -> new EntityRenderer2<>(manager, new SculptureModel(), "sculpture", false, 0.3f));
+        RenderingRegistry.registerEntityRenderingHandler(Entities.sculptureEntityType, manager -> new EntityRenderer2<>(manager, new SCP173Model(), "scp173", false, 0.3f));
         RenderingRegistry.registerEntityRenderingHandler(Entities.tickleMonster, manager -> new EntityRenderer2(manager, new TickleMonster2(), "tickle_monster2", false, 0.9f) {
             @Override
             protected RenderType getRenderType(LivingEntity p_230496_1_, boolean p_230496_2_, boolean p_230496_3_, boolean p_230496_4_) {
