@@ -1,4 +1,4 @@
-0.8.5:
+0.9.0:
 decreased lag in Ikea dimension;
 fixed shyguy's animations;
 fixed shyguy not stopping attacking non-survival players;
