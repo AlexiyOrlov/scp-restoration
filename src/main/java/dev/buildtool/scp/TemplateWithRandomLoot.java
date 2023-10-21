@@ -12,7 +12,7 @@ public class TemplateWithRandomLoot extends Template2 {
     RandomLoot randomLoot;
 
     public TemplateWithRandomLoot(Template template, RandomLoot loot, ISeedReader seedReader) {
-        super(template, Collections.emptyList(), seedReader, false);
+        super(template, Collections.emptyList(), seedReader);
         this.randomLoot = loot;
     }
 

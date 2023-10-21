@@ -39,7 +39,7 @@ import java.util.Random;
 public class GeneratableTemplate extends Template2 {
 
     public GeneratableTemplate(Template template, List<ResourceLocation> loots, ISeedReader reader) {
-        super(template, loots, reader, false);
+        super(template, loots, reader);
     }
 
     @Override

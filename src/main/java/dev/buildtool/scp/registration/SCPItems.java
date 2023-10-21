@@ -78,7 +78,7 @@ public class SCPItems {
                 BlockPos pos = context.getClickedPos();
                 World world = context.getLevel();
                 if (!world.isClientSide) {
-                    Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world, true);
+                    Template2 template2 = new Template2(world.getServer().getStructureManager().get(Structures.scpSite.structures.getRandom()), Collections.emptyList(), (ServerWorld) world);
                     final PlacementSettings placementSettings = new PlacementSettings().setRotation(Rotation.getRandom(Item.random));
                     template2.placeInWorld((IServerWorld) world, pos, placementSettings, Item.random);
                 }

@@ -25,7 +25,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.shapes.BitSetVoxelShapePart;
 import net.minecraft.util.math.shapes.VoxelShapePart;
 import net.minecraft.util.math.vector.Vector3d;
@@ -47,9 +46,8 @@ public class Template2 extends Template {
 
     protected final List<ResourceLocation> structureLoots;
     protected ISeedReader seedReader;
-    protected boolean applyWallDamage;
 
-    public Template2(Template template, List<ResourceLocation> loots, ISeedReader seedReader, boolean applyDamage) {
+    public Template2(Template template, List<ResourceLocation> loots, ISeedReader seedReader) {
         super();
         setAuthor(template.getAuthor());
         size = template.getSize();
@@ -57,7 +55,6 @@ public class Template2 extends Template {
         this.entityInfoList = template.entityInfoList;
         this.structureLoots = loots;
         this.seedReader = seedReader;
-        this.applyWallDamage = applyDamage;
     }
 
     @Override
@@ -67,7 +64,6 @@ public class Template2 extends Template {
         } else {
             List<BlockInfo> list = settings.getRandomPalette(this.palettes, pos).blocks();
             if ((!list.isEmpty() || !settings.isIgnoreEntities() && !this.entityInfoList.isEmpty()) && this.getSize().getX() >= 1 && this.getSize().getY() >= 1 && this.getSize().getZ() >= 1) {
-                MutableBoundingBox mutableboundingbox = settings.getBoundingBox();
                 List<BlockPos> list1 = Lists.newArrayListWithCapacity(settings.shouldKeepLiquids() ? list.size() : 0);
                 List<Pair<BlockPos, CompoundNBT>> list2 = Lists.newArrayListWithCapacity(list.size());
                 int i = Integer.MAX_VALUE;
@@ -76,21 +72,9 @@ public class Template2 extends Template {
                 int l = Integer.MIN_VALUE;
                 int i1 = Integer.MIN_VALUE;
                 int j1 = Integer.MIN_VALUE;
-                if (mutableboundingbox == null)
-                    mutableboundingbox = new MutableBoundingBox(pos, new BlockPos(pos.getX() + size.getX(), pos.getY() + size.getY(), pos.getZ() + size.getZ()));
                 for (BlockInfo template$blockinfo : processBlockInfos(seedReader, pos, blockPos, settings, list, this)) {
                     BlockPos blockpos = template$blockinfo.pos;
                     {
-                        int x = blockpos.getX();
-                        int y = blockpos.getY();
-                        int z = blockpos.getZ();
-                        // random skip of outer wall block
-                        if (applyWallDamage && random.nextDouble() < SCP.chamberDamage.get()) {
-                            if (x == mutableboundingbox.x0 || x == mutableboundingbox.x1 - 1 || y == mutableboundingbox.y0 ||
-                                    y == mutableboundingbox.y1 - 1 || z == mutableboundingbox.z0 || z == mutableboundingbox.z1 - 1) {
-                                continue;
-                            }
-                        }
                         FluidState fluidstate = settings.shouldKeepLiquids() ? seedReader.getFluidState(blockpos) : null;
                         BlockState blockstate = template$blockinfo.state.mirror(settings.getMirror()).rotate(seedReader, blockPos, settings.getRotation());
                         if (template$blockinfo.nbt != null) {
