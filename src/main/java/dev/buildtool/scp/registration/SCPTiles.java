@@ -2,17 +2,17 @@ package dev.buildtool.scp.registration;
 
 import com.google.common.collect.Sets;
 import dev.buildtool.scp.SCP;
-import dev.buildtool.scp.clockworks.ClockworksEntity;
 import dev.buildtool.scp.crate.CrateEntity;
 import dev.buildtool.scp.harddrivecracker.HardDriveCrackerEntity;
 import dev.buildtool.scp.harddrivecracker.HardDriveStoreEntity;
-import dev.buildtool.scp.infiniteikea.TeleportBlockEntity;
 import dev.buildtool.scp.lock.LockEntity;
 import dev.buildtool.scp.lootblock.LootBlockEntity;
-import dev.buildtool.scp.mailbox.MailboxEntity;
-import dev.buildtool.scp.mailbox.ParcelBlock;
-import dev.buildtool.scp.monsterpot.MonsterPotEntity;
-import dev.buildtool.scp.oldai.OldAIEntity;
+import dev.buildtool.scp.scps.clockworks.ClockworksEntity;
+import dev.buildtool.scp.scps.infiniteikea.TeleportBlockEntity;
+import dev.buildtool.scp.scps.mailbox.MailboxEntity;
+import dev.buildtool.scp.scps.mailbox.ParcelBlock;
+import dev.buildtool.scp.scps.monsterpot.MonsterPotEntity;
+import dev.buildtool.scp.scps.oldai.OldAIEntity;
 import dev.buildtool.scp.shelf.ShelfEntity;
 import dev.buildtool.scp.slidingdoor.SlidingDoorEntity;
 import dev.buildtool.scp.table.TableEntity;
@@ -39,11 +39,11 @@ public class SCPTiles {
     public static TileEntityType<LockEntity> lockEntity;
     public static TileEntityType<TeleportBlockEntity> ikeaTeleporter;
     public static TileEntityType<OldAIEntity> oldAIEntity;
-    public static TileEntityType<dev.buildtool.scp.shelflife.ShelfEntity> shelfLifeEntity;
+    public static TileEntityType<dev.buildtool.scp.scps.shelflife.ShelfEntity> shelfLifeEntity;
     public static TileEntityType<LootBlockEntity> lootBlockEntity;
     public static TileEntityType<MailboxEntity> mailboxEntity;
     public static TileEntityType<ParcelBlock.ParcelEntity> parcelEntityTile;
-    public static TileEntityType<dev.buildtool.scp.flaregun.CrateEntity> woodenCrate;
+    public static TileEntityType<dev.buildtool.scp.scps.flaregun.CrateEntity> woodenCrate;
     public static TileEntityType<HardDriveCrackerEntity> hardDriveCracker;
     public static TileEntityType<HardDriveStoreEntity> hardDriveStore;
 
@@ -62,7 +62,7 @@ public class SCPTiles {
         lockEntity = register(() -> new LockEntity(lockEntity), "electronic_lock", forgeRegistry, SCPBlocks.electronicLock);
         ikeaTeleporter = register(() -> new TeleportBlockEntity(ikeaTeleporter), "ikea_teleporter", forgeRegistry, SCPBlocks.iikeaEntrance, SCPBlocks.iikeaExit);
         oldAIEntity = register(() -> new OldAIEntity(oldAIEntity), "old_ai", forgeRegistry, SCPBlocks.oldAIBlock);
-        shelfLifeEntity = register(() -> new dev.buildtool.scp.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
+        shelfLifeEntity = register(() -> new dev.buildtool.scp.scps.shelflife.ShelfEntity(shelfLifeEntity), "shelf_life", forgeRegistry, SCPBlocks.shelfLifeBlock);
         lootBlockEntity = register(() -> new LootBlockEntity(lootBlockEntity), "loot_block", forgeRegistry, SCPBlocks.lootBlock);
         mailboxEntity = register(() -> new MailboxEntity(mailboxEntity), "mailbox", forgeRegistry, SCPBlocks.mailbox);
         parcelEntityTile = register(() -> new ParcelBlock.ParcelEntity(parcelEntityTile), "parcel", forgeRegistry, SCPBlocks.parcelBlock);

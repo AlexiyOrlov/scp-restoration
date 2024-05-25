@@ -3,7 +3,7 @@ package dev.buildtool.scp.template;
 import dev.buildtool.satako.Functions;
 import dev.buildtool.scp.SCPObject;
 import dev.buildtool.scp.Utils;
-import dev.buildtool.scp.infiniteikea.GeneratableTemplate;
+import dev.buildtool.scp.scps.infiniteikea.GeneratableTemplate;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

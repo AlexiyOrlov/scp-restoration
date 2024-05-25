@@ -1,7 +1,7 @@
 package dev.buildtool.scp;
 
 import com.google.gson.JsonObject;
-import dev.buildtool.scp.clockworks.ClockworksRecipe;
+import dev.buildtool.scp.scps.clockworks.ClockworksRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.network.PacketBuffer;

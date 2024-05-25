@@ -1,8 +1,8 @@
 package dev.buildtool.scp.registration;
 
 import dev.buildtool.scp.SCP;
-import dev.buildtool.scp.radioactbananas.BananaDeathEffect;
-import dev.buildtool.scp.radioactbananas.Radiation;
+import dev.buildtool.scp.scps.radioactbananas.BananaDeathEffect;
+import dev.buildtool.scp.scps.radioactbananas.Radiation;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraftforge.event.RegistryEvent;
